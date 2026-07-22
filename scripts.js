@@ -3,7 +3,7 @@
 // Data Store
 let portfolioData = {
     profile: {
-        name: "Dr. Sarah Chen",
+        name: "Dr. Mathan Kumar P",
         title: "Senior Research Scientist in Computational Biology",
         email: "sarah.chen@broadinstitute.org",
         scholar: "https://scholar.google.com/citations?user=example",
