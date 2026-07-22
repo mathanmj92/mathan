@@ -994,5 +994,37 @@
             lastScroll = currentScroll;
         });
     </script>
+    <!-- Other HTML content like headers, sections, footers above -->
+
+    <!-- Place the JavaScript snippet here -->
+    <script>
+        async function loadPortfolioData() {
+            try {
+                // Cache buster parameter avoids CDN caching stale JSON
+                const response = await fetch('./data.json?v=' + new Date().getTime());
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                // Call your render functions here
+                renderProfile(data.profile);
+                renderExperience(data.experience);
+                renderAcademic(data.academic);
+                renderResearch(data.research);
+                renderPublications(data.publications);
+                renderEvents(data.events);
+                renderGallery(data.gallery);
+                renderLinks(data.links);
+                renderJobs(data.jobs);
+                applySettings(data.settings);
+            } catch (error) {
+                console.error('Error fetching data.json:', error);
+            }
+        }
+
+        // Run the script once the HTML DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', loadPortfolioData);
+    </script>
 </body>
 </html>
