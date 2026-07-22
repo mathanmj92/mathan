@@ -1,0 +1,269 @@
+{
+  "profile": {
+    "name": "Mathan Kumar P",
+    "title": "Assistant Professor of Physics",
+    "email": "mathankumar.sh@psgitech.ac.in",
+    "scholar": "https://scholar.google.com/citations?user=I730zAgAAAAJ&hl=en",
+    "bio": "Leading interdisciplinary research at the intersection of artificial intelligence and molecular biology. Focused on developing computational methods to understand complex biological systems and disease mechanisms.",
+    "keywords": [
+      "Machine Learning",
+      "Bioinformatics",
+      "Genomics",
+      "Systems Biology"
+    ],
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpL6i7TqZ6xCQWc3AGvHp-5m51169jVQvHIpPSYMH89XDujw2VpZsLjiw&s=10",
+    "metrics": {
+      "citations": 1000,
+      "hIndex": 28,
+      "i10Index": 42,
+      "publications": 56
+    }
+  },
+  "socialLinks": {
+    "twitter": "",
+    "linkedin": "https://www.linkedin.com/in/mathan-kumar-pandiyan-30a342310/",
+    "github": "",
+    "scholar": "https://scholar.google.com/citations?user=I730zAgAAAAJ&hl=en",
+    "orcid": "",
+    "website": ""
+  },
+  "contact": {
+    "email": "mathankumar.sh@psgitech.ac.in",
+    "scholar": "https://scholar.google.com/citations?user=I730zAgAAAAJ&hl=en",
+    "message": "",
+    "buttonTextEmail": "Send Email",
+    "buttonTextScholar": "Google Scholar"
+  },
+  "mentors": [
+    {
+      "id": 1784621605287,
+      "name": "New Mentor",
+      "institution": "Institution",
+      "role": "Collaborator",
+      "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 1,
+      "name": "Prof. Michael Zhang",
+      "institution": "Stanford University",
+      "role": "PhD Advisor",
+      "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
+    },
+    {
+      "id": 2,
+      "name": "Dr. Lisa Wang",
+      "institution": "Broad Institute",
+      "role": "Collaborator",
+      "photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
+    }
+  ],
+  "experience": [
+    {
+      "id": 1,
+      "title": "Senior Research Scientist",
+      "organization": "Broad Institute of MIT and Harvard",
+      "period": "2020 - Present",
+      "description": "Leading computational biology research group focusing on single-cell genomics and machine learning applications in cancer biology."
+    },
+    {
+      "id": 2,
+      "title": "Postdoctoral Researcher",
+      "organization": "Stanford University School of Medicine",
+      "period": "2017 - 2020",
+      "description": "Developed novel algorithms for analyzing high-dimensional biological data and integrative genomics approaches."
+    },
+    {
+      "id": 3,
+      "title": "Research Assistant",
+      "organization": "University of California, Berkeley",
+      "period": "2015 - 2017",
+      "description": "Worked on computational methods for phylogenetic analysis and evolutionary genomics."
+    }
+  ],
+  "academic": [
+    {
+      "id": 1,
+      "degree": "Ph.D. in Computational Biology",
+      "institution": "University of California, Berkeley",
+      "period": "2012 - 2017",
+      "description": "Dissertation: \"Machine Learning Approaches for Understanding Gene Regulatory Networks\""
+    },
+    {
+      "id": 2,
+      "degree": "M.S. in Computer Science",
+      "institution": "Carnegie Mellon University",
+      "period": "2010 - 2012",
+      "description": "Specialization in Machine Learning and Data Mining"
+    },
+    {
+      "id": 3,
+      "degree": "B.S. in Biology & Computer Science",
+      "institution": "Massachusetts Institute of Technology",
+      "period": "2006 - 2010",
+      "description": "Double major with minor in Mathematics"
+    }
+  ],
+  "research": [
+    {
+      "id": 1,
+      "title": "Single-Cell Atlas of Cancer",
+      "status": "ongoing",
+      "description": "Building a comprehensive single-cell reference atlas of tumor microenvironments across cancer types.",
+      "tags": [
+        "scRNA-seq",
+        "Spatial"
+      ],
+      "icon": "dna"
+    },
+    {
+      "id": 2,
+      "title": "Deep Learning for Drug Discovery",
+      "status": "ongoing",
+      "description": "Developing graph neural networks for molecular property prediction and drug-target interaction.",
+      "tags": [
+        "GNN",
+        "Drug Discovery"
+      ],
+      "icon": "brain"
+    },
+    {
+      "id": 3,
+      "title": "Gene Regulatory Networks",
+      "status": "published",
+      "description": "Inference of regulatory relationships from multi-omics data using causal discovery methods.",
+      "tags": [
+        "Networks",
+        "Causal"
+      ],
+      "icon": "project-diagram"
+    }
+  ],
+  "publications": [
+    {
+      "id": 1,
+      "title": "Comprehensive integration of single-cell data",
+      "authors": "Chen S., et al.",
+      "journal": "Nature Biotechnology",
+      "year": 2023,
+      "category": "article",
+      "citations": 342,
+      "doi": "10.1038/s41587-023-01664-4",
+      "description": "A framework for integrating diverse single-cell datasets to enable comparative analysis across experiments and conditions."
+    },
+    {
+      "id": 2,
+      "title": "Spatial transcriptomics reveals tissue architecture",
+      "authors": "Chen S., Johnson R., et al.",
+      "journal": "Cell",
+      "year": 2022,
+      "category": "article",
+      "citations": 189,
+      "doi": "10.1016/j.cell.2022.05.012",
+      "description": "High-resolution spatial mapping of gene expression in complex tissues using advanced sequencing technologies."
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "title": "Keynote: AI in Precision Medicine",
+      "type": "invited_talk",
+      "date": "2024-03-15",
+      "location": "International Conference on Computational Biology, Boston, MA",
+      "description": "Presented recent advances in machine learning applications for personalized cancer treatment."
+    },
+    {
+      "id": 2,
+      "title": "RECOMB 2023",
+      "type": "conference",
+      "date": "2023-12-10",
+      "location": "Istanbul, Turkey",
+      "description": "Presented poster on \"Scalable algorithms for single-cell multi-omics integration\"."
+    }
+  ],
+  "gallery": [
+    {
+      "id": 1,
+      "title": "Laboratory Analysis",
+      "description": "Single-cell sequencing preparation",
+      "image": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop"
+    },
+    {
+      "id": 2,
+      "title": "Data Visualization",
+      "description": "UMAP projection of cell types",
+      "image": "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&h=400&fit=crop"
+    },
+    {
+      "id": 3,
+      "title": "Conference Presentation",
+      "description": "RECOMB 2023 in Istanbul",
+      "image": "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=600&h=400&fit=crop"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 1,
+      "title": "Postdoctoral Researcher",
+      "type": "Full-time",
+      "location": "Cambridge, MA",
+      "status": "open",
+      "description": "Seeking a motivated postdoc to work on single-cell multi-omics integration methods. Strong programming skills in Python/R required."
+    },
+    {
+      "id": 2,
+      "title": "Graduate Student",
+      "type": "PhD Program",
+      "location": "Cambridge, MA",
+      "status": "open",
+      "description": "Looking for PhD students interested in computational biology and machine learning. Rotation students welcome."
+    }
+  ],
+  "links": [
+    {
+      "id": 1784626002346,
+      "title": "New Resource",
+      "description": "Resource description",
+      "url": "https://example.com"
+    },
+    {
+      "id": 1,
+      "title": "Lab Handbook",
+      "description": "Protocols and guidelines",
+      "url": "#"
+    },
+    {
+      "id": 2,
+      "title": "GitHub Repository",
+      "description": "Open source tools",
+      "url": "#"
+    },
+    {
+      "id": 3,
+      "title": "Datasets",
+      "description": "Published data",
+      "url": "#"
+    }
+  ],
+  "settings": {
+    "siteTitle": "Academic Research Portfolio",
+    "footerText": "Research Portfolio",
+    "darkModeDefault": false,
+    "showMetrics": true,
+    "themeColors": {
+      "lightBackground": "#f8fafc",
+      "lightText": "#1f2937",
+      "lightGradientFrom": "#1e40af",
+      "lightGradientTo": "#7c3aed",
+      "lightGradientMid": "#c026d3",
+      "lightSurface": "#ffffff",
+      "lightSurfaceStrong": "#f3f4f6",
+      "darkBackground": "#0f172a",
+      "darkText": "#f8fafc",
+      "darkGradientFrom": "#60a5fa",
+      "darkGradientTo": "#a78bfa",
+      "darkGradientMid": "#f0abfc",
+      "darkSurface": "#111827",
+      "darkSurfaceStrong": "#1f2937"
+    }
+  }
+}

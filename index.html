@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Research Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        accent: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            800: '#86198f',
+                            900: '#701a75',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 50%, #c026d3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+        }
+        .metric-counter {
+            font-variant-numeric: tabular-nums;
+        }
+        .gallery-overlay {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+        }
+        .publication-tag {
+            transition: all 0.2s ease;
+        }
+        .publication-tag:hover {
+            transform: scale(1.05);
+        }
+        .smooth-fade {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal-enter {
+            animation: modalIn 0.3s ease-out;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .timeline-line {
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #2563eb, #7c3aed);
+        }
+        .keyword-chip {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+            border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+        .status-ongoing {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        .status-published {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+        .category-article {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .category-book_chapter {
+            background: #fce7f3;
+            color: #a21caf;
+        }
+        .category-patent {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .event-type-invited_talk {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .event-type-conference {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .event-type-workshop {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .event-type-seminar {
+            background: #fce7f3;
+            color: #a21caf;
+        }
+        :root {
+            --site-bg: #f8fafc;
+            --site-text: #1f2937;
+            --site-surface: #ffffff;
+            --site-surface-strong: #f3f4f6;
+            --site-muted: #6b7280;
+            --site-gradient-from: #1e40af;
+            --site-gradient-to: #7c3aed;
+            --site-gradient-mid: #c026d3;
+        }
+        .dark {
+            --site-bg: #0f172a;
+            --site-text: #f8fafc;
+            --site-surface: #111827;
+            --site-surface-strong: #1f2937;
+            --site-muted: #9ca3af;
+            --site-gradient-from: #60a5fa;
+            --site-gradient-to: #a78bfa;
+            --site-gradient-mid: #f0abfc;
+        }
+        body {
+            background-color: var(--site-bg);
+            color: var(--site-text);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, var(--site-gradient-from) 0%, var(--site-gradient-to) 50%, var(--site-gradient-mid) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .theme-about-panel {
+            background: transparent;
+        }
+        .theme-card {
+            background-color: var(--site-surface);
+            border-color: color-mix(in srgb, var(--site-text) 12%, transparent);
+            color: var(--site-text);
+        }
+        .theme-card .text-gray-500,
+        .theme-card .text-gray-600,
+        .theme-card .text-gray-700,
+        .theme-card .text-gray-400 {
+            color: var(--site-muted) !important;
+        }
+        .bg-white, .bg-gray-50, .bg-gray-100, .bg-gray-700, .bg-gray-800, .bg-gray-900 {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .bg-white {
+            background-color: var(--site-surface) !important;
+            color: var(--site-text) !important;
+        }
+        .bg-gray-50 {
+            background-color: var(--site-bg) !important;
+            color: var(--site-text) !important;
+        }
+        .bg-gray-100 {
+            background-color: var(--site-surface-strong) !important;
+            color: var(--site-text) !important;
+        }
+        .bg-gray-700, .bg-gray-800, .bg-gray-900 {
+            background-color: var(--site-surface-strong) !important;
+            color: var(--site-text) !important;
+        }
+        .text-gray-500, .text-gray-600, .text-gray-700, .text-gray-400 {
+            color: var(--site-muted) !important;
+        }
+        .text-gray-800, .text-gray-900, .text-gray-100 {
+            color: var(--site-text) !important;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        html, body {
+            min-height: 100vh;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        img, svg, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans antialiased transition-colors duration-300">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 lg:left-[24rem] xl:left-[28rem] lg:right-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-sm dark:shadow-gray-900 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-xl font-bold gradient-text font-serif">Portfolio</a>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">About</a>
+                    <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Experience</a>
+                    <a href="#academic" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Academic</a>
+                    <a href="#research" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Research</a>
+                    <a href="#publications" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Publications</a>
+                    <a href="#events" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Events</a>
+                    <a href="#gallery" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Gallery</a>
+                    <a href="#links" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Collections</a>
+                    <a href="#updates" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Updates</a>
+                    <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button type="button" id="themeToggle" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors" aria-label="Toggle theme">
+                        <i class="fas fa-moon text-gray-600 dark:text-yellow-400" id="themeIcon"></i>
+                    </button>
+                    <button type="button" id="mobileMenuBtn" class="md:hidden p-2" aria-label="Open mobile menu">
+                        <i class="fas fa-bars text-gray-600 dark:text-gray-300"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden fixed inset-x-0 top-[4rem] max-h-[calc(100vh-4rem)] overflow-y-auto bg-white dark:bg-gray-800 border-t dark:border-gray-700 z-50">
+            <div class="px-4 py-3 space-y-2">
+                <a href="#about" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">About</a>
+                <a href="#experience" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Experience</a>
+                <a href="#academic" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Academic</a>
+                <a href="#research" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Research</a>
+                <a href="#publications" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Publications</a>
+                <a href="#events" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Events</a>
+                <a href="#gallery" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Gallery</a>
+                <a href="#links" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Collections</a>
+                <a href="#updates" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Updates</a>
+                <a href="#contact" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-16 lg:flex lg:min-h-screen">
+        <!-- Left Sidebar / About -->
+        <aside class="w-full lg:w-[24rem] xl:w-[28rem] lg:shrink-0 lg:block">
+            <section id="about" class="lg:sticky lg:top-16 lg:flex lg:items-center lg:h-[calc(100vh-4rem)] theme-about-panel transition-colors duration-300">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                    <div class="flex flex-col items-center justify-center gap-5 rounded-[2rem] border p-6 shadow-xl backdrop-blur-sm theme-card text-center">
+                <!-- Profile Photo -->
+                <div class="md:col-span-1 flex justify-center">
+                    <div class="relative">
+                        <div class="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden shadow-2xl border-4 border-white dark:border-gray-700 transition-colors duration-300">
+                            <img id="profilePhoto" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Profile" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-2 -right-2 bg-accent-500 text-white p-3 rounded-full shadow-lg">
+                            <i class="fas fa-graduation-cap text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Profile Info -->
+                <div class="md:col-span-2 text-center">
+                    <h1 id="profileName" class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white font-serif mb-1">Dr. Sarah Chen</h1>
+                    <p id="profileTitle" class="text-lg text-primary-600 dark:text-primary-400 font-medium mb-3">Senior Research Scientist in Computational Biology</p>
+
+                    <!-- Expertise Keywords -->
+                    <div id="expertiseKeywords" class="flex flex-wrap justify-center gap-2 mb-3">
+                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Machine Learning</span>
+                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Bioinformatics</span>
+                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Genomics</span>
+                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Systems Biology</span>
+                    </div>
+
+                    <p id="profileBio" class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 max-w-2xl mx-auto text-sm md:text-base">
+                        Leading interdisciplinary research at the intersection of artificial intelligence and molecular biology. 
+                        Focused on developing computational methods to understand complex biological systems and disease mechanisms.
+                    </p>
+
+                    <!-- Social Links -->
+                    <div id="socialLinks" class="flex justify-center flex-wrap gap-3 mb-5"></div>
+
+                    <!-- Metrics Cards -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="bg-white dark:bg-gray-700 rounded-xl p-2.5 shadow-lg card-hover transition-colors duration-300 flex flex-col items-center justify-center text-center min-h-[70px]">
+                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricCitations">2,847</div>
+                            <div class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">Citations</div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 rounded-xl p-2.5 shadow-lg card-hover transition-colors duration-300 flex flex-col items-center justify-center text-center min-h-[70px]">
+                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricHIndex">28</div>
+                            <div class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">h-index</div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 rounded-xl p-2.5 shadow-lg card-hover transition-colors duration-300 flex flex-col items-center justify-center text-center min-h-[70px]">
+                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricI10Index">42</div>
+                            <div class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">i10-index</div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 rounded-xl p-2.5 shadow-lg card-hover transition-colors duration-300 flex flex-col items-center justify-center text-center min-h-[70px]">
+                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricPublications">56</div>
+                            <div class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">Publications</div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </section>
+        </aside>
+
+        <!-- Right Content -->
+        <div class="flex-1 lg:h-screen lg:overflow-y-auto">
+            <!-- Work Experience Section -->
+    <section id="experience" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2 text-left">
+                <span class="gradient-text">Work Experience</span>
+            </h2>
+            <p class="text-left text-gray-600 dark:text-gray-400 mb-10 max-w-2xl">Academic and professional positions throughout my career</p>
+
+            <div id="experienceContainer" class="max-w-4xl mx-auto space-y-6">
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md transition-colors duration-300">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Senior Research Scientist</h3>
+                        <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">2020 - Present</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 font-medium mb-2">Broad Institute of MIT and Harvard</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Leading computational biology research group focusing on single-cell genomics and machine learning applications in cancer biology.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md transition-colors duration-300">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Postdoctoral Researcher</h3>
+                        <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">2017 - 2020</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 font-medium mb-2">Stanford University School of Medicine</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Developed novel algorithms for analyzing high-dimensional biological data and integrative genomics approaches.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md transition-colors duration-300">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Research Assistant</h3>
+                        <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">2015 - 2017</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 font-medium mb-2">University of California, Berkeley</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Worked on computational methods for phylogenetic analysis and evolutionary genomics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Journey Section -->
+    <section id="academic" class="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2 text-left">
+                <span class="gradient-text">Academic Journey</span>
+            </h2>
+            <p class="text-left text-gray-600 dark:text-gray-400 mb-10 max-w-2xl">Educational background and academic achievements</p>
+
+            <div id="academicContainer" class="max-w-4xl mx-auto relative">
+                <div class="timeline-line hidden md:block"></div>
+                <div class="space-y-8">
+                    <div class="relative pl-12 md:pl-16">
+                        <div class="absolute left-4 md:left-5 top-0 w-4 h-4 rounded-full bg-primary-500 border-4 border-white dark:border-gray-800 shadow"></div>
+                        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-colors duration-300">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Ph.D. in Computational Biology</h3>
+                                <span class="text-sm text-accent-600 dark:text-accent-400 font-medium">2012 - 2017</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 font-medium mb-2">University of California, Berkeley</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">Dissertation: "Machine Learning Approaches for Understanding Gene Regulatory Networks"</p>
+                        </div>
+                    </div>
+                    <div class="relative pl-12 md:pl-16">
+                        <div class="absolute left-4 md:left-5 top-0 w-4 h-4 rounded-full bg-accent-500 border-4 border-white dark:border-gray-800 shadow"></div>
+                        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-colors duration-300">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">M.S. in Computer Science</h3>
+                                <span class="text-sm text-accent-600 dark:text-accent-400 font-medium">2010 - 2012</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 font-medium mb-2">Carnegie Mellon University</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">Specialization in Machine Learning and Data Mining</p>
+                        </div>
+                    </div>
+                    <div class="relative pl-12 md:pl-16">
+                        <div class="absolute left-4 md:left-5 top-0 w-4 h-4 rounded-full bg-primary-500 border-4 border-white dark:border-gray-800 shadow"></div>
+                        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-colors duration-300">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">B.S. in Biology & Computer Science</h3>
+                                <span class="text-sm text-accent-600 dark:text-accent-400 font-medium">2006 - 2010</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 font-medium mb-2">Massachusetts Institute of Technology</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">Double major with minor in Mathematics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2">
+                        <span class="gradient-text">Research</span>
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400">Current and completed research projects</p>
+                </div>
+                <div class="flex gap-3 mt-4 md:mt-0">
+                    <button class="research-filter px-4 py-2 bg-primary-600 text-white rounded-lg text-sm hover:bg-primary-700 dark:bg-primary-700 dark:hover:bg-primary-600 transition-colors" data-filter="all">All</button>
+                    <button class="research-filter px-4 py-2 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 rounded-lg text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" data-filter="ongoing">Ongoing</button>
+                    <button class="research-filter px-4 py-2 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 rounded-lg text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" data-filter="published">Completed</button>
+                </div>
+            </div>
+
+            <div id="researchContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md card-hover transition-colors duration-300 research-item" data-status="ongoing">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="px-3 py-1 rounded-full text-xs font-medium text-white status-ongoing">Ongoing</span>
+                        <i class="fas fa-dna text-primary-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Single-Cell Atlas of Cancer</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">Building a comprehensive single-cell reference atlas of tumor microenvironments across cancer types.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded">scRNA-seq</span>
+                        <span class="text-xs px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded">Spatial</span>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md card-hover transition-colors duration-300 research-item" data-status="ongoing">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="px-3 py-1 rounded-full text-xs font-medium text-white status-ongoing">Ongoing</span>
+                        <i class="fas fa-brain text-accent-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Deep Learning for Drug Discovery</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">Developing graph neural networks for molecular property prediction and drug-target interaction.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 bg-accent-100 dark:bg-accent-900 text-accent-700 dark:text-accent-300 rounded">GNN</span>
+                        <span class="text-xs px-2 py-1 bg-accent-100 dark:bg-accent-900 text-accent-700 dark:text-accent-300 rounded">Drug Discovery</span>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md card-hover transition-colors duration-300 research-item" data-status="published">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="px-3 py-1 rounded-full text-xs font-medium text-white status-published">Completed</span>
+                        <i class="fas fa-project-diagram text-primary-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Gene Regulatory Networks</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">Inference of regulatory relationships from multi-omics data using causal discovery methods.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded">Networks</span>
+                        <span class="text-xs px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded">Causal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2">
+                        <span class="gradient-text">Publications</span>
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400">Journal articles, book chapters, and patents</p>
+                </div>
+                <div class="flex flex-wrap gap-3 mt-4 md:mt-0">
+                    <select id="sortSelect" class="px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 text-sm transition-colors">
+                        <option value="year-desc">Year (Newest)</option>
+                        <option value="year-asc">Year (Oldest)</option>
+                        <option value="citations">Citations</option>
+                    </select>
+                    <select id="categorySelect" class="px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 text-sm transition-colors">
+                        <option value="all">All Categories</option>
+                        <option value="article">Articles</option>
+                        <option value="book_chapter">Book Chapters</option>
+                        <option value="patent">Patents</option>
+                    </select>
+                    <input type="text" id="searchPublications" placeholder="Search..." class="px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 w-48 text-sm placeholder-gray-500 dark:placeholder-gray-400 transition-colors">
+                </div>
+            </div>
+
+            <!-- Publications List -->
+            <div id="publicationsContainer" class="space-y-6">
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-colors duration-300 publication-item" data-category="article">
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-1 rounded text-xs font-medium category-article">Article</span>
+                                <span class="text-sm text-gray-500 dark:text-gray-400">Nature Biotechnology, 2023</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 hover:text-primary-600 dark:hover:text-primary-400 cursor-pointer transition-colors">Comprehensive integration of single-cell data</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Chen S., et al.</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">A framework for integrating diverse single-cell datasets to enable comparative analysis across experiments and conditions.</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-primary-600 dark:text-primary-400">342</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">Citations</div>
+                            </div>
+                            <button class="p-2 text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                                <i class="fas fa-external-link-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-colors duration-300 publication-item" data-category="article">
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-1 rounded text-xs font-medium category-article">Article</span>
+                                <span class="text-sm text-gray-500 dark:text-gray-400">Cell, 2022</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 hover:text-primary-600 dark:hover:text-primary-400 cursor-pointer transition-colors">Spatial transcriptomics reveals tissue architecture</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Chen S., Johnson R., et al.</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">High-resolution spatial mapping of gene expression in complex tissues using advanced sequencing technologies.</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-primary-600 dark:text-primary-400">189</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">Citations</div>
+                            </div>
+                            <button class="p-2 text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                                <i class="fas fa-external-link-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View All Link -->
+            <div class="text-center mt-8">
+                <a id="scholarLink" href="#" target="_blank" class="inline-flex items-center px-6 py-3 bg-primary-600 dark:bg-primary-700 text-white rounded-lg hover:bg-primary-700 dark:hover:bg-primary-600 transition-colors">
+                    <i class="fas fa-external-link-alt mr-2"></i>
+                    View on Google Scholar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2">
+                        <span class="gradient-text">Events & Activities</span>
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400">Conferences, talks, workshops, and seminars</p>
+                </div>
+                <div class="flex flex-wrap gap-3 mt-4 md:mt-0">
+                    <select id="eventTypeSelect" class="px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 text-sm transition-colors">
+                        <option value="all">All Types</option>
+                        <option value="invited_talk">Invited Talks</option>
+                        <option value="conference">Conferences</option>
+                        <option value="workshop">Workshops</option>
+                        <option value="seminar">Seminars</option>
+                    </select>
+                    <input type="text" id="searchEvents" placeholder="Search events..." class="px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 w-48 text-sm placeholder-gray-500 dark:placeholder-gray-400 transition-colors">
+                </div>
+            </div>
+
+            <div id="eventsContainer" class="space-y-4">
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md transition-colors duration-300 flex flex-col md:flex-row gap-4 items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-16 h-16 rounded-lg bg-primary-100 dark:bg-primary-900 flex items-center justify-center">
+                            <i class="fas fa-microphone text-primary-600 dark:text-primary-400 text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="px-2 py-1 rounded text-xs font-medium event-type-invited_talk">Invited Talk</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">March 15, 2024</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Keynote: AI in Precision Medicine</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">International Conference on Computational Biology, Boston, MA</p>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">Presented recent advances in machine learning applications for personalized cancer treatment.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md transition-colors duration-300 flex flex-col md:flex-row gap-4 items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-16 h-16 rounded-lg bg-green-100 dark:bg-green-900 flex items-center justify-center">
+                            <i class="fas fa-users text-green-600 dark:text-green-400 text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="px-2 py-1 rounded text-xs font-medium event-type-conference">Conference</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">December 10-12, 2023</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">RECOMB 2023</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">Research in Computational Molecular Biology, Istanbul, Turkey</p>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm">Presented poster on "Scalable algorithms for single-cell multi-omics integration".</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2 text-left">
+                <span class="gradient-text">Research Gallery</span>
+            </h2>
+            <p class="text-left text-gray-600 dark:text-gray-400 mb-10">Visual highlights from our research</p>
+            <div id="galleryContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer gallery-item">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop" alt="Lab Work" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 gallery-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div>
+                            <h3 class="text-white font-bold text-lg">Laboratory Analysis</h3>
+                            <p class="text-gray-300 text-sm">Single-cell sequencing preparation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer gallery-item">
+                    <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&h=400&fit=crop" alt="Data Visualization" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 gallery-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div>
+                            <h3 class="text-white font-bold text-lg">Data Visualization</h3>
+                            <p class="text-gray-300 text-sm">UMAP projection of cell types</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=600&h=400&fit=crop" alt="Conference" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 gallery-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div>
+                            <h3 class="text-white font-bold text-lg">Conference Presentation</h3>
+                            <p class="text-gray-300 text-sm">RECOMB 2023 in Istanbul</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Useful Links Section -->
+    <section id="links" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2 text-left">
+                <span class="gradient-text">Collections & Resources</span>
+            </h2>
+            <p class="text-left text-gray-600 dark:text-gray-400 mb-10">Useful links and external resources</p>
+
+            <div id="linksContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <a href="#" class="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-colors group">
+                    <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-book text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Lab Handbook</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Protocols and guidelines</p>
+                    </div>
+                </a>
+                <a href="#" class="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-accent-50 dark:hover:bg-accent-900/30 transition-colors group">
+                    <div class="w-12 h-12 rounded-lg bg-accent-100 dark:bg-accent-900 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-code text-accent-600 dark:text-accent-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 dark:text-white group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">GitHub Repository</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Open source tools</p>
+                    </div>
+                </a>
+                <a href="#" class="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-green-50 dark:hover:bg-green-900/30 transition-colors group">
+                    <div class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-database text-green-600 dark:text-green-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Datasets</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Published data</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updates/Job Vacancies Section -->
+    <section id="updates" class="py-16 transition-colors duration-300" style="background: linear-gradient(135deg, var(--site-surface-strong) 0%, var(--site-bg) 100%);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2 text-left">
+                <span class="gradient-text">Join Our Team</span>
+            </h2>
+            <p class="text-left text-gray-600 dark:text-gray-400 mb-10">Current openings and opportunities</p>
+
+            <div id="updatesContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="rounded-xl p-6 shadow-lg border-l-4 border-primary-500 transition-colors duration-300" style="background-color: var(--site-surface); color: var(--site-text);">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Postdoctoral Researcher</h3>
+                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">Open</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Seeking a motivated postdoc to work on single-cell multi-omics integration methods. Strong programming skills in Python/R required.</p>
+                    <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+                        <i class="fas fa-map-marker-alt mr-2"></i> Cambridge, MA
+                        <span class="mx-2">•</span>
+                        <i class="fas fa-clock mr-2"></i> Full-time
+                    </div>
+                    <button class="w-full py-2 rounded-lg transition-colors" style="background-color: var(--site-gradient-from); color: white;">Apply Now</button>
+                </div>
+                <div class="rounded-xl p-6 shadow-lg border-l-4 border-accent-500 transition-colors duration-300" style="background-color: var(--site-surface); color: var(--site-text);">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Graduate Student</h3>
+                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">Open</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Looking for PhD students interested in computational biology and machine learning. Rotation students welcome.</p>
+                    <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+                        <i class="fas fa-map-marker-alt mr-2"></i> Cambridge, MA
+                        <span class="mx-2">•</span>
+                        <i class="fas fa-graduation-cap mr-2"></i> PhD Program
+                    </div>
+                    <button class="w-full py-2 rounded-lg transition-colors" style="background-color: var(--site-gradient-to); color: white;">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentors Section -->
+    <section id="mentors" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-4 text-left">
+                <span class="gradient-text">Mentors & Collaborators</span>
+            </h2>
+            <p class="text-left text-gray-600 dark:text-gray-400 mb-12 max-w-2xl">
+                I have been fortunate to work with and learn from these exceptional researchers throughout my academic journey.
+            </p>
+            <div id="mentorsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center group">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary-100 dark:border-primary-900 group-hover:border-primary-300 dark:group-hover:border-primary-700 transition-colors">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop" alt="Mentor" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-gray-900 dark:text-white text-lg">Prof. Michael Zhang</h3>
+                    <p class="text-primary-600 dark:text-primary-400 text-sm">Stanford University</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">PhD Advisor</p>
+                </div>
+                <div class="text-center group">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-accent-100 dark:border-accent-900 group-hover:border-accent-300 dark:group-hover:border-accent-700 transition-colors">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop" alt="Mentor" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-gray-900 dark:text-white text-lg">Dr. Lisa Wang</h3>
+                    <p class="text-accent-600 dark:text-accent-400 text-sm">Broad Institute</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Collaborator</p>
+                </div>
+                <div class="text-center group">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary-100 dark:border-primary-900 group-hover:border-primary-300 dark:group-hover:border-primary-700 transition-colors">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop" alt="Mentor" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-gray-900 dark:text-white text-lg">Prof. James Chen</h3>
+                    <p class="text-primary-600 dark:text-primary-400 text-sm">MIT</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Committee Member</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-4">
+                    <span class="gradient-text">Get in Touch</span>
+                </h2>
+                <p id="contactMessage" class="text-gray-600 dark:text-gray-400 mb-8">
+                    Interested in collaboration or have questions about my research? Feel free to reach out.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a id="contactEmail" href="#" class="inline-flex items-center px-6 py-3 bg-primary-600 dark:bg-primary-700 text-white rounded-lg hover:bg-primary-700 dark:hover:bg-primary-600 transition-colors">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Send Email
+                    </a>
+                    <a id="contactScholar" href="#" target="_blank" class="inline-flex items-center px-6 py-3 border-2 border-primary-600 dark:border-primary-500 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
+                        <i class="fas fa-graduation-cap mr-2"></i>
+                        Google Scholar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <footer class="bg-gray-900 text-white py-8 transition-colors duration-300 mt-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-4">
+                    <div class="mb-4 md:mb-0 md:text-right">
+                        <p class="text-gray-400 text-sm">
+                            &copy; <span id="footerYear">2024</span> <span id="footerName">Dr. Sarah Chen</span>. All rights reserved.
+                        </p>
+                    </div>
+                    <div id="footerSocialLinks" class="flex space-x-6 justify-end"></div>
+                </div>
+                <div class="mt-4 text-right text-gray-500 text-xs">
+                    Last updated: <span id="lastUpdated">February 11, 2024</span>
+                </div>
+            </div>
+        </footer>
+
+        </div>
+    </div>
+
+    <!-- Research Detail Modal -->
+    <div id="researchModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto modal-enter transition-colors duration-300">
+            <div class="p-6 md:p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 id="researchModalTitle" class="text-2xl font-bold text-gray-900 dark:text-gray-100 font-serif pr-4">Research Details</h3>
+                    <button id="closeResearchModal" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                        <i class="fas fa-times text-gray-500 dark:text-gray-400"></i>
+                    </button>
+                </div>
+                <div id="researchModalContent" class="text-gray-600 dark:text-gray-300">
+                    <p>Research project details would appear here...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Publication Detail Modal -->
+    <div id="publicationModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto modal-enter transition-colors duration-300">
+            <div class="p-6 md:p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 id="modalTitle" class="text-2xl font-bold text-gray-900 dark:text-gray-100 font-serif pr-4">Publication Details</h3>
+                    <button id="closeModal" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                        <i class="fas fa-times text-gray-500 dark:text-gray-400"></i>
+                    </button>
+                </div>
+                <div id="modalContent" class="text-gray-600 dark:text-gray-300">
+                    <p>Publication details would appear here...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
+        <button id="closeGalleryModal" class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+        <div class="max-w-5xl w-full">
+            <img id="galleryModalImage" src="" alt="" class="w-full max-h-[80vh] object-contain rounded-lg">
+            <div class="mt-4 text-white">
+                <h3 id="galleryModalTitle" class="text-xl font-bold"></h3>
+                <p id="galleryModalDescription" class="text-gray-300 mt-2"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (!mobileMenuBtn || !mobileMenu) return;
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
+
+        // Research Filter
+        const researchFilters = document.querySelectorAll('.research-filter');
+        const researchItems = document.querySelectorAll('.research-item');
+
+        researchFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Update active state
+                researchFilters.forEach(f => {
+                    f.classList.remove('bg-primary-600', 'text-white', 'dark:bg-primary-700');
+                    f.classList.add('bg-gray-200', 'text-gray-700', 'dark:bg-gray-700', 'dark:text-gray-200');
+                });
+                filter.classList.remove('bg-gray-200', 'text-gray-700', 'dark:bg-gray-700', 'dark:text-gray-200');
+                filter.classList.add('bg-primary-600', 'text-white', 'dark:bg-primary-700');
+
+                const filterValue = filter.getAttribute('data-filter');
+                
+                researchItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-status') === filterValue) {
+                        item.style.display = 'block';
+                        item.classList.add('smooth-fade');
+                    } else {
+                        item.style.display = 'none';
+                        item.classList.remove('smooth-fade');
+                    }
+                });
+            });
+        });
+
+        // Modal functionality
+        const researchModal = document.getElementById('researchModal');
+        const closeResearchModal = document.getElementById('closeResearchModal');
+        const publicationModal = document.getElementById('publicationModal');
+        const closeModal = document.getElementById('closeModal');
+        const galleryModal = document.getElementById('galleryModal');
+        const closeGalleryModal = document.getElementById('closeGalleryModal');
+
+        closeResearchModal.addEventListener('click', () => {
+            researchModal.classList.add('hidden');
+        });
+
+        closeModal.addEventListener('click', () => {
+            publicationModal.classList.add('hidden');
+        });
+
+        closeGalleryModal.addEventListener('click', () => {
+            galleryModal.classList.add('hidden');
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === researchModal) {
+                researchModal.classList.add('hidden');
+            }
+            if (e.target === publicationModal) {
+                publicationModal.classList.add('hidden');
+            }
+            if (e.target === galleryModal) {
+                galleryModal.classList.add('hidden');
+            }
+        });
+
+        // Gallery modal functionality
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const galleryModalImage = document.getElementById('galleryModalImage');
+        const galleryModalTitle = document.getElementById('galleryModalTitle');
+        const galleryModalDescription = document.getElementById('galleryModalDescription');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                const title = item.querySelector('h3').textContent;
+                const desc = item.querySelector('p').textContent;
+                
+                galleryModalImage.src = img.src;
+                galleryModalTitle.textContent = title;
+                galleryModalDescription.textContent = desc;
+                galleryModal.classList.remove('hidden');
+            });
+        });
+
+        // Update footer year
+        document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
