@@ -659,7 +659,7 @@
         </div>
     </section>
 
-    <!-- Useful Links Section -->
+   <!-- Useful Links Section -->
     <section id="links" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2 text-left">
@@ -667,35 +667,8 @@
             </h2>
             <p class="text-left text-gray-600 dark:text-gray-400 mb-10">Useful links and external resources</p>
 
-            <div id="linksContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <a href="#" class="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-colors group">
-                    <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-book text-primary-600 dark:text-primary-400"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">Lab Handbook</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Protocols and guidelines</p>
-                    </div>
-                </a>
-                <a href="#" class="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-accent-50 dark:hover:bg-accent-900/30 transition-colors group">
-                    <div class="w-12 h-12 rounded-lg bg-accent-100 dark:bg-accent-900 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-code text-accent-600 dark:text-accent-400"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-gray-900 dark:text-white group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">GitHub Repository</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Open source tools</p>
-                    </div>
-                </a>
-                <a href="#" class="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-green-50 dark:hover:bg-green-900/30 transition-colors group">
-                    <div class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-database text-green-600 dark:text-green-400"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Datasets</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Published data</p>
-                    </div>
-                </a>
-            </div>
+            <!-- Dynamic links will render inside this grid container -->
+            <div id="linksContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         </div>
     </section>
 
@@ -997,6 +970,19 @@
             }
             
             lastScroll = currentScroll;
+        });
+        // Load saved data or fallback to defaults
+        function loadPortfolioData() {
+            const savedData = localStorage.getItem('portfolioData');
+            if (savedData) {
+                portfolioData = JSON.parse(savedData);
+            }
+        }
+
+        // Execute on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPortfolioData();  // 1. Fetch latest data from storage
+            renderPublicLinks();  // 2. Build the HTML cards on the page
         });
     </script>
 </body>
