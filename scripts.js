@@ -894,28 +894,35 @@ function openGalleryModal(id) {
     if (modal) modal.classList.remove('hidden');
 }
 
-function renderPublicLinks() {
-    const container = document.getElementById('linksContainer');
-    if (!container) return; // Guard clause if element doesn't exist on page
+let currentResourceFilter = 'all';
 
-    // Fallback if data is missing
+function renderPublicLinks(categoryFilter = 'all') {
+    const container = document.getElementById('linksContainer');
+    if (!container) return;
+
     const links = portfolioData?.links || [];
 
-    if (links.length === 0) {
-        container.innerHTML = `<p class="text-gray-500 dark:text-gray-400 col-span-full">No resources added yet.</p>`;
+    // Filter items based on selected category tab
+    const filteredLinks = categoryFilter === 'all' 
+        ? links 
+        : links.filter(link => (link.category || 'website') === categoryFilter);
+
+    if (filteredLinks.length === 0) {
+        container.innerHTML = `
+            <div class="col-span-full text-center py-8 text-gray-500 dark:text-gray-400">
+                No resources found in this category.
+            </div>`;
         return;
     }
 
-    container.innerHTML = links.map(link => {
+    container.innerHTML = filteredLinks.map(link => {
         const category = link.category || 'website';
 
-        // 1. Map categories to FontAwesome icons
         let iconClass = 'fas fa-globe';
         if (category === 'repository') iconClass = 'fas fa-code';
         if (category === 'dataset') iconClass = 'fas fa-database';
         if (category === 'document') iconClass = 'fas fa-file-pdf';
 
-        // 2. Map categories to visual badges
         const categoryLabels = {
             website: 'Website',
             repository: 'Tool / Repository',
@@ -931,12 +938,10 @@ function renderPublicLinks() {
                         <i class="${iconClass} text-primary-600 dark:text-primary-400 text-lg"></i>
                     </div>
                     <div class="flex-1 min-w-0">
-                        <div class="flex items-center justify-between gap-2 mb-1">
-                            <h3 class="font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors truncate">
-                                ${link.title || 'Untitled Resource'}
-                            </h3>
-                        </div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
+                        <h3 class="font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors truncate">
+                            ${link.title || 'Untitled Resource'}
+                        </h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 mt-1">
                             ${link.description || ''}
                         </p>
                     </div>
@@ -950,6 +955,24 @@ function renderPublicLinks() {
             </a>
         `;
     }).join('');
+}
+
+// Function triggered when clicking a filter button
+function filterResources(category, btnElement) {
+    currentResourceFilter = category;
+
+    // Update active button styles
+    document.querySelectorAll('.resource-filter-btn').forEach(btn => {
+        btn.classList.remove('bg-primary-600', 'text-white');
+        btn.classList.add('bg-gray-100', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+    });
+
+    if (btnElement) {
+        btnElement.classList.remove('bg-gray-100', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+        btnElement.classList.add('bg-primary-600', 'text-white');
+    }
+
+    renderPublicLinks(category);
 }
 
 // Automatically load when index.html loads
