@@ -22,15 +22,15 @@
   },
   "socialLinks": {
     "twitter": "",
-    "linkedin": "https://www.linkedin.com/in/mathan-kumar-pandiyan-30a342310/",
+    "linkedin": "",
     "github": "",
-    "scholar": "https://scholar.google.com/citations?user=I730zAgAAAAJ&hl=en",
+    "scholar": "",
     "orcid": "",
     "website": ""
   },
   "contact": {
-    "email": "mathankumar.sh@psgitech.ac.in",
-    "scholar": "https://scholar.google.com/citations?user=I730zAgAAAAJ&hl=en",
+    "email": "",
+    "scholar": "",
     "message": "",
     "buttonTextEmail": "Send Email",
     "buttonTextScholar": "Google Scholar"
@@ -372,16 +372,11 @@
   "jobs": [],
   "links": [
     {
-      "id": 1784626002346,
-      "title": "New Resource",
-      "description": "Resource description",
-      "url": "https://example.com"
-    },
-    {
-      "id": 1,
-      "title": "Lab Handbook",
-      "description": "Protocols and guidelines",
-      "url": "#"
+      "id": 1784815133552,
+      "title": "",
+      "description": "",
+      "category": "website",
+      "url": ""
     },
     {
       "id": 2,
