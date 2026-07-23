@@ -659,15 +659,34 @@
         </div>
     </section>
 
-   <!-- Useful Links Section -->
+    <!-- Useful Links Section -->
     <section id="links" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2 text-left">
                 <span class="gradient-text">Collections & Resources</span>
             </h2>
-            <p class="text-left text-gray-600 dark:text-gray-400 mb-10">Useful links and external resources</p>
+            <p class="text-left text-gray-600 dark:text-gray-400 mb-6">Useful links and external resources</p>
 
-            <!-- Dynamic links will render inside this grid container -->
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap gap-2 mb-8" id="resourceFilters">
+                <button onclick="filterResources('all', this)" class="resource-filter-btn active px-4 py-2 text-sm font-medium rounded-lg bg-primary-600 text-white transition-colors">
+                    All
+                </button>
+                <button onclick="filterResources('website', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                    Websites
+                </button>
+                <button onclick="filterResources('repository', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                    Tools & Repositories
+                </button>
+                <button onclick="filterResources('dataset', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                    Datasets & Code
+                </button>
+                <button onclick="filterResources('document', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                    Documents & PDFs
+                </button>
+            </div>
+
+            <!-- Dynamic links render here -->
             <div id="linksContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         </div>
     </section>
