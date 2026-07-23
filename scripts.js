@@ -212,18 +212,21 @@ let portfolioData = {
             id: 1,
             title: "Lab Handbook",
             description: "Protocols and guidelines",
+            category: "document",
             url: "#"
         },
         {
             id: 2,
             title: "GitHub Repository",
             description: "Open source tools",
+            category: "repository",
             url: "#"
         },
         {
             id: 3,
             title: "Datasets",
             description: "Published data",
+            category: "dataset",
             url: "#"
         }
     ],
@@ -285,7 +288,7 @@ function mergePortfolioData(defaults, incoming) {
 // Data Loading
 async function loadData() {
     try {
-        const response = await fetch('./data.json');
+        const response = await fetch('/api/data'); //'/api/data' './data.json'
         if (response.ok) {
             const serverData = await response.json();
             if (serverData && Object.keys(serverData).length > 0) {
@@ -738,7 +741,8 @@ function formatCategory(cat) {
     const map = {
         'article': 'Article',
         'book_chapter': 'Book Chapter',
-        'patent': 'Patent'
+        'patent': 'Patent',
+        'conference' : 'Conference Paper'
     };
     return map[cat] || cat;
 }
@@ -890,27 +894,104 @@ function openGalleryModal(id) {
     if (modal) modal.classList.remove('hidden');
 }
 
-// Links/Collections Section
-function renderLinks() {
+function renderPublicLinks() {
     const container = document.getElementById('linksContainer');
-    if (!container) return;
-    
-    if (!portfolioData.links || portfolioData.links.length === 0) {
-        container.innerHTML = '<p class="col-span-3 text-center text-gray-500">No resources added yet</p>';
+    if (!container) return; // Guard clause if element doesn't exist on page
+
+    // Fallback if data is missing
+    const links = portfolioData?.links || [];
+
+    if (links.length === 0) {
+        container.innerHTML = `<p class="text-gray-500 dark:text-gray-400 col-span-full">No resources added yet.</p>`;
         return;
     }
-    
-    container.innerHTML = portfolioData.links.map(link => `
-        <a href="${link.url}" class="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-primary-50 dark:hover:bg-primary-900/30 transition-colors group">
-            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
-                <i class="fas fa-link text-primary-600 dark:text-primary-400"></i>
-            </div>
-            <div>
-                <h3 class="font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">${link.title}</h3>
-                <p class="text-sm text-gray-500 dark:text-gray-400">${link.description}</p>
-            </div>
-        </a>
-    `).join('');
+
+    container.innerHTML = links.map(link => {
+        const category = link.category || 'website';
+
+        // 1. Map categories to FontAwesome icons
+        let iconClass = 'fas fa-globe';
+        if (category === 'repository') iconClass = 'fas fa-code';
+        if (category === 'dataset') iconClass = 'fas fa-database';
+        if (category === 'document') iconClass = 'fas fa-file-pdf';
+
+        // 2. Map categories to visual badges
+        const categoryLabels = {
+            website: 'Website',
+            repository: 'Tool / Repository',
+            dataset: 'Dataset',
+            document: 'Document'
+        };
+
+        return `
+            <a href="${link.url || '#'}" target="_blank" rel="noopener noreferrer" 
+               class="flex flex-col justify-between p-5 bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 group">
+                <div class="flex items-start gap-4 mb-3">
+                    <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/50 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                        <i class="${iconClass} text-primary-600 dark:text-primary-400 text-lg"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center justify-between gap-2 mb-1">
+                            <h3 class="font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors truncate">
+                                ${link.title || 'Untitled Resource'}
+                            </h3>
+                        </div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
+                            ${link.description || ''}
+                        </p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center pt-2 border-t border-gray-200/50 dark:border-gray-600/50">
+                    <span class="text-xs font-semibold px-2 py-0.5 rounded bg-primary-50 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300 uppercase tracking-wider">
+                        ${categoryLabels[category] || 'Resource'}
+                    </span>
+                    <i class="fas fa-external-link-alt text-xs text-gray-400 group-hover:text-primary-500 transition-colors"></i>
+                </div>
+            </a>
+        `;
+    }).join('');
+}
+
+// Automatically load when index.html loads
+document.addEventListener('DOMContentLoaded', () => {
+    renderPublicLinks();
+});
+
+function addLink() {
+    if (!portfolioData.links) {
+        portfolioData.links = [];
+    }
+    const newLink = {
+        id: Date.now(),
+        title: "New Resource",
+        description: "Resource description",
+        category: "website",
+        url: "https://example.com"
+    };
+    portfolioData.links.unshift(newLink);
+    saveData();
+    renderLinks();
+    showToast('New resource link added', 'success');
+    addActivity('Added new resource link');
+}
+
+function updateLink(id, field, value) {
+    const link = portfolioData.links.find(l => l.id === id);
+    if (link) {
+        link[field] = value;
+        saveData();
+        if (field === 'category') renderLinks(); // Re-render to update dynamic badge color styling
+    }
+}
+
+function deleteLink(id) {
+    if (confirm('Are you sure you want to delete this link?')) {
+        portfolioData.links = portfolioData.links.filter(l => l.id !== id);
+        saveData();
+        renderLinks();
+        showToast('Resource link deleted', 'info');
+        addActivity('Deleted resource link');
+    }
 }
 
 // Jobs Section
