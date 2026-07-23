@@ -288,7 +288,7 @@ function mergePortfolioData(defaults, incoming) {
 // Data Loading
 async function loadData() {
     try {
-        const response = await fetch('/api/data'); //'/api/data' './data.json'
+        const response = await fetch('./data.json'); //'/api/data' './data.json'
         if (response.ok) {
             const serverData = await response.json();
             if (serverData && Object.keys(serverData).length > 0) {
