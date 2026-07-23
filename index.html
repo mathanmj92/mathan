@@ -116,6 +116,10 @@
             background: #fef3c7;
             color: #92400e;
         }
+        .category-conference {
+            background: #d1fae5;
+            color: #065f46;
+        }
         .event-type-invited_talk {
             background: #dbeafe;
             color: #1e40af;
@@ -493,6 +497,7 @@
                         <option value="article">Articles</option>
                         <option value="book_chapter">Book Chapters</option>
                         <option value="patent">Patents</option>
+                        <option value="conference">Conferences</option>
                     </select>
                     <input type="text" id="searchPublications" placeholder="Search..." class="px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 w-48 text-sm placeholder-gray-500 dark:placeholder-gray-400 transition-colors">
                 </div>
@@ -992,34 +997,7 @@
             }
             
             lastScroll = currentScroll;
-        
-        });
-
-        // Add this to your index.html <script> section
-        document.addEventListener('DOMContentLoaded', () => {
-        // Fetch the static JSON file directly
-        fetch('./data.json')
-            .then(response => {
-            if (!response.ok) throw new Error('Failed to load data.json');
-            return response.json();
-            })
-            .then(data => {
-            // Pass the data to your existing rendering functions
-            // Example:
-            // renderProfile(data.profile);
-            // renderExperience(data.experience);
-            // renderPublications(data.publications);
-            console.log("Portfolio data loaded successfully:", data);
-            
-            // TODO: Call your UI rendering functions here using the 'data' object
-            })
-            .catch(error => {
-            console.error("Error loading portfolio data:", error);
-            // Optional: Show a fallback message on the page
-            });
         });
     </script>
-    <!-- Other HTML content like headers, sections, footers above -->
-
 </body>
 </html>
