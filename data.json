@@ -4,7 +4,7 @@
     "title": "Assistant Professor of Physics",
     "email": "mathankumar.sh@psgitech.ac.in",
     "scholar": "https://scholar.google.com/citations?user=I730zAgAAAAJ&hl=en",
-    "bio": "Leading interdisciplinary research at the intersection of artificial intelligence and molecular biology. Focused on developing computational methods to understand complex biological systems and disease mechanisms.",
+    "bio": "Passionate about research on thin film fabrication and nanomaterial synthesis for electrochemical applications",
     "keywords": [
       "Machine Learning",
       "Bioinformatics",
@@ -83,24 +83,24 @@
   "academic": [
     {
       "id": 1,
-      "degree": "Ph.D. in Computational Biology",
-      "institution": "University of California, Berkeley",
-      "period": "2012 - 2017",
-      "description": "Dissertation: \"Machine Learning Approaches for Understanding Gene Regulatory Networks\""
-    },
-    {
-      "id": 2,
-      "degree": "M.S. in Computer Science",
-      "institution": "Carnegie Mellon University",
-      "period": "2010 - 2012",
-      "description": "Specialization in Machine Learning and Data Mining"
+     "degree": "Ph.D. in Physics-Energy",
+      "institution": "University of Madras",
+      "period": "2018-2025",
+      "description": "Thesis : \"Investigation on the Structural, Morphological, Surface, and \nElectrochemical Properties of Hydrothermally Sulfurized Metal Oxides \nfor it’s Application in Dye Sensitized Solar Cells\"\n\n"
     },
     {
       "id": 3,
-      "degree": "B.S. in Biology & Computer Science",
-      "institution": "Massachusetts Institute of Technology",
-      "period": "2006 - 2010",
-      "description": "Double major with minor in Mathematics"
+      "degree": "M.SC Physics",
+      "institution": "Ayya Nadar Janaki Ammal College, Sivakasi, Tamil Nadu, India",
+      "period": "2013-2015",
+      "description": ""
+    },
+    {
+      "id": 3,
+      "degree": "B.Sc Physics",
+      "institution": "Kalasalingam College of Arts & Science, Krishnankoil, Tamil Nadu, India",
+      "period": "20102013",
+      "description": ""
     }
   ],
   "research": [
