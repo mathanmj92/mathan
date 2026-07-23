@@ -7,14 +7,14 @@
     "bio": "Passionate about research on thin film fabrication and nanomaterial synthesis for electrochemical applications",
     "keywords": [
       "Dye Sensitized Solar Cells",
-      "Photoelectrochemistry",
-      "Photocatalyst",
-      "Impedance analysis",
+      "Photo / Electrocatalysts",
+      "Photo electrochemistry",
+      "Impedance",
       "Python Programming"
     ],
     "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpL6i7TqZ6xCQWc3AGvHp-5m51169jVQvHIpPSYMH89XDujw2VpZsLjiw&s=10",
     "metrics": {
-      "citations": 498,
+      "citations": 524,
       "hIndex": 11,
       "i10Index": 11,
       "publications": 21
@@ -22,82 +22,130 @@
   },
   "socialLinks": {
     "twitter": "",
-    "linkedin": "",
+    "linkedin": "https://www.linkedin.com/in/mathan-kumar-pandiyan-30a342310/",
     "github": "",
-    "scholar": "",
+    "scholar": "https://scholar.google.com/citations?user=I730zAgAAAAJ&hl=en",
     "orcid": "",
     "website": ""
   },
   "contact": {
-    "email": "",
-    "scholar": "",
+    "email": "mathankumar.sh@psgitech.ac.in",
+    "scholar": "https://scholar.google.com/citations?user=I730zAgAAAAJ&hl=en",
     "message": "",
     "buttonTextEmail": "Send Email",
     "buttonTextScholar": "Google Scholar"
   },
   "mentors": [
     {
+      "id": 1784621605287,
+      "name": "New Mentor",
+      "institution": "Institution",
+      "role": "Collaborator",
+      "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop"
+    },
+    {
       "id": 1,
-      "name": "Dr. B. Muthuraaman",
-      "institution": "University of Madras",
+      "name": "Prof. Michael Zhang",
+      "institution": "Stanford University",
       "role": "PhD Advisor",
-      "photo": "https://www.unom.ac.in/webportal/uploads/faculty/Dr.%20B.%20Muthuraaman.jpg"
+      "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
     },
     {
       "id": 2,
-      "name": "Dr. Ranjith G Nair",
-      "institution": "National Institute of Technology, Silchar",
-      "role": "Collaborator- Former PhD Advisor",
-      "photo": "https://physics.nits.ac.in/storage/FacultyDetails/IMG_174160975967cedb1f53459.jpg"
+      "name": "Dr. Lisa Wang",
+      "institution": "Broad Institute",
+      "role": "Collaborator",
+      "photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
     }
   ],
   "experience": [
     {
-      "id": 1,
-      "title": "Assistant  Professor",
+      "id": 1784826012700,
+      "title": "Assistant Professor of Physics",
       "organization": "PSG Institute of Technology and Applied Research",
-      "period": "2020 - Present",
-      "description": "Delivering Engineering Physics to 1st year UG students across CSE, ECE, EEE, MECH branches  Focus on concept-based teaching aligned with Anna University syllabus, GATE, and industry applications  Specialization in Semiconductor Physics, Electromagnetism, Quantum Mechanics, and Optics  Use problem-solving, real-world examples, and demos to bridge theory and engineering practice  Mentoring students for academic excellence, project work, and competitive exams"
+      "period": "May 2026 - Present",
+      "description": "Description of role and responsibilities...Delivering Engineering Physics to 1st year UG students across CSE, ECE, EEE, MECH branches  Focus on concept-based teaching aligned with, GATE, and industry applications  Specialization in Semiconductor Physics, Electromagnetism, Quantum Mechanics, and Optics  Use problem-solving, real-world examples, and demos to bridge theory and engineering practice  Mentoring students for academic excellence, project work, and competitive exams\"\n   "
+    },
+    {
+      "id": 1,
+      "title": "Postdoctoral Researcher",
+      "organization": "SRM Institute of Science and Technology",
+      "period": "July 2025 - Dec 2025",
+      "description": "  Preparation of 2D MoS  via MOCVD (newbie),\n Gas Phase Sulfurization of Metal oxides,\n Exploration of layer grown 2D materials for Electrochemical Applications"
     },
     {
       "id": 2,
-      "title": "Postdoctoral Researcher",
-      "organization": "SRM institute of Science and Technology",
-      "period": "2017 - 2020",
-      "description": "• Preparation of 2D MoS2 via MOCVD (newbie)\n• Gas Phase Sulfurization of Metal oxides\n• Exploration of layer grown 2D materials for Electrochemical Applications"
+      "title": "MHRD RUSA Research fellow",
+      "organization": "University of Madras",
+      "period": "2018 - 2021",
+      "description": "•  Preparation of Bimetallic Tungstate using Hydrothermal method\n•  Tested its electrocatalytic activity using electrochemical techniques\n•  Designed Microwave assisted reflux & Spray pyrolysis setup\n•  Collaborated with researchers in the photocatalysts materials \n•  Familiar with XRD, XPS, TEM, FESEM and BET characterization techniques\n•  NOVA 2.1.6 electrochemical workstation (Metrohm Autolab)"
     },
     {
       "id": 3,
-      "title": "MHRD RUSA Research Fellow",
-      "organization": "University of Madras",
-      "period": "2015 - 2017",
-      "description": "Sulfurization of metal of Metal Oxides using Hydrothermal method\\n \nPreparation of Counter electrodes\\n \nFabrication of lab Scale Dye Sensitized Solar Cell device\\n \nAchieved a higher photovoltaic performance with 7.09 % efficiency\""
+      "title": "IUAC - Project Fellow",
+      "organization": "National Institute of Technology SIlchar",
+      "period": "2016 - 2017",
+      "description": "Worked on computational methods for phylogenetic an•  Preparation of Thin films via RF sputtering technique at HHV Pvt. Ltd.\n•  Explored the Ion implantation techniques using Gas and Metal sources\n•  Performed Gamma Irradiation experiment for prepared thin filmsalysis and evolutionary genomics."
     }
   ],
   "academic": [
     {
       "id": 1,
-      "degree": "Ph.D. in Physics-Energy",
-      "institution": "University of Madras",
-      "period": "2018-2025",
-      "description": "Thesis : \"Investigation on the Structural, Morphological, Surface, and \nElectrochemical Properties of Hydrothermally Sulfurized Metal Oxides \nfor it’s Application in Dye Sensitized Solar Cells\"\n\n"
+      "degree": "Ph.D. in Physics",
+      "institution": "University of Madras, Chennai, Tamilnadu",
+      "period": "2012 - 2017",
+      "description": "Dissertation: \"Machine Learning Approaches for Understanding Gene Regulatory Networks\""
+    },
+    {
+      "id": 2,
+      "degree": "M.Sc. in Physics",
+      "institution": "Ayya Nadar Janaki Ammal College, Sivakasi, Tamilnadu",
+      "period": "2010 - 2012",
+      "description": "Specialization in Machine Learning and Data Mining"
     },
     {
       "id": 3,
-      "degree": "M.SC Physics",
-      "institution": "Ayya Nadar Janaki Ammal College, Sivakasi, Tamil Nadu, India",
-      "period": "2013-2015",
-      "description": ""
-    },
-    {
-      "id": 3,
-      "degree": "B.Sc Physics",
-      "institution": "Kalasalingam College of Arts & Science, Krishnankoil, Tamil Nadu, India",
-      "period": "20102013",
-      "description": ""
+      "degree": "B.Sc. in Physics",
+      "institution": "Kalasalingam College of Arts a& Science",
+      "period": "2006 - 2010",
+      "description": "Double major with minor in Mathematics"
     }
   ],
-  "research": [],
+  "research": [
+    {
+      "id": 1,
+      "title": "Single-Cell Atlas of Cancer",
+      "status": "ongoing",
+      "description": "Building a comprehensive single-cell reference atlas of tumor microenvironments across cancer types.",
+      "tags": [
+        "scRNA-seq",
+        "Spatial"
+      ],
+      "icon": "dna"
+    },
+    {
+      "id": 2,
+      "title": "Deep Learning for Drug Discovery",
+      "status": "ongoing",
+      "description": "Developing graph neural networks for molecular property prediction and drug-target interaction.",
+      "tags": [
+        "GNN",
+        "Drug Discovery"
+      ],
+      "icon": "brain"
+    },
+    {
+      "id": 3,
+      "title": "Gene Regulatory Networks",
+      "status": "published",
+      "description": "Inference of regulatory relationships from multi-omics data using causal discovery methods.",
+      "tags": [
+        "Networks",
+        "Causal"
+      ],
+      "icon": "project-diagram"
+    }
+  ],
   "publications": [
     {
       "id": 1,
@@ -369,14 +417,29 @@
       "image": "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=600&h=400&fit=crop"
     }
   ],
-  "jobs": [],
+  "jobs": [
+    {
+      "id": 2,
+      "title": "Internship / Project student",
+      "type": "UG / PG ",
+      "location": "PSG Institute of Technology and Applied Research",
+      "status": "open",
+      "description": "Exploration of electrochemistry, Impedance Spectroscopy, Electrochemical Energy Conversion and Storage."
+    }
+  ],
   "links": [
     {
-      "id": 1784815133552,
-      "title": "",
-      "description": "",
-      "category": "website",
-      "url": ""
+      "id": 1784626002346,
+      "title": "New Resource",
+      "description": "Resource description",
+      "url": "https://www.unom.ac.in/webportal/uploads/faculty/profile/20697.pdf",
+      "category": "document"
+    },
+    {
+      "id": 1,
+      "title": "Lab Handbook",
+      "description": "Protocols and guidelines",
+      "url": "#"
     },
     {
       "id": 2,
