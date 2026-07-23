@@ -231,16 +231,33 @@ let portfolioData = {
         siteTitle: "Academic Research Portfolio",
         footerText: "Research Portfolio",
         darkModeDefault: false,
-        showMetrics: true
+        showMetrics: true,
+        themeColors: {
+            lightBackground: "#f8fafc",
+            lightText: "#1f2937",
+            lightGradientFrom: "#1e40af",
+            lightGradientTo: "#7c3aed",
+            lightGradientMid: "#c026d3",
+            lightSurface: "#ffffff",
+            lightSurfaceStrong: "#f3f4f6",
+            darkBackground: "#0f172a",
+            darkText: "#f8fafc",
+            darkGradientFrom: "#60a5fa",
+            darkGradientTo: "#a78bfa",
+            darkGradientMid: "#f0abfc",
+            darkSurface: "#111827",
+            darkSurfaceStrong: "#1f2937"
+        }
     }
 };
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', function() {
-    loadData();
-    initializeTheme();
-    renderAll();
-    setupEventListeners();
+    loadData().then(() => {
+        initializeTheme();
+        renderAll();
+        setupEventListeners();
+    });
 });
 
 function mergePortfolioData(defaults, incoming) {
@@ -266,8 +283,20 @@ function mergePortfolioData(defaults, incoming) {
 }
 
 // Data Loading
-function loadData() {
-    // Try to load from localStorage first (set by admin panel)
+async function loadData() {
+    try {
+        const response = await fetch('./data.json');
+        if (response.ok) {
+            const serverData = await response.json();
+            if (serverData && Object.keys(serverData).length > 0) {
+                portfolioData = mergePortfolioData(portfolioData, serverData);
+                localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
+            }
+        }
+    } catch (e) {
+        console.warn('Could not load data from server, falling back to local storage:', e);
+    }
+
     const savedData = localStorage.getItem('portfolioData');
     if (savedData) {
         try {
@@ -278,11 +307,10 @@ function loadData() {
         }
     }
     
-    // Also check for URL parameter to force refresh from admin
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has('refresh')) {
         localStorage.removeItem('portfolioData');
-        location.href = location.pathname; // Remove query param
+        location.href = location.pathname;
     }
 }
 
@@ -307,6 +335,55 @@ function initializeTheme() {
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
     }
+
+    applyThemeColors();
+}
+
+function applyThemeColors() {
+    const html = document.documentElement;
+    const theme = portfolioData.settings?.themeColors || {};
+    const isDark = html.classList.contains('dark');
+
+    const colors = isDark ? {
+        background: theme.darkBackground || '#0f172a',
+        text: theme.darkText || '#f8fafc',
+        gradientFrom: theme.darkGradientFrom || '#60a5fa',
+        gradientTo: theme.darkGradientTo || '#a78bfa',
+        gradientMid: theme.darkGradientMid || '#f0abfc',
+        surface: theme.darkSurface || '#111827',
+        surfaceStrong: theme.darkSurfaceStrong || '#1f2937',
+        muted: '#9ca3af'
+    } : {
+        background: theme.lightBackground || '#f8fafc',
+        text: theme.lightText || '#1f2937',
+        gradientFrom: theme.lightGradientFrom || '#1e40af',
+        gradientTo: theme.lightGradientTo || '#7c3aed',
+        gradientMid: theme.lightGradientMid || '#c026d3',
+        surface: theme.lightSurface || '#ffffff',
+        surfaceStrong: theme.lightSurfaceStrong || '#f3f4f6',
+        muted: '#6b7280'
+    };
+
+    html.style.setProperty('--site-bg', colors.background);
+    html.style.setProperty('--site-text', colors.text);
+    html.style.setProperty('--site-surface', colors.surface);
+    html.style.setProperty('--site-surface-strong', colors.surfaceStrong);
+    html.style.setProperty('--site-muted', colors.muted);
+    html.style.setProperty('--site-gradient-from', colors.gradientFrom);
+    html.style.setProperty('--site-gradient-to', colors.gradientTo);
+    html.style.setProperty('--site-gradient-mid', colors.gradientMid);
+
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+        navbar.style.backgroundColor = `${colors.surface}e6`;
+        navbar.style.color = colors.text;
+    }
+
+    const footer = document.querySelector('footer');
+    if (footer) {
+        footer.style.backgroundColor = colors.surfaceStrong;
+        footer.style.color = colors.text;
+    }
 }
 
 function toggleTheme() {
@@ -328,10 +405,13 @@ function toggleTheme() {
             themeIcon.classList.add('fa-sun', 'text-yellow-400');
         }
     }
+
+    applyThemeColors();
 }
 
 // Render All Sections
 function renderAll() {
+    applyThemeColors();
     renderProfile();
     renderSocialLinks();
     renderContact();
@@ -384,6 +464,7 @@ function renderProfile() {
     // Update contact links
     const emailLink = document.getElementById('contactEmail');
     const scholarLink = document.getElementById('contactScholar');
+    const publicationsScholarLink = document.getElementById('scholarLink');
     
     if (emailLink) {
         emailLink.href = `mailto:${p.email}`;
@@ -391,6 +472,19 @@ function renderProfile() {
     }
     if (scholarLink) {
         scholarLink.href = p.scholar;
+    }
+    if (publicationsScholarLink) {
+        publicationsScholarLink.href = p.scholar || 'https://scholar.google.com/';
+        publicationsScholarLink.target = '_blank';
+        publicationsScholarLink.rel = 'noopener noreferrer';
+        publicationsScholarLink.onclick = (event) => {
+            if (!p.scholar) {
+                event.preventDefault();
+                return;
+            }
+            event.preventDefault();
+            window.open(p.scholar, '_blank', 'noopener,noreferrer');
+        };
     }
     
     // Animate metrics on scroll
@@ -448,7 +542,7 @@ function renderContact() {
     const scholarLabel = contact.buttonTextScholar || 'Google Scholar';
 
     if (emailLink) {
-        emailLink.href = `mailto:${email || ''}`;
+        emailLink.href = '#';
         emailLink.innerHTML = `<i class="fas fa-envelope mr-2"></i>${emailLabel}`;
         emailLink.onclick = (event) => {
             if (!email) {
@@ -456,7 +550,8 @@ function renderContact() {
                 return;
             }
             event.preventDefault();
-            window.location.href = `mailto:${email}`;
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`;
+            window.open(gmailUrl, '_blank', 'noopener,noreferrer');
         };
     }
 
