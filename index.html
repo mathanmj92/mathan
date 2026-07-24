@@ -238,7 +238,6 @@
                     <a href="#events" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Events</a>
                     <a href="#gallery" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Gallery</a>
                     <a href="#links" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Collections</a>
-                    <a href="#updates" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Updates</a>
                     <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Contact</a>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -262,7 +261,6 @@
                 <a href="#events" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Events</a>
                 <a href="#gallery" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Gallery</a>
                 <a href="#links" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Collections</a>
-                <a href="#updates" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Updates</a>
                 <a href="#contact" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Contact</a>
             </div>
         </div>
@@ -678,8 +676,8 @@
                 <button onclick="filterResources('repository', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                     Tools & Repositories
                 </button>
-                <button onclick="filterResources('dataset', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                    Datasets & Code
+                <button onclick="filterResources('Videos', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                    Videos
                 </button>
                 <button onclick="filterResources('document', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                     Documents & PDFs
@@ -688,45 +686,6 @@
 
             <!-- Dynamic links render here -->
             <div id="linksContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-        </div>
-    </section>
-
-    <!-- Updates/Job Vacancies Section -->
-    <section id="updates" class="py-16 transition-colors duration-300" style="background: linear-gradient(135deg, var(--site-surface-strong) 0%, var(--site-bg) 100%);">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2 text-left">
-                <span class="gradient-text">Join Our Team</span>
-            </h2>
-            <p class="text-left text-gray-600 dark:text-gray-400 mb-10">Current openings and opportunities</p>
-
-            <div id="updatesContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="rounded-xl p-6 shadow-lg border-l-4 border-primary-500 transition-colors duration-300" style="background-color: var(--site-surface); color: var(--site-text);">
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Postdoctoral Researcher</h3>
-                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">Open</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">Seeking a motivated postdoc to work on single-cell multi-omics integration methods. Strong programming skills in Python/R required.</p>
-                    <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                        <i class="fas fa-map-marker-alt mr-2"></i> Cambridge, MA
-                        <span class="mx-2">•</span>
-                        <i class="fas fa-clock mr-2"></i> Full-time
-                    </div>
-                    <button class="w-full py-2 rounded-lg transition-colors" style="background-color: var(--site-gradient-from); color: white;">Apply Now</button>
-                </div>
-                <div class="rounded-xl p-6 shadow-lg border-l-4 border-accent-500 transition-colors duration-300" style="background-color: var(--site-surface); color: var(--site-text);">
-                    <div class="flex justify-between items-start mb-3">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Graduate Student</h3>
-                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">Open</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">Looking for PhD students interested in computational biology and machine learning. Rotation students welcome.</p>
-                    <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                        <i class="fas fa-map-marker-alt mr-2"></i> Cambridge, MA
-                        <span class="mx-2">•</span>
-                        <i class="fas fa-graduation-cap mr-2"></i> PhD Program
-                    </div>
-                    <button class="w-full py-2 rounded-lg transition-colors" style="background-color: var(--site-gradient-to); color: white;">Learn More</button>
-                </div>
-            </div>
         </div>
     </section>
 
