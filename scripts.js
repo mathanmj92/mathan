@@ -189,24 +189,6 @@ let portfolioData = {
             image: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=600&h=400&fit=crop"
         }
     ],
-    jobs: [
-        {
-            id: 1,
-            title: "Postdoctoral Researcher",
-            type: "Full-time",
-            location: "Cambridge, MA",
-            status: "open",
-            description: "Seeking a motivated postdoc to work on single-cell multi-omics integration methods. Strong programming skills in Python/R required."
-        },
-        {
-            id: 2,
-            title: "Graduate Student",
-            type: "PhD Program",
-            location: "Cambridge, MA",
-            status: "open",
-            description: "Looking for PhD students interested in computational biology and machine learning. Rotation students welcome."
-        }
-    ],
     links: [
         {
             id: 1,
@@ -224,9 +206,9 @@ let portfolioData = {
         },
         {
             id: 3,
-            title: "Datasets",
+            title: "Videos",
             description: "Published data",
-            category: "dataset",
+            category: "Videos",
             url: "#"
         }
     ],
@@ -287,33 +269,29 @@ function mergePortfolioData(defaults, incoming) {
 
 // Data Loading
 async function loadData() {
-    try {
-        const response = await fetch('./data.json'); //'/api/data' './data.json'
-        if (response.ok) {
-            const serverData = await response.json();
-            if (serverData && Object.keys(serverData).length > 0) {
-                portfolioData = mergePortfolioData(portfolioData, serverData);
-                localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
-            }
-        }
-    } catch (e) {
-        console.warn('Could not load data from server, falling back to local storage:', e);
-    }
-
     const savedData = localStorage.getItem('portfolioData');
+    
+    // 1. If LocalStorage exists, prioritize it
     if (savedData) {
         try {
             const parsed = JSON.parse(savedData);
             portfolioData = mergePortfolioData(portfolioData, parsed);
+            return;
         } catch (e) {
-            console.error('Error loading saved data:', e);
+            console.error('Error loading saved local data:', e);
         }
     }
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('refresh')) {
-        localStorage.removeItem('portfolioData');
-        location.href = location.pathname;
+
+    // 2. Fallback to server data if local storage is empty
+    try {
+        const response = await fetch('./data.json');
+        if (response.ok) {
+            const serverData = await response.json();
+            portfolioData = mergePortfolioData(portfolioData, serverData);
+            localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
+        }
+    } catch (e) {
+        console.warn('Could not load data from server document:', e);
     }
 }
 
@@ -426,7 +404,6 @@ function renderAll() {
     renderEvents();
     renderGallery();
     renderLinks();
-    renderJobs();
     renderFooter();
     updatePageTitle();
 }
@@ -920,13 +897,13 @@ function renderPublicLinks(categoryFilter = 'all') {
 
         let iconClass = 'fas fa-globe';
         if (category === 'repository') iconClass = 'fas fa-code';
-        if (category === 'dataset') iconClass = 'fas fa-database';
+        if (category === 'Videos') iconClass = 'fas fa-video';
         if (category === 'document') iconClass = 'fas fa-file-pdf';
 
         const categoryLabels = {
             website: 'Website',
             repository: 'Tool / Repository',
-            dataset: 'Dataset',
+            Videos: 'Videos',
             document: 'Document'
         };
 
@@ -1015,38 +992,6 @@ function deleteLink(id) {
         showToast('Resource link deleted', 'info');
         addActivity('Deleted resource link');
     }
-}
-
-// Jobs Section
-function renderJobs() {
-    const container = document.getElementById('updatesContainer');
-    if (!container) return;
-    
-    const openJobs = portfolioData.jobs.filter(j => j.status === 'open');
-    
-    if (openJobs.length === 0) {
-        container.innerHTML = '<p class="text-center text-gray-500 dark:text-gray-400 col-span-2">No open positions at this time.</p>';
-        return;
-    }
-    
-    container.innerHTML = openJobs.map((job, index) => `
-        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border-l-4 ${index % 2 === 0 ? 'border-primary-500' : 'border-accent-500'} transition-colors duration-300">
-            <div class="flex justify-between items-start mb-3">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white">${job.title}</h3>
-                <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full text-sm font-medium">Open</span>
-            </div>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">${job.description}</p>
-            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                <i class="fas fa-map-marker-alt mr-2"></i> ${job.location}
-                <span class="mx-2">•</span>
-                <i class="fas fa-clock mr-2"></i> ${job.type}
-            </div>
-            <button onclick="location.href='mailto:${portfolioData.profile.email}?subject=Application: ${encodeURIComponent(job.title)}'" 
-                class="w-full py-2 ${index % 2 === 0 ? 'bg-primary-600 dark:bg-primary-700 hover:bg-primary-700 dark:hover:bg-primary-600' : 'bg-accent-600 dark:bg-accent-700 hover:bg-accent-700 dark:hover:bg-accent-600'} text-white rounded-lg transition-colors">
-                Apply Now
-            </button>
-        </div>
-    `).join('');
 }
 
 // Footer
