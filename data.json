@@ -37,18 +37,25 @@
   },
   "mentors": [
     {
+      "id": 1784621605287,
+      "name": "New Mentor",
+      "institution": "Institution",
+      "role": "Collaborator",
+      "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop"
+    },
+    {
       "id": 1,
-      "name": "Dr. B. Muthuraaman",
-      "institution": "University of Madras",
+      "name": "Prof. Michael Zhang",
+      "institution": "Stanford University",
       "role": "PhD Advisor",
-      "photo": "https://www.unom.ac.in/webportal/uploads/faculty/Dr.%20B.%20Muthuraaman.jpg"
+      "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
     },
     {
       "id": 2,
-      "name": "Dr. Ranjith G Nair",
-      "institution": "National Institute of Technology SIlchar",
-      "role": "Collaborator & Former Advisor",
-      "photo": "https://physics.nits.ac.in/storage/FacultyDetails/IMG_174160975967cedb1f53459.jpg"
+      "name": "Dr. Lisa Wang",
+      "institution": "Broad Institute",
+      "role": "Collaborator",
+      "photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
     }
   ],
   "experience": [
@@ -410,7 +417,16 @@
       "image": "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=600&h=400&fit=crop"
     }
   ],
-  "jobs": [],
+  "jobs": [
+    {
+      "id": 2,
+      "title": "Internship / Project student",
+      "type": "UG / PG ",
+      "location": "PSG Institute of Technology and Applied Research",
+      "status": "open",
+      "description": "Exploration of electrochemistry, Impedance Spectroscopy, Electrochemical Energy Conversion and Storage."
+    }
+  ],
   "links": [
     {
       "id": 1784626002346,
