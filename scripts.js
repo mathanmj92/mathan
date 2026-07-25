@@ -495,13 +495,17 @@ function renderSocialLinks() {
 
     const links = portfolioData.socialLinks || {};
     const items = [
-        { key: 'twitter', href: links.twitter, icon: 'fab fa-twitter' },
+        { key: 'twitter', href: links.twitter, icon: 'fab fa-x-twitter' },
         { key: 'linkedin', href: links.linkedin, icon: 'fab fa-linkedin-in' },
         { key: 'github', href: links.github, icon: 'fab fa-github' },
-        { key: 'scholar', href: links.scholar || portfolioData.profile.scholar, icon: 'fas fa-graduation-cap' },
+        { key: 'scholar', href: links.scholar || portfolioData.profile?.scholar, icon: 'fas fa-graduation-cap' },
         { key: 'orcid', href: links.orcid, icon: 'fab fa-orcid' },
+        { key: 'researchgate', href: links.researchgate, icon: 'fab fa-researchgate' },
+        { key: 'facebook', href: links.facebook, icon: 'fab fa-facebook-f' },
+        { key: 'instagram', href: links.instagram, icon: 'fab fa-instagram' },
+        { key: 'youtube', href: links.youtube, icon: 'fab fa-youtube' },
         { key: 'website', href: links.website, icon: 'fas fa-globe' }
-    ].filter(item => item.href && item.href.trim());
+    ].filter(item => item.href && item.href.trim() && item.href !== '#');
 
     const markup = items.map(item => `
         <a href="${item.href}" target="_blank" rel="noopener noreferrer" aria-label="${item.key}" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
@@ -772,45 +776,63 @@ function setupPublicationFilters() {
 function renderEvents() {
     const container = document.getElementById('eventsContainer');
     if (!container) return;
-    
+
     const typeIcons = {
         'invited_talk': 'microphone',
         'conference': 'users',
         'workshop': 'tools',
         'seminar': 'chart-bar'
     };
-    
     const typeColors = {
         'invited_talk': 'blue',
         'conference': 'green',
         'workshop': 'yellow',
         'seminar': 'pink'
     };
-    
-    container.innerHTML = portfolioData.events.map(event => {
+
+    container.innerHTML = (portfolioData.events || []).map(event => {
         const color = typeColors[event.type] || 'gray';
         const icon = typeIcons[event.type] || 'calendar';
-        
         return `
-        <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md transition-colors duration-300 flex flex-col md:flex-row gap-4 items-start">
-            <div class="flex-shrink-0">
-                <div class="w-16 h-16 rounded-lg bg-${color}-100 dark:bg-${color}-900 flex items-center justify-center">
-                    <i class="fas fa-${icon} text-${color}-600 dark:text-${color}-400 text-2xl"></i>
+        <div class="event-card group bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700/60 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer"
+             data-type="${event.type}" onclick="toggleEventExpand(${event.id})">
+            <div class="p-4">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-${color}-100 dark:bg-${color}-900/50 flex items-center justify-center shrink-0">
+                        <i class="fas fa-${icon} text-${color}-600 dark:text-${color}-400"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex flex-wrap items-center gap-2 mb-1">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-semibold event-type-${event.type}">${formatEventType(event.type)}</span>
+                            <span class="text-[11px] text-gray-500 dark:text-gray-400">${formatDate(event.date)}</span>
+                        </div>
+                        <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-snug line-clamp-2">${event.title}</h3>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 truncate">${event.location || ''}</p>
+                    </div>
+                    <i class="fas fa-chevron-down text-xs text-gray-400 transition-transform duration-300 event-chevron" id="event-chevron-${event.id}"></i>
+                </div>
+                <div id="event-detail-${event.id}" class="hidden mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
+                    <p class="text-xs text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">${event.description || ''}</p>
                 </div>
             </div>
-            <div class="flex-1">
-                <div class="flex items-center gap-2 mb-1">
-                    <span class="px-2 py-1 rounded text-xs font-medium event-type-${event.type}">${formatEventType(event.type)}</span>
-                    <span class="text-sm text-gray-500 dark:text-gray-400">${formatDate(event.date)}</span>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">${event.title}</h3>
-                <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">${event.location}</p>
-                <p class="text-gray-500 dark:text-gray-400 text-sm">${event.description}</p>
-            </div>
-        </div>
-    `}).join('');
-    
+        </div>`;
+    }).join('');
+
     setupEventFilters();
+}
+
+function toggleEventExpand(id) {
+    const detail = document.getElementById('event-detail-' + id);
+    const chevron = document.getElementById('event-chevron-' + id);
+    if (!detail) return;
+    const open = !detail.classList.contains('hidden');
+    // close others
+    document.querySelectorAll('[id^="event-detail-"]').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('[id^="event-chevron-"]').forEach(el => el.classList.remove('rotate-180'));
+    if (!open) {
+        detail.classList.remove('hidden');
+        if (chevron) chevron.classList.add('rotate-180');
+    }
 }
 
 function formatEventType(type) {
@@ -838,11 +860,10 @@ function setupEventFilters() {
         const type = typeSelect?.value || 'all';
         
         items.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            const matchesSearch = text.includes(searchTerm);
-            const matchesType = type === 'all' || item.innerHTML.includes(`event-type-${type}`);
-            
-            item.style.display = matchesSearch && matchesType ? 'flex' : 'none';
+            const t = item.textContent.toLowerCase();
+            const matchesSearch = t.includes(searchTerm);
+            const matchesType = type === 'all' || (item.getAttribute('data-type') === type);
+            item.style.display = matchesSearch && matchesType ? '' : 'none';
         });
     }
     
@@ -854,14 +875,14 @@ function setupEventFilters() {
 function renderGallery() {
     const container = document.getElementById('galleryContainer');
     if (!container) return;
-    
-    container.innerHTML = portfolioData.gallery.map(item => `
-        <div class="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer gallery-item" onclick="openGalleryModal(${item.id})">
-            <img src="${item.image}" alt="${item.title}" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
-            <div class="absolute inset-0 gallery-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+
+    container.innerHTML = (portfolioData.gallery || []).map(item => `
+        <div class="relative group overflow-hidden rounded-lg shadow-md cursor-pointer gallery-item aspect-square" onclick="openGalleryModal(${item.id})">
+            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+            <div class="absolute inset-0 gallery-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
                 <div>
-                    <h3 class="text-white font-bold text-lg">${item.title}</h3>
-                    <p class="text-gray-300 text-sm">${item.description}</p>
+                    <h3 class="text-white font-semibold text-sm leading-tight">${item.title}</h3>
+                    <p class="text-gray-300 text-xs line-clamp-1">${item.description || ''}</p>
                 </div>
             </div>
         </div>
@@ -899,138 +920,156 @@ function extractYouTubeId(url) {
     return null;
 }
 
-/** Build a rich thumbnail block based on category / URL */
-function getResourceThumbnail(link) {
-    const category = (link.category || 'website').toLowerCase();
+/** Icon + style for a resource category (list view) */
+function getResourceListMeta(link) {
+    const category = (link.category || 'website');
+    const catLower = category.toLowerCase();
     const url = link.url || '';
     const ytId = extractYouTubeId(url);
 
-    if (category === 'videos' || ytId) {
-        const id = ytId || 'dQw4w9WgXcQ';
+    if (catLower === 'videos' || ytId) {
+        const id = ytId;
         return {
-            type: 'image',
-            src: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
-            badge: 'fab fa-youtube',
-            badgeColor: 'bg-red-600',
-            fallbackIcon: 'fab fa-youtube'
+            kind: 'video',
+            thumb: id ? `https://img.youtube.com/vi/${id}/mqdefault.jpg` : null,
+            icon: 'fab fa-youtube',
+            color: 'text-red-500',
+            bg: 'bg-red-50 dark:bg-red-900/30'
         };
     }
-
-    if (category === 'image' || /\.(jpe?g|png|gif|webp|svg)(\?|$)/i.test(url)) {
+    if (catLower === 'document' || catLower === 'lecture_notes' || catLower === 'books' || /\.pdf(\?|$)/i.test(url)) {
+        const iconMap = { books: 'fas fa-book', lecture_notes: 'fas fa-chalkboard-teacher', document: 'fas fa-file-pdf' };
         return {
-            type: 'image',
-            src: url,
-            badge: 'fas fa-image',
-            badgeColor: 'bg-emerald-600',
-            fallbackIcon: 'fas fa-image'
+            kind: 'icon',
+            icon: iconMap[catLower] || 'fas fa-file-pdf',
+            color: 'text-red-600',
+            bg: 'bg-red-50 dark:bg-red-900/30'
         };
     }
-
-    if (category === 'document' || /\.pdf(\?|$)/i.test(url)) {
-        return {
-            type: 'icon',
-            icon: 'fas fa-file-pdf',
-            gradient: 'from-red-500 to-rose-600',
-            badge: 'fas fa-file-pdf',
-            badgeColor: 'bg-red-600',
-            label: 'PDF'
-        };
+    if (catLower === 'repository' || /github\.com|gitlab\.com/i.test(url)) {
+        return { kind: 'icon', icon: 'fab fa-github', color: 'text-gray-800 dark:text-gray-200', bg: 'bg-gray-100 dark:bg-gray-700' };
     }
-
-    if (category === 'repository' || /github\.com|gitlab\.com|bitbucket\.org/i.test(url)) {
-        return {
-            type: 'icon',
-            icon: 'fab fa-github',
-            gradient: 'from-gray-700 to-gray-900',
-            badge: 'fab fa-github',
-            badgeColor: 'bg-gray-800',
-            label: 'Code'
-        };
+    if (catLower === 'blogs') {
+        return { kind: 'icon', icon: 'fas fa-rss', color: 'text-orange-500', bg: 'bg-orange-50 dark:bg-orange-900/30' };
     }
-
+    if (catLower === 'image') {
+        return { kind: 'icon', icon: 'fas fa-image', color: 'text-emerald-600', bg: 'bg-emerald-50 dark:bg-emerald-900/30' };
+    }
+    // website – try favicon
+    let favicon = null;
+    try {
+        if (url && url.startsWith('http')) {
+            const u = new URL(url);
+            favicon = `https://www.google.com/s2/favicons?domain=${u.hostname}&sz=64`;
+        }
+    } catch (_) {}
     return {
-        type: 'icon',
+        kind: favicon ? 'favicon' : 'icon',
+        thumb: favicon,
         icon: 'fas fa-globe',
-        gradient: 'from-primary-500 to-accent-500',
-        badge: 'fas fa-link',
-        badgeColor: 'bg-primary-600',
-        label: 'Web'
+        color: 'text-primary-600',
+        bg: 'bg-primary-50 dark:bg-primary-900/30'
     };
+}
+
+function getLinkCategoryLabel(category) {
+    const labels = {
+        website: 'Website',
+        repository: 'Tool / Repository',
+        Videos: 'Videos',
+        document: 'Document',
+        image: 'Image',
+        books: 'Books',
+        blogs: 'Blogs',
+        lecture_notes: 'Lecture Notes'
+    };
+    return labels[category] || (category ? category.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Resource');
+}
+
+/** Built-in + custom categories from data */
+function getResourceCategories() {
+    const builtIn = ['website', 'repository', 'Videos', 'document', 'image', 'books', 'blogs', 'lecture_notes'];
+    const fromData = (portfolioData.links || []).map(l => l.category || 'website');
+    const custom = (portfolioData.settings?.customLinkCategories || []);
+    const all = [...new Set([...builtIn, ...fromData, ...custom])];
+    return all;
+}
+
+function renderResourceFilters() {
+    const el = document.getElementById('resourceFilters');
+    if (!el) return;
+    const cats = getResourceCategories();
+    const current = currentResourceFilter || 'all';
+    const btn = (cat, label, active) => `
+        <button onclick="filterResources('${cat}', this)" class="resource-filter-btn px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${active ? 'bg-primary-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'}">
+            ${label}
+        </button>`;
+    el.innerHTML = btn('all', 'All', current === 'all') +
+        cats.map(c => btn(c, getLinkCategoryLabel(c), current === c)).join('');
 }
 
 function renderPublicLinks(categoryFilter = 'all') {
     const container = document.getElementById('linksContainer');
     if (!container) return;
 
-    const links = portfolioData?.links || [];
+    renderResourceFilters();
 
+    const links = portfolioData?.links || [];
     const filteredLinks = categoryFilter === 'all'
         ? links
         : links.filter(link => (link.category || 'website') === categoryFilter);
 
     if (filteredLinks.length === 0) {
         container.innerHTML = `
-            <div class="col-span-full text-center py-12 text-gray-500 dark:text-gray-400">
-                <i class="fas fa-folder-open text-3xl mb-3 opacity-40"></i>
-                <p>No resources found in this category.</p>
+            <div class="text-center py-8 text-gray-500 dark:text-gray-400 text-sm">
+                <i class="fas fa-folder-open text-2xl mb-2 opacity-40"></i>
+                <p>No resources in this category.</p>
             </div>`;
         return;
     }
 
-    const categoryLabels = {
-        website: 'Website',
-        repository: 'Tool / Repository',
-        Videos: 'Videos',
-        document: 'Document',
-        image: 'Image'
-    };
-
     container.innerHTML = filteredLinks.map(link => {
         const category = link.category || 'website';
-        const thumb = getResourceThumbnail(link);
-
-        let thumbHtml = '';
-        if (thumb.type === 'image') {
-            thumbHtml = `
-                <div class="relative w-full aspect-video overflow-hidden bg-gray-100 dark:bg-gray-800">
-                    <img src="${thumb.src}" alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="hidden absolute inset-0 items-center justify-center bg-gradient-to-br from-gray-700 to-gray-900">
-                        <i class="${thumb.fallbackIcon || 'fas fa-image'} text-white text-3xl opacity-60"></i>
-                    </div>
-                    <div class="absolute top-2 right-2 w-8 h-8 ${thumb.badgeColor} rounded-full flex items-center justify-center shadow-lg">
-                        <i class="${thumb.badge} text-white text-xs"></i>
+        const meta = getResourceListMeta(link);
+        let mediaHtml = '';
+        if (meta.kind === 'video' && meta.thumb) {
+            mediaHtml = `
+                <div class="relative w-20 h-12 rounded overflow-hidden shrink-0 bg-gray-200 dark:bg-gray-700">
+                    <img src="${meta.thumb}" alt="" class="w-full h-full object-cover"
+                         onerror="this.parentElement.innerHTML='<div class=\\'w-full h-full flex items-center justify-center ${meta.bg}\\'><i class=\\'${meta.icon} ${meta.color}\\'></i></div>'">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+                        <i class="fas fa-play text-white text-xs drop-shadow"></i>
                     </div>
                 </div>`;
+        } else if (meta.kind === 'favicon' && meta.thumb) {
+            mediaHtml = `
+                <div class="w-10 h-10 rounded-lg ${meta.bg} flex items-center justify-center shrink-0 overflow-hidden">
+                    <img src="${meta.thumb}" alt="" class="w-5 h-5" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+                    <i class="${meta.icon} ${meta.color} hidden"></i>
+                </div>`;
         } else {
-            thumbHtml = `
-                <div class="relative w-full aspect-video overflow-hidden bg-gradient-to-br ${thumb.gradient} flex flex-col items-center justify-center">
-                    <i class="${thumb.icon} text-white text-4xl opacity-90 mb-1 drop-shadow"></i>
-                    ${thumb.label ? `<span class="text-white/90 text-xs font-semibold tracking-widest uppercase">${thumb.label}</span>` : ''}
-                    <div class="absolute top-2 right-2 w-8 h-8 ${thumb.badgeColor} rounded-full flex items-center justify-center shadow-lg ring-2 ring-white/20">
-                        <i class="${thumb.badge} text-white text-xs"></i>
-                    </div>
+            mediaHtml = `
+                <div class="w-10 h-10 rounded-lg ${meta.bg} flex items-center justify-center shrink-0">
+                    <i class="${meta.icon} ${meta.color}"></i>
                 </div>`;
         }
 
         return `
             <a href="${link.url || '#'}" target="_blank" rel="noopener noreferrer"
-               class="group flex flex-col overflow-hidden rounded-xl border border-gray-100 dark:border-gray-700/70 bg-white dark:bg-gray-800/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                ${thumbHtml}
-                <div class="flex flex-col flex-1 p-4">
-                    <h3 class="font-bold text-gray-900 dark:text-white text-sm leading-snug group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2 mb-1">
-                        ${link.title || 'Untitled Resource'}
-                    </h3>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 line-clamp-2 flex-1 mb-3">
-                        ${link.description || ''}
-                    </p>
-                    <div class="flex justify-between items-center pt-2 border-t border-gray-100 dark:border-gray-700/50">
-                        <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-primary-50 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300 uppercase tracking-wider">
-                            ${categoryLabels[category] || 'Resource'}
+               class="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-gray-100 dark:border-gray-700/50 bg-white dark:bg-gray-800/80 hover:bg-gray-50 dark:hover:bg-gray-700/80 hover:border-primary-200 dark:hover:border-primary-700 transition-all group">
+                ${mediaHtml}
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2">
+                        <h3 class="text-sm font-semibold text-gray-900 dark:text-white truncate group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                            ${link.title || 'Untitled'}
+                        </h3>
+                        <span class="hidden sm:inline text-[10px] font-medium px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 shrink-0">
+                            ${getLinkCategoryLabel(category)}
                         </span>
-                        <i class="fas fa-external-link-alt text-[10px] text-gray-400 group-hover:text-primary-500 transition-colors"></i>
                     </div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 truncate">${link.description || ''}</p>
                 </div>
+                <i class="fas fa-external-link-alt text-[10px] text-gray-400 group-hover:text-primary-500 shrink-0"></i>
             </a>
         `;
     }).join('');
