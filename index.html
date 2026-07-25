@@ -54,11 +54,26 @@
             background-clip: text;
         }
         .card-hover {
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .card-hover:hover {
             transform: translateY(-4px);
             box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .aspect-video {
+            aspect-ratio: 16 / 9;
         }
         .metric-counter {
             font-variant-numeric: tabular-nums;
@@ -330,88 +345,28 @@
 
         <!-- Right Content -->
         <div class="flex-1 lg:h-screen lg:overflow-y-auto">
-            <!-- Work Experience Section -->
-    <section id="experience" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
+            <!-- Work Experience Section — compact -->
+    <section id="experience" class="py-12 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2 text-left">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white font-serif mb-1 text-left">
                 <span class="gradient-text">Work Experience</span>
             </h2>
-            <p class="text-left text-gray-600 dark:text-gray-400 mb-10 max-w-2xl">Academic and professional positions throughout my career</p>
-
-            <div id="experienceContainer" class="max-w-4xl mx-auto space-y-6">
-                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md transition-colors duration-300">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Senior Research Scientist</h3>
-                        <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">2020 - Present</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300 font-medium mb-2">Broad Institute of MIT and Harvard</p>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">Leading computational biology research group focusing on single-cell genomics and machine learning applications in cancer biology.</p>
-                </div>
-                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md transition-colors duration-300">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Postdoctoral Researcher</h3>
-                        <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">2017 - 2020</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300 font-medium mb-2">Stanford University School of Medicine</p>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">Developed novel algorithms for analyzing high-dimensional biological data and integrative genomics approaches.</p>
-                </div>
-                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md transition-colors duration-300">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Research Assistant</h3>
-                        <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">2015 - 2017</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300 font-medium mb-2">University of California, Berkeley</p>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">Worked on computational methods for phylogenetic analysis and evolutionary genomics.</p>
-                </div>
+            <p class="text-left text-gray-600 dark:text-gray-400 mb-6 max-w-2xl text-sm">Academic and professional positions throughout my career</p>
+            <div id="experienceContainer" class="max-w-4xl mx-auto space-y-3">
+                <!-- Filled by scripts.js -->
             </div>
         </div>
     </section>
 
-    <!-- Academic Journey Section -->
-    <section id="academic" class="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Academic Journey Section — compact horizontal cards -->
+    <section id="academic" class="py-12 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2 text-left">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white font-serif mb-1 text-left">
                 <span class="gradient-text">Academic Journey</span>
             </h2>
-            <p class="text-left text-gray-600 dark:text-gray-400 mb-10 max-w-2xl">Educational background and academic achievements</p>
-
-            <div id="academicContainer" class="max-w-4xl mx-auto relative">
-                <div class="timeline-line hidden md:block"></div>
-                <div class="space-y-8">
-                    <div class="relative pl-12 md:pl-16">
-                        <div class="absolute left-4 md:left-5 top-0 w-4 h-4 rounded-full bg-primary-500 border-4 border-white dark:border-gray-800 shadow"></div>
-                        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-colors duration-300">
-                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Ph.D. in Computational Biology</h3>
-                                <span class="text-sm text-accent-600 dark:text-accent-400 font-medium">2012 - 2017</span>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 font-medium mb-2">University of California, Berkeley</p>
-                            <p class="text-gray-500 dark:text-gray-400 text-sm">Dissertation: "Machine Learning Approaches for Understanding Gene Regulatory Networks"</p>
-                        </div>
-                    </div>
-                    <div class="relative pl-12 md:pl-16">
-                        <div class="absolute left-4 md:left-5 top-0 w-4 h-4 rounded-full bg-accent-500 border-4 border-white dark:border-gray-800 shadow"></div>
-                        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-colors duration-300">
-                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">M.S. in Computer Science</h3>
-                                <span class="text-sm text-accent-600 dark:text-accent-400 font-medium">2010 - 2012</span>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 font-medium mb-2">Carnegie Mellon University</p>
-                            <p class="text-gray-500 dark:text-gray-400 text-sm">Specialization in Machine Learning and Data Mining</p>
-                        </div>
-                    </div>
-                    <div class="relative pl-12 md:pl-16">
-                        <div class="absolute left-4 md:left-5 top-0 w-4 h-4 rounded-full bg-primary-500 border-4 border-white dark:border-gray-800 shadow"></div>
-                        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-colors duration-300">
-                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">B.S. in Biology & Computer Science</h3>
-                                <span class="text-sm text-accent-600 dark:text-accent-400 font-medium">2006 - 2010</span>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 font-medium mb-2">Massachusetts Institute of Technology</p>
-                            <p class="text-gray-500 dark:text-gray-400 text-sm">Double major with minor in Mathematics</p>
-                        </div>
-                    </div>
-                </div>
+            <p class="text-left text-gray-600 dark:text-gray-400 mb-6 max-w-2xl text-sm">Educational background and academic achievements</p>
+            <div id="academicContainer" class="max-w-5xl mx-auto">
+                <!-- Filled by scripts.js as horizontal grid -->
             </div>
         </div>
     </section>
@@ -682,10 +637,13 @@
                 <button onclick="filterResources('document', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                     Documents & PDFs
                 </button>
+                <button onclick="filterResources('image', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                    Images
+                </button>
             </div>
 
-            <!-- Dynamic links render here -->
-            <div id="linksContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            <!-- Dynamic links with smart thumbnails -->
+            <div id="linksContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
         </div>
     </section>
 
@@ -949,19 +907,7 @@
             
             lastScroll = currentScroll;
         });
-        // Load saved data or fallback to defaults
-        function loadPortfolioData() {
-            const savedData = localStorage.getItem('portfolioData');
-            if (savedData) {
-                portfolioData = JSON.parse(savedData);
-            }
-        }
-
-        // Execute on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            loadPortfolioData();  // 1. Fetch latest data from storage
-            renderPublicLinks();  // 2. Build the HTML cards on the page
-        });
+        // Data loading and rendering are handled by scripts.js
     </script>
 </body>
 </html>
