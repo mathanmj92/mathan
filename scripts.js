@@ -269,29 +269,39 @@ function mergePortfolioData(defaults, incoming) {
 
 // Data Loading
 async function loadData() {
-    const savedData = localStorage.getItem('portfolioData');
-    
-    // 1. If LocalStorage exists, prioritize it
-    if (savedData) {
-        try {
-            const parsed = JSON.parse(savedData);
-            portfolioData = mergePortfolioData(portfolioData, parsed);
-            return;
-        } catch (e) {
-            console.error('Error loading saved local data:', e);
-        }
-    }
+    // For GitHub Pages / static hosting: prefer data.json as source of truth.
+    // localStorage is only used as a temporary override in the admin panel.
+    const isAdminContext = window.location.pathname.includes('admin');
 
-    // 2. Fallback to server data if local storage is empty
     try {
-        const response = await fetch('./data.json');
-        if (response.ok) {
-            const serverData = await response.json();
+        let serverData = null;
+        try {
+            const apiRes = await fetch('/api/data');
+            if (apiRes.ok) serverData = await apiRes.json();
+        } catch (_) { /* static host */ }
+
+        if (!serverData) {
+            const fileRes = await fetch('./data.json');
+            if (fileRes.ok) serverData = await fileRes.json();
+        }
+
+        if (serverData && Object.keys(serverData).length) {
             portfolioData = mergePortfolioData(portfolioData, serverData);
-            localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
         }
     } catch (e) {
-        console.warn('Could not load data from server document:', e);
+        console.warn('Could not load data.json:', e);
+    }
+
+    if (isAdminContext) {
+        const savedData = localStorage.getItem('portfolioData');
+        if (savedData) {
+            try {
+                const parsed = JSON.parse(savedData);
+                portfolioData = mergePortfolioData(portfolioData, parsed);
+            } catch (e) {
+                console.error('Error loading local admin data:', e);
+            }
+        }
     }
 }
 
@@ -403,7 +413,7 @@ function renderAll() {
     renderPublications();
     renderEvents();
     renderGallery();
-    renderLinks();
+    renderPublicLinks(typeof currentResourceFilter !== "undefined" ? currentResourceFilter : "all");
     renderFooter();
     updatePageTitle();
 }
@@ -616,46 +626,48 @@ function animateCounter(element) {
     requestAnimationFrame(update);
 }
 
-// Experience Section
+// Experience Section — compact horizontal cards
 function renderExperience() {
     const container = document.getElementById('experienceContainer');
     if (!container) return;
-    
-    container.innerHTML = portfolioData.experience.map(exp => `
-        <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md transition-colors duration-300">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white">${exp.title}</h3>
-                <span class="text-sm text-primary-600 dark:text-primary-400 font-medium">${exp.period}</span>
+
+    container.innerHTML = portfolioData.experience.map((exp, idx) => `
+        <div class="group relative flex gap-4 p-4 rounded-xl border border-gray-100 dark:border-gray-700/60 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-sm hover:shadow-md hover:border-primary-200 dark:hover:border-primary-700 transition-all duration-300">
+            <div class="flex-shrink-0 w-1 self-stretch rounded-full bg-gradient-to-b from-primary-500 via-accent-500 to-primary-400 opacity-80 group-hover:opacity-100"></div>
+            <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 mb-1">
+                    <h3 class="text-base font-bold text-gray-900 dark:text-white leading-snug">${exp.title}</h3>
+                    <span class="text-xs font-semibold tracking-wide text-primary-600 dark:text-primary-400 whitespace-nowrap">${exp.period}</span>
+                </div>
+                <p class="text-sm font-medium text-gray-600 dark:text-gray-300 mb-1.5">${exp.organization}</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2">${exp.description}</p>
             </div>
-            <p class="text-gray-600 dark:text-gray-300 font-medium mb-2">${exp.organization}</p>
-            <p class="text-gray-500 dark:text-gray-400 text-sm">${exp.description}</p>
         </div>
     `).join('');
 }
 
-// Academic Section
+// Academic Section — compact horizontal grid / cards
 function renderAcademic() {
     const container = document.getElementById('academicContainer');
     if (!container) return;
-    
-    const timelineLine = container.querySelector('.timeline-line');
-    container.innerHTML = timelineLine ? timelineLine.outerHTML : '<div class="timeline-line hidden md:block"></div>';
-    
-    const content = portfolioData.academic.map(edu => `
-        <div class="relative pl-12 md:pl-16 mb-8 last:mb-0">
-            <div class="absolute left-4 md:left-5 top-0 w-4 h-4 rounded-full bg-primary-500 border-4 border-white dark:border-gray-800 shadow"></div>
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-colors duration-300">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">${edu.degree}</h3>
-                    <span class="text-sm text-accent-600 dark:text-accent-400 font-medium">${edu.period}</span>
+
+    const items = portfolioData.academic || [];
+    container.innerHTML = `
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            ${items.map((edu, idx) => `
+                <div class="relative overflow-hidden rounded-xl border border-gray-100 dark:border-gray-700/60 bg-white dark:bg-gray-800 p-5 shadow-sm hover:shadow-lg transition-all duration-300 group">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-500 via-accent-500 to-primary-400"></div>
+                    <div class="flex items-start justify-between gap-2 mb-3">
+                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-primary-50 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300 text-sm font-bold">${idx + 1}</span>
+                        <span class="text-[11px] font-semibold uppercase tracking-wider text-accent-600 dark:text-accent-400 bg-accent-50 dark:bg-accent-900/30 px-2 py-0.5 rounded">${edu.period}</span>
+                    </div>
+                    <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-snug mb-1.5 line-clamp-2">${edu.degree}</h3>
+                    <p class="text-xs font-medium text-primary-600 dark:text-primary-400 mb-2">${edu.institution}</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-3">${edu.description}</p>
                 </div>
-                <p class="text-gray-600 dark:text-gray-300 font-medium mb-2">${edu.institution}</p>
-                <p class="text-gray-500 dark:text-gray-400 text-sm">${edu.description}</p>
-            </div>
+            `).join('')}
         </div>
-    `).join('');
-    
-    container.innerHTML += content;
+    `;
 }
 
 // Research Section
@@ -873,61 +885,151 @@ function openGalleryModal(id) {
 
 let currentResourceFilter = 'all';
 
+/** Extract YouTube video ID from common URL formats */
+function extractYouTubeId(url) {
+    if (!url) return null;
+    const patterns = [
+        /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/,
+        /^([a-zA-Z0-9_-]{11})$/
+    ];
+    for (const p of patterns) {
+        const m = url.match(p);
+        if (m) return m[1];
+    }
+    return null;
+}
+
+/** Build a rich thumbnail block based on category / URL */
+function getResourceThumbnail(link) {
+    const category = (link.category || 'website').toLowerCase();
+    const url = link.url || '';
+    const ytId = extractYouTubeId(url);
+
+    if (category === 'videos' || ytId) {
+        const id = ytId || 'dQw4w9WgXcQ';
+        return {
+            type: 'image',
+            src: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+            badge: 'fab fa-youtube',
+            badgeColor: 'bg-red-600',
+            fallbackIcon: 'fab fa-youtube'
+        };
+    }
+
+    if (category === 'image' || /\.(jpe?g|png|gif|webp|svg)(\?|$)/i.test(url)) {
+        return {
+            type: 'image',
+            src: url,
+            badge: 'fas fa-image',
+            badgeColor: 'bg-emerald-600',
+            fallbackIcon: 'fas fa-image'
+        };
+    }
+
+    if (category === 'document' || /\.pdf(\?|$)/i.test(url)) {
+        return {
+            type: 'icon',
+            icon: 'fas fa-file-pdf',
+            gradient: 'from-red-500 to-rose-600',
+            badge: 'fas fa-file-pdf',
+            badgeColor: 'bg-red-600',
+            label: 'PDF'
+        };
+    }
+
+    if (category === 'repository' || /github\.com|gitlab\.com|bitbucket\.org/i.test(url)) {
+        return {
+            type: 'icon',
+            icon: 'fab fa-github',
+            gradient: 'from-gray-700 to-gray-900',
+            badge: 'fab fa-github',
+            badgeColor: 'bg-gray-800',
+            label: 'Code'
+        };
+    }
+
+    return {
+        type: 'icon',
+        icon: 'fas fa-globe',
+        gradient: 'from-primary-500 to-accent-500',
+        badge: 'fas fa-link',
+        badgeColor: 'bg-primary-600',
+        label: 'Web'
+    };
+}
+
 function renderPublicLinks(categoryFilter = 'all') {
     const container = document.getElementById('linksContainer');
     if (!container) return;
 
     const links = portfolioData?.links || [];
 
-    // Filter items based on selected category tab
-    const filteredLinks = categoryFilter === 'all' 
-        ? links 
+    const filteredLinks = categoryFilter === 'all'
+        ? links
         : links.filter(link => (link.category || 'website') === categoryFilter);
 
     if (filteredLinks.length === 0) {
         container.innerHTML = `
-            <div class="col-span-full text-center py-8 text-gray-500 dark:text-gray-400">
-                No resources found in this category.
+            <div class="col-span-full text-center py-12 text-gray-500 dark:text-gray-400">
+                <i class="fas fa-folder-open text-3xl mb-3 opacity-40"></i>
+                <p>No resources found in this category.</p>
             </div>`;
         return;
     }
 
+    const categoryLabels = {
+        website: 'Website',
+        repository: 'Tool / Repository',
+        Videos: 'Videos',
+        document: 'Document',
+        image: 'Image'
+    };
+
     container.innerHTML = filteredLinks.map(link => {
         const category = link.category || 'website';
+        const thumb = getResourceThumbnail(link);
 
-        let iconClass = 'fas fa-globe';
-        if (category === 'repository') iconClass = 'fas fa-code';
-        if (category === 'Videos') iconClass = 'fas fa-video';
-        if (category === 'document') iconClass = 'fas fa-file-pdf';
-
-        const categoryLabels = {
-            website: 'Website',
-            repository: 'Tool / Repository',
-            Videos: 'Videos',
-            document: 'Document'
-        };
+        let thumbHtml = '';
+        if (thumb.type === 'image') {
+            thumbHtml = `
+                <div class="relative w-full aspect-video overflow-hidden bg-gray-100 dark:bg-gray-800">
+                    <img src="${thumb.src}" alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="hidden absolute inset-0 items-center justify-center bg-gradient-to-br from-gray-700 to-gray-900">
+                        <i class="${thumb.fallbackIcon || 'fas fa-image'} text-white text-3xl opacity-60"></i>
+                    </div>
+                    <div class="absolute top-2 right-2 w-8 h-8 ${thumb.badgeColor} rounded-full flex items-center justify-center shadow-lg">
+                        <i class="${thumb.badge} text-white text-xs"></i>
+                    </div>
+                </div>`;
+        } else {
+            thumbHtml = `
+                <div class="relative w-full aspect-video overflow-hidden bg-gradient-to-br ${thumb.gradient} flex flex-col items-center justify-center">
+                    <i class="${thumb.icon} text-white text-4xl opacity-90 mb-1 drop-shadow"></i>
+                    ${thumb.label ? `<span class="text-white/90 text-xs font-semibold tracking-widest uppercase">${thumb.label}</span>` : ''}
+                    <div class="absolute top-2 right-2 w-8 h-8 ${thumb.badgeColor} rounded-full flex items-center justify-center shadow-lg ring-2 ring-white/20">
+                        <i class="${thumb.badge} text-white text-xs"></i>
+                    </div>
+                </div>`;
+        }
 
         return `
-            <a href="${link.url || '#'}" target="_blank" rel="noopener noreferrer" 
-               class="flex flex-col justify-between p-5 bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 group">
-                <div class="flex items-start gap-4 mb-3">
-                    <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/50 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                        <i class="${iconClass} text-primary-600 dark:text-primary-400 text-lg"></i>
+            <a href="${link.url || '#'}" target="_blank" rel="noopener noreferrer"
+               class="group flex flex-col overflow-hidden rounded-xl border border-gray-100 dark:border-gray-700/70 bg-white dark:bg-gray-800/90 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                ${thumbHtml}
+                <div class="flex flex-col flex-1 p-4">
+                    <h3 class="font-bold text-gray-900 dark:text-white text-sm leading-snug group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2 mb-1">
+                        ${link.title || 'Untitled Resource'}
+                    </h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 line-clamp-2 flex-1 mb-3">
+                        ${link.description || ''}
+                    </p>
+                    <div class="flex justify-between items-center pt-2 border-t border-gray-100 dark:border-gray-700/50">
+                        <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-primary-50 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300 uppercase tracking-wider">
+                            ${categoryLabels[category] || 'Resource'}
+                        </span>
+                        <i class="fas fa-external-link-alt text-[10px] text-gray-400 group-hover:text-primary-500 transition-colors"></i>
                     </div>
-                    <div class="flex-1 min-w-0">
-                        <h3 class="font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors truncate">
-                            ${link.title || 'Untitled Resource'}
-                        </h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 mt-1">
-                            ${link.description || ''}
-                        </p>
-                    </div>
-                </div>
-                <div class="flex justify-between items-center pt-2 border-t border-gray-200/50 dark:border-gray-600/50">
-                    <span class="text-xs font-semibold px-2 py-0.5 rounded bg-primary-50 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300 uppercase tracking-wider">
-                        ${categoryLabels[category] || 'Resource'}
-                    </span>
-                    <i class="fas fa-external-link-alt text-xs text-gray-400 group-hover:text-primary-500 transition-colors"></i>
                 </div>
             </a>
         `;
@@ -951,11 +1053,6 @@ function filterResources(category, btnElement) {
 
     renderPublicLinks(category);
 }
-
-// Automatically load when index.html loads
-document.addEventListener('DOMContentLoaded', () => {
-    renderPublicLinks();
-});
 
 function addLink() {
     if (!portfolioData.links) {
