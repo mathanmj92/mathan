@@ -25,8 +25,12 @@
     "linkedin": "https://www.linkedin.com/in/mathan-kumar-pandiyan-30a342310/",
     "github": "",
     "scholar": "https://scholar.google.com/citations?user=I730zAgAAAAJ&hl=en",
-    "orcid": "",
-    "website": ""
+    "orcid": "https://orcid.org/my-orcid?orcid=0000-0001-9998-3083",
+    "website": "",
+    "researchgate": "https://www.researchgate.net/profile/Mathan-Kumar-P-2?ev=hdr_xprf",
+    "facebook": "https://www.facebook.com/mathanjackson/",
+    "instagram": "",
+    "youtube": "https://www.youtube.com/@xresearcher92"
   },
   "contact": {
     "email": "mathankumar.sh@psgitech.ac.in",
@@ -38,24 +42,17 @@
   "mentors": [
     {
       "id": 1784621605287,
-      "name": "New Mentor",
-      "institution": "Institution",
-      "role": "Collaborator",
-      "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop"
+      "name": "Dr. B. Muthuraaman",
+      "institution": "University of Madras",
+      "role": "PhD Advisor",
+      "photo": "https://www.unom.ac.in/index.php?route=department/department/researchactivities&deptid=30&facultyid=374"
     },
     {
       "id": 1,
-      "name": "Prof. Michael Zhang",
-      "institution": "Stanford University",
-      "role": "PhD Advisor",
-      "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
-    },
-    {
-      "id": 2,
-      "name": "Dr. Lisa Wang",
-      "institution": "Broad Institute",
-      "role": "Collaborator",
-      "photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
+      "name": "Dr. Ranjith G Nair",
+      "institution": "National Institute of Technology Silchar",
+      "role": "For Advisor",
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiHD5WAPDmBBLd3Khf3d8Aq1OVUHC-y0fEj-2XInul5TuslN_EJIJ5L-u6&s=10"
     }
   ],
   "experience": [
@@ -84,7 +81,7 @@
       "id": 3,
       "title": "IUAC - Project Fellow",
       "organization": "National Institute of Technology SIlchar",
-      "period": "2016 - 2017",
+      "period": "2016 - 2018",
       "description": "Worked on computational methods for phylogenetic an•  Preparation of Thin films via RF sputtering technique at HHV Pvt. Ltd.\n•  Explored the Ion implantation techniques using Gas and Metal sources\n•  Performed Gamma Irradiation experiment for prepared thin filmsalysis and evolutionary genomics."
     }
   ],
@@ -93,21 +90,21 @@
       "id": 1,
       "degree": "Ph.D. in Physics",
       "institution": "University of Madras, Chennai, Tamilnadu",
-      "period": "2012 - 2017",
+      "period": "2018 - 2025",
       "description": "Dissertation: \"Machine Learning Approaches for Understanding Gene Regulatory Networks\""
     },
     {
       "id": 2,
       "degree": "M.Sc. in Physics",
       "institution": "Ayya Nadar Janaki Ammal College, Sivakasi, Tamilnadu",
-      "period": "2010 - 2012",
+      "period": "2013 - 2015",
       "description": "Specialization in Machine Learning and Data Mining"
     },
     {
       "id": 3,
       "degree": "B.Sc. in Physics",
       "institution": "Kalasalingam College of Arts a& Science",
-      "period": "2006 - 2010",
+      "period": "2010 - 2013",
       "description": "Double major with minor in Mathematics"
     }
   ],
