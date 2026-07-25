@@ -113,28 +113,6 @@
   ],
   "research": [
     {
-      "id": 1,
-      "title": "Single-Cell Atlas of Cancer",
-      "status": "ongoing",
-      "description": "Building a comprehensive single-cell reference atlas of tumor microenvironments across cancer types.",
-      "tags": [
-        "scRNA-seq",
-        "Spatial"
-      ],
-      "icon": "dna"
-    },
-    {
-      "id": 2,
-      "title": "Deep Learning for Drug Discovery",
-      "status": "ongoing",
-      "description": "Developing graph neural networks for molecular property prediction and drug-target interaction.",
-      "tags": [
-        "GNN",
-        "Drug Discovery"
-      ],
-      "icon": "brain"
-    },
-    {
       "id": 3,
       "title": "Gene Regulatory Networks",
       "status": "published",
@@ -430,7 +408,7 @@
   "links": [
     {
       "id": 1784626002346,
-      "title": "New Resource",
+      "title": "Curriculum Vitae",
       "description": "Resource description",
       "url": "https://www.unom.ac.in/webportal/uploads/faculty/profile/20697.pdf",
       "category": "document"
@@ -439,13 +417,14 @@
       "id": 1,
       "title": "Lab Handbook",
       "description": "Protocols and guidelines",
-      "url": "#"
+      "url": "https://youtu.be/vPW0UYELfOg",
+      "category": "Videos"
     },
     {
       "id": 2,
       "title": "GitHub Repository",
       "description": "Open source tools",
-      "url": "#"
+      "url": "https://pixabay.com/music/"
     },
     {
       "id": 3,
