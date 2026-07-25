@@ -63,12 +63,15 @@
         .line-clamp-2 {
             display: -webkit-box;
             -webkit-line-clamp: 2;
+            line-clamp: 2; /* Standard property to clear linter warnings */
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+
         .line-clamp-3 {
             display: -webkit-box;
             -webkit-line-clamp: 3;
+            line-clamp: 3; /* Standard property to clear linter warnings */
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -230,6 +233,19 @@
             max-width: 100%;
             overflow-x: hidden;
         }
+        @media (min-width: 1024px) {
+            html, body {
+                height: 100%;
+                overflow: hidden;
+            }
+            #mainScroll {
+                height: calc(100vh - 4rem);
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+        }
+        .aspect-square { aspect-ratio: 1 / 1; }
+        .rotate-180 { transform: rotate(180deg); }
         img, svg, video, iframe {
             max-width: 100%;
             height: auto;
@@ -343,8 +359,8 @@
             </section>
         </aside>
 
-        <!-- Right Content -->
-        <div class="flex-1 lg:h-screen lg:overflow-y-auto">
+        <!-- Right Content (single scroll on desktop) -->
+        <div id="mainScroll" class="flex-1">
             <!-- Work Experience Section — compact -->
     <section id="experience" class="py-12 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -515,14 +531,14 @@
     </section>
 
     <!-- Events Section -->
-    <section id="events" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
+    <section id="events" class="py-12 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center mb-8">
                 <div>
                     <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2">
                         <span class="gradient-text">Events & Activities</span>
                     </h2>
-                    <p class="text-gray-600 dark:text-gray-400">Conferences, talks, workshops, and seminars</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Conferences, talks, workshops, and seminars — click a card for details</p>
                 </div>
                 <div class="flex flex-wrap gap-3 mt-4 md:mt-0">
                     <select id="eventTypeSelect" class="px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 text-sm transition-colors">
@@ -536,7 +552,7 @@
                 </div>
             </div>
 
-            <div id="eventsContainer" class="space-y-4">
+            <div id="eventsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md transition-colors duration-300 flex flex-col md:flex-row gap-4 items-start">
                     <div class="flex-shrink-0">
                         <div class="w-16 h-16 rounded-lg bg-primary-100 dark:bg-primary-900 flex items-center justify-center">
@@ -574,13 +590,13 @@
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <section id="gallery" class="py-12 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2 text-left">
-                <span class="gradient-text">Research Gallery</span>
+                <span class="gradient-text">Gallery</span>
             </h2>
-            <p class="text-left text-gray-600 dark:text-gray-400 mb-10">Visual highlights from our research</p>
-            <div id="galleryContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <p class="text-left text-gray-600 dark:text-gray-400 mb-6 text-sm">Visual highlights</p>
+            <div id="galleryContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                 <div class="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer gallery-item">
                     <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop" alt="Lab Work" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
                     <div class="absolute inset-0 gallery-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
@@ -613,7 +629,7 @@
     </section>
 
     <!-- Useful Links Section -->
-    <section id="links" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
+    <section id="links" class="py-12 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2 text-left">
                 <span class="gradient-text">Collections & Resources</span>
@@ -643,7 +659,7 @@
             </div>
 
             <!-- Dynamic links with smart thumbnails -->
-            <div id="linksContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+            <div id="linksContainer" class="flex flex-col gap-2 max-w-3xl"></div>
         </div>
     </section>
 
