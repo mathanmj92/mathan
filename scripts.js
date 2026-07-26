@@ -409,8 +409,10 @@ function renderAll() {
     renderMentors();
     renderExperience();
     renderAcademic();
+    renderResearchAreas();
     renderResearch();
     renderPublications();
+    renderCourses();
     renderEvents();
     renderGallery();
     renderPublicLinks(typeof currentResourceFilter !== "undefined" ? currentResourceFilter : "all");
@@ -580,16 +582,22 @@ function renderMentors() {
         return;
     }
 
-    container.innerHTML = mentors.map(mentor => `
-        <div class="text-center group">
-            <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary-100 dark:border-primary-900 group-hover:border-primary-300 dark:group-hover:border-primary-700 transition-colors">
+    container.innerHTML = mentors.map(mentor => {
+        const href = mentor.profileUrl || mentor.url || '';
+        const inner = `
+            <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary-100 dark:border-primary-900 group-hover:border-primary-300 dark:group-hover:border-primary-700 transition-colors ${href ? 'ring-2 ring-transparent group-hover:ring-primary-400' : ''}">
                 <img src="${mentor.photo || 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop'}" alt="${mentor.name}" class="w-full h-full object-cover">
             </div>
-            <h3 class="font-bold text-gray-900 dark:text-white text-lg">${mentor.name}</h3>
-            <p class="text-primary-600 dark:text-primary-400 text-sm">${mentor.institution}</p>
-            <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">${mentor.role}</p>
-        </div>
-    `).join('');
+            <h3 class="font-bold text-gray-900 dark:text-white text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">${mentor.name}</h3>
+            <p class="text-primary-600 dark:text-primary-400 text-sm">${mentor.institution || ''}</p>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">${mentor.role || ''}</p>
+            ${href ? '<p class="text-[11px] text-primary-500 mt-2 opacity-0 group-hover:opacity-100 transition-opacity"><i class="fas fa-external-link-alt mr-1"></i>View profile</p>' : ''}
+        `;
+        if (href) {
+            return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="text-center group block">${inner}</a>`;
+        }
+        return `<div class="text-center group">${inner}</div>`;
+    }).join('');
 }
 
 function setupMetricAnimation() {
@@ -675,6 +683,72 @@ function renderAcademic() {
 }
 
 // Research Section
+// Research Areas (new Research section)
+function renderResearchAreas() {
+    const container = document.getElementById('researchAreasContainer');
+    if (!container) return;
+
+    const areas = portfolioData.researchAreas || [];
+    if (!areas.length) {
+        container.innerHTML = '<p class="text-sm text-gray-500 dark:text-gray-400 col-span-full">No research areas added yet.</p>';
+        return;
+    }
+
+    container.innerHTML = areas.map(area => `
+        <div class="group bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700/60 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+            ${area.image ? `
+            <div class="h-36 overflow-hidden bg-gray-100 dark:bg-gray-700">
+                <img src="${area.image}" alt="${area.title || ''}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                     onerror="this.parentElement.style.display='none'">
+            </div>` : `
+            <div class="h-20 bg-gradient-to-br from-primary-500/20 to-accent-500/20 flex items-center justify-center">
+                <i class="fas fa-flask text-primary-500 text-2xl opacity-70"></i>
+            </div>`}
+            <div class="p-4">
+                <div class="flex items-start justify-between gap-2 mb-1">
+                    <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-snug">${area.title || 'Research Area'}</h3>
+                    ${area.years ? `<span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-primary-50 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300 whitespace-nowrap">${area.years} yr${Number(area.years) === 1 ? '' : 's'}</span>` : ''}
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-3">${area.description || ''}</p>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Courses Section
+function renderCourses() {
+    const container = document.getElementById('coursesContainer');
+    if (!container) return;
+
+    const courses = portfolioData.courses || [];
+    if (!courses.length) {
+        container.innerHTML = '<p class="text-sm text-gray-500 dark:text-gray-400 col-span-full">No courses added yet.</p>';
+        return;
+    }
+
+    container.innerHTML = courses.map(course => `
+        <div class="group bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700/60 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col">
+            ${course.image ? `
+            <div class="h-32 overflow-hidden bg-gray-100 dark:bg-gray-700">
+                <img src="${course.image}" alt="${course.name || ''}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                     onerror="this.parentElement.innerHTML='<div class=\\'h-32 flex items-center justify-center bg-gradient-to-br from-accent-500/20 to-primary-500/20\\'><i class=\\'fas fa-book-open text-accent-500 text-2xl\\'></i></div>'">
+            </div>` : `
+            <div class="h-20 bg-gradient-to-br from-accent-500/20 to-primary-500/20 flex items-center justify-center">
+                <i class="fas fa-book-open text-accent-500 text-2xl opacity-70"></i>
+            </div>`}
+            <div class="p-4 flex flex-col flex-1">
+                <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-1 leading-snug">${course.name || 'Course'}</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-3 flex-1 mb-3">${course.description || ''}</p>
+                <div class="flex flex-wrap gap-2 pt-2 border-t border-gray-100 dark:border-gray-700/50">
+                    ${course.syllabusUrl ? `<a href="${course.syllabusUrl}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-medium px-2 py-1 rounded bg-primary-50 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300 hover:underline inline-flex items-center gap-1"><i class="fas fa-file-alt"></i> Syllabus</a>` : ''}
+                    ${course.booksUrl ? `<a href="${course.booksUrl}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-medium px-2 py-1 rounded bg-accent-50 dark:bg-accent-900/40 text-accent-600 dark:text-accent-300 hover:underline inline-flex items-center gap-1"><i class="fas fa-book"></i> Books</a>` : ''}
+                    ${course.resourcesUrl ? `<a href="${course.resourcesUrl}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-medium px-2 py-1 rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:underline inline-flex items-center gap-1"><i class="fas fa-link"></i> Resources</a>` : ''}
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
 function renderResearch() {
     const container = document.getElementById('researchContainer');
     if (!container) return;
@@ -700,33 +774,24 @@ function renderResearch() {
 function renderPublications() {
     const container = document.getElementById('publicationsContainer');
     if (!container) return;
-    
-    container.innerHTML = portfolioData.publications.map(pub => `
-        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-colors duration-300 publication-item" data-category="${pub.category}">
-            <div class="flex flex-col md:flex-row justify-between items-start gap-4">
-                <div class="flex-1">
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="px-2 py-1 rounded text-xs font-medium category-${pub.category}">${formatCategory(pub.category)}</span>
-                        <span class="text-sm text-gray-500 dark:text-gray-400">${pub.journal}, ${pub.year}</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 hover:text-primary-600 dark:hover:text-primary-400 cursor-pointer transition-colors">${pub.title}</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">${pub.authors}</p>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm">${pub.description}</p>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-primary-600 dark:text-primary-400">${pub.citations}</div>
-                        <div class="text-xs text-gray-500 dark:text-gray-400">Citations</div>
-                    </div>
-                    ${pub.doi ? `<a href="https://doi.org/${pub.doi}" target="_blank" class="p-2 text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors" title="Open DOI link">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>` : ''}
-                </div>
+
+    container.innerHTML = (portfolioData.publications || []).map(pub => `
+        <div class="publication-item bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700/60 p-4 shadow-sm hover:shadow-md transition-all duration-300" data-category="${pub.category || 'article'}">
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="px-2 py-0.5 rounded text-[10px] font-semibold category-${pub.category || 'article'}">${formatCategory(pub.category || 'article')}</span>
+                <span class="text-[11px] text-gray-500 dark:text-gray-400">${pub.journal || ''}${pub.year ? ', ' + pub.year : ''}</span>
+            </div>
+            <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-snug mb-1.5 line-clamp-2">${pub.title}</h3>
+            <p class="text-xs text-gray-600 dark:text-gray-300 mb-2 line-clamp-1">${pub.authors || ''}</p>
+            ${pub.description ? `<p class="text-xs text-gray-500 dark:text-gray-400 line-clamp-2 mb-2">${pub.description}</p>` : ''}
+            <div class="flex items-center justify-end pt-1">
+                ${pub.doi ? `<a href="${String(pub.doi).startsWith('http') ? pub.doi : 'https://doi.org/' + pub.doi}" target="_blank" rel="noopener noreferrer" class="text-xs text-primary-600 dark:text-primary-400 hover:underline inline-flex items-center gap-1" onclick="event.stopPropagation()">
+                    <i class="fas fa-external-link-alt text-[10px]"></i> DOI
+                </a>` : ''}
             </div>
         </div>
     `).join('');
-    
-    // Setup filters
+
     setupPublicationFilters();
 }
 
@@ -756,7 +821,7 @@ function setupPublicationFilters() {
             const matchesSearch = text.includes(searchTerm);
             const matchesCategory = category === 'all' || cat === category;
             
-            item.style.display = matchesSearch && matchesCategory ? 'block' : 'none';
+            item.style.display = matchesSearch && matchesCategory ? '' : 'none';
         });
         
         // Sort
@@ -1056,20 +1121,20 @@ function renderPublicLinks(categoryFilter = 'all') {
 
         return `
             <a href="${link.url || '#'}" target="_blank" rel="noopener noreferrer"
-               class="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-gray-100 dark:border-gray-700/50 bg-white dark:bg-gray-800/80 hover:bg-gray-50 dark:hover:bg-gray-700/80 hover:border-primary-200 dark:hover:border-primary-700 transition-all group">
+               class="flex items-start gap-3 p-3.5 rounded-xl border border-gray-100 dark:border-gray-700/60 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md hover:border-primary-200 dark:hover:border-primary-700 transition-all group h-full">
                 ${mediaHtml}
                 <div class="flex-1 min-w-0">
-                    <div class="flex items-center gap-2">
-                        <h3 class="text-sm font-semibold text-gray-900 dark:text-white truncate group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                    <div class="flex items-start justify-between gap-2 mb-0.5">
+                        <h3 class="text-sm font-semibold text-gray-900 dark:text-white leading-snug line-clamp-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                             ${link.title || 'Untitled'}
                         </h3>
-                        <span class="hidden sm:inline text-[10px] font-medium px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 shrink-0">
-                            ${getLinkCategoryLabel(category)}
-                        </span>
+                        <i class="fas fa-external-link-alt text-[10px] text-gray-400 group-hover:text-primary-500 shrink-0 mt-1"></i>
                     </div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 truncate">${link.description || ''}</p>
+                    <span class="inline-block text-[10px] font-medium px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 mb-1">
+                        ${getLinkCategoryLabel(category)}
+                    </span>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 line-clamp-2">${link.description || ''}</p>
                 </div>
-                <i class="fas fa-external-link-alt text-[10px] text-gray-400 group-hover:text-primary-500 shrink-0"></i>
             </a>
         `;
     }).join('');
