@@ -41,18 +41,28 @@
   },
   "mentors": [
     {
+      "id": 1785045442633,
+      "name": "Dr. Asokan Kandasami",
+      "institution": " UPES's School of Advanced Engineering,",
+      "role": "Collaoborator",
+      "photo": "https://upeswebsitecdn-prod-hphqfhc0b8h2ffhf.a02.azurefd.net/drupal-data/2025-05/Asokan%20Kandasami_1.webp",
+      "profileUrl": "https://www.upes.ac.in/research/faculty-researcher/dr-asokan-kandasami"
+    },
+    {
       "id": 1784621605287,
-      "name": "Dr. B. Muthuraaman",
-      "institution": "University of Madras",
-      "role": "PhD Advisor",
-      "photo": "https://www.unom.ac.in/index.php?route=department/department/researchactivities&deptid=30&facultyid=374"
+      "name": "Dr. Ranjith G Nair",
+      "institution": "National Institute of Technology Silchar",
+      "role": "Former Advisor",
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiHD5WAPDmBBLd3Khf3d8Aq1OVUHC-y0fEj-2XInul5TuslN_EJIJ5L-u6&s=10",
+      "profileUrl": "https://physics.nits.ac.in/faculties/ranjith-g-nair"
     },
     {
       "id": 1,
-      "name": "Dr. Ranjith G Nair",
-      "institution": "National Institute of Technology Silchar",
-      "role": "For Advisor",
-      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiHD5WAPDmBBLd3Khf3d8Aq1OVUHC-y0fEj-2XInul5TuslN_EJIJ5L-u6&s=10"
+      "name": "Dr. B. Muthuraaman",
+      "institution": "University of Madras",
+      "role": "PhD Advisor",
+      "photo": "https://www.unom.ac.in/webportal/uploads/faculty/Dr.%20B.%20Muthuraaman.jpg",
+      "profileUrl": "https://www.unom.ac.in/index.php?route=department/department/profile&deptid=30&facultyid=374"
     }
   ],
   "experience": [
@@ -108,19 +118,7 @@
       "description": "Double major with minor in Mathematics"
     }
   ],
-  "research": [
-    {
-      "id": 3,
-      "title": "Gene Regulatory Networks",
-      "status": "published",
-      "description": "Inference of regulatory relationships from multi-omics data using causal discovery methods.",
-      "tags": [
-        "Networks",
-        "Causal"
-      ],
-      "icon": "project-diagram"
-    }
-  ],
+  "research": [],
   "publications": [
     {
       "id": 1,
@@ -358,7 +356,7 @@
     {
       "id": 1,
       "title": "Keynote: AI in Precision Medicine",
-      "type": "invited_talk",
+      "type": "conference",
       "date": "2024-03-15",
       "location": "International Conference on Computational Biology, Boston, MA",
       "description": "Presented recent advances in machine learning applications for personalized cancer treatment."
@@ -431,8 +429,8 @@
     }
   ],
   "settings": {
-    "siteTitle": "Academic Research Portfolio",
-    "footerText": "Research Portfolio",
+    "siteTitle": "Mathan Kumar P | Portfolio",
+    "footerText": "Mathan Kumar P | Portfolio",
     "darkModeDefault": false,
     "showMetrics": true,
     "themeColors": {
@@ -451,5 +449,60 @@
       "darkSurface": "#111827",
       "darkSurfaceStrong": "#1f2937"
     }
-  }
+  },
+  "researchAreas": [
+    {
+      "id": 1785047010391,
+      "title": "Electrochemical Impedance Spectroscopy",
+      "description": "EIS technique gives enormous information about the interfaces by modelling circuit for the respective Electrode / Electrolyte interface. i love this technique which is very useful to study the charge carrier dynamics at the interfaces.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDgm7U16txXrYcU-Kiqi-2iw5-kBytiWex_tHOykLLs6TW0d7rXkzJ7HU&s=10",
+      "years": 3
+    },
+    {
+      "id": 1785046812061,
+      "title": "Electrochemical Techniques",
+      "description": "Electrochemical techniques especially Metrohm Autolab is my favorite workstation in which i can analyze, automate and calculate my data. The best thing in Metrohm is the NOVA software that allows us to customize the program order and schedule it. ",
+      "image": "https://metrohm.scene7.com/is/image/metrohm/3745?$xh-1280$&bfc=on",
+      "years": 5
+    },
+    {
+      "id": 1785046518454,
+      "title": "Ion Beam Irradiation",
+      "description": "I have irradiated and studied  my samples using Ion beam implantation (LEIBF & SNICS) at IUAC, New Delhi. and found tremendous improvement in light absorption. i began my research as project fellow in IUAC sponsored Project at NIT Silchar under the guidance of Dr. Ranjith G Nair, \n\nMoreover i worked on Gamma Irradiation, during my PhD  (under guidance of Dr. B. Muthuraaman) period at University of Madras we found that gamma irradiaiton improved the DSSC performance ",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI_aRqVSBH8xn3ye0TBi_jTxHBPnJllqurWzGJoO5CYNu_yp0jS1AT_N0m&s=10",
+      "years": 1
+    },
+    {
+      "id": 1785046139120,
+      "title": "Thin film deposition",
+      "description": "During my IUAC project, i worked on Physical Vapor Deposition methods such as RF sputtering to prepare TiO2 thin films with various thickness. Moreover i have hands on experience on Thermal Evaporation, E-Beam, Spray and Spin coating techniques to fabricate thin films",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfOOMDPdCXxoxPbDmsKNDZIywmQByWZWR7sJneZFMDBZXsxMpYp_2AOog&s=10",
+      "years": 2
+    },
+    {
+      "id": 1785045980449,
+      "title": "Photo-electrochemical Studies",
+      "description": "I performed photoelectrochemical studies for the photocatalyst samples which was prepared by Ranjith G Nair Research group and found the materials are performed superior under light conditions.\n\nPhotoelectrochemical studies examine how light interacts with materials—usually semiconductors placed in a liquid—to turn solar energy into electricity or clean chemical fuels. These methods focus on core processes like light absorption, charge separation, and surface reactions",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_IyRy08_BBM-4XTKcpzahpJaQxnyKKfYdKTkMZIiAdiendo5psXel7F85&s=10",
+      "years": 3
+    },
+    {
+      "id": 1785045693063,
+      "title": "Dye Sensitized Solar Cells",
+      "description": "My  Research work is mainly focused on investigating alternative materials for counter electrodes in DSSCs. Specifically, the use of metal sulfides prepared through hydrothermal sulfurization as alternatives to conventional platinum-based electrodes was explored. Through a combination of experimental synthesis, characterization, and device fabrication, I successfully demonstrated the feasibility of these metal sulfides for enhancing DSSC performance",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0HcuBjV-6-Lra1waYK2gdaXtPLn0WskX0R65F3vt5Ewf8MKPH2bgEzHnM&s=10",
+      "years": 7
+    }
+  ],
+  "courses": [
+    {
+      "id": 1785045325837,
+      "name": "Physics for Electrical Engineering",
+      "description": "A Physics for Electrical Engineering course bridges basic science and core electrical concepts, focusing on dielectric materials, semiconductor transport physics, and magnetic properties. It gives students the scientific foundation needed to understand modern electronic devices and electrical systems",
+      "image": "https://srikrishnabookbazaar.com/wp-content/uploads/2024/01/Phy-for-ele-eng.jpg",
+      "syllabusUrl": "https://psgitech.ac.in/assets/pdf/autonomous_syllabi/2026/SYLLABI/rev2/B.E.%20-%20ECE_27.04.2026.pdf",
+      "booksUrl": "https://booksdelivery.com/physics-for-electrical-engineering-by-suresh-from-sri-krishna-hitech-publications-2021",
+      "resourcesUrl": ""
+    }
+  ]
 }
