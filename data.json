@@ -41,6 +41,14 @@
   },
   "mentors": [
     {
+      "id": 1,
+      "name": "Dr. B. Muthuraaman",
+      "institution": "University of Madras",
+      "role": "PhD Advisor",
+      "photo": "https://www.unom.ac.in/webportal/uploads/faculty/Dr.%20B.%20Muthuraaman.jpg",
+      "profileUrl": "https://www.unom.ac.in/index.php?route=department/department/profile&deptid=30&facultyid=374"
+    },
+    {
       "id": 1785045442633,
       "name": "Dr. Asokan Kandasami",
       "institution": " UPES's School of Advanced Engineering,",
@@ -55,14 +63,6 @@
       "role": "Former Advisor",
       "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiHD5WAPDmBBLd3Khf3d8Aq1OVUHC-y0fEj-2XInul5TuslN_EJIJ5L-u6&s=10",
       "profileUrl": "https://physics.nits.ac.in/faculties/ranjith-g-nair"
-    },
-    {
-      "id": 1,
-      "name": "Dr. B. Muthuraaman",
-      "institution": "University of Madras",
-      "role": "PhD Advisor",
-      "photo": "https://www.unom.ac.in/webportal/uploads/faculty/Dr.%20B.%20Muthuraaman.jpg",
-      "profileUrl": "https://www.unom.ac.in/index.php?route=department/department/profile&deptid=30&facultyid=374"
     }
   ],
   "experience": [
@@ -452,6 +452,13 @@
   },
   "researchAreas": [
     {
+      "id": 1785045693063,
+      "title": "Dye Sensitized Solar Cells",
+      "description": "My  Research work is mainly focused on investigating alternative materials for counter electrodes in DSSCs. Specifically, the use of metal sulfides prepared through hydrothermal sulfurization as alternatives to conventional platinum-based electrodes was explored. Through a combination of experimental synthesis, characterization, and device fabrication, I successfully demonstrated the feasibility of these metal sulfides for enhancing DSSC performance",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0HcuBjV-6-Lra1waYK2gdaXtPLn0WskX0R65F3vt5Ewf8MKPH2bgEzHnM&s=10",
+      "years": 7
+    },
+    {
       "id": 1785047010391,
       "title": "Electrochemical Impedance Spectroscopy",
       "description": "EIS technique gives enormous information about the interfaces by modelling circuit for the respective Electrode / Electrolyte interface. i love this technique which is very useful to study the charge carrier dynamics at the interfaces.",
@@ -485,13 +492,6 @@
       "description": "I performed photoelectrochemical studies for the photocatalyst samples which was prepared by Ranjith G Nair Research group and found the materials are performed superior under light conditions.\n\nPhotoelectrochemical studies examine how light interacts with materials—usually semiconductors placed in a liquid—to turn solar energy into electricity or clean chemical fuels. These methods focus on core processes like light absorption, charge separation, and surface reactions",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_IyRy08_BBM-4XTKcpzahpJaQxnyKKfYdKTkMZIiAdiendo5psXel7F85&s=10",
       "years": 3
-    },
-    {
-      "id": 1785045693063,
-      "title": "Dye Sensitized Solar Cells",
-      "description": "My  Research work is mainly focused on investigating alternative materials for counter electrodes in DSSCs. Specifically, the use of metal sulfides prepared through hydrothermal sulfurization as alternatives to conventional platinum-based electrodes was explored. Through a combination of experimental synthesis, characterization, and device fabrication, I successfully demonstrated the feasibility of these metal sulfides for enhancing DSSC performance",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0HcuBjV-6-Lra1waYK2gdaXtPLn0WskX0R65F3vt5Ewf8MKPH2bgEzHnM&s=10",
-      "years": 7
     }
   ],
   "courses": [
