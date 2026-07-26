@@ -354,20 +354,148 @@
   ],
   "events": [
     {
+      "id": 1785055653505,
+      "title": "Enhanced Teaching Through Experiential Learning",
+      "type": "workshop",
+      "date": "2026-07-25",
+      "location": "PSG Institute of Technology and Applied Research",
+      "description": "Our physics department organized a workshop for school and institution teachers to enhance their teaching via experiential learning, in this we demonstrated various PASCO sensor trainings, Internet of Things and Strength of Materials with physics, Mechanical and Civil department facilities respectively. The event photographs were in the Gallery section this web page"
+    },
+    {
+      "id": 1785055586398,
+      "title": "Quantum Computing: Principles, Technologies & Applications (QCPTA-2026)",
+      "type": "workshop",
+      "date": "2026-07-17",
+      "location": "Avinashilingam Institute of Home Sciences and Higher Education for Women, Coimbatore, Tamil Nadu",
+      "description": "We participated in this workshop namely Quantum Computing: Principles, Technologies & Applications\" and learned a lot about qubits, Qiskit package and Quantum entanglement The event photographs were in the Gallery section this web page"
+    },
+    {
+      "id": 1785055495697,
+      "title": "Semiconductor Technology and Thin Film Fabrication",
+      "type": "workshop",
+      "date": "2026-06-29",
+      "location": "PSG Institute of Advanced Studies, Coimbatore, Tamil Nadu",
+      "description": "A 5 days workshop on hands on thin film fabrication , material analysis and device fabrication using lithography was conducted by PSG IAS, was very useful especially the clean room environment and lithography techniques. The event photographs were in the Gallery section this web page"
+    },
+    {
+      "id": 1785055312172,
+      "title": "GIAN Course : Organic solar cells : Principle and Practice",
+      "type": "workshop",
+      "date": "2017-11-12",
+      "location": "NIT Calicut, Kerala",
+      "description": "The GIAN course on photovoltaics organized by department of physics, NIT Calicut , Kerala is a wonderful experience for me, i got immense knowledge on organic solar cells, atomic layer deposition technique and good interactions with researchers. The event photographs were in the Gallery section this web page"
+    },
+    {
+      "id": 1785055311680,
+      "title": "Ion  sources,  Accelerators  and  Applications  ,  Beam transport and Beam optics",
+      "type": "workshop",
+      "date": "2016-02-12",
+      "location": "IUAC, New Delhi",
+      "description": "Its a 3 months course every year organized by IUAC was very helpful in my earlier days of research, the knowledge of Ion irradiation, and various techniques like PIXE and RBS skyrocketed my research curiosity. The event photographs were in the Gallery section this web page"
+    },
+    {
+      "id": 1785055194757,
+      "title": "Current Trends of Research in Nanoscience and Nanotechnology",
+      "type": "workshop",
+      "date": "2015-03-02",
+      "location": "Ayya Nadar Janaki Ammal College, SIvakasi , Tamil Nadu",
+      "description": "Event description..."
+    },
+    {
+      "id": 1785055092628,
+      "title": "Material Characterization Techniques",
+      "type": "workshop",
+      "date": "2013-07-06",
+      "location": "Kalasalingam University, Krishnankoil, Tamil Nadu",
+      "description": "Event description..."
+    },
+    {
       "id": 1,
-      "title": "Keynote: AI in Precision Medicine",
+      "title": "Investigation on Structural and AC Impedance Studies of Nanocomposites Polymer Electrolyte System",
       "type": "conference",
-      "date": "2024-03-15",
-      "location": "International Conference on Computational Biology, Boston, MA",
-      "description": "Presented recent advances in machine learning applications for personalized cancer treatment."
+      "date": "2022-03-28",
+      "location": "ICASEM 2022, University of Madras, Chennai, India",
+      "description": "S. Brindha, Ms. T. Mohana Selvi, Mathan Kumar. P, Maareswaran .V, Arjunan .P, Selvam .R, B. Muthuraaman, S. Austin Suthanthiraraj"
     },
     {
       "id": 2,
-      "title": "RECOMB 2023",
+      "title": "Effect of CeO2 filler for improved Zinc ion transportation in Nanocomposite Polymer Electrolytes",
       "type": "conference",
-      "date": "2023-12-10",
-      "location": "Istanbul, Turkey",
-      "description": "Presented poster on \"Scalable algorithms for single-cell multi-omics integration\"."
+      "date": "2022-03-28",
+      "location": "ICASEM 2022, University of Madras, Chennai, India",
+      "description": "T. Mohana Selvi, S. Brindha, Mathan Kumar. P, Maareswaran .V, Arjunan .P, Selvam .R, B. Muthuraaman, S. Austin Suthanthiraraj"
+    },
+    {
+      "id": 3,
+      "title": "Compositional effect of ZrO2 Nanofiller on PCL based Polymer Electrolyte System",
+      "type": "conference",
+      "date": "2022-09-29",
+      "location": "International Conference on Nanobiosensors (NBS2022), University of Madras, Chennai, India",
+      "description": "T. Mohana Selvi, S. Brindha, Mathan Kumar. P, Maareswaran .V, Arjunan .P, Selvam .R, B. Muthuraaman, S. Austin Suthanthiraraj. [Best Poster Award 3rd Place]"
+    },
+    {
+      "id": 4,
+      "title": "Investigation on Structural and Electrochemical behavior of PCL based Polymer Electrolyte for its application in Energy Storage Device",
+      "type": "conference",
+      "date": "2022-09-29",
+      "location": "International Conference on Nanobiosensors (NBS2022), University of Madras, Chennai, India",
+      "description": "Brindha. S, Mohana Selvi. T, Mathan Kumar. P, Mareeswaran.V, Arjunan. P, Selvam. R, Muthuraaman, B, Austin Suthanthiraraj. S. [Best Poster Award 1st Place]"
+    },
+    {
+      "id": 5,
+      "title": "An investigation on PVDF-HFP based Solid Polymer Electrolyte system",
+      "type": "conference",
+      "date": "2023-06-26",
+      "location": "ICORTAC 2023, Department of Analytical Chemistry, University of Madras, Chennai, India",
+      "description": "Mohana Selvi T, Brindha S, Mathan Kumar P, Mareeswaran V, Arjunan P, Selvam R, Muthuraaman B, Austin Suthanthiraraj S"
+    },
+    {
+      "id": 6,
+      "title": "Effect of Zirconium Filler for Improved Zinc Ion Transportation in Nanocomposite Polymer Electrolytes",
+      "type": "conference",
+      "date": "2023-08-01",
+      "location": "APST – 2023, SPSI & CSIR-CLRI, Department of Physical Chemistry, University of Madras, Chennai, India",
+      "description": "Mohana Selvi T, Brindha S, Mathan Kumar P, Mareeswaran V, Arjunan P, Muthuraaman B"
+    },
+    {
+      "id": 7,
+      "title": "Structural and Electrochemical behavior of PCL based Polymer Electrolytes in Energy Storage Device",
+      "type": "conference",
+      "date": "2023-08-01",
+      "location": "APST – 2023, SPSI & CSIR-CLRI, Department of Physical Chemistry, University of Madras, Chennai, India",
+      "description": "Brindha. S, Mohana Selvi. T, Mathan Kumar. P, Mareeswaran.V, Arjunan. P, Muthuraaman, B"
+    },
+    {
+      "id": 8,
+      "title": "A detailed study on cellulose acetate with zinc trifluoromethanesuflonate based biopolymer electrolyte/separator for zinc ion battery",
+      "type": "conference",
+      "date": "2024-05-10",
+      "location": "NanoMatEs-2024, Anna University, Chennai, India",
+      "description": "Mohana Selvi T, Brindha S, Mareeswaran V, Mathan Kumar P, Muthuraaman B"
+    },
+    {
+      "id": 9,
+      "title": "Effect of Sintering Temperature on the Performance of Dye-Sensitized Solar Cells",
+      "type": "conference",
+      "date": "2018-06-09",
+      "location": "2nd International Conference on Advance in New materials (ICAN-2018), Chennai, India",
+      "description": "Rajagopal P, Mathan Kumar P, Yesu Raj J, Muthuraaman B"
+    },
+    {
+      "id": 10,
+      "title": "Investigation Of Transition Metal Tungstate MWO4 (M = Cu, Zn, Mn, Co) as a Counter Electrodes for Dye Sensitized Solar Cells (DSSC)",
+      "type": "conference",
+      "date": "2020-01-09",
+      "location": "ICACSEM-2020, Chennai, India",
+      "description": "Mathan Kumar P, Rajagopal Peri, Mohanaselvi T, Muthuraaman B. Poster presentation."
+    },
+    {
+      "id": 11,
+      "title": "Investigation of quaternary Nickel Cobalt Tungstate and its carbonaceous materials as an alternative counter electrodes for Dye Sensitized Solar Cells (DSSCs)",
+      "type": "conference",
+      "date": "2021-11-29",
+      "location": "ICTSGCS 2021 (Online / Worldwide)",
+      "description": "Mathan Kumar P, Rajagopal Peri, Mohanaselvi T, Muthuraaman B"
     }
   ],
   "gallery": [
