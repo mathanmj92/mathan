@@ -63,15 +63,12 @@
         .line-clamp-2 {
             display: -webkit-box;
             -webkit-line-clamp: 2;
-            line-clamp: 2; /* Standard property to clear linter warnings */
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
-
         .line-clamp-3 {
             display: -webkit-box;
             -webkit-line-clamp: 3;
-            line-clamp: 3; /* Standard property to clear linter warnings */
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -260,15 +257,17 @@
                 <div class="flex items-center">
                     <a href="#" class="text-xl font-bold gradient-text font-serif">Portfolio</a>
                 </div>
-                <div class="hidden md:flex space-x-6">
-                    <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">About</a>
+                <div class="hidden md:flex flex-wrap items-center gap-x-4 gap-y-1">
                     <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Experience</a>
                     <a href="#academic" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Academic</a>
-                    <a href="#research" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Research</a>
+                    <a href="#research-areas" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Research</a>
+                    <a href="#projects" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Projects</a>
                     <a href="#publications" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Publications</a>
+                    <a href="#courses" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Courses</a>
                     <a href="#events" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Events</a>
                     <a href="#gallery" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Gallery</a>
                     <a href="#links" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Collections</a>
+                    <a href="#mentors" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">My Circle</a>
                     <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Contact</a>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -284,14 +283,16 @@
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="hidden md:hidden fixed inset-x-0 top-[4rem] max-h-[calc(100vh-4rem)] overflow-y-auto bg-white dark:bg-gray-800 border-t dark:border-gray-700 z-50">
             <div class="px-4 py-3 space-y-2">
-                <a href="#about" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">About</a>
                 <a href="#experience" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Experience</a>
                 <a href="#academic" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Academic</a>
-                <a href="#research" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Research</a>
+                <a href="#research-areas" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Research</a>
+                <a href="#projects" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Projects</a>
                 <a href="#publications" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Publications</a>
+                <a href="#courses" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Courses</a>
                 <a href="#events" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Events</a>
                 <a href="#gallery" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Gallery</a>
                 <a href="#links" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Collections</a>
+                <a href="#mentors" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">My Circle</a>
                 <a href="#contact" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Contact</a>
             </div>
         </div>
@@ -387,15 +388,29 @@
         </div>
     </section>
 
+
+    <!-- Research Areas Section -->
+    <section id="research-areas" class="py-12 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white font-serif mb-1 text-left">
+                <span class="gradient-text">Research</span>
+            </h2>
+            <p class="text-left text-gray-600 dark:text-gray-400 mb-6 text-sm">Core research areas and expertise</p>
+            <div id="researchAreasContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Filled by scripts.js -->
+            </div>
+        </div>
+    </section>
+
     <!-- Research Section -->
-    <section id="research" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
+    <section id="projects" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center mb-8">
                 <div>
                     <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2">
-                        <span class="gradient-text">Research</span>
+                        <span class="gradient-text">Projects</span>
                     </h2>
-                    <p class="text-gray-600 dark:text-gray-400">Current and completed research projects</p>
+                    <p class="text-gray-600 dark:text-gray-400">Current and completed projects</p>
                 </div>
                 <div class="flex gap-3 mt-4 md:mt-0">
                     <button class="research-filter px-4 py-2 bg-primary-600 text-white rounded-lg text-sm hover:bg-primary-700 dark:bg-primary-700 dark:hover:bg-primary-600 transition-colors" data-filter="all">All</button>
@@ -446,7 +461,7 @@
     </section>
 
     <!-- Publications Section -->
-    <section id="publications" class="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <section id="publications" class="py-12 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center mb-8">
                 <div>
@@ -473,7 +488,7 @@
             </div>
 
             <!-- Publications List -->
-            <div id="publicationsContainer" class="space-y-6">
+            <div id="publicationsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-colors duration-300 publication-item" data-category="article">
                     <div class="flex flex-col md:flex-row justify-between items-start gap-4">
                         <div class="flex-1">
@@ -531,7 +546,21 @@
     </section>
 
     <!-- Events Section -->
-    <section id="events" class="py-12 bg-white dark:bg-gray-800 transition-colors duration-300">
+    
+    <!-- Courses Section -->
+    <section id="courses" class="py-12 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white font-serif mb-1 text-left">
+                <span class="gradient-text">Courses</span>
+            </h2>
+            <p class="text-left text-gray-600 dark:text-gray-400 mb-6 text-sm">Subjects taught and teaching resources</p>
+            <div id="coursesContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Filled by scripts.js -->
+            </div>
+        </div>
+    </section>
+
+<section id="events" class="py-12 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center mb-8">
                 <div>
@@ -659,7 +688,7 @@
             </div>
 
             <!-- Dynamic links with smart thumbnails -->
-            <div id="linksContainer" class="flex flex-col gap-2 max-w-3xl"></div>
+            <div id="linksContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
         </div>
     </section>
 
@@ -667,10 +696,10 @@
     <section id="mentors" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-4 text-left">
-                <span class="gradient-text">Mentors & Collaborators</span>
+                <span class="gradient-text">My Circle</span>
             </h2>
-            <p class="text-left text-gray-600 dark:text-gray-400 mb-12 max-w-2xl">
-                I have been fortunate to work with and learn from these exceptional researchers throughout my academic journey.
+            <p class="text-left text-gray-600 dark:text-gray-400 mb-10 max-w-2xl text-sm">
+                Mentors, collaborators, and colleagues — click a profile to visit their page.
             </p>
             <div id="mentorsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="text-center group">
