@@ -378,6 +378,94 @@
       "description": "A 5 days workshop on hands on thin film fabrication , material analysis and device fabrication using lithography was conducted by PSG IAS, was very useful especially the clean room environment and lithography techniques. The event photographs were in the Gallery section this web page"
     },
     {
+      "id": 8,
+      "title": "A detailed study on cellulose acetate with zinc trifluoromethanesuflonate based biopolymer electrolyte/separator for zinc ion battery",
+      "type": "conference",
+      "date": "2024-05-10",
+      "location": "NanoMatEs-2024, Anna University, Chennai, India",
+      "description": "Mohana Selvi T, Brindha S, Mareeswaran V, Mathan Kumar P, Muthuraaman B"
+    },
+    {
+      "id": 5,
+      "title": "An investigation on PVDF-HFP based Solid Polymer Electrolyte system",
+      "type": "conference",
+      "date": "2023-06-26",
+      "location": "ICORTAC 2023, Department of Analytical Chemistry, University of Madras, Chennai, India",
+      "description": "Mohana Selvi T, Brindha S, Mathan Kumar P, Mareeswaran V, Arjunan P, Selvam R, Muthuraaman B, Austin Suthanthiraraj S"
+    },
+    {
+      "id": 6,
+      "title": "Effect of Zirconium Filler for Improved Zinc Ion Transportation in Nanocomposite Polymer Electrolytes",
+      "type": "conference",
+      "date": "2023-08-01",
+      "location": "APST – 2023, SPSI & CSIR-CLRI, Department of Physical Chemistry, University of Madras, Chennai, India",
+      "description": "Mohana Selvi T, Brindha S, Mathan Kumar P, Mareeswaran V, Arjunan P, Muthuraaman B"
+    },
+    {
+      "id": 7,
+      "title": "Structural and Electrochemical behavior of PCL based Polymer Electrolytes in Energy Storage Device",
+      "type": "conference",
+      "date": "2023-08-01",
+      "location": "APST – 2023, SPSI & CSIR-CLRI, Department of Physical Chemistry, University of Madras, Chennai, India",
+      "description": "Brindha. S, Mohana Selvi. T, Mathan Kumar. P, Mareeswaran.V, Arjunan. P, Muthuraaman, B"
+    },
+    {
+      "id": 1,
+      "title": "Investigation on Structural and AC Impedance Studies of Nanocomposites Polymer Electrolyte System",
+      "type": "conference",
+      "date": "2022-03-28",
+      "location": "ICASEM 2022, University of Madras, Chennai, India",
+      "description": "S. Brindha, Ms. T. Mohana Selvi, Mathan Kumar. P, Maareswaran .V, Arjunan .P, Selvam .R, B. Muthuraaman, S. Austin Suthanthiraraj"
+    },
+    {
+      "id": 2,
+      "title": "Effect of CeO2 filler for improved Zinc ion transportation in Nanocomposite Polymer Electrolytes",
+      "type": "conference",
+      "date": "2022-03-28",
+      "location": "ICASEM 2022, University of Madras, Chennai, India",
+      "description": "T. Mohana Selvi, S. Brindha, Mathan Kumar. P, Maareswaran .V, Arjunan .P, Selvam .R, B. Muthuraaman, S. Austin Suthanthiraraj"
+    },
+    {
+      "id": 4,
+      "title": "Investigation on Structural and Electrochemical behavior of PCL based Polymer Electrolyte for its application in Energy Storage Device",
+      "type": "conference",
+      "date": "2022-09-29",
+      "location": "International Conference on Nanobiosensors (NBS2022), University of Madras, Chennai, India",
+      "description": "Brindha. S, Mohana Selvi. T, Mathan Kumar. P, Mareeswaran.V, Arjunan. P, Selvam. R, Muthuraaman, B, Austin Suthanthiraraj. S. [Best Poster Award 1st Place]"
+    },
+    {
+      "id": 3,
+      "title": "Compositional effect of ZrO2 Nanofiller on PCL based Polymer Electrolyte System",
+      "type": "conference",
+      "date": "2022-09-29",
+      "location": "International Conference on Nanobiosensors (NBS2022), University of Madras, Chennai, India",
+      "description": "T. Mohana Selvi, S. Brindha, Mathan Kumar. P, Maareswaran .V, Arjunan .P, Selvam .R, B. Muthuraaman, S. Austin Suthanthiraraj. [Best Poster Award 3rd Place]"
+    },
+    {
+      "id": 11,
+      "title": "Investigation of quaternary Nickel Cobalt Tungstate and its carbonaceous materials as an alternative counter electrodes for Dye Sensitized Solar Cells (DSSCs)",
+      "type": "conference",
+      "date": "2021-11-29",
+      "location": "ICTSGCS 2021 (Online / Worldwide)",
+      "description": "Mathan Kumar P, Rajagopal Peri, Mohanaselvi T, Muthuraaman B"
+    },
+    {
+      "id": 10,
+      "title": "Investigation Of Transition Metal Tungstate MWO4 (M = Cu, Zn, Mn, Co) as a Counter Electrodes for Dye Sensitized Solar Cells (DSSC)",
+      "type": "conference",
+      "date": "2020-01-09",
+      "location": "ICACSEM-2020, Chennai, India",
+      "description": "Mathan Kumar P, Rajagopal Peri, Mohanaselvi T, Muthuraaman B. Poster presentation."
+    },
+    {
+      "id": 9,
+      "title": "Effect of Sintering Temperature on the Performance of Dye-Sensitized Solar Cells",
+      "type": "conference",
+      "date": "2018-06-09",
+      "location": "2nd International Conference on Advance in New materials (ICAN-2018), Chennai, India",
+      "description": "Rajagopal P, Mathan Kumar P, Yesu Raj J, Muthuraaman B"
+    },
+    {
       "id": 1785055312172,
       "title": "GIAN Course : Organic solar cells : Principle and Practice",
       "type": "workshop",
@@ -408,114 +496,152 @@
       "date": "2013-07-06",
       "location": "Kalasalingam University, Krishnankoil, Tamil Nadu",
       "description": "Event description..."
-    },
-    {
-      "id": 1,
-      "title": "Investigation on Structural and AC Impedance Studies of Nanocomposites Polymer Electrolyte System",
-      "type": "conference",
-      "date": "2022-03-28",
-      "location": "ICASEM 2022, University of Madras, Chennai, India",
-      "description": "S. Brindha, Ms. T. Mohana Selvi, Mathan Kumar. P, Maareswaran .V, Arjunan .P, Selvam .R, B. Muthuraaman, S. Austin Suthanthiraraj"
-    },
-    {
-      "id": 2,
-      "title": "Effect of CeO2 filler for improved Zinc ion transportation in Nanocomposite Polymer Electrolytes",
-      "type": "conference",
-      "date": "2022-03-28",
-      "location": "ICASEM 2022, University of Madras, Chennai, India",
-      "description": "T. Mohana Selvi, S. Brindha, Mathan Kumar. P, Maareswaran .V, Arjunan .P, Selvam .R, B. Muthuraaman, S. Austin Suthanthiraraj"
-    },
-    {
-      "id": 3,
-      "title": "Compositional effect of ZrO2 Nanofiller on PCL based Polymer Electrolyte System",
-      "type": "conference",
-      "date": "2022-09-29",
-      "location": "International Conference on Nanobiosensors (NBS2022), University of Madras, Chennai, India",
-      "description": "T. Mohana Selvi, S. Brindha, Mathan Kumar. P, Maareswaran .V, Arjunan .P, Selvam .R, B. Muthuraaman, S. Austin Suthanthiraraj. [Best Poster Award 3rd Place]"
-    },
-    {
-      "id": 4,
-      "title": "Investigation on Structural and Electrochemical behavior of PCL based Polymer Electrolyte for its application in Energy Storage Device",
-      "type": "conference",
-      "date": "2022-09-29",
-      "location": "International Conference on Nanobiosensors (NBS2022), University of Madras, Chennai, India",
-      "description": "Brindha. S, Mohana Selvi. T, Mathan Kumar. P, Mareeswaran.V, Arjunan. P, Selvam. R, Muthuraaman, B, Austin Suthanthiraraj. S. [Best Poster Award 1st Place]"
-    },
-    {
-      "id": 5,
-      "title": "An investigation on PVDF-HFP based Solid Polymer Electrolyte system",
-      "type": "conference",
-      "date": "2023-06-26",
-      "location": "ICORTAC 2023, Department of Analytical Chemistry, University of Madras, Chennai, India",
-      "description": "Mohana Selvi T, Brindha S, Mathan Kumar P, Mareeswaran V, Arjunan P, Selvam R, Muthuraaman B, Austin Suthanthiraraj S"
-    },
-    {
-      "id": 6,
-      "title": "Effect of Zirconium Filler for Improved Zinc Ion Transportation in Nanocomposite Polymer Electrolytes",
-      "type": "conference",
-      "date": "2023-08-01",
-      "location": "APST – 2023, SPSI & CSIR-CLRI, Department of Physical Chemistry, University of Madras, Chennai, India",
-      "description": "Mohana Selvi T, Brindha S, Mathan Kumar P, Mareeswaran V, Arjunan P, Muthuraaman B"
-    },
-    {
-      "id": 7,
-      "title": "Structural and Electrochemical behavior of PCL based Polymer Electrolytes in Energy Storage Device",
-      "type": "conference",
-      "date": "2023-08-01",
-      "location": "APST – 2023, SPSI & CSIR-CLRI, Department of Physical Chemistry, University of Madras, Chennai, India",
-      "description": "Brindha. S, Mohana Selvi. T, Mathan Kumar. P, Mareeswaran.V, Arjunan. P, Muthuraaman, B"
-    },
-    {
-      "id": 8,
-      "title": "A detailed study on cellulose acetate with zinc trifluoromethanesuflonate based biopolymer electrolyte/separator for zinc ion battery",
-      "type": "conference",
-      "date": "2024-05-10",
-      "location": "NanoMatEs-2024, Anna University, Chennai, India",
-      "description": "Mohana Selvi T, Brindha S, Mareeswaran V, Mathan Kumar P, Muthuraaman B"
-    },
-    {
-      "id": 9,
-      "title": "Effect of Sintering Temperature on the Performance of Dye-Sensitized Solar Cells",
-      "type": "conference",
-      "date": "2018-06-09",
-      "location": "2nd International Conference on Advance in New materials (ICAN-2018), Chennai, India",
-      "description": "Rajagopal P, Mathan Kumar P, Yesu Raj J, Muthuraaman B"
-    },
-    {
-      "id": 10,
-      "title": "Investigation Of Transition Metal Tungstate MWO4 (M = Cu, Zn, Mn, Co) as a Counter Electrodes for Dye Sensitized Solar Cells (DSSC)",
-      "type": "conference",
-      "date": "2020-01-09",
-      "location": "ICACSEM-2020, Chennai, India",
-      "description": "Mathan Kumar P, Rajagopal Peri, Mohanaselvi T, Muthuraaman B. Poster presentation."
-    },
-    {
-      "id": 11,
-      "title": "Investigation of quaternary Nickel Cobalt Tungstate and its carbonaceous materials as an alternative counter electrodes for Dye Sensitized Solar Cells (DSSCs)",
-      "type": "conference",
-      "date": "2021-11-29",
-      "location": "ICTSGCS 2021 (Online / Worldwide)",
-      "description": "Mathan Kumar P, Rajagopal Peri, Mohanaselvi T, Muthuraaman B"
     }
   ],
   "gallery": [
     {
-      "id": 1,
-      "title": "Laboratory Analysis",
-      "description": "Single-cell sequencing preparation",
-      "image": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop"
+      "id": 1785169287023,
+      "title": "ETEL Workshop",
+      "description": "Enhanced Teaching via Experiential Learning was organized by Department of Physics, PSG i Tech, Coimbatore",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/756857937_27517495561253772_7825438125409232292_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x582&ctp=s1280x582&_nc_cat=103&ccb=1-7&_nc_sid=f727a1&_nc_ohc=rXQ5yThMe7AQ7kNvwHdet2j&_nc_oc=AdqMLat9O5v5ffN7jonOpTUW1bLqlnfSgPlnFhBRYWob_filUeShjkBe5PG0wCgiPVQ&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=HXxdhabXvSlZ8gKXaoBZxQ&_nc_ss=7b2a8&oh=00_AQAewSkYZn5OfyWdZI8qRB50NPieSUfLYABqEEycpQkzkA&oe=6A6D57AE"
+    },
+    {
+      "id": 1785173890961,
+      "title": "ETEL Workshop- Sasidharan Nair sir",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/757066512_27518270431176285_926033969259265826_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x582&ctp=s1280x582&_nc_cat=104&ccb=1-7&_nc_sid=f727a1&_nc_ohc=TU3pA9J2haIQ7kNvwGvQyNd&_nc_oc=Ado6eJtLJGvPiWPsiG6LzdKpbzVseC8mUypt_wYA7l-97E5teJR50vzw_-Y-t6apaRY&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=f1ZZNmIUuRdCoghJKGQvGQ&_nc_ss=7b2a8&oh=00_AQDx-5dGlLJmVGGAI5LcaN4WzrO3RnUvgHvRiQ3ZQTzRQA&oe=6A6D7B67"
+    },
+    {
+      "id": 1785173767672,
+      "title": "Semiconducting Thin films and Fabrication Workshop- PSG IAS",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/756227103_27518250834511578_1529343964594904866_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x960&ctp=s1280x960&_nc_cat=108&ccb=1-7&_nc_sid=f727a1&_nc_ohc=R_K_Bz8caz4Q7kNvwEb85Nf&_nc_oc=AdplQ2HZpmTuhwTEycyddf2hdgIWDqy4J1V8CljIdIJX0glm9vgcPmgvBhPOdWUg6gE&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=4c7UvIuoKJsbcniwcsMMXw&_nc_ss=7b2a8&oh=00_AQCFlchjH3ipzAX3UBX8bby0ij23nl5n_JGEFyDsoOW1zA&oe=6A6D671B"
+    },
+    {
+      "id": 1785173767271,
+      "title": "Clean Room Facilities- PSG IAS, Coimabtore",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/753954126_27518250827844912_5041152833230912076_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x960&ctp=s1280x960&_nc_cat=102&ccb=1-7&_nc_sid=f727a1&_nc_ohc=gfO_Auu4aJsQ7kNvwHNACga&_nc_oc=Adpj6eBMFPfoWneZZAgMbIGmic046wZKuPs22jPfG9O4gMM_wkJOospY0eGdTzVCdxM&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=OZ2cAszTTJdqxr20ma8vJw&_nc_ss=7b2a8&oh=00_AQCYfE3lR0KIfdr99lTeFYoeAuCqXT-XDmbMui_OnD1h-Q&oe=6A6D6F77"
+    },
+    {
+      "id": 1785173547871,
+      "title": "Convocation-Ph.D 2026",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/757236654_27518152484521413_7829672230407116332_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x900&ctp=s1600x900&_nc_cat=111&ccb=1-7&_nc_sid=f727a1&_nc_ohc=bNzHy4Kv6l8Q7kNvwEqgtXl&_nc_oc=Adp0Mo_igkVzyO5fc_kbOSADgOx5AggHEBQd4qYKvsgCJrG33SyV4BgmHiHmVawkG7I&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=Ul3b6QOhApMD5V3Co-JrMQ&_nc_ss=7b2a8&oh=00_AQAGrKtSzt6bdJ15RGGxn1cyxwEifk6ZUr-xzss111rWXw&oe=6A6D63AA"
+    },
+    {
+      "id": 1785173547306,
+      "title": "Research Colleges ",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/754068969_27518152401188088_8243973170399292589_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x853&ctp=s1280x853&_nc_cat=110&ccb=1-7&_nc_sid=f727a1&_nc_ohc=AKpydV9AqXUQ7kNvwHb_J2f&_nc_oc=AdoZh9V3geuDSeKaK2-ZPIyipafeqIAtnNsGZJfYNJWgw9E-LooToMBvORyJmeHjtTc&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=o7tE1oxcpO7p3NuNkJbjvg&_nc_ss=7b2a8&oh=00_AQD_ZkkwvY4z3yRDPxT4R2TL9KlGcplvc79nFxLXsX-oAw&oe=6A6D7A11"
+    },
+    {
+      "id": 1785173499785,
+      "title": "2D Materials Lab, SRMIST, Chengalpet",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/758427121_27518152414521420_959050305901499021_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x960&ctp=s1280x960&_nc_cat=110&ccb=1-7&_nc_sid=f727a1&_nc_ohc=SQ5NM2yfIVsQ7kNvwH4fTHm&_nc_oc=AdpLYf1mnZV1jzTIDCUBmAmrJHlYGkdkXb_3djT10boUGeLmLlaJU52o9fVBrzf32pE&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=mhTtC9CRC_jYBEr0EQKl4w&_nc_ss=7b2a8&oh=00_AQDYBH4o4OeyRmq4s7MA2hExzUMAB-71XUmw7PtP2o0oPA&oe=6A6D7F67"
+    },
+    {
+      "id": 1785173499610,
+      "title": "Chess Champions ",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/758690934_27518152874521374_1156180458465236724_n.jpg?stp=dst-jpg_tt6&cstp=mx1537x2048&ctp=s1537x2048&_nc_cat=103&ccb=1-7&_nc_sid=f727a1&_nc_ohc=Q3GOmC-sAtwQ7kNvwG_ok-P&_nc_oc=AdrWLW2hdMtWJO1edu-C4RqGLS9xidO6Lj3adfAHbYMzKRWoOtBd1L6crfQmCN2tks8&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=6dimltU3zSWptZyxbmDg0w&_nc_ss=7b2a8&oh=00_AQAhuPY6lQElEC34c9q5FEu6ufYOyE5T6bMsJLC7rK2wfA&oe=6A6D529E"
+    },
+    {
+      "id": 1785173482919,
+      "title": "The Doctorate moment",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/756857829_27518152721188056_8053508026469788319_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x960&ctp=s1280x960&_nc_cat=103&ccb=1-7&_nc_sid=f727a1&_nc_ohc=Rw-2N-3ESMIQ7kNvwEOkQGf&_nc_oc=AdrlCLEo57K_ymwdrnfoGMkoJHHtdoJkSJpxQoGFF65hDdSXxT_UzCFMoZgIK-J1Ouo&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=aRR2XO8jT1buQPfUqZaiQw&_nc_ss=7b2a8&oh=00_AQBFWdVJmuKnGQ_wrgn65ftHrtKqrFZ5Cu3qE46eDpNIkw&oe=6A6D50DE"
+    },
+    {
+      "id": 1785173438493,
+      "title": "Group Pic soon after my Viva",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/753471415_27518152797854715_1891682502871706686_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x720&ctp=s1280x720&_nc_cat=104&ccb=1-7&_nc_sid=f727a1&_nc_ohc=PQ4TAhTvVa4Q7kNvwEH6V7e&_nc_oc=AdreM341BsIpE2DgeGTk-SgZg1AIdJbXTxEoqN1X2VbhZlVlKWuRfFE9oenPUQWeers&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=9TMniOQwRm0hfiVXcUi5YQ&_nc_ss=7b2a8&oh=00_AQCf4Zf-DgZnxND_7eAHbiU7ZNioOgiVz5QuIetW70azMQ&oe=6A6D5EC6"
+    },
+    {
+      "id": 1785173438307,
+      "title": "My First DSSC device",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/756833167_27518153161188012_6838981360396443687_n.jpg?stp=dst-jpg_tt6&cstp=mx1512x1512&ctp=s1512x1512&_nc_cat=110&ccb=1-7&_nc_sid=f727a1&_nc_ohc=YnXGC48tmCEQ7kNvwFzsvod&_nc_oc=Ado8QOcxbA58_RAjFUg893H5umEJL9qfG_GyVZpJNup6QeuwanAJemLAKrK55PTzU18&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=t8WgrSVDIvTtqv-bh-M1YQ&_nc_ss=7b2a8&oh=00_AQBX8jBwQUczG-FXCOcwqDlANBk4W9574bXEcBDHF2KuxQ&oe=6A6D5FDC"
+    },
+    {
+      "id": 1785173350685,
+      "title": "Solar Simulator - KeySight IV ",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/758854895_27518153467854648_1632932177565114302_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x1200&ctp=s1600x1200&_nc_cat=108&ccb=1-7&_nc_sid=f727a1&_nc_ohc=4DSFb0UBEK8Q7kNvwHZot_P&_nc_oc=AdqcqVc7RgHq8BMJTgCWnQAtMRNUWAhpoLRKwqEg8UtjYRHsZQRyYLR6Wfx9XmP6QYY&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=sVbQnJgk4eVaYf1RseBnTw&_nc_ss=7b2a8&oh=00_AQCp_gGHRmGlfbHbhVnRWOEmxU6dhYhKCkoD9BEJ9CkUkg&oe=6A6D6F04"
+    },
+    {
+      "id": 1785173350476,
+      "title": "PEC setup for I-V measurements",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/758357126_27518153737854621_3447485478694766136_n.jpg?stp=dst-jpg_tt6&cstp=mx1536x2048&ctp=s1536x2048&_nc_cat=108&ccb=1-7&_nc_sid=f727a1&_nc_ohc=QErNKsUUTE8Q7kNvwHykwE5&_nc_oc=Adoy9hvOPBNvXqsC8J8BYfNiURpdFuc5JHX9rvZf8WDY8fl_DRjhDp83RSv_Orfs_6M&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=QDTHfWxABUF6zC1i06ZIpA&_nc_ss=7b2a8&oh=00_AQDNPD0uEMP35IMxbT_FNp4B4Sn7qa484SD94uYdjrCm_Q&oe=6A6D6D60"
+    },
+    {
+      "id": 1785173350267,
+      "title": "DSSC device Fabrication",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/756894626_27518154241187904_1011693548833011779_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x1200&ctp=s1600x1200&_nc_cat=104&ccb=1-7&_nc_sid=f727a1&_nc_ohc=4b-jrBCtvYwQ7kNvwFkYy-I&_nc_oc=AdqICwQ0DDgiztfIF7gmQZi9e-y4NSqnT0mq-581c4xh9A1fvVG8Z3P-j0fT6rOB89Q&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=Tnz1dENocNDALv8rvLMAFg&_nc_ss=7b2a8&oh=00_AQDAu1RWmeWiRLOGXxkGMw5GkdsPbXv53rz4JsCkohTeHw&oe=6A6D735C"
+    },
+    {
+      "id": 1785173252994,
+      "title": "Lab visit- Training Program for Msc students",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/756654640_27518154084521253_6372991616093113656_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x605&ctp=s1280x605&_nc_cat=101&ccb=1-7&_nc_sid=f727a1&_nc_ohc=opgeUiTrTt4Q7kNvwHA4PZf&_nc_oc=AdoQciuFzou2PFfXpdzCloi4MeXUcrCtp_WY53euZ_Y_QbsI2EbqpNrRvGTa0uT-8hg&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=2gvOWiYpxkECc3oDMIc-sA&_nc_ss=7b2a8&oh=00_AQC6AMsqQPUWEi0AJ4SietJays1vYJoZ_2PuYIlLlhTF5A&oe=6A6D578F"
+    },
+    {
+      "id": 1785173252420,
+      "title": "Co-deposition- RF sputtering unit",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/758731005_27518154501187878_8208323826132413875_n.jpg?stp=dst-jpg_tt6&cstp=mx900x1600&ctp=s900x1600&_nc_cat=101&ccb=1-7&_nc_sid=f727a1&_nc_ohc=jKB2bDxpMjYQ7kNvwFVnDVR&_nc_oc=AdrXDKK2bpSSWCCzj-ZneB1DVu9vY-k6yhKSVd8qc4maemr21H18rV7OpWQ_G86gFDA&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=MOaOODaBCJ0b0-S-RHt61A&_nc_ss=7b2a8&oh=00_AQAC69IdhxPQqyaLlg-qm9PvZti6VlZc2nUvDUZOj9x8Fg&oe=6A6D74ED"
+    },
+    {
+      "id": 1785173251897,
+      "title": "Red LED - Photoelectrochemical Studies",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/756641451_27518154517854543_1358526206601216969_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x900&ctp=s1600x900&_nc_cat=104&ccb=1-7&_nc_sid=f727a1&_nc_ohc=2R_HgMNtdEkQ7kNvwEM5QoK&_nc_oc=AdrZhVQP8ZeiND6NDTuurMxYuMCXFoyDH1Ti5sB606iWlB8vZM0A4YCV_1OXI_p-Hdo&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=m2vVQrnNq0_Zo0HfN1fYUw&_nc_ss=7b2a8&oh=00_AQDnXMJwm2ukhlydhGZEBjIyjMD8zNsnRG08yvJ7DlVf9A&oe=6A6D621C"
+    },
+    {
+      "id": 1785173212687,
+      "title": "Quantum Dots- Emission ",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/758636019_27518154691187859_6772783357544202364_n.jpg?stp=dst-jpg_tt6&cstp=mx900x1600&ctp=s900x1600&_nc_cat=102&ccb=1-7&_nc_sid=f727a1&_nc_ohc=LufZICkyaGEQ7kNvwGMEZ4A&_nc_oc=AdpD_LSc02-y-IGqzuJc6Sc7jjr8jS2q5mT-aSxu-_8YjCT5E7QmYUnwI6JoYzak5wA&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=3wJPO9Mzy0xoUiI7k5B7Bw&_nc_ss=7b2a8&oh=00_AQDx-U9vdBZO8gWyiQyygjYXCuRr_pDpx7wWvJbfzW3LOg&oe=6A6D820B"
+    },
+    {
+      "id": 1785173198932,
+      "title": "Photoelectrochemical Setup",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/758422944_27518154901187838_4209835711394653541_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x900&ctp=s1600x900&_nc_cat=105&ccb=1-7&_nc_sid=f727a1&_nc_ohc=C4i7dVCkX54Q7kNvwElC-xa&_nc_oc=AdoTmv_SkNT9WQvDyyvPInPCcKfpmOPk7bFT4oPxIr6xlRKdPrkCEYUDsSp5Nkz1It0&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=-Irh6jNerV6Gwv5PcOgKOQ&_nc_ss=7b2a8&oh=00_AQB6yxqfilbIHW2zmbbX-Q3xbFOnJNqxKiFq8_bGtnTYag&oe=6A6D6EED"
+    },
+    {
+      "id": 1785169402317,
+      "title": "Department of Physics, NIT Silchar, Assam",
+      "description": "Crazy Minds of NIT Silchar, the photo taken during 2016 bihu celebration ",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/758617555_27517477034588958_3060098150523176608_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1152&ctp=s2048x1152&_nc_cat=100&ccb=1-7&_nc_sid=f727a1&_nc_ohc=zHlJ6w9upKwQ7kNvwH6ajLJ&_nc_oc=AdqqKDZxGHpvi35s1Sx32zz-KXXFan7_2YkEOTjy-oHi9x6S_yo5xdP0INW6_OkGMoM&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=qIcQC6sVbO9EEF9d5FkJ5w&_nc_ss=7b2a8&oh=00_AQDGqxXIeYQFHBR0W9VDyq_IzhUim6ZzsekJloT1WiWG9g&oe=6A6D5D0C"
+    },
+    {
+      "id": 1785169336529,
+      "title": "The Plasma during Pre Sputtering ",
+      "description": "Moments captured during TiO2 thin film deposition via RF Sputtering at HHV banglore",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/758481040_27517476877922307_1379979032932706504_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1152&ctp=s2048x1152&_nc_cat=106&ccb=1-7&_nc_sid=f727a1&_nc_ohc=tInTy0IVrCEQ7kNvwGHlbqa&_nc_oc=AdoeCD70-ocppfgq1UgksmV94v0SZi1xTxrf2oB4wRjmZBiyUM_sBkVOHBJyRhNf-ng&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=SUEi9FFdi_KAiYf3WCOMgA&_nc_ss=7b2a8&oh=00_AQA7O_mHGYmEOBVSZBvuPWAlYyu6Pxie2uWbVBmK_w_yBg&oe=6A6D6CE0"
     },
     {
       "id": 2,
-      "title": "Data Visualization",
+      "title": "SNICS, Ion Implantation, IUAC, New Delhi",
       "description": "UMAP projection of cell types",
-      "image": "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&h=400&fit=crop"
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/508302866_9885128818250385_4987355341371466109_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1152&ctp=s2048x1152&_nc_cat=106&ccb=1-7&_nc_sid=86c6b0&_nc_ohc=6c8M1dEZ6x0Q7kNvwEeMgFy&_nc_oc=AdoEO6tvctU8lKjrDgV20xvujkPyrmDy_7EZK0zDLUgumKYtwS1SsUJATiPj_1G5NN0&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=-w4j602soMlYzV0bzEDmdA&_nc_ss=7b2a8&oh=00_AQB03sjbb-lrEIBwhjPksnv20h3SBb_AJR7fqeSzyX164g&oe=6A6D4941"
     },
     {
       "id": 3,
-      "title": "Conference Presentation",
+      "title": "GIAN course, NIT Calicut, Kerala",
       "description": "RECOMB 2023 in Istanbul",
-      "image": "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=600&h=400&fit=crop"
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/513255152_23889118887404921_7441196984315482150_n.jpg?stp=dst-jpg_tt6&cstp=mx1421x640&ctp=s1421x640&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=-O1r6GCkVNQQ7kNvwGSMWz9&_nc_oc=Adq17-FFnYhUJyswbhc0s7RC-1UXIgq42ZJXpayh1gv8IEDCtxu1xaFIg7ajP4hOINo&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=ejjp6xPhjx-1hETZw_earQ&_nc_ss=7b2a8&oh=00_AQCRviCsHEu-bn_T5txmBV29e7wBe3cvg3rMdXQyirxxNg&oe=6A6D5F83"
+    },
+    {
+      "id": 1,
+      "title": "GIAN Course , NIT Calicut, Kerala",
+      "description": "Single-cell sequencing preparation",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/508478587_9899654673464466_7876039776685735338_n.jpg?stp=dst-jpg_tt6&cstp=mx1440x810&ctp=s1440x810&_nc_cat=105&ccb=1-7&_nc_sid=86c6b0&_nc_ohc=hTsFGQrUAeoQ7kNvwHnSQmi&_nc_oc=AdpkpWcQf7DTPUCHcsMMACKaWtpc7r9wMGCJA898vwrtYLhM7WZPuQq6rCsxq2JuwGQ&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=wYiUcH3pl412cMLWmEusvA&_nc_ss=7b2a8&oh=00_AQCHVTouu-rTiUgX69QClvM_dwgY_brH9ThaqcmVYxaGDA&oe=6A6D512D"
     }
   ],
   "jobs": [
@@ -612,7 +738,7 @@
       "title": "Thin film deposition",
       "description": "During my IUAC project, i worked on Physical Vapor Deposition methods such as RF sputtering to prepare TiO2 thin films with various thickness. Moreover i have hands on experience on Thermal Evaporation, E-Beam, Spray and Spin coating techniques to fabricate thin films",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfOOMDPdCXxoxPbDmsKNDZIywmQByWZWR7sJneZFMDBZXsxMpYp_2AOog&s=10",
-      "years": 2
+      "years": 1.5
     },
     {
       "id": 1785045980449,
