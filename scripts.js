@@ -3,218 +3,165 @@
 // Data Store
 let portfolioData = {
     profile: {
-        name: "Dr. Sarah Chen",
-        title: "Senior Research Scientist in Computational Biology",
-        email: "sarah.chen@broadinstitute.org",
-        scholar: "https://scholar.google.com/citations?user=example",
-        bio: "Leading interdisciplinary research at the intersection of artificial intelligence and molecular biology. Focused on developing computational methods to understand complex biological systems and disease mechanisms.",
-        keywords: ["Machine Learning", "Bioinformatics", "Genomics", "Systems Biology"],
-        photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+        name: "Mathan Kumar P",
+        title: "Assistant Professor of Physics",
+        email: "mathankumar.sh@psgitech.ac.in",
+        scholar: "https://scholar.google.com/citations?user=I730zAgAAAAJ&hl=en",
+        bio: "Passionate about research on thin film fabrication and nanomaterial synthesis for electrochemical applications",
+        keywords: [
+            "Dye Sensitized Solar Cells",
+            "Photo / Electrocatalysts",
+            "Photo electrochemistry",
+            "Impedance",
+            "Python Programming"
+        ],
+        photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpL6i7TqZ6xCQWc3AGvHp-5m51169jVQvHIpPSYMH89XDujw2VpZsLjiw&s=10",
         metrics: {
-            citations: 2847,
-            hIndex: 28,
-            i10Index: 42,
-            publications: 56
+            citations: 524,
+            hIndex: 11,
+            i10Index: 11,
+            publications: 21
         }
     },
     socialLinks: {
-        twitter: "https://twitter.com/",
-        linkedin: "https://www.linkedin.com/",
-        github: "https://github.com/",
-        scholar: "https://scholar.google.com/",
-        orcid: "https://orcid.org/",
-        website: "https://example.com/"
+        twitter: "",
+        linkedin: "https://www.linkedin.com/in/mathan-kumar-pandiyan-30a342310/",
+        github: "",
+        scholar: "https://scholar.google.com/citations?user=I730zAgAAAAJ&hl=en",
+        orcid: "https://orcid.org/my-orcid?orcid=0000-0001-9998-3083",
+        website: ""
     },
     contact: {
-        email: "sarah.chen@broadinstitute.org",
-        scholar: "https://scholar.google.com/citations?user=example",
-        message: "Interested in collaboration or have questions about my research? Feel free to reach out.",
+        email: "mathankumar.sh@psgitech.ac.in",
+        scholar: "https://scholar.google.com/citations?user=I730zAgAAAAJ&hl=en",
+        message: "",
         buttonTextEmail: "Send Email",
         buttonTextScholar: "Google Scholar"
     },
     mentors: [
         {
             id: 1,
-            name: "Prof. Michael Zhang",
-            institution: "Stanford University",
+            name: "Dr. B. Muthuraaman",
+            institution: "University of Madras",
             role: "PhD Advisor",
-            photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
+            photo: "https://www.unom.ac.in/webportal/uploads/faculty/Dr.%20B.%20Muthuraaman.jpg"
         },
         {
             id: 2,
-            name: "Dr. Lisa Wang",
-            institution: "Broad Institute",
-            role: "Collaborator",
-            photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
-        },
-        {
-            id: 3,
-            name: "Prof. James Chen",
-            institution: "MIT",
-            role: "Committee Member",
-            photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop"
+            name: "Dr. Ranjith G Nair",
+            institution: "National Institute of Technology Silchar",
+            role: "Former Advisor",
+            photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiHD5WAPDmBBLd3Khf3d8Aq1OVUHC-y0fEj-2XInul5TuslN_EJIJ5L-u6&s=10"
         }
     ],
     experience: [
         {
             id: 1,
-            title: "Senior Research Scientist",
-            organization: "Broad Institute of MIT and Harvard",
-            period: "2020 - Present",
-            description: "Leading computational biology research group focusing on single-cell genomics and machine learning applications in cancer biology."
+            title: "Assistant Professor of Physics",
+            organization: "PSG Institute of Technology and Applied Research",
+            period: "May 2026 - Present",
+            description: "Delivering Engineering Physics to 1st year UG students across departments. Specialization in Semiconductor Physics, Electromagnetism, Quantum Mechanics, and Optics."
         },
         {
             id: 2,
             title: "Postdoctoral Researcher",
-            organization: "Stanford University School of Medicine",
-            period: "2017 - 2020",
-            description: "Developed novel algorithms for analyzing high-dimensional biological data and integrative genomics approaches."
-        },
-        {
-            id: 3,
-            title: "Research Assistant",
-            organization: "University of California, Berkeley",
-            period: "2015 - 2017",
-            description: "Worked on computational methods for phylogenetic analysis and evolutionary genomics."
+            organization: "SRM Institute of Science and Technology",
+            period: "July 2025 - Dec 2025",
+            description: "Preparation of 2D MoS2 via MOCVD, Gas Phase Sulfurization of Metal oxides, and exploration of layer-grown materials for electrochemical applications."
         }
     ],
     academic: [
         {
             id: 1,
-            degree: "Ph.D. in Computational Biology",
-            institution: "University of California, Berkeley",
-            period: "2012 - 2017",
-            description: "Dissertation: \"Machine Learning Approaches for Understanding Gene Regulatory Networks\""
+            degree: "Ph.D. in Physics",
+            institution: "University of Madras, Chennai, Tamilnadu",
+            period: "2018 - 2025",
+            description: "Research focused on thin film fabrication and nanomaterials for energy storage/conversion."
         },
         {
             id: 2,
-            degree: "M.S. in Computer Science",
-            institution: "Carnegie Mellon University",
-            period: "2010 - 2012",
-            description: "Specialization in Machine Learning and Data Mining"
-        },
-        {
-            id: 3,
-            degree: "B.S. in Biology & Computer Science",
-            institution: "Massachusetts Institute of Technology",
-            period: "2006 - 2010",
-            description: "Double major with minor in Mathematics"
+            degree: "M.Sc. in Physics",
+            institution: "Ayya Nadar Janaki Ammal College, Sivakasi, Tamilnadu",
+            period: "2013 - 2015",
+            description: "Advanced coursework and dissertation in physics."
         }
     ],
-    research: [
-        {
-            id: 1,
-            title: "Single-Cell Atlas of Cancer",
-            status: "ongoing",
-            description: "Building a comprehensive single-cell reference atlas of tumor microenvironments across cancer types.",
-            tags: ["scRNA-seq", "Spatial"],
-            icon: "dna"
-        },
-        {
-            id: 2,
-            title: "Deep Learning for Drug Discovery",
-            status: "ongoing",
-            description: "Developing graph neural networks for molecular property prediction and drug-target interaction.",
-            tags: ["GNN", "Drug Discovery"],
-            icon: "brain"
-        },
-        {
-            id: 3,
-            title: "Gene Regulatory Networks",
-            status: "published",
-            description: "Inference of regulatory relationships from multi-omics data using causal discovery methods.",
-            tags: ["Networks", "Causal"],
-            icon: "project-diagram"
-        }
-    ],
+    research: [],
     publications: [
         {
             id: 1,
-            title: "Comprehensive integration of single-cell data",
-            authors: "Chen S., et al.",
-            journal: "Nature Biotechnology",
-            year: 2023,
+            title: "Enhancing surface area, morphology, and electrocatalytic activity favouring triiodide reduction via surface sulfurization of metal oxide",
+            authors: "P, Mathan Kumar R, Sharan Peri, Rajagopal T, Mohana Selvi V, Mareeswaran S, Brindha B, Muthuraaman",
+            journal: "Electrochimica Acta",
+            year: 2024,
             category: "article",
-            citations: 342,
-            doi: "10.1038/s41587-023-01664-4",
-            description: "A framework for integrating diverse single-cell datasets to enable comparative analysis across experiments and conditions."
+            citations: 0,
+            doi: "10.1016/j.electacta.2023.143616",
+            description: ""
         },
         {
             id: 2,
-            title: "Spatial transcriptomics reveals tissue architecture",
-            authors: "Chen S., Johnson R., et al.",
-            journal: "Cell",
-            year: 2022,
-            category: "article",
-            citations: 189,
-            doi: "10.1016/j.cell.2022.05.012",
-            description: "High-resolution spatial mapping of gene expression in complex tissues using advanced sequencing technologies."
+            title: "Counter Electrodes for Dye Sensitized Solar Cells (DSSC): An Insight",
+            authors: "P, Mathan Kumar Peri, Rajagopal T, Mohana Selvi V, Mareeswaran S, Brindha B, Muthuraaman",
+            journal: "Reference Module in Earth Systems and Environmental Sciences",
+            year: 2023,
+            category: "book_chapter",
+            citations: 0,
+            doi: "10.1016/b978-0-323-93940-9.00113-4",
+            description: ""
         }
     ],
     events: [
         {
             id: 1,
-            title: "Keynote: AI in Precision Medicine",
-            type: "invited_talk",
-            date: "2024-03-15",
-            location: "International Conference on Computational Biology, Boston, MA",
-            description: "Presented recent advances in machine learning applications for personalized cancer treatment."
+            title: "Enhanced Teaching Through Experiential Learning",
+            type: "workshop",
+            date: "2026-07-25",
+            location: "PSG Institute of Technology and Applied Research",
+            description: "Organized workshop for teachers focusing on PASCO sensors, IoT, and physics demonstrations."
         },
         {
             id: 2,
-            title: "RECOMB 2023",
-            type: "conference",
-            date: "2023-12-10",
-            location: "Istanbul, Turkey",
-            description: "Presented poster on \"Scalable algorithms for single-cell multi-omics integration\"."
+            title: "Semiconductor Technology and Thin Film Fabrication",
+            type: "workshop",
+            date: "2026-06-29",
+            location: "PSG Institute of Advanced Studies, Coimbatore, Tamil Nadu",
+            description: "Hands-on workshop covering clean room techniques, thin film deposition, and lithography."
         }
     ],
     gallery: [
         {
             id: 1,
-            title: "Laboratory Analysis",
-            description: "Single-cell sequencing preparation",
-            image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop"
+            title: "ETEL Workshop",
+            description: "Enhanced Teaching via Experiential Learning at PSG iTech.",
+            image: "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/756857937_27517495561253772_7825438125409232292_n.jpg"
         },
         {
             id: 2,
-            title: "Data Visualization",
-            description: "UMAP projection of cell types",
-            image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&h=400&fit=crop"
-        },
-        {
-            id: 3,
-            title: "Conference Presentation",
-            description: "RECOMB 2023 in Istanbul",
-            image: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=600&h=400&fit=crop"
+            title: "Clean Room Facilities",
+            description: "PSG IAS Clean Room Environment.",
+            image: "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/753954126_27518250827844912_5041152833230912076_n.jpg"
         }
     ],
     links: [
         {
             id: 1,
-            title: "Lab Handbook",
-            description: "Protocols and guidelines",
+            title: "Curriculum Vitae",
+            description: "Download Full CV",
             category: "document",
-            url: "#"
+            url: "https://www.unom.ac.in/webportal/uploads/faculty/profile/20697.pdf"
         },
         {
             id: 2,
-            title: "GitHub Repository",
-            description: "Open source tools",
-            category: "repository",
-            url: "#"
-        },
-        {
-            id: 3,
-            title: "Videos",
-            description: "Published data",
+            title: "Lab Video Demo",
+            description: "Experimental Setup Walkthrough",
             category: "Videos",
-            url: "#"
+            url: "https://youtu.be/vPW0UYELfOg"
         }
     ],
     settings: {
-        siteTitle: "Academic Research Portfolio",
-        footerText: "Research Portfolio",
+        siteTitle: "Mathan Kumar P | Portfolio",
+        footerText: "Mathan Kumar P | Portfolio",
         darkModeDefault: false,
         showMetrics: true,
         themeColors: {
