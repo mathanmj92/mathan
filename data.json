@@ -710,6 +710,104 @@
       "description": "Resource description",
       "url": "https://drive.google.com/file/d/1dMujMHzc5DWt8Clemcp81N6G31tdDMm0/view?usp=sharing",
       "category": "document"
+    },
+    {
+    "id": 1785200000001,
+    "title": "oPhysics | Interactive Physics Simulations",
+    "description": "Interactive physics simulations and demonstrations covering kinematics, optics, waves, and mechanics.",
+    "url": "https://ophysics.com/k.html",
+    "category": "website"
+    },
+    {
+      "id": 1785200000002,
+      "title": "Physion | Physics Simulation Software",
+      "description": "2D physics simulation software that allows users to create and experiment with physical objects and mechanisms.",
+      "url": "https://physion.net/",
+      "category": "website"
+    },
+    {
+      "id": 1785200000003,
+      "title": "CindyJS | Interactive Mathematics and Physics Gallery",
+      "description": "A framework for dynamic geometry and physics visualizations directly in the web browser.",
+      "url": "https://cindyjs.org/gallery/main/",
+      "category": "website"
+    },
+    {
+      "id": 1785200000004,
+      "title": "GeoGebra | Dynamic Mathematics & Science Suite",
+      "description": "Interactive geometry, algebra, calculus, and physics modeling applications for education.",
+      "url": "https://www.geogebra.org/",
+      "category": "website"
+    },
+    {
+      "id": 1785200000005,
+      "title": "PhET Interactive Simulations",
+      "description": "Free, research-backed online physics, chemistry, biology, earth science, and math simulations from University of Colorado Boulder.",
+      "url": "https://phet.colorado.edu/",
+      "category": "website"
+    },
+    {
+      "id": 1785200000006,
+      "title": "Wolfram Demonstrations Project",
+      "description": "Open-source collection of interactive physics and mathematical computational concepts powered by Mathematica.",
+      "url": "https://demonstrations.wolfram.com/",
+      "category": "website"
+    },
+    {
+      "id": 1785200000007,
+      "title": "MyPhysicsLab | Real-Time Physics Simulations",
+      "description": "Interactive mechanics and classical physics simulations showing differential equations in real-time.",
+      "url": "https://www.myphysicslab.com/",
+      "category": "website"
+    },
+    {
+      "id": 1785200000008,
+      "title": "CK-12 Physics Simulations | Journey to Mars",
+      "description": "Exploratory physics simulations focusing on space mechanics and gravity concepts.",
+      "url": "https://interactives.ck12.org/simulations/physics.html?referrer=simulation&simulationName=journey-to-mars",
+      "category": "website"
+    },
+    {
+      "id": 1785200000009,
+      "title": "QuVIS | Quantum Physics Visualisations Project",
+      "description": "Interactive learning environments for quantum mechanics concepts hosted by University of St Andrews.",
+      "url": "https://www.st-andrews.ac.uk/physics/quvis/flash.html",
+      "category": "website"
+    },
+    {
+      "id": 1785200000010,
+      "title": "CSUN | Sourcebook for Teaching Science",
+      "description": "A collection of software, tools, and simulation resources tailored for teaching physics concepts.",
+      "url": "https://www.csun.edu/science/software/simulations/physics.html",
+      "category": "website"
+    },
+    {
+      "id": 1785200000011,
+      "title": "The Physics Classroom",
+      "description": "Educational tutorials, interactive physics modules, concepts, and problem-solving tools.",
+      "url": "https://www.physicsclassroom.com/",
+      "category": "website"
+    },
+    {
+      "id": 1785200000012,
+      "title": "Desmos Graphing Calculator | Wave Modeling",
+      "description": "Interactive mathematical graphing tool demonstrating wave dynamics and mathematical functions.",
+      "url": "https://www.desmos.com/calculator/2rnqgoa6a4",
+      "category": "website"
+    },
+    {
+      "id": 1785200000013,
+      "title": "Academo | Physics Demonstrations",
+      "description": "Interactive visual demonstrations for wave interference, sound waves, and classical physics.",
+      "url": "https://academo.org/physics/",
+      "category": "website"
+    },
+    {
+      "id": 1785200000014,
+      "title": "FOSSEE Math & Physics Animations",
+      "description": "An open-source initiative promoting mathematical and physical conceptual animations using Python and Manim.",
+      "url": "https://math.animations.fossee.in/",
+      "category": "website"
     }
   ],
   "settings": {
