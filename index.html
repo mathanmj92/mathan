@@ -63,12 +63,15 @@
         .line-clamp-2 {
             display: -webkit-box;
             -webkit-line-clamp: 2;
+            line-clamp: 2; /* Standard property to clear linter warnings */
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+
         .line-clamp-3 {
             display: -webkit-box;
             -webkit-line-clamp: 3;
+            line-clamp: 3; /* Standard property to clear linter warnings */
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -308,7 +311,7 @@
                 <div class="md:col-span-1 flex justify-center">
                     <div class="relative">
                         <div class="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden shadow-2xl border-4 border-white dark:border-gray-700 transition-colors duration-300">
-                            <img id="profilePhoto" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Profile" class="w-full h-full object-cover">
+                            <img id="profilePhoto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpL6i7TqZ6xCQWc3AGvHp-5m51169jVQvHIpPSYMH89XDujw2VpZsLjiw&s=10" alt="Profile" class="w-full h-full object-cover">
                         </div>
                         <div class="absolute -bottom-2 -right-2 bg-accent-500 text-white p-3 rounded-full shadow-lg">
                             <i class="fas fa-graduation-cap text-xl"></i>
@@ -317,20 +320,19 @@
                 </div>
                 <!-- Profile Info -->
                 <div class="md:col-span-2 text-center">
-                    <h1 id="profileName" class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white font-serif mb-1">Dr. Sarah Chen</h1>
-                    <p id="profileTitle" class="text-lg text-primary-600 dark:text-primary-400 font-medium mb-3">Senior Research Scientist in Computational Biology</p>
+                    <h1 id="profileName" class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white font-serif mb-1">Mathan Kumar P</h1>
+                    <p id="profileTitle" class="text-lg text-primary-600 dark:text-primary-400 font-medium mb-3">Assistant Professor of Physics</p>
 
                     <!-- Expertise Keywords -->
                     <div id="expertiseKeywords" class="flex flex-wrap justify-center gap-2 mb-3">
-                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Machine Learning</span>
-                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Bioinformatics</span>
-                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Genomics</span>
-                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Systems Biology</span>
+                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Dye Sensitized Solar Cell</span>
+                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Photo / Electrocatalysts</span>
+                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Photo electrochemistry</span>
+                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Impedance</span>
                     </div>
 
                     <p id="profileBio" class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 max-w-2xl mx-auto text-sm md:text-base">
-                        Leading interdisciplinary research at the intersection of artificial intelligence and molecular biology. 
-                        Focused on developing computational methods to understand complex biological systems and disease mechanisms.
+                        Passionate about research on thin film fabrication and nanomaterial synthesis for electrochemical applications.
                     </p>
 
                     <!-- Social Links -->
@@ -339,19 +341,19 @@
                     <!-- Metrics Cards -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                         <div class="bg-white dark:bg-gray-700 rounded-xl p-2.5 shadow-lg card-hover transition-colors duration-300 flex flex-col items-center justify-center text-center min-h-[70px]">
-                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricCitations">2,847</div>
+                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricCitations">524</div>
                             <div class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">Citations</div>
                         </div>
                         <div class="bg-white dark:bg-gray-700 rounded-xl p-2.5 shadow-lg card-hover transition-colors duration-300 flex flex-col items-center justify-center text-center min-h-[70px]">
-                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricHIndex">28</div>
+                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricHIndex">11</div>
                             <div class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">h-index</div>
                         </div>
                         <div class="bg-white dark:bg-gray-700 rounded-xl p-2.5 shadow-lg card-hover transition-colors duration-300 flex flex-col items-center justify-center text-center min-h-[70px]">
-                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricI10Index">42</div>
+                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricI10Index">11</div>
                             <div class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">i10-index</div>
                         </div>
                         <div class="bg-white dark:bg-gray-700 rounded-xl p-2.5 shadow-lg card-hover transition-colors duration-300 flex flex-col items-center justify-center text-center min-h-[70px]">
-                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricPublications">56</div>
+                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricPublications">21</div>
                             <div class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">Publications</div>
                         </div>
                     </div>
