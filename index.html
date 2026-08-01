@@ -1,960 +1,374 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Research Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            200: '#bfdbfe',
-                            300: '#93c5fd',
-                            400: '#60a5fa',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            800: '#1e40af',
-                            900: '#1e3a8a',
-                        },
-                        accent: {
-                            50: '#fdf4ff',
-                            100: '#fae8ff',
-                            200: '#f5d0fe',
-                            300: '#f0abfc',
-                            400: '#e879f9',
-                            500: '#d946ef',
-                            600: '#c026d3',
-                            700: '#a21caf',
-                            800: '#86198f',
-                            900: '#701a75',
-                        }
-                    }
-                }
-            }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mathan Kumar P | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
         }
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .gradient-text {
-            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 50%, #c026d3 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
-        }
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            line-clamp: 2; /* Standard property to clear linter warnings */
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .line-clamp-3 {
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            line-clamp: 3; /* Standard property to clear linter warnings */
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .aspect-video {
-            aspect-ratio: 16 / 9;
-        }
-        .metric-counter {
-            font-variant-numeric: tabular-nums;
-        }
-        .gallery-overlay {
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
-        }
-        .publication-tag {
-            transition: all 0.2s ease;
-        }
-        .publication-tag:hover {
-            transform: scale(1.05);
-        }
-        .smooth-fade {
-            animation: fadeIn 0.5s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .modal-enter {
-            animation: modalIn 0.3s ease-out;
-        }
-        @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .timeline-line {
-            position: absolute;
-            left: 24px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #2563eb, #7c3aed);
-        }
-        .keyword-chip {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
-            border: 1px solid rgba(37, 99, 235, 0.2);
-        }
-        .status-ongoing {
-            background: linear-gradient(135deg, #10b981, #059669);
-        }
-        .status-published {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-        }
-        .category-article {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-        .category-book_chapter {
-            background: #fce7f3;
-            color: #a21caf;
-        }
-        .category-patent {
-            background: #fef3c7;
-            color: #92400e;
-        }
-        .category-conference {
-            background: #d1fae5;
-            color: #065f46;
-        }
-        .event-type-invited_talk {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-        .event-type-conference {
-            background: #d1fae5;
-            color: #065f46;
-        }
-        .event-type-workshop {
-            background: #fef3c7;
-            color: #92400e;
-        }
-        .event-type-seminar {
-            background: #fce7f3;
-            color: #a21caf;
-        }
-        :root {
-            --site-bg: #f8fafc;
-            --site-text: #1f2937;
-            --site-surface: #ffffff;
-            --site-surface-strong: #f3f4f6;
-            --site-muted: #6b7280;
-            --site-gradient-from: #1e40af;
-            --site-gradient-to: #7c3aed;
-            --site-gradient-mid: #c026d3;
-        }
-        .dark {
-            --site-bg: #0f172a;
-            --site-text: #f8fafc;
-            --site-surface: #111827;
-            --site-surface-strong: #1f2937;
-            --site-muted: #9ca3af;
-            --site-gradient-from: #60a5fa;
-            --site-gradient-to: #a78bfa;
-            --site-gradient-mid: #f0abfc;
-        }
-        body {
-            background-color: var(--site-bg);
-            color: var(--site-text);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, var(--site-gradient-from) 0%, var(--site-gradient-to) 50%, var(--site-gradient-mid) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .theme-about-panel {
-            background: transparent;
-        }
-        .theme-card {
-            background-color: var(--site-surface);
-            border-color: color-mix(in srgb, var(--site-text) 12%, transparent);
-            color: var(--site-text);
-        }
-        .theme-card .text-gray-500,
-        .theme-card .text-gray-600,
-        .theme-card .text-gray-700,
-        .theme-card .text-gray-400 {
-            color: var(--site-muted) !important;
-        }
-        .bg-white, .bg-gray-50, .bg-gray-100, .bg-gray-700, .bg-gray-800, .bg-gray-900 {
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .bg-white {
-            background-color: var(--site-surface) !important;
-            color: var(--site-text) !important;
-        }
-        .bg-gray-50 {
-            background-color: var(--site-bg) !important;
-            color: var(--site-text) !important;
-        }
-        .bg-gray-100 {
-            background-color: var(--site-surface-strong) !important;
-            color: var(--site-text) !important;
-        }
-        .bg-gray-700, .bg-gray-800, .bg-gray-900 {
-            background-color: var(--site-surface-strong) !important;
-            color: var(--site-text) !important;
-        }
-        .text-gray-500, .text-gray-600, .text-gray-700, .text-gray-400 {
-            color: var(--site-muted) !important;
-        }
-        .text-gray-800, .text-gray-900, .text-gray-100 {
-            color: var(--site-text) !important;
-        }
-        * {
-            box-sizing: border-box;
-        }
-        html, body {
-            min-height: 100vh;
-            width: 100%;
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-        @media (min-width: 1024px) {
-            html, body {
-                height: 100%;
-                overflow: hidden;
-            }
-            #mainScroll {
-                height: calc(100vh - 4rem);
-                overflow-y: auto;
-                overflow-x: hidden;
-            }
-        }
-        .aspect-square { aspect-ratio: 1 / 1; }
-        .rotate-180 { transform: rotate(180deg); }
-        img, svg, video, iframe {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+      }
+    }
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary-50: #eef2ff;
+      --color-primary-100: #e0e7ff;
+      --color-primary-500: #6366f1;
+      --color-primary-600: #4f46e5;
+      --color-primary-700: #4338ca;
+      --color-primary-800: #3730a3;
+      --color-primary-900: #312e81;
+      --gradient-from: #4f46e5;
+      --gradient-to: #7c3aed;
+      --bg-page: #f1f5f9;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+    }
+    .dark {
+      --color-primary-50: #1e1b4b;
+      --color-primary-100: #312e81;
+      --color-primary-500: #818cf8;
+      --color-primary-600: #a5b4fc;
+      --color-primary-700: #c7d2fe;
+      --color-primary-800: #e0e7ff;
+      --color-primary-900: #eef2ff;
+      --gradient-from: #6366f1;
+      --gradient-to: #a78bfa;
+      --bg-page: #0f172a;
+      --bg-card: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+    }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-main);
+      transition: background 0.3s, color 0.3s;
+    }
+    .section-header {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--color-primary-800);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    .section-header::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gradient-from), var(--gradient-to));
+      margin-top: 6px;
+      border-radius: 2px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -6px rgba(79, 70, 229, 0.12);
+    }
+    .skill-tag {
+      background: linear-gradient(135deg, var(--color-primary-50), var(--color-primary-100));
+      color: var(--color-primary-800);
+    }
+    .metric-card {
+      background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
+    }
+    .gallery-img { aspect-ratio: 1; object-fit: cover; }
+    .nav-link { transition: color 0.2s; color: var(--text-muted); }
+    .nav-link:hover { color: var(--color-primary-600); }
+    #loader {
+      position: fixed; inset: 0;
+      background: linear-gradient(135deg, var(--bg-page), var(--color-primary-50));
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999; transition: opacity 0.4s;
+    }
+    .fade-in { animation: fadeIn 0.5s ease forwards; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    #mobileDrawer { transform: translateX(100%); transition: transform 0.3s ease; }
+    #mobileDrawer.open { transform: translateX(0); }
+    #drawerOverlay { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    #drawerOverlay.open { opacity: 1; pointer-events: auto; }
+    #backToTop {
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      transform: translateY(10px);
+    }
+    #backToTop.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .header-bg { background: color-mix(in srgb, var(--bg-card) 92%, transparent); }
+    .hero-bg { background: color-mix(in srgb, var(--bg-card) 90%, transparent); }
+    .event-desc { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .event-desc.open { max-height: 200px; }
+    .filter-btn.active {
+      background: var(--color-primary-600);
+      color: #fff;
+    }
+    .cat-badge { font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
+    .cat-article { background: #dbeafe; color: #1d4ed8; }
+    .cat-book_chapter, .cat-book-chapter, .cat-books { background: #f3e8ff; color: #7e22ce; }
+    .cat-conference { background: #ffedd5; color: #c2410c; }
+    .cat-workshop { background: #dcfce7; color: #15803d; }
+    .cat-videos, .cat-video { background: #fee2e2; color: #b91c1c; }
+    .cat-document, .cat-documents { background: #e0e7ff; color: #4338ca; }
+    .cat-website, .cat-websites { background: #ccfbf1; color: #0f766e; }
+    .cat-default { background: var(--color-primary-50); color: var(--color-primary-800); }
+    .dark .cat-article { background: #1e3a5f; color: #93c5fd; }
+    .dark .cat-book_chapter, .dark .cat-book-chapter, .dark .cat-books { background: #3b0764; color: #d8b4fe; }
+    .dark .cat-conference { background: #431407; color: #fdba74; }
+    .dark .cat-workshop { background: #14532d; color: #86efac; }
+    .dark .cat-videos, .dark .cat-video { background: #450a0a; color: #fca5a5; }
+    .dark .cat-document, .dark .cat-documents { background: #1e1b4b; color: #a5b4fc; }
+    .dark .cat-website, .dark .cat-websites { background: #134e4a; color: #5eead4; }
+    .filter-btn:not(.active) {
+      background: var(--bg-card);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+  </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans antialiased transition-colors duration-300">
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 lg:left-[24rem] xl:left-[28rem] lg:right-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-sm dark:shadow-gray-900 z-50 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <a href="#" class="text-xl font-bold gradient-text font-serif">Portfolio</a>
-                </div>
-                <div class="hidden md:flex flex-wrap items-center gap-x-4 gap-y-1">
-                    <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Experience</a>
-                    <a href="#academic" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Academic</a>
-                    <a href="#research-areas" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Research</a>
-                    <a href="#projects" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Projects</a>
-                    <a href="#publications" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Publications</a>
-                    <a href="#courses" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Courses</a>
-                    <a href="#events" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Events</a>
-                    <a href="#gallery" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Gallery</a>
-                    <a href="#links" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Collections</a>
-                    <a href="#mentors" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">My Circle</a>
-                    <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium text-sm">Contact</a>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <button type="button" id="themeToggle" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors" aria-label="Toggle theme">
-                        <i class="fas fa-moon text-gray-600 dark:text-yellow-400" id="themeIcon"></i>
-                    </button>
-                    <button type="button" id="mobileMenuBtn" class="md:hidden p-2" aria-label="Open mobile menu">
-                        <i class="fas fa-bars text-gray-600 dark:text-gray-300"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden fixed inset-x-0 top-[4rem] max-h-[calc(100vh-4rem)] overflow-y-auto bg-white dark:bg-gray-800 border-t dark:border-gray-700 z-50">
-            <div class="px-4 py-3 space-y-2">
-                <a href="#experience" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Experience</a>
-                <a href="#academic" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Academic</a>
-                <a href="#research-areas" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Research</a>
-                <a href="#projects" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Projects</a>
-                <a href="#publications" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Publications</a>
-                <a href="#courses" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Courses</a>
-                <a href="#events" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Events</a>
-                <a href="#gallery" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Gallery</a>
-                <a href="#links" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Collections</a>
-                <a href="#mentors" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">My Circle</a>
-                <a href="#contact" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Contact</a>
-            </div>
-        </div>
-    </nav>
+<body class="min-h-screen">
 
-    <div class="pt-16 lg:flex lg:min-h-screen">
-        <!-- Left Sidebar / About -->
-        <aside class="w-full lg:w-[24rem] xl:w-[28rem] lg:shrink-0 lg:block">
-            <section id="about" class="lg:sticky lg:top-16 lg:flex lg:items-center lg:h-[calc(100vh-4rem)] theme-about-panel transition-colors duration-300">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <div class="flex flex-col items-center justify-center gap-5 rounded-[2rem] border p-6 shadow-xl backdrop-blur-sm theme-card text-center">
-                <!-- Profile Photo -->
-                <div class="md:col-span-1 flex justify-center">
-                    <div class="relative">
-                        <div class="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden shadow-2xl border-4 border-white dark:border-gray-700 transition-colors duration-300">
-                            <img id="profilePhoto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpL6i7TqZ6xCQWc3AGvHp-5m51169jVQvHIpPSYMH89XDujw2VpZsLjiw&s=10" alt="Profile" class="w-full h-full object-cover">
-                        </div>
-                        <div class="absolute -bottom-2 -right-2 bg-accent-500 text-white p-3 rounded-full shadow-lg">
-                            <i class="fas fa-graduation-cap text-xl"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Profile Info -->
-                <div class="md:col-span-2 text-center">
-                    <h1 id="profileName" class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white font-serif mb-1">Mathan Kumar P</h1>
-                    <p id="profileTitle" class="text-lg text-primary-600 dark:text-primary-400 font-medium mb-3">Assistant Professor of Physics</p>
-
-                    <!-- Expertise Keywords -->
-                    <div id="expertiseKeywords" class="flex flex-wrap justify-center gap-2 mb-3">
-                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Dye Sensitized Solar Cell</span>
-                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Photo / Electrocatalysts</span>
-                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Photo electrochemistry</span>
-                        <span class="keyword-chip px-3 py-1 rounded-full text-sm text-primary-700 dark:text-primary-300">Impedance</span>
-                    </div>
-
-                    <p id="profileBio" class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 max-w-2xl mx-auto text-sm md:text-base">
-                        Passionate about research on thin film fabrication and nanomaterial synthesis for electrochemical applications.
-                    </p>
-
-                    <!-- Social Links -->
-                    <div id="socialLinks" class="flex justify-center flex-wrap gap-3 mb-5"></div>
-
-                    <!-- Metrics Cards -->
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        <div class="bg-white dark:bg-gray-700 rounded-xl p-2.5 shadow-lg card-hover transition-colors duration-300 flex flex-col items-center justify-center text-center min-h-[70px]">
-                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricCitations">524</div>
-                            <div class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">Citations</div>
-                        </div>
-                        <div class="bg-white dark:bg-gray-700 rounded-xl p-2.5 shadow-lg card-hover transition-colors duration-300 flex flex-col items-center justify-center text-center min-h-[70px]">
-                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricHIndex">11</div>
-                            <div class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">h-index</div>
-                        </div>
-                        <div class="bg-white dark:bg-gray-700 rounded-xl p-2.5 shadow-lg card-hover transition-colors duration-300 flex flex-col items-center justify-center text-center min-h-[70px]">
-                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricI10Index">11</div>
-                            <div class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">i10-index</div>
-                        </div>
-                        <div class="bg-white dark:bg-gray-700 rounded-xl p-2.5 shadow-lg card-hover transition-colors duration-300 flex flex-col items-center justify-center text-center min-h-[70px]">
-                            <div class="text-xl font-bold gradient-text metric-counter leading-none" id="metricPublications">21</div>
-                            <div class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">Publications</div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </section>
-        </aside>
-
-        <!-- Right Content (single scroll on desktop) -->
-        <div id="mainScroll" class="flex-1">
-            <!-- Work Experience Section — compact -->
-    <section id="experience" class="py-12 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white font-serif mb-1 text-left">
-                <span class="gradient-text">Work Experience</span>
-            </h2>
-            <p class="text-left text-gray-600 dark:text-gray-400 mb-6 max-w-2xl text-sm">Academic and professional positions throughout my career</p>
-            <div id="experienceContainer" class="max-w-4xl mx-auto space-y-3">
-                <!-- Filled by scripts.js -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Academic Journey Section — compact horizontal cards -->
-    <section id="academic" class="py-12 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white font-serif mb-1 text-left">
-                <span class="gradient-text">Academic Journey</span>
-            </h2>
-            <p class="text-left text-gray-600 dark:text-gray-400 mb-6 max-w-2xl text-sm">Educational background and academic achievements</p>
-            <div id="academicContainer" class="max-w-5xl mx-auto">
-                <!-- Filled by scripts.js as horizontal grid -->
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Research Areas Section -->
-    <section id="research-areas" class="py-12 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white font-serif mb-1 text-left">
-                <span class="gradient-text">Research</span>
-            </h2>
-            <p class="text-left text-gray-600 dark:text-gray-400 mb-6 text-sm">Core research areas and expertise</p>
-            <div id="researchAreasContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Filled by scripts.js -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Research Section -->
-    <section id="projects" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2">
-                        <span class="gradient-text">Projects</span>
-                    </h2>
-                    <p class="text-gray-600 dark:text-gray-400">Current and completed projects</p>
-                </div>
-                <div class="flex gap-3 mt-4 md:mt-0">
-                    <button class="research-filter px-4 py-2 bg-primary-600 text-white rounded-lg text-sm hover:bg-primary-700 dark:bg-primary-700 dark:hover:bg-primary-600 transition-colors" data-filter="all">All</button>
-                    <button class="research-filter px-4 py-2 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 rounded-lg text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" data-filter="ongoing">Ongoing</button>
-                    <button class="research-filter px-4 py-2 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200 rounded-lg text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors" data-filter="published">Completed</button>
-                </div>
-            </div>
-
-            <div id="researchContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md card-hover transition-colors duration-300 research-item" data-status="ongoing">
-                    <div class="flex justify-between items-start mb-3">
-                        <span class="px-3 py-1 rounded-full text-xs font-medium text-white status-ongoing">Ongoing</span>
-                        <i class="fas fa-dna text-primary-500 text-2xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Single-Cell Atlas of Cancer</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">Building a comprehensive single-cell reference atlas of tumor microenvironments across cancer types.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-xs px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded">scRNA-seq</span>
-                        <span class="text-xs px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded">Spatial</span>
-                    </div>
-                </div>
-                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md card-hover transition-colors duration-300 research-item" data-status="ongoing">
-                    <div class="flex justify-between items-start mb-3">
-                        <span class="px-3 py-1 rounded-full text-xs font-medium text-white status-ongoing">Ongoing</span>
-                        <i class="fas fa-brain text-accent-500 text-2xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Deep Learning for Drug Discovery</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">Developing graph neural networks for molecular property prediction and drug-target interaction.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-xs px-2 py-1 bg-accent-100 dark:bg-accent-900 text-accent-700 dark:text-accent-300 rounded">GNN</span>
-                        <span class="text-xs px-2 py-1 bg-accent-100 dark:bg-accent-900 text-accent-700 dark:text-accent-300 rounded">Drug Discovery</span>
-                    </div>
-                </div>
-                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md card-hover transition-colors duration-300 research-item" data-status="published">
-                    <div class="flex justify-between items-start mb-3">
-                        <span class="px-3 py-1 rounded-full text-xs font-medium text-white status-published">Completed</span>
-                        <i class="fas fa-project-diagram text-primary-500 text-2xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Gene Regulatory Networks</h3>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">Inference of regulatory relationships from multi-omics data using causal discovery methods.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-xs px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded">Networks</span>
-                        <span class="text-xs px-2 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded">Causal</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Publications Section -->
-    <section id="publications" class="py-12 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2">
-                        <span class="gradient-text">Publications</span>
-                    </h2>
-                    <p class="text-gray-600 dark:text-gray-400">Journal articles, book chapters, and patents</p>
-                </div>
-                <div class="flex flex-wrap gap-3 mt-4 md:mt-0">
-                    <select id="sortSelect" class="px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 text-sm transition-colors">
-                        <option value="year-desc">Year (Newest)</option>
-                        <option value="year-asc">Year (Oldest)</option>
-                        <option value="citations">Citations</option>
-                    </select>
-                    <select id="categorySelect" class="px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 text-sm transition-colors">
-                        <option value="all">All Categories</option>
-                        <option value="article">Articles</option>
-                        <option value="book_chapter">Book Chapters</option>
-                        <option value="patent">Patents</option>
-                        <option value="conference">Conferences</option>
-                    </select>
-                    <input type="text" id="searchPublications" placeholder="Search..." class="px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 w-48 text-sm placeholder-gray-500 dark:placeholder-gray-400 transition-colors">
-                </div>
-            </div>
-
-            <!-- Publications List -->
-            <div id="publicationsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-colors duration-300 publication-item" data-category="article">
-                    <div class="flex flex-col md:flex-row justify-between items-start gap-4">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="px-2 py-1 rounded text-xs font-medium category-article">Article</span>
-                                <span class="text-sm text-gray-500 dark:text-gray-400">Nature Biotechnology, 2023</span>
-                            </div>
-                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 hover:text-primary-600 dark:hover:text-primary-400 cursor-pointer transition-colors">Comprehensive integration of single-cell data</h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Chen S., et al.</p>
-                            <p class="text-gray-500 dark:text-gray-400 text-sm">A framework for integrating diverse single-cell datasets to enable comparative analysis across experiments and conditions.</p>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="text-center">
-                                <div class="text-2xl font-bold text-primary-600 dark:text-primary-400">342</div>
-                                <div class="text-xs text-gray-500 dark:text-gray-400">Citations</div>
-                            </div>
-                            <button class="p-2 text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                                <i class="fas fa-external-link-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md transition-colors duration-300 publication-item" data-category="article">
-                    <div class="flex flex-col md:flex-row justify-between items-start gap-4">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="px-2 py-1 rounded text-xs font-medium category-article">Article</span>
-                                <span class="text-sm text-gray-500 dark:text-gray-400">Cell, 2022</span>
-                            </div>
-                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 hover:text-primary-600 dark:hover:text-primary-400 cursor-pointer transition-colors">Spatial transcriptomics reveals tissue architecture</h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Chen S., Johnson R., et al.</p>
-                            <p class="text-gray-500 dark:text-gray-400 text-sm">High-resolution spatial mapping of gene expression in complex tissues using advanced sequencing technologies.</p>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="text-center">
-                                <div class="text-2xl font-bold text-primary-600 dark:text-primary-400">189</div>
-                                <div class="text-xs text-gray-500 dark:text-gray-400">Citations</div>
-                            </div>
-                            <button class="p-2 text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                                <i class="fas fa-external-link-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- View All Link -->
-            <div class="text-center mt-8">
-                <a id="scholarLink" href="#" target="_blank" class="inline-flex items-center px-6 py-3 bg-primary-600 dark:bg-primary-700 text-white rounded-lg hover:bg-primary-700 dark:hover:bg-primary-600 transition-colors">
-                    <i class="fas fa-external-link-alt mr-2"></i>
-                    View on Google Scholar
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    
-    <!-- Courses Section -->
-    <section id="courses" class="py-12 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white font-serif mb-1 text-left">
-                <span class="gradient-text">Courses</span>
-            </h2>
-            <p class="text-left text-gray-600 dark:text-gray-400 mb-6 text-sm">Subjects taught and teaching resources</p>
-            <div id="coursesContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Filled by scripts.js -->
-            </div>
-        </div>
-    </section>
-
-<section id="events" class="py-12 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2">
-                        <span class="gradient-text">Events & Activities</span>
-                    </h2>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm">Conferences, talks, workshops, and seminars — click a card for details</p>
-                </div>
-                <div class="flex flex-wrap gap-3 mt-4 md:mt-0">
-                    <select id="eventTypeSelect" class="px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 text-sm transition-colors">
-                        <option value="all">All Types</option>
-                        <option value="invited_talk">Invited Talks</option>
-                        <option value="conference">Conferences</option>
-                        <option value="workshop">Workshops</option>
-                        <option value="seminar">Seminars</option>
-                    </select>
-                    <input type="text" id="searchEvents" placeholder="Search events..." class="px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-primary-500 w-48 text-sm placeholder-gray-500 dark:placeholder-gray-400 transition-colors">
-                </div>
-            </div>
-
-            <div id="eventsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md transition-colors duration-300 flex flex-col md:flex-row gap-4 items-start">
-                    <div class="flex-shrink-0">
-                        <div class="w-16 h-16 rounded-lg bg-primary-100 dark:bg-primary-900 flex items-center justify-center">
-                            <i class="fas fa-microphone text-primary-600 dark:text-primary-400 text-2xl"></i>
-                        </div>
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="px-2 py-1 rounded text-xs font-medium event-type-invited_talk">Invited Talk</span>
-                            <span class="text-sm text-gray-500 dark:text-gray-400">March 15, 2024</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Keynote: AI in Precision Medicine</h3>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">International Conference on Computational Biology, Boston, MA</p>
-                        <p class="text-gray-500 dark:text-gray-400 text-sm">Presented recent advances in machine learning applications for personalized cancer treatment.</p>
-                    </div>
-                </div>
-                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-md transition-colors duration-300 flex flex-col md:flex-row gap-4 items-start">
-                    <div class="flex-shrink-0">
-                        <div class="w-16 h-16 rounded-lg bg-green-100 dark:bg-green-900 flex items-center justify-center">
-                            <i class="fas fa-users text-green-600 dark:text-green-400 text-2xl"></i>
-                        </div>
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="px-2 py-1 rounded text-xs font-medium event-type-conference">Conference</span>
-                            <span class="text-sm text-gray-500 dark:text-gray-400">December 10-12, 2023</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">RECOMB 2023</h3>
-                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">Research in Computational Molecular Biology, Istanbul, Turkey</p>
-                        <p class="text-gray-500 dark:text-gray-400 text-sm">Presented poster on "Scalable algorithms for single-cell multi-omics integration".</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-12 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2 text-left">
-                <span class="gradient-text">Gallery</span>
-            </h2>
-            <p class="text-left text-gray-600 dark:text-gray-400 mb-6 text-sm">Visual highlights</p>
-            <div id="galleryContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                <div class="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer gallery-item">
-                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop" alt="Lab Work" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
-                    <div class="absolute inset-0 gallery-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h3 class="text-white font-bold text-lg">Laboratory Analysis</h3>
-                            <p class="text-gray-300 text-sm">Single-cell sequencing preparation</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer gallery-item">
-                    <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&h=400&fit=crop" alt="Data Visualization" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
-                    <div class="absolute inset-0 gallery-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h3 class="text-white font-bold text-lg">Data Visualization</h3>
-                            <p class="text-gray-300 text-sm">UMAP projection of cell types</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group overflow-hidden rounded-xl shadow-lg cursor-pointer gallery-item">
-                    <img src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?w=600&h=400&fit=crop" alt="Conference" class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
-                    <div class="absolute inset-0 gallery-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h3 class="text-white font-bold text-lg">Conference Presentation</h3>
-                            <p class="text-gray-300 text-sm">RECOMB 2023 in Istanbul</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Useful Links Section -->
-    <section id="links" class="py-12 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-2 text-left">
-                <span class="gradient-text">Collections & Resources</span>
-            </h2>
-            <p class="text-left text-gray-600 dark:text-gray-400 mb-6">Useful links and external resources</p>
-
-            <!-- Category Filter Buttons -->
-            <div class="flex flex-wrap gap-2 mb-8" id="resourceFilters">
-                <button onclick="filterResources('all', this)" class="resource-filter-btn active px-4 py-2 text-sm font-medium rounded-lg bg-primary-600 text-white transition-colors">
-                    All
-                </button>
-                <button onclick="filterResources('website', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                    Websites
-                </button>
-                <button onclick="filterResources('repository', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                    Tools & Repositories
-                </button>
-                <button onclick="filterResources('Videos', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                    Videos
-                </button>
-                <button onclick="filterResources('document', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                    Documents & PDFs
-                </button>
-                <button onclick="filterResources('image', this)" class="resource-filter-btn px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                    Images
-                </button>
-            </div>
-
-            <!-- Dynamic links with smart thumbnails -->
-            <div id="linksContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
-        </div>
-    </section>
-
-    <!-- Mentors Section -->
-    <section id="mentors" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-4 text-left">
-                <span class="gradient-text">My Circle</span>
-            </h2>
-            <p class="text-left text-gray-600 dark:text-gray-400 mb-10 max-w-2xl text-sm">
-                Mentors, collaborators, and colleagues — click a profile to visit their page.
-            </p>
-            <div id="mentorsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="text-center group">
-                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary-100 dark:border-primary-900 group-hover:border-primary-300 dark:group-hover:border-primary-700 transition-colors">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop" alt="Mentor" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="font-bold text-gray-900 dark:text-white text-lg">Prof. Michael Zhang</h3>
-                    <p class="text-primary-600 dark:text-primary-400 text-sm">Stanford University</p>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">PhD Advisor</p>
-                </div>
-                <div class="text-center group">
-                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-accent-100 dark:border-accent-900 group-hover:border-accent-300 dark:group-hover:border-accent-700 transition-colors">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop" alt="Mentor" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="font-bold text-gray-900 dark:text-white text-lg">Dr. Lisa Wang</h3>
-                    <p class="text-accent-600 dark:text-accent-400 text-sm">Broad Institute</p>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Collaborator</p>
-                </div>
-                <div class="text-center group">
-                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary-100 dark:border-primary-900 group-hover:border-primary-300 dark:group-hover:border-primary-700 transition-colors">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop" alt="Mentor" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="font-bold text-gray-900 dark:text-white text-lg">Prof. James Chen</h3>
-                    <p class="text-primary-600 dark:text-primary-400 text-sm">MIT</p>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Committee Member</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-serif mb-4">
-                    <span class="gradient-text">Get in Touch</span>
-                </h2>
-                <p id="contactMessage" class="text-gray-600 dark:text-gray-400 mb-8">
-                    Interested in collaboration or have questions about my research? Feel free to reach out.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <a id="contactEmail" href="#" class="inline-flex items-center px-6 py-3 bg-primary-600 dark:bg-primary-700 text-white rounded-lg hover:bg-primary-700 dark:hover:bg-primary-600 transition-colors">
-                        <i class="fas fa-envelope mr-2"></i>
-                        Send Email
-                    </a>
-                    <a id="contactScholar" href="#" target="_blank" class="inline-flex items-center px-6 py-3 border-2 border-primary-600 dark:border-primary-500 text-primary-600 dark:text-primary-400 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
-                        <i class="fas fa-graduation-cap mr-2"></i>
-                        Google Scholar
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-        <footer class="bg-gray-900 text-white py-8 transition-colors duration-300 mt-8">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-4">
-                    <div class="mb-4 md:mb-0 md:text-right">
-                        <p class="text-gray-400 text-sm">
-                            &copy; <span id="footerYear">2024</span> <span id="footerName">Dr. Sarah Chen</span>. All rights reserved.
-                        </p>
-                    </div>
-                    <div id="footerSocialLinks" class="flex space-x-6 justify-end"></div>
-                </div>
-                <div class="mt-4 text-right text-gray-500 text-xs">
-                    Last updated: <span id="lastUpdated">February 11, 2024</span>
-                </div>
-            </div>
-        </footer>
-
-        </div>
+  <div id="loader">
+    <div class="text-center">
+      <div class="w-12 h-12 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin mx-auto mb-4"></div>
+      <p class="font-medium" style="color: var(--color-primary-600)">Loading portfolio...</p>
     </div>
+  </div>
 
-    <!-- Research Detail Modal -->
-    <div id="researchModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto modal-enter transition-colors duration-300">
-            <div class="p-6 md:p-8">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 id="researchModalTitle" class="text-2xl font-bold text-gray-900 dark:text-gray-100 font-serif pr-4">Research Details</h3>
-                    <button id="closeResearchModal" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                        <i class="fas fa-times text-gray-500 dark:text-gray-400"></i>
-                    </button>
-                </div>
-                <div id="researchModalContent" class="text-gray-600 dark:text-gray-300">
-                    <p>Research project details would appear here...</p>
-                </div>
-            </div>
+  <!-- Header -->
+  <header class="header-bg backdrop-blur-md shadow-md sticky top-0 z-40" style="border-bottom: 1px solid var(--border-color)">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm" style="background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to))" id="headerInitials">MK</div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold" style="color: var(--color-primary-800)" id="headerName">Mathan Kumar P</h1>
+          <p class="text-xs hidden sm:block" style="color: var(--text-muted)" id="headerTitle">Assistant Professor of Physics</p>
         </div>
-    </div>
+      </div>
 
-    <!-- Publication Detail Modal -->
-    <div id="publicationModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto modal-enter transition-colors duration-300">
-            <div class="p-6 md:p-8">
-                <div class="flex justify-between items-start mb-4">
-                    <h3 id="modalTitle" class="text-2xl font-bold text-gray-900 dark:text-gray-100 font-serif pr-4">Publication Details</h3>
-                    <button id="closeModal" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                        <i class="fas fa-times text-gray-500 dark:text-gray-400"></i>
-                    </button>
-                </div>
-                <div id="modalContent" class="text-gray-600 dark:text-gray-300">
-                    <p>Publication details would appear here...</p>
-                </div>
-            </div>
-        </div>
-    </div>
+      <nav class="hidden lg:flex items-center gap-4 text-sm font-medium">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#research" class="nav-link">Research</a>
+        <a href="#publications" class="nav-link">Publications</a>
+        <a href="#events" class="nav-link">Events</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#courses" class="nav-link">Courses</a>
+        <a href="#resources" class="nav-link">Collections</a>
+      </nav>
 
-    <!-- Gallery Modal -->
-    <div id="galleryModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
-        <button id="closeGalleryModal" class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors">
-            <i class="fas fa-times text-2xl"></i>
+      <div class="flex items-center gap-2">
+        <button id="themeToggle" onclick="toggleTheme()" class="w-9 h-9 rounded-full flex items-center justify-center transition hover:opacity-80" style="color: var(--text-muted)" title="Toggle theme">
+          <i class="fas fa-moon dark:hidden"></i>
+          <i class="fas fa-sun hidden dark:inline"></i>
         </button>
-        <div class="max-w-5xl w-full">
-            <img id="galleryModalImage" src="" alt="" class="w-full max-h-[80vh] object-contain rounded-lg">
-            <div class="mt-4 text-white">
-                <h3 id="galleryModalTitle" class="text-xl font-bold"></h3>
-                <p id="galleryModalDescription" class="text-gray-300 mt-2"></p>
-            </div>
-        </div>
+        <button id="menuBtn" onclick="openDrawer()" class="lg:hidden w-9 h-9 rounded-full flex items-center justify-center transition" style="color: var(--text-muted)">
+          <i class="fas fa-bars text-lg"></i>
+        </button>
+      </div>
     </div>
+  </header>
 
-    <script src="scripts.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
+  <!-- Mobile Drawer -->
+  <div id="drawerOverlay" class="fixed inset-0 bg-black/40 z-50 lg:hidden" onclick="closeDrawer()"></div>
+  <div id="mobileDrawer" class="fixed top-0 right-0 h-full w-72 max-w-[85vw] shadow-2xl z-50 lg:hidden flex flex-col" style="background: var(--bg-card)">
+    <div class="flex items-center justify-between p-4" style="border-bottom: 1px solid var(--border-color)">
+      <span class="font-semibold" style="color: var(--text-main)">Menu</span>
+      <button onclick="closeDrawer()" class="w-8 h-8 rounded-full flex items-center justify-center" style="color: var(--text-muted)"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="flex flex-col p-3 gap-1 text-sm font-medium">
+      <a href="#about" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">About</a>
+      <a href="#experience" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Experience</a>
+      <a href="#research" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Research</a>
+      <a href="#publications" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Publications</a>
+      <a href="#events" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Events</a>
+      <a href="#gallery" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Gallery</a>
+      <a href="#courses" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Courses</a>
+      <a href="#resources" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Collections</a>
+    </nav>
+  </div>
 
-            if (!mobileMenuBtn || !mobileMenu) return;
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
 
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+    <!-- 1. About -->
+    <section id="about" class="hero-bg backdrop-blur-sm rounded-2xl shadow-lg p-4 sm:p-5 mb-8 fade-in" style="border: 1px solid var(--border-color)">
+      <div class="flex flex-col lg:flex-row items-center gap-5">
+        <div class="relative">
+          <img id="heroPhoto" src="" alt="Profile" class="w-32 h-32 lg:w-40 lg:h-40 rounded-2xl object-cover shadow-md border-4 hidden" style="border-color: var(--bg-card)">
+          <div id="heroInitialsBox" class="w-32 h-32 lg:w-40 lg:h-40 rounded-2xl flex items-center justify-center text-3xl lg:text-4xl font-bold shadow-md" style="background: linear-gradient(135deg, var(--color-primary-50), var(--color-primary-100)); color: var(--color-primary-700)">
+            <span id="heroInitials">MK</span>
+          </div>
+        </div>
+        <div class="text-center lg:text-left flex-1">
+          <h1 class="text-2xl sm:text-3xl lg:text-3xl font-bold mb-0.5" style="color: var(--text-main)" id="heroName">Mathan Kumar P</h1>
+          <p class="text-base sm:text-lg font-medium mb-0.5" style="color: var(--color-primary-600)" id="heroTitle">Assistant Professor of Physics</p>
+          <p class="mb-2 text-sm" style="color: var(--text-muted)" id="heroInstitution"></p>
+          <p class="leading-snug text-sm max-w-3xl mx-auto lg:mx-0 mb-3" style="color: var(--text-main)" id="heroBio"></p>
+          <div id="metricsContainer" class="flex flex-wrap justify-center lg:justify-start gap-2 mb-3"></div>
+          <div class="flex flex-wrap justify-center lg:justify-start gap-3 mb-2">
+            <a href="#" id="emailLink" class="flex items-center gap-2 text-sm transition hover:opacity-80" style="color: var(--color-primary-600)">
+              <i class="fas fa-envelope"></i><span id="emailText">email</span>
+            </a>
+            <a href="#" id="scholarLink" target="_blank" class="flex items-center gap-2 text-sm transition hover:opacity-80" style="color: var(--color-primary-600)">
+              <i class="fas fa-graduation-cap"></i><span>Google Scholar</span>
+            </a>
+          </div>
+          <div class="flex flex-wrap justify-center lg:justify-start gap-3" id="socialLinksContainer"></div>
+          <div id="keywordsList" class="flex flex-wrap justify-center lg:justify-start gap-1.5 mt-3"></div>
+        </div>
+      </div>
+    </section>
 
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-        });
 
-        // Research Filter
-        const researchFilters = document.querySelectorAll('.research-filter');
-        const researchItems = document.querySelectorAll('.research-item');
+    <!-- Education & Experience combined timeline -->
+    <section id="experience" class="mb-10">
+      <h2 class="section-header">Experience</h2>
+      <div id="experiencesList" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+    </section>
 
-        researchFilters.forEach(filter => {
-            filter.addEventListener('click', () => {
-                // Update active state
-                researchFilters.forEach(f => {
-                    f.classList.remove('bg-primary-600', 'text-white', 'dark:bg-primary-700');
-                    f.classList.add('bg-gray-200', 'text-gray-700', 'dark:bg-gray-700', 'dark:text-gray-200');
-                });
-                filter.classList.remove('bg-gray-200', 'text-gray-700', 'dark:bg-gray-700', 'dark:text-gray-200');
-                filter.classList.add('bg-primary-600', 'text-white', 'dark:bg-primary-700');
+    <!-- 4. Research -->
+    <section id="research" class="mb-10">
+      <h2 class="section-header">Research Areas</h2>
+      <div id="researchAreasList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </section>
 
-                const filterValue = filter.getAttribute('data-filter');
-                
-                researchItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-status') === filterValue) {
-                        item.style.display = 'block';
-                        item.classList.add('smooth-fade');
-                    } else {
-                        item.style.display = 'none';
-                        item.classList.remove('smooth-fade');
-                    }
-                });
-            });
-        });
 
-        // Modal functionality
-        const researchModal = document.getElementById('researchModal');
-        const closeResearchModal = document.getElementById('closeResearchModal');
-        const publicationModal = document.getElementById('publicationModal');
-        const closeModal = document.getElementById('closeModal');
-        const galleryModal = document.getElementById('galleryModal');
-        const closeGalleryModal = document.getElementById('closeGalleryModal');
+    <!-- 5. Publications -->
+    <section id="publications" class="mb-10">
+      <h2 class="section-header">Publications</h2>
+      <div class="flex flex-wrap gap-2 mb-4" id="pubFilters">
+      </div>
+      <div id="publicationsList" class="space-y-3"></div>
+    </section>
 
-        closeResearchModal.addEventListener('click', () => {
-            researchModal.classList.add('hidden');
-        });
+    <!-- 6. Events (compact + filter + expand) -->
+    <section id="events" class="mb-10">
+      <h2 class="section-header">Events & Activities</h2>
+      <div class="flex flex-wrap gap-2 mb-4" id="eventFilters">
+      </div>
+      <div id="eventsList" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+    </section>
 
-        closeModal.addEventListener('click', () => {
-            publicationModal.classList.add('hidden');
-        });
+    <!-- 7. Gallery -->
+    <section id="gallery" class="mb-10">
+      <h2 class="section-header">Research Gallery</h2>
+      <div id="galleryImages" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"></div>
+    </section>
 
-        closeGalleryModal.addEventListener('click', () => {
-            galleryModal.classList.add('hidden');
-        });
+    <!-- 8. Courses -->
+    <section class="mb-10" id="courses">
+      <h2 class="section-header">Courses</h2>
+      <div id="coursesList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </section>
 
-        // Close modals when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === researchModal) {
-                researchModal.classList.add('hidden');
-            }
-            if (e.target === publicationModal) {
-                publicationModal.classList.add('hidden');
-            }
-            if (e.target === galleryModal) {
-                galleryModal.classList.add('hidden');
-            }
-        });
+    <!-- Jobs (if any) -->
+    <section class="mb-10" id="jobsSection">
+      <h2 class="section-header">Open Positions</h2>
+      <div id="jobsList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </section>
 
-        // Gallery modal functionality
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const galleryModalImage = document.getElementById('galleryModalImage');
-        const galleryModalTitle = document.getElementById('galleryModalTitle');
-        const galleryModalDescription = document.getElementById('galleryModalDescription');
+    <!-- 9. Resources -->
+    <section id="resources" class="mb-10">
+      <h2 class="section-header">Collections</h2>
+      <div class="flex flex-wrap gap-2 mb-4" id="linkFilters">
+      </div>
+      <div id="linksList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
 
-        galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const img = item.querySelector('img');
-                const title = item.querySelector('h3').textContent;
-                const desc = item.querySelector('p').textContent;
-                
-                galleryModalImage.src = img.src;
-                galleryModalTitle.textContent = title;
-                galleryModalDescription.textContent = desc;
-                galleryModal.classList.remove('hidden');
-            });
-        });
+    <!-- Mentors (before contact) -->
+    <section id="mentors" class="mb-10">
+      <h2 class="section-header">Mentors & Collaborators</h2>
+      <div id="mentorsList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+    </section>
 
-        // Update footer year
-        document.getElementById('footerYear').textContent = new Date().getFullYear();
+    <!-- 10. Contact -->
+    <section id="contact" class="hero-bg backdrop-blur-sm rounded-3xl shadow-xl p-6 sm:p-8" style="border: 1px solid var(--border-color)">
+      <h2 class="section-header">Get in Touch</h2>
+      <div class="flex flex-col sm:flex-row gap-6 items-start">
+        <div class="flex-1">
+          <p class="mb-4" style="color: var(--text-muted)">Feel free to reach out for research collaborations, student opportunities, or academic discussions.</p>
+          <div class="space-y-3">
+            <a id="contactEmail" href="#" class="flex items-center gap-3 hover:opacity-80" style="color: var(--color-primary-600)">
+              <i class="fas fa-envelope w-5"></i><span></span>
+            </a>
+            <a id="contactScholar" href="#" target="_blank" class="flex items-center gap-3 hover:opacity-80" style="color: var(--color-primary-600)">
+              <i class="fas fa-graduation-cap w-5"></i><span>Google Scholar Profile</span>
+            </a>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-3" id="contactSocial"></div>
+      </div>
+    </section>
+  </main>
 
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+  <footer class="mt-12 py-6 text-center text-sm" style="color: var(--text-muted); border-top: 1px solid var(--border-color)">
+    <p>© <span id="currentYear">2026</span> <span id="footerText">Mathan Kumar P</span>. All rights reserved.</p>
+  </footer>
 
-        // Navbar scroll effect
-        let lastScroll = 0;
-        const navbar = document.getElementById('navbar');
+  <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-6 right-6 w-11 h-11 rounded-full text-white shadow-lg flex items-center justify-center z-30" style="background: var(--color-primary-600)" title="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
-                navbar.classList.add('shadow-md');
-            } else {
-                navbar.classList.remove('shadow-md');
-            }
-            
-            lastScroll = currentScroll;
-        });
-        // Data loading and rendering are handled by scripts.js
-    </script>
+  <div id="imageModal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4" onclick="closeModal()">
+    <div class="max-w-4xl max-h-[90vh] relative" onclick="event.stopPropagation()">
+      <img id="modalImage" src="" alt="" class="max-w-full max-h-[80vh] rounded-lg shadow-2xl">
+      <div id="modalCaption" class="text-white text-left mt-3 text-sm max-w-full"></div>
+      <button onclick="closeModal()" class="absolute -top-3 -right-3 bg-white rounded-full w-8 h-8 flex items-center justify-center text-gray-800 hover:bg-gray-200">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+  <script>
+    function applyTheme(theme) {
+      if (theme === 'dark') document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', theme);
+    }
+    function toggleTheme() {
+      applyTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark');
+    }
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved) applyTheme(saved);
+      else if (window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+    })();
+
+    function openDrawer() {
+      document.getElementById('mobileDrawer').classList.add('open');
+      document.getElementById('drawerOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+      document.getElementById('mobileDrawer').classList.remove('open');
+      document.getElementById('drawerOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    window.addEventListener('scroll', () => {
+      const btn = document.getElementById('backToTop');
+      if (window.scrollY > 400) btn.classList.add('show');
+      else btn.classList.remove('show');
+    });
+  </script>
 </body>
 </html>
