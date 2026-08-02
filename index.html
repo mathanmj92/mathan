@@ -166,7 +166,6 @@
       </div>
 
       <nav class="hidden lg:flex items-center gap-4 text-sm font-medium">
-        <a href="#about" class="nav-link">About</a>
         <a href="#experience" class="nav-link">Experience</a>
         <a href="#research" class="nav-link">Research</a>
         <a href="#publications" class="nav-link">Publications</a>
@@ -174,6 +173,7 @@
         <a href="#gallery" class="nav-link">Gallery</a>
         <a href="#courses" class="nav-link">Courses</a>
         <a href="#resources" class="nav-link">Collections</a>
+        <a href="#news" class="nav-link">News</a>
       </nav>
 
       <div class="flex items-center gap-2">
@@ -196,7 +196,6 @@
       <button onclick="closeDrawer()" class="w-8 h-8 rounded-full flex items-center justify-center" style="color: var(--text-muted)"><i class="fas fa-times"></i></button>
     </div>
     <nav class="flex flex-col p-3 gap-1 text-sm font-medium">
-      <a href="#about" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">About</a>
       <a href="#experience" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Experience</a>
       <a href="#research" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Research</a>
       <a href="#publications" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Publications</a>
@@ -204,36 +203,32 @@
       <a href="#gallery" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Gallery</a>
       <a href="#courses" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Courses</a>
       <a href="#resources" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Collections</a>
+      <a href="#news" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">News</a>
     </nav>
   </div>
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
 
     <!-- 1. About -->
-    <section id="about" class="hero-bg backdrop-blur-sm rounded-2xl shadow-lg p-4 sm:p-5 mb-8 fade-in" style="border: 1px solid var(--border-color)">
-      <div class="flex flex-col lg:flex-row items-center gap-5">
-        <div class="relative">
-          <img id="heroPhoto" src="" alt="Profile" class="w-32 h-32 lg:w-40 lg:h-40 rounded-2xl object-cover shadow-md border-4 hidden" style="border-color: var(--bg-card)">
-          <div id="heroInitialsBox" class="w-32 h-32 lg:w-40 lg:h-40 rounded-2xl flex items-center justify-center text-3xl lg:text-4xl font-bold shadow-md" style="background: linear-gradient(135deg, var(--color-primary-50), var(--color-primary-100)); color: var(--color-primary-700)">
-            <span id="heroInitials">MK</span>
+    <section id="about" class="relative overflow-hidden rounded-2xl shadow-lg mb-8 fade-in" style="border: 1px solid var(--border-color); background: var(--bg-card)">
+      <div id="heroBackdrop" class="absolute inset-0 bg-cover bg-center pointer-events-none" style="display:none; opacity:0.35; z-index:0"></div>
+      <div class="relative p-4 sm:p-5" style="z-index:1; background: color-mix(in srgb, var(--bg-card) 75%, transparent); backdrop-filter: blur(6px)">
+        <div class="flex flex-col lg:flex-row items-center gap-5">
+          <div class="relative flex-shrink-0">
+            <img id="heroPhoto" src="" alt="Profile" class="w-32 h-32 lg:w-40 lg:h-40 rounded-2xl object-cover shadow-md border-4 hidden" style="border-color: var(--bg-card)">
+            <div id="heroInitialsBox" class="w-32 h-32 lg:w-40 lg:h-40 rounded-2xl flex items-center justify-center text-3xl lg:text-4xl font-bold shadow-md" style="background: linear-gradient(135deg, var(--color-primary-50), var(--color-primary-100)); color: var(--color-primary-700)">
+              <span id="heroInitials">MK</span>
+            </div>
           </div>
-        </div>
-        <div class="text-center lg:text-left flex-1">
-          <h1 class="text-2xl sm:text-3xl lg:text-3xl font-bold mb-0.5" style="color: var(--text-main)" id="heroName">Mathan Kumar P</h1>
-          <p class="text-base sm:text-lg font-medium mb-0.5" style="color: var(--color-primary-600)" id="heroTitle">Assistant Professor of Physics</p>
-          <p class="mb-2 text-sm" style="color: var(--text-muted)" id="heroInstitution"></p>
-          <p class="leading-snug text-sm max-w-3xl mx-auto lg:mx-0 mb-3" style="color: var(--text-main)" id="heroBio"></p>
-          <div id="metricsContainer" class="flex flex-wrap justify-center lg:justify-start gap-2 mb-3"></div>
-          <div class="flex flex-wrap justify-center lg:justify-start gap-3 mb-2">
-            <a href="#" id="emailLink" class="flex items-center gap-2 text-sm transition hover:opacity-80" style="color: var(--color-primary-600)">
-              <i class="fas fa-envelope"></i><span id="emailText">email</span>
-            </a>
-            <a href="#" id="scholarLink" target="_blank" class="flex items-center gap-2 text-sm transition hover:opacity-80" style="color: var(--color-primary-600)">
-              <i class="fas fa-graduation-cap"></i><span>Google Scholar</span>
-            </a>
+          <div class="text-center lg:text-left flex-1 min-w-0">
+            <h1 class="text-2xl sm:text-3xl lg:text-3xl font-bold mb-0.5" style="color: var(--text-main)" id="heroName">Mathan Kumar P</h1>
+            <p class="text-base sm:text-lg font-medium mb-0.5" style="color: var(--color-primary-600)" id="heroTitle">Assistant Professor of Physics</p>
+            <p class="mb-2 text-sm" style="color: var(--text-muted)" id="heroInstitution"></p>
+            <p class="leading-snug text-sm max-w-3xl mx-auto lg:mx-0 mb-3" style="color: var(--text-main)" id="heroBio"></p>
+            <div id="metricsContainer" class="flex flex-wrap justify-center lg:justify-start gap-2 mb-3"></div>
+            <div class="flex flex-wrap justify-center lg:justify-start gap-3 items-center" id="socialLinksContainer"></div>
+            <div id="keywordsList" class="flex flex-wrap justify-center lg:justify-start gap-1.5 mt-3"></div>
           </div>
-          <div class="flex flex-wrap justify-center lg:justify-start gap-3" id="socialLinksContainer"></div>
-          <div id="keywordsList" class="flex flex-wrap justify-center lg:justify-start gap-1.5 mt-3"></div>
         </div>
       </div>
     </section>
@@ -252,12 +247,18 @@
     </section>
 
 
+    <!-- Skills (no menu) -->
+    <section id="skills" class="mb-10">
+      <h2 class="section-header">Skills</h2>
+      <div id="skillsList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
+    </section>
+
     <!-- 5. Publications -->
     <section id="publications" class="mb-10">
       <h2 class="section-header">Publications</h2>
       <div class="flex flex-wrap gap-2 mb-4" id="pubFilters">
       </div>
-      <div id="publicationsList" class="space-y-3"></div>
+      <div id="publicationsList" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
     </section>
 
     <!-- 6. Events (compact + filter + expand) -->
@@ -267,24 +268,23 @@
       </div>
       <div id="eventsList" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
     </section>
-
-    <!-- 7. Gallery -->
+<!-- 7. Gallery -->
     <section id="gallery" class="mb-10">
       <h2 class="section-header">Research Gallery</h2>
       <div id="galleryImages" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"></div>
     </section>
 
-    <!-- 8. Courses -->
-    <section class="mb-10" id="courses">
-      <h2 class="section-header">Courses</h2>
-      <div id="coursesList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-    </section>
-
-    <!-- Jobs (if any) -->
-    <section class="mb-10" id="jobsSection">
-      <h2 class="section-header">Open Positions</h2>
-      <div id="jobsList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-    </section>
+    <!-- Courses + Open Positions side by side -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+      <section id="courses">
+        <h2 class="section-header">Courses</h2>
+        <div id="coursesList" class="space-y-3"></div>
+      </section>
+      <section id="jobsSection">
+        <h2 class="section-header">Open Positions</h2>
+        <div id="jobsList" class="space-y-3"></div>
+      </section>
+    </div>
 
     <!-- 9. Resources -->
     <section id="resources" class="mb-10">
@@ -293,6 +293,13 @@
       </div>
       <div id="linksList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </section>
+
+    <!-- News -->
+    <section id="news" class="mb-10">
+      <h2 class="section-header">News</h2>
+      <div id="newsList" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"></div>
+    </section>
+
 
     <!-- Mentors (before contact) -->
     <section id="mentors" class="mb-10">
@@ -303,20 +310,8 @@
     <!-- 10. Contact -->
     <section id="contact" class="hero-bg backdrop-blur-sm rounded-3xl shadow-xl p-6 sm:p-8" style="border: 1px solid var(--border-color)">
       <h2 class="section-header">Get in Touch</h2>
-      <div class="flex flex-col sm:flex-row gap-6 items-start">
-        <div class="flex-1">
-          <p class="mb-4" style="color: var(--text-muted)">Feel free to reach out for research collaborations, student opportunities, or academic discussions.</p>
-          <div class="space-y-3">
-            <a id="contactEmail" href="#" class="flex items-center gap-3 hover:opacity-80" style="color: var(--color-primary-600)">
-              <i class="fas fa-envelope w-5"></i><span></span>
-            </a>
-            <a id="contactScholar" href="#" target="_blank" class="flex items-center gap-3 hover:opacity-80" style="color: var(--color-primary-600)">
-              <i class="fas fa-graduation-cap w-5"></i><span>Google Scholar Profile</span>
-            </a>
-          </div>
-        </div>
-        <div class="flex flex-wrap gap-3" id="contactSocial"></div>
-      </div>
+      <p class="mb-4" style="color: var(--text-muted)">Feel free to reach out for research collaborations, student opportunities, or academic discussions.</p>
+      <div class="flex flex-wrap gap-3 items-center" id="contactSocial"></div>
     </section>
   </main>
 
@@ -327,6 +322,19 @@
   <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-6 right-6 w-11 h-11 rounded-full text-white shadow-lg flex items-center justify-center z-30" style="background: var(--color-primary-600)" title="Back to top">
     <i class="fas fa-arrow-up"></i>
   </button>
+
+  <!-- News Modal -->
+  <div id="newsModal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4" onclick="closeNewsModal()">
+    <div class="max-w-lg w-full max-h-[85vh] overflow-y-auto rounded-2xl p-5 shadow-2xl" style="background: var(--bg-card)" onclick="event.stopPropagation()">
+      <div class="flex justify-between items-start gap-3 mb-3">
+        <h3 id="newsModalTitle" class="font-bold text-lg" style="color: var(--text-main)"></h3>
+        <button onclick="closeNewsModal()" class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background: var(--color-primary-50); color: var(--text-main)"><i class="fas fa-times"></i></button>
+      </div>
+      <img id="newsModalImage" src="" alt="" class="w-full max-h-56 object-cover rounded-xl mb-3 hidden">
+      <div id="newsModalBody" class="text-sm whitespace-pre-wrap leading-relaxed" style="color: var(--text-muted)"></div>
+      <a id="newsModalLink" href="#" target="_blank" class="inline-block mt-4 text-sm font-medium hover:underline" style="color: var(--color-primary-600); display:none">Source / Read more →</a>
+    </div>
+  </div>
 
   <div id="imageModal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4" onclick="closeModal()">
     <div class="max-w-4xl max-h-[90vh] relative" onclick="event.stopPropagation()">
@@ -340,6 +348,18 @@
 
   <script src="./script.js"></script>
   <script>
+    // Safety net: if script.js 404s or load hangs, stop infinite spinner
+    setTimeout(function () {
+      var L = document.getElementById('loader');
+      if (L && L.style.display !== 'none' && L.style.opacity !== '0') {
+        var still = L.querySelector && L.querySelector('.animate-spin');
+        if (still) {
+          L.innerHTML = '<div class="text-center max-w-md px-4"><p class="font-semibold text-red-600">Still loading…</p><p class="text-sm mt-2 text-gray-600">If this persists, open DevTools (F12) → Network tab and check that <code>script.js</code> and <code>data.json</code> return 200.</p><button onclick="location.reload()" class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm">Retry</button></div>';
+        }
+      }
+    }, 15000);
+  </script>
+  <script>
     function applyTheme(theme) {
       if (theme === 'dark') document.documentElement.classList.add('dark');
       else document.documentElement.classList.remove('dark');
@@ -347,6 +367,7 @@
     }
     function toggleTheme() {
       applyTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark');
+      if (typeof applyHeroBackdrop === 'function') applyHeroBackdrop();
     }
     (function() {
       const saved = localStorage.getItem('theme');
