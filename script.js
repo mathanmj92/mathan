@@ -4,27 +4,66 @@ let currentPubFilter = 'all';
 let currentLinkFilter = 'all';
 let currentEventFilter = 'all';
 
-async function loadData() {
+function dataJsonCandidates() {
+  // Try multiple paths (GitHub Pages root, subfolder, relative to script)
+  const list = ['./data.json', 'data.json'];
   try {
-    const res = await fetch('./data.json?t=' + Date.now());
-    if (!res.ok) throw new Error('Failed to load data.json (HTTP ' + res.status + ')');
-    portfolioData = await res.json();
-    applyThemeColors();
-    renderAll();
-    hideLoader();
-  } catch (err) {
-    console.error(err);
+    const scripts = document.getElementsByTagName('script');
+    for (const s of scripts) {
+      if (s.src && s.src.indexOf('script.js') !== -1) {
+        const base = s.src.replace(/script\.js(\?.*)?$/, '');
+        list.unshift(base + 'data.json');
+        break;
+      }
+    }
+  } catch (e) {}
+  // If site is at /repo-name/ index may need that base
+  const path = window.location.pathname || '';
+  if (path && path !== '/') {
+    const dir = path.endsWith('/') ? path : path.replace(/\/[^/]*$/, '/');
+    list.push(dir + 'data.json');
+  }
+  return [...new Set(list)];
+}
+
+async function fetchWithTimeout(url, ms) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), ms);
+  try {
+    const res = await fetch(url + (url.indexOf('?') >= 0 ? '&' : '?') + 't=' + Date.now(), {
+      signal: ctrl.signal,
+      cache: 'no-cache'
+    });
+    return res;
+  } finally {
+    clearTimeout(t);
+  }
+}
+
+async function loadData() {
+  const candidates = dataJsonCandidates();
+  let lastErr = null;
+  for (const url of candidates) {
     try {
-      const res2 = await fetch('data.json');
-      if (!res2.ok) throw err;
-      portfolioData = await res2.json();
+      console.log('[portfolio] Trying', url);
+      const res = await fetchWithTimeout(url, 12000);
+      if (!res.ok) {
+        lastErr = new Error(url + ' → HTTP ' + res.status);
+        continue;
+      }
+      portfolioData = await res.json();
+      console.log('[portfolio] Loaded from', url);
       applyThemeColors();
       renderAll();
       hideLoader();
-    } catch (e) {
-      showError(err.message);
+      return;
+    } catch (err) {
+      console.warn('[portfolio] Failed', url, err);
+      lastErr = err;
     }
   }
+  const msg = (lastErr && lastErr.message) ? lastErr.message : 'Could not load data.json';
+  showError(msg + '<br><span class="text-xs">Tried: ' + candidates.join(', ') + '</span><br><span class="text-xs">Open browser console (F12) for details. All files must be in the same folder on GitHub Pages.</span>');
 }
 
 function hideLoader() {
@@ -42,7 +81,7 @@ function showError(msg) {
       <div class="text-center max-w-md px-4" style="color:#dc2626">
         <p class="font-semibold text-lg">Failed to load portfolio data</p>
         <p class="text-sm mt-2" style="color:var(--text-muted)">${msg}</p>
-        <p class="text-xs mt-3" style="color:var(--text-muted)">Make sure data.json is in the same folder as index.html</p>
+        <p class="text-xs mt-3" style="color:var(--text-muted)">Upload <b>index.html</b>, <b>script.js</b>, and <b>data.json</b> in the <b>same folder</b> (repo root or /docs). File names are case-sensitive.</p>
         <button onclick="location.reload()" class="mt-4 px-4 py-2 rounded-lg text-sm text-white" style="background:var(--color-primary-600)">Retry</button>
       </div>`;
   }
@@ -157,9 +196,11 @@ function renderAll() {
   // education merged into renderExperience
   renderExperience();
   renderResearchAreas();
+  renderSkills();
   renderMentors();
   renderPublications();
   renderEvents();
+  renderNews();
   renderGallery();
   renderCourses();
   renderJobs();
@@ -211,14 +252,30 @@ function renderHero() {
     </div>
   `).join('');
 
-  const email = p.email || portfolioData.contact?.email || '';
-  document.getElementById('emailLink').href = `mailto:${email}`;
-  document.getElementById('emailText').textContent = email;
-  document.getElementById('scholarLink').href = p.scholar || portfolioData.socialLinks?.scholar || '#';
-  renderSocialIcons('socialLinksContainer');
+  // Mail icon goes with social icons; scholar already in socialLinks
+  renderSocialIcons('socialLinksContainer', { includeEmail: true });
+  applyHeroBackdrop();
 }
 
-function renderSocialIcons(containerId) {
+function applyHeroBackdrop() {
+  const p = portfolioData.profile || {};
+  const url = (p.backdrop || '').trim();
+  const opacity = parseFloat(p.backdropOpacity != null ? p.backdropOpacity : 0.35);
+  const el = document.getElementById('heroBackdrop');
+  if (!el) return;
+  if (url) {
+    el.style.backgroundImage = 'url("' + url.replace(/"/g, '') + '")';
+    el.style.display = 'block';
+    el.style.opacity = String(Math.min(0.85, Math.max(0.05, opacity)));
+  } else {
+    el.style.display = 'none';
+    el.style.backgroundImage = '';
+  }
+}
+
+
+function renderSocialIcons(containerId, opts) {
+  opts = opts || {};
   const social = portfolioData.socialLinks || {};
   const icons = {
     linkedin: { icon: 'fab fa-linkedin' },
@@ -232,15 +289,24 @@ function renderSocialIcons(containerId) {
     youtube: { icon: 'fab fa-youtube' },
     website: { icon: 'fas fa-globe' }
   };
-  const html = Object.entries(social)
+  let parts = Object.entries(social)
     .filter(([k, v]) => v && icons[k])
     .map(([k, url]) => `
       <a href="${url}" target="_blank" rel="noopener" class="text-xl transition hover:opacity-70" style="color: var(--color-primary-600)" title="${k}">
         <i class="${icons[k].icon}"></i>
       </a>
-    `).join('');
+    `);
+  if (opts.includeEmail) {
+    const email = portfolioData.profile?.email || portfolioData.contact?.email || '';
+    if (email) {
+      parts.unshift(`
+      <a href="mailto:${email}" class="text-xl transition hover:opacity-70" style="color: var(--color-primary-600)" title="Email">
+        <i class="fas fa-envelope"></i>
+      </a>`);
+    }
+  }
   const el = document.getElementById(containerId);
-  if (el) el.innerHTML = html;
+  if (el) el.innerHTML = parts.join('');
 }
 
 function renderKeywords() {
@@ -252,18 +318,29 @@ function renderKeywords() {
 
 function renderResearchAreas() {
   const areas = portfolioData.researchAreas || [];
-  document.getElementById('researchAreasList').innerHTML = areas.map(a => `
-    <div class="card rounded-2xl p-4 shadow-sm">
+  document.getElementById('researchAreasList').innerHTML = areas.map((a, i) => {
+    const id = 'research-desc-' + i;
+    const desc = (a.description || '').trim();
+    return `
+    <div class="card rounded-2xl p-4 shadow-sm ${desc ? 'cursor-pointer' : ''}" ${desc ? `onclick="toggleEventDesc('${id}')"` : ''}>
       <div class="flex gap-4">
         ${a.image ? `<img src="${a.image}" alt="${a.title}" class="w-16 h-16 rounded-xl object-cover flex-shrink-0" loading="lazy">` : ''}
-        <div>
-          <h3 class="font-semibold" style="color: var(--text-main)">${a.title}</h3>
-          <p class="text-sm mt-1 line-clamp-3" style="color: var(--text-muted)">${a.description || ''}</p>
-          ${a.years ? `<span class="inline-block mt-2 text-xs px-2 py-0.5 rounded-full skill-tag">${a.years} years</span>` : ''}
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap items-center gap-2">
+            <h3 class="font-semibold" style="color: var(--text-main)">${a.title}</h3>
+            ${a.years ? `<span class="text-xs px-2 py-0.5 rounded-full skill-tag">${a.years} years</span>` : ''}
+          </div>
+          ${desc ? `
+            <p class="text-sm mt-1 line-clamp-2" style="color: var(--text-muted)">${desc}</p>
+            <div id="${id}" class="event-desc">
+              <p class="text-sm mt-2 pt-2" style="color: var(--text-muted); border-top: 1px solid var(--border-color)">${desc}</p>
+            </div>
+            <p class="text-xs mt-1.5" style="color: var(--color-primary-600)"><i class="fas fa-chevron-down text-[10px]"></i> Click for full description</p>
+          ` : ''}
         </div>
       </div>
-    </div>
-  `).join('') || '<p style="color:var(--text-muted)">No research areas listed.</p>';
+    </div>`;
+  }).join('') || '<p style="color:var(--text-muted)">No research areas listed.</p>';
 }
 
 function parsePeriodEndYear(period) {
@@ -306,10 +383,10 @@ function renderExperience() {
       <div class="flex justify-between items-start gap-2">
         <div class="min-w-0 flex-1">
           <div class="flex flex-wrap items-center gap-2 mb-0.5">
-            <h3 class="font-semibold text-sm" style="color: var(--text-main)">${e.title}</h3>
+            <h3 class="font-semibold text-base" style="color: var(--text-main)">${e.title}</h3>
             ${badge}
           </div>
-          <p class="text-xs font-medium" style="color: var(--color-primary-600)">${e.org}</p>
+          <p class="text-sm font-medium" style="color: var(--color-primary-600)">${e.org}</p>
         </div>
         <span class="text-xs whitespace-nowrap px-2 py-0.5 rounded flex-shrink-0" style="background: var(--color-primary-50); color: var(--text-muted)">${e.period || ''}</span>
       </div>
@@ -328,18 +405,14 @@ function renderPublications() {
   const filtered = currentPubFilter === 'all' ? pubs : pubs.filter(p => p.category === currentPubFilter);
   filtered.sort((a, b) => (b.year || 0) - (a.year || 0));
   document.getElementById('publicationsList').innerHTML = filtered.map(p => `
-    <div class="card rounded-2xl p-4 shadow-sm">
-      <div class="flex flex-wrap items-start justify-between gap-2">
-        <div class="flex-1">
-          <h3 class="font-semibold leading-snug" style="color: var(--text-main)">${p.title}</h3>
-          <p class="text-sm mt-1" style="color: var(--text-muted)">${p.authors || ''}</p>
-          <p class="text-sm mt-1 italic" style="color: var(--color-primary-600)">${p.journal || ''} ${p.year ? '(' + p.year + ')' : ''}</p>
-        </div>
-        <div class="flex flex-col items-end gap-1">
-          <span class="${categoryBadgeClass(p.category)}">${humanizeCategory(p.category || 'other')}</span>
-          ${p.doi ? `<a href="https://doi.org/${String(p.doi).replace('https://doi.org/', '')}" target="_blank" class="text-xs hover:underline" style="color: var(--color-primary-600)">DOI</a>` : ''}
-        </div>
+    <div class="card rounded-xl p-3 shadow-sm h-full">
+      <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
+        <span class="${categoryBadgeClass(p.category)}">${humanizeCategory(p.category || 'other')}</span>
+        ${p.doi ? `<a href="https://doi.org/${String(p.doi).replace('https://doi.org/', '')}" target="_blank" class="text-xs hover:underline" style="color: var(--color-primary-600)">DOI</a>` : ''}
       </div>
+      <h3 class="font-semibold text-sm leading-snug" style="color: var(--text-main)">${p.title}</h3>
+      <p class="text-xs mt-1 line-clamp-2" style="color: var(--text-muted)">${p.authors || ''}</p>
+      <p class="text-xs mt-1 italic" style="color: var(--color-primary-600)">${p.journal || ''} ${p.year ? '(' + p.year + ')' : ''}</p>
     </div>
   `).join('') || '<p style="color:var(--text-muted)">No publications found.</p>';
 }
@@ -387,6 +460,100 @@ function renderEvents() {
 function toggleEventDesc(id) {
   const el = document.getElementById(id);
   if (el) el.classList.toggle('open');
+}
+
+
+function renderSkills() {
+  const skills = portfolioData.skills || [];
+  const section = document.getElementById('skills');
+  const list = document.getElementById('skillsList');
+  if (!list) return;
+  if (!skills.length) {
+    if (section) section.style.display = 'none';
+    return;
+  }
+  if (section) section.style.display = 'block';
+  list.innerHTML = skills.map((s, i) => {
+    const level = Math.min(100, Math.max(0, parseInt(s.level) || 0));
+    const link = (s.link || '').trim();
+    const desc = (s.description || '').trim();
+    const id = 'skill-desc-' + i;
+    return `
+    <div class="card rounded-xl p-3 shadow-sm ${desc ? 'cursor-pointer' : ''}" ${desc ? `onclick="toggleEventDesc('${id}')"` : ''}>
+      <div class="flex items-start justify-between gap-2 mb-1">
+        <h3 class="font-semibold text-sm" style="color: var(--text-main)">${s.name || ''}</h3>
+        <span class="text-xs font-medium" style="color: var(--color-primary-600)">${level}%</span>
+      </div>
+      ${s.software ? `<p class="text-[11px] mb-2" style="color: var(--text-muted)"><i class="fas fa-tools mr-1 opacity-70"></i>${s.software}</p>` : ''}
+      <div class="h-1.5 rounded-full overflow-hidden" style="background: var(--color-primary-50)">
+        <div class="h-full rounded-full transition-all" style="width:${level}%; background: linear-gradient(90deg, var(--gradient-from), var(--gradient-to))"></div>
+      </div>
+      ${desc ? `
+        <div id="${id}" class="event-desc">
+          <p class="text-xs mt-2 pt-2 whitespace-pre-line" style="color: var(--text-muted); border-top: 1px solid var(--border-color)">${desc}</p>
+        </div>
+        <p class="text-[11px] mt-1.5" style="color: var(--color-primary-600)"><i class="fas fa-chevron-down text-[10px]"></i> Click for description</p>
+      ` : ''}
+      ${link ? `<a href="${link}" target="_blank" onclick="event.stopPropagation()" class="text-[11px] mt-1 inline-block hover:underline" style="color: var(--color-primary-600)">Link →</a>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function renderNews() {
+  const news = portfolioData.news || [];
+  const section = document.getElementById('news');
+  const list = document.getElementById('newsList');
+  if (!list) return;
+  if (!news.length) {
+    if (section) section.style.display = 'none';
+    return;
+  }
+  if (section) section.style.display = 'block';
+  // newest first if date present
+  const sorted = [...news].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+  list.innerHTML = sorted.map((n, i) => `
+    <div class="card rounded-xl p-2.5 shadow-sm cursor-pointer hover:opacity-95 h-full" onclick="openNewsModal(${i})">
+      ${n.image ? `<img src="${n.image}" alt="" class="w-full h-20 object-cover rounded-lg mb-1.5" loading="lazy">` : ''}
+      <h3 class="font-semibold text-xs leading-snug line-clamp-2" style="color: var(--text-main)">${n.title || 'Untitled'}</h3>
+      ${n.date ? `<p class="text-[10px] mt-0.5" style="color: var(--text-muted)">${n.date}</p>` : ''}
+      <p class="text-[11px] mt-1 line-clamp-2 whitespace-pre-line" style="color: var(--text-muted)">${n.description || ''}</p>
+    </div>
+  `).join('');
+  // store sorted for modal
+  window._newsSorted = sorted;
+}
+
+function openNewsModal(idx) {
+  const n = (window._newsSorted || portfolioData.news || [])[idx];
+  if (!n) return;
+  document.getElementById('newsModalTitle').textContent = n.title || '';
+  document.getElementById('newsModalBody').textContent = n.description || '';
+  const img = document.getElementById('newsModalImage');
+  if (img) {
+    if (n.image) {
+      img.src = n.image;
+      img.classList.remove('hidden');
+    } else {
+      img.src = '';
+      img.classList.add('hidden');
+    }
+  }
+  const link = document.getElementById('newsModalLink');
+  if (n.source || n.url || n.link) {
+    link.href = n.source || n.url || n.link;
+    link.style.display = 'inline-block';
+  } else {
+    link.style.display = 'none';
+  }
+  const modal = document.getElementById('newsModal');
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+function closeNewsModal() {
+  const modal = document.getElementById('newsModal');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
 }
 
 function renderGallery() {
@@ -452,24 +619,31 @@ function renderLinks() {
   const filtered = currentLinkFilter === 'all' ? links : links.filter(l => l.category === currentLinkFilter);
   document.getElementById('linksList').innerHTML = filtered.map(l => {
     const cat = (l.category || '').toLowerCase();
-    const isVideo = cat.includes('video');
-    const isWeb = cat.includes('website') || cat.includes('web');
-    const isBook = cat.includes('book');
-    const isDoc = cat.includes('document') || cat.includes('doc');
-    const thumb = isVideo ? youtubeThumb(l.url) : null;
-    const fav = (!isVideo && l.url) ? faviconUrl(l.url) : null;
+    const isVideo = /video/.test(cat);
+    const isWeb = /website|web$/.test(cat) || cat === 'web';
+    const isBook = /book/.test(cat);
+    const isDoc = /document|doc/.test(cat);
+    const isRepo = /repo|github|git/.test(cat);
 
     let media = '';
-    if (thumb) {
-      media = `<img src="${thumb}" alt="" class="w-14 h-14 rounded-lg object-cover flex-shrink-0" loading="lazy" onerror="this.outerHTML='<div class=\'w-14 h-14 rounded-lg flex items-center justify-center flex-shrink-0\' style=\'background:var(--color-primary-50)\'><i class=\'fab fa-youtube text-xl text-red-500\'></i></div>'">`;
-    } else if (isVideo) {
-      media = `<div class="w-14 h-14 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--color-primary-50)"><i class="fab fa-youtube text-xl text-red-500"></i></div>`;
-    } else if (fav) {
-      media = `<img src="${fav}" alt="" class="w-10 h-10 rounded-lg object-contain flex-shrink-0 bg-white p-1" loading="lazy" onerror="this.outerHTML='<div class=\'w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0\' style=\'background:var(--color-primary-50)\'><i class=\'fas fa-globe\' style=\'color:var(--color-primary-600)\'></i></div>'">`;
+    if (isVideo) {
+      const thumb = youtubeThumb(l.url);
+      if (thumb) {
+        media = `<img src="${thumb}" alt="" class="w-14 h-14 rounded-lg object-cover flex-shrink-0" loading="lazy" onerror="this.outerHTML='<div class=\'w-14 h-14 rounded-lg flex items-center justify-center flex-shrink-0\' style=\'background:var(--color-primary-50)\'><i class=\'fab fa-youtube text-xl text-red-500\'></i></div>'">`;
+      } else {
+        media = `<div class="w-14 h-14 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--color-primary-50)"><i class="fab fa-youtube text-xl text-red-500"></i></div>`;
+      }
+    } else if (isWeb && l.url) {
+      const fav = faviconUrl(l.url);
+      media = fav
+        ? `<img src="${fav}" alt="" class="w-10 h-10 rounded-lg object-contain flex-shrink-0 bg-white p-1" loading="lazy" onerror="this.outerHTML='<div class=\'w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0\' style=\'background:var(--color-primary-50)\'><i class=\'fas fa-globe\' style=\'color:var(--color-primary-600)\'></i></div>'">`
+        : `<div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--color-primary-50)"><i class="fas fa-globe" style="color:var(--color-primary-600)"></i></div>`;
     } else if (isBook) {
       media = `<div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--color-primary-50)"><i class="fas fa-book" style="color:var(--color-primary-600)"></i></div>`;
     } else if (isDoc) {
       media = `<div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--color-primary-50)"><i class="fas fa-file-alt" style="color:var(--color-primary-600)"></i></div>`;
+    } else if (isRepo) {
+      media = `<div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--color-primary-50)"><i class="fab fa-github" style="color:var(--color-primary-600)"></i></div>`;
     } else {
       media = `<div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--color-primary-50)"><i class="fas fa-link" style="color:var(--color-primary-600)"></i></div>`;
     }
@@ -491,17 +665,7 @@ function renderLinks() {
 }
 
 function renderContact() {
-  const email = portfolioData.profile?.email || portfolioData.contact?.email || '';
-  const scholar = portfolioData.profile?.scholar || portfolioData.socialLinks?.scholar || '';
-  const contactEmail = document.getElementById('contactEmail');
-  if (contactEmail) {
-    contactEmail.href = `mailto:${email}`;
-    const span = contactEmail.querySelector('span');
-    if (span) span.textContent = email;
-  }
-  const contactScholar = document.getElementById('contactScholar');
-  if (contactScholar) contactScholar.href = scholar || '#';
-  renderSocialIcons('contactSocial');
+  renderSocialIcons('contactSocial', { includeEmail: true });
 }
 
 function humanizeCategory(cat) {
