@@ -125,7 +125,7 @@
       "id": 1,
       "title": "Enhancing surface area, morphology, and electrocatalytic activity favouring triiodide reduction via surface sulfurization of metal oxide",
       "authors": "P, Mathan Kumar R, Sharan Peri, Rajagopal T, Mohana Selvi V, Mareeswaran S, Brindha B, Muthuraaman",
-      "journal": "Electrochimica Acta",
+      "journal": "Electrochimica Acta ",
       "year": 2024,
       "category": "article",
       "doi": "10.1016/j.electacta.2023.143616"
@@ -314,7 +314,7 @@
   "events": [
     {
       "id": 1785055653505,
-      "title": "Enhanced Teaching Through Experiential Learning",
+      "title": "Enhanced Teaching Through Experiential Learning (ETEL-2026)",
       "type": "workshop",
       "date": "2026-07-25",
       "location": "PSG Institute of Technology and Applied Research",
@@ -501,16 +501,16 @@
       "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/758427121_27518152414521420_959050305901499021_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x960&ctp=s1280x960&_nc_cat=110&ccb=1-7&_nc_sid=f727a1&_nc_ohc=SQ5NM2yfIVsQ7kNvwH4fTHm&_nc_oc=AdpLYf1mnZV1jzTIDCUBmAmrJHlYGkdkXb_3djT10boUGeLmLlaJU52o9fVBrzf32pE&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=mhTtC9CRC_jYBEr0EQKl4w&_nc_ss=7b2a8&oh=00_AQDYBH4o4OeyRmq4s7MA2hExzUMAB-71XUmw7PtP2o0oPA&oe=6A6D7F67"
     },
     {
-      "id": 1785173482919,
-      "title": "The Doctorate moment",
-      "description": "Description",
-      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/756857829_27518152721188056_8053508026469788319_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x960&ctp=s1280x960&_nc_cat=103&ccb=1-7&_nc_sid=f727a1&_nc_ohc=Rw-2N-3ESMIQ7kNvwEOkQGf&_nc_oc=AdrlCLEo57K_ymwdrnfoGMkoJHHtdoJkSJpxQoGFF65hDdSXxT_UzCFMoZgIK-J1Ouo&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=aRR2XO8jT1buQPfUqZaiQw&_nc_ss=7b2a8&oh=00_AQBFWdVJmuKnGQ_wrgn65ftHrtKqrFZ5Cu3qE46eDpNIkw&oe=6A6D50DE"
-    },
-    {
       "id": 1785173499610,
       "title": "Chess Champions -2025",
       "description": "",
       "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/758690934_27518152874521374_1156180458465236724_n.jpg?stp=dst-jpg_tt6&cstp=mx1537x2048&ctp=s1537x2048&_nc_cat=103&ccb=1-7&_nc_sid=f727a1&_nc_ohc=Q3GOmC-sAtwQ7kNvwG_ok-P&_nc_oc=AdrWLW2hdMtWJO1edu-C4RqGLS9xidO6Lj3adfAHbYMzKRWoOtBd1L6crfQmCN2tks8&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=6dimltU3zSWptZyxbmDg0w&_nc_ss=7b2a8&oh=00_AQAhuPY6lQElEC34c9q5FEu6ufYOyE5T6bMsJLC7rK2wfA&oe=6A6D529E"
+    },
+    {
+      "id": 1785173482919,
+      "title": "The Doctorate moment",
+      "description": "Description",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/756857829_27518152721188056_8053508026469788319_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x960&ctp=s1280x960&_nc_cat=103&ccb=1-7&_nc_sid=f727a1&_nc_ohc=Rw-2N-3ESMIQ7kNvwEOkQGf&_nc_oc=AdrlCLEo57K_ymwdrnfoGMkoJHHtdoJkSJpxQoGFF65hDdSXxT_UzCFMoZgIK-J1Ouo&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=aRR2XO8jT1buQPfUqZaiQw&_nc_ss=7b2a8&oh=00_AQBFWdVJmuKnGQ_wrgn65ftHrtKqrFZ5Cu3qE46eDpNIkw&oe=6A6D50DE"
     },
     {
       "id": 1785173438493,
@@ -821,7 +821,7 @@
       "darkBackground": "#141414",
       "darkText": "#f8fafc",
       "darkGradientFrom": "#43aad6",
-      "darkGradientTo": "#d389fb",
+      "darkGradientTo": "#bd82f7",
       "darkGradientMid": "#f0abfc",
       "darkSurface": "#1a1a1a",
       "darkSurfaceStrong": "#1f2937"
