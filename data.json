@@ -8,17 +8,18 @@
     "keywords": [
       "Dye Sensitized Solar Cells",
       "Photo / Electrocatalysts",
-      "Photo electrochemistry",
       "Impedance",
-      "Python Programming"
+      "Python"
     ],
     "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpL6i7TqZ6xCQWc3AGvHp-5m51169jVQvHIpPSYMH89XDujw2VpZsLjiw&s=10",
     "metrics": {
       "citations": 524,
-      "hIndex": 11,
+      "hIndex": 10,
       "i10Index": 11,
       "publications": 21
-    }
+    },
+    "backdrop": "https://img.magnific.com/free-photo/flat-lay-blue-monday-paper-with-copy-space_23-2148756188.jpg?semt=ais_hybrid&w=740&q=80",
+    "backdropOpacity": 0.35
   },
   "socialLinks": {
     "twitter": "",
@@ -476,16 +477,16 @@
       "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/756227103_27518250834511578_1529343964594904866_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x960&ctp=s1280x960&_nc_cat=108&ccb=1-7&_nc_sid=f727a1&_nc_ohc=R_K_Bz8caz4Q7kNvwEb85Nf&_nc_oc=AdplQ2HZpmTuhwTEycyddf2hdgIWDqy4J1V8CljIdIJX0glm9vgcPmgvBhPOdWUg6gE&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=4c7UvIuoKJsbcniwcsMMXw&_nc_ss=7b2a8&oh=00_AQCFlchjH3ipzAX3UBX8bby0ij23nl5n_JGEFyDsoOW1zA&oe=6A6D671B"
     },
     {
-      "id": 1785173547871,
-      "title": "Convocation-Ph.D 2026",
-      "description": "Happy to receive my Doctoral Degree at university of Madras",
-      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/757236654_27518152484521413_7829672230407116332_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x900&ctp=s1600x900&_nc_cat=111&ccb=1-7&_nc_sid=f727a1&_nc_ohc=bNzHy4Kv6l8Q7kNvwEqgtXl&_nc_oc=Adp0Mo_igkVzyO5fc_kbOSADgOx5AggHEBQd4qYKvsgCJrG33SyV4BgmHiHmVawkG7I&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=Ul3b6QOhApMD5V3Co-JrMQ&_nc_ss=7b2a8&oh=00_AQAGrKtSzt6bdJ15RGGxn1cyxwEifk6ZUr-xzss111rWXw&oe=6A6D63AA"
-    },
-    {
       "id": 1785173767271,
       "title": "Clean Room Facilities- PSG IAS, Coimbatore",
       "description": "We explored \"Thin Film Devices in Microelectronics and MEMS\" with Dr. Geetha Priyadarshini Badhirappan, followed by \"Thin Film Deposition Techniques (Physical & Chemical)\" by Dr. Veena M..   The highlight of the day was an expert lecture by Dr Parthasarathy Srinivasan (Amrita School of Engineering, Chennai) on \"Advanced Thin Film Deposition: From Lab-Scale to Industrial Fabrication.\"   The afternoon concluded with an engaging hands-on session on thin-film deposition.",
       "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/753954126_27518250827844912_5041152833230912076_n.jpg?stp=dst-jpg_tt6&cstp=mx1280x960&ctp=s1280x960&_nc_cat=102&ccb=1-7&_nc_sid=f727a1&_nc_ohc=gfO_Auu4aJsQ7kNvwHNACga&_nc_oc=Adpj6eBMFPfoWneZZAgMbIGmic046wZKuPs22jPfG9O4gMM_wkJOospY0eGdTzVCdxM&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=OZ2cAszTTJdqxr20ma8vJw&_nc_ss=7b2a8&oh=00_AQCYfE3lR0KIfdr99lTeFYoeAuCqXT-XDmbMui_OnD1h-Q&oe=6A6D6F77"
+    },
+    {
+      "id": 1785173547871,
+      "title": "Convocation-Ph.D 2026",
+      "description": "Happy to receive my Doctoral Degree at university of Madras",
+      "image": "https://scontent.fcjb8-1.fna.fbcdn.net/v/t39.30808-6/757236654_27518152484521413_7829672230407116332_n.jpg?stp=dst-jpg_tt6&cstp=mx1600x900&ctp=s1600x900&_nc_cat=111&ccb=1-7&_nc_sid=f727a1&_nc_ohc=bNzHy4Kv6l8Q7kNvwEqgtXl&_nc_oc=Adp0Mo_igkVzyO5fc_kbOSADgOx5AggHEBQd4qYKvsgCJrG33SyV4BgmHiHmVawkG7I&_nc_zt=23&_nc_ht=scontent.fcjb8-1.fna&_nc_gid=Ul3b6QOhApMD5V3Co-JrMQ&_nc_ss=7b2a8&oh=00_AQAGrKtSzt6bdJ15RGGxn1cyxwEifk6ZUr-xzss111rWXw&oe=6A6D63AA"
     },
     {
       "id": 1785173547306,
@@ -649,13 +650,6 @@
     }
   ],
   "links": [
-    {
-      "id": 1785602224586,
-      "title": "",
-      "description": "",
-      "url": "",
-      "category": "videos"
-    },
     {
       "id": 1785340327373,
       "title": "Sapiens",
@@ -885,6 +879,66 @@
       "image": "https://srikrishnabookbazaar.com/wp-content/uploads/2024/01/Phy-for-ele-eng.jpg",
       "syllabusUrl": "https://psgitech.ac.in/assets/pdf/autonomous_syllabi/2026/SYLLABI/rev2/B.E.%20-%20ECE_27.04.2026.pdf",
       "booksUrl": "https://booksdelivery.com/physics-for-electrical-engineering-by-suresh-from-sri-krishna-hitech-publications-2021"
+    }
+  ],
+  "skills": [
+    {
+      "id": 1785645197448,
+      "name": "Visualization / Designing",
+      "description": "I design interactive PowerPoint presentations, graphical abstracts, and research posters using PowerPoint and Affinity Designer/Photo. I focus on clear visual storytelling to simplify complex physics and materials concepts for classrooms, conferences, and publications. My goal is to make science more engaging through clean layouts, diagrams, and animations.",
+      "software": "Powerpoint, Affinity",
+      "level": 70,
+      "link": ""
+    },
+    {
+      "id": 1785645022089,
+      "name": "Material Synthesis",
+      "description": "I have experience in the synthesis of functional materials including oxides, sulfides, and selenides using solution-based methods. I focus on controlling phase, morphology, and composition for applications in optoelectronics, energy storage, and semiconductor devices.",
+      "software": "",
+      "level": 70,
+      "link": ""
+    },
+    {
+      "id": 1785644900858,
+      "name": "Digital Audio Workstation",
+      "description": "I use FL Studio as my Digital Audio Workstation to play with audio files.. FL Studio helps me blend creativity with technical workflow for fast prototyping of beats and compositions.",
+      "software": "FL studio",
+      "level": 40,
+      "link": ""
+    },
+    {
+      "id": 1785643930545,
+      "name": "Ai - vibe coding",
+      "description": "and use AI tools like Grok, Kimi, Qwen, and GLM as coding partners. With Python for logic and HTML/CSS for interfaces, I focus on the problem and let AI handle the boilerplate. This lets me rapidly prototype simulations, teaching tools, and web apps — turning concepts into working code in hours, not days.",
+      "software": "Grok, Kimi, Qwen, Gemini",
+      "level": 60,
+      "link": ""
+    }
+  ],
+  "news": [
+    {
+      "id": 1785646895302,
+      "title": "Meta, Microsoft, Nvidia, IBM, and others back open-weight AI",
+      "date": "",
+      "description": "On July 24, 2026, a coalition of two dozen major technology companies and organizations, including Meta, Microsoft, Nvidia, and IBM, signed an open letter urging US policymakers to support and protect open-weight AI models rather than restricting them. The signatories argue that making AI model parameters publicly available lowers entry barriers for startups and public institutions, fosters competition to reduce costs, and prevents vendor lock-in, while also contending that open models enhance security by allowing independent researchers to audit systems and develop defenses against AI-driven threats. Framing their stance as a modern parallel to the open-source software movement of the 1980s, the group calls for increased compute access and funding for shared datasets while warning against premature regulations that could stifle innovation, though they distinguish legitimate model distillation from unlawful data extraction.",
+      "source": "https://www.artificialintelligence-news.com/news/meta-microsoft-nvidia-ibm-others-back-open-weight-ai/",
+      "image": "https://www.artificialintelligence-news.com/wp-content/uploads/2026/07/meta-microsoft-nvidia-ibm-open-source-ai-open-weight-policy-regulation-security-artificial-intelligence-distillation-security-1024x768.jpg"
+    },
+    {
+      "id": 1785646733187,
+      "title": "New AI Method Reveals Material Interfaces",
+      "date": "",
+      "description": "Northwestern University researchers, led by Professor Chris Wolverton and PhD candidate Chang-ti Chou, have developed a groundbreaking AI-powered method that accurately predicts the complex atomic structures of material interfaces, a critical step toward designing more efficient and durable technologies. By combining machine learning with quantum-mechanical calculations, the team successfully modeled grain boundaries in strontium titanate with results that matched experimental observations, offering a reliable new tool to optimize materials for batteries, solar cells, and electronics. Published in npj Computational Materials, this approach promises to revolutionize how scientists engineer longer-lasting and higher-performing devices by finally understanding and controlling the hidden boundaries within materials",
+      "source": "https://www.mccormick.northwestern.edu/news/articles/2026/07/new-ai-method-reveals-material-interfaces/",
+      "image": "https://www.mccormick.northwestern.edu/images/news/2026/07/new-ai-method-reveals-material-interfaces-figure.gif"
+    },
+    {
+      "id": 1785643853305,
+      "title": "Turbo-charging battery research with AI: An ambitious vision",
+      "date": "",
+      "description": "Argonne National Laboratory researchers have outlined an ambitious roadmap to accelerate battery breakthroughs using AI-powered large language models (LLMs). Published in Joule, the review proposes creating \"self-driving laboratories\" where LLM agents automate the entire research cycle—from mining literature and screening materials to directing robots for synthesis and testing. This approach aims to transform battery science by drastically speeding up discovery, reducing errors, and allowing scientists to focus on strategic innovation rather than manual experimentation.",
+      "source": "https://techxplore.com/news/2026-06-turbo-battery-ai-ambitious-vision.html",
+      "image": "https://scx1.b-cdn.net/csz/news/800a/2026/turbo-charging-battery.jpg"
     }
   ]
 }
