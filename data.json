@@ -6,17 +6,17 @@
     "scholar": "https://scholar.google.com/citations?user=I730zAgAAAAJ&hl=en",
     "bio": "Passionate about research on thin film fabrication and nanomaterial synthesis for electrochemical applications",
     "keywords": [
-      "Dye Sensitized Solar Cells",
+      "Photovoltaics",
       "Photo / Electrocatalysts",
       "Impedance",
       "Python"
     ],
     "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpL6i7TqZ6xCQWc3AGvHp-5m51169jVQvHIpPSYMH89XDujw2VpZsLjiw&s=10",
     "metrics": {
-      "citations": 524,
-      "hIndex": 10,
+      "citations": 532,
+      "hIndex": 11,
       "i10Index": 11,
-      "publications": 21
+      "publications": 24
     },
     "backdrop": "https://img.magnific.com/free-photo/flat-lay-blue-monday-paper-with-copy-space_23-2148756188.jpg?semt=ais_hybrid&w=740&q=80",
     "backdropOpacity": 0.35
@@ -64,6 +64,22 @@
       "role": "Former Advisor",
       "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiHD5WAPDmBBLd3Khf3d8Aq1OVUHC-y0fEj-2XInul5TuslN_EJIJ5L-u6&s=10",
       "profileUrl": "https://physics.nits.ac.in/faculties/ranjith-g-nair"
+    },
+    {
+      "id": 1785843356973,
+      "name": "Dr. Abinash Das",
+      "institution": "PSG institute of Advanced Studies",
+      "role": "Collaborator ",
+      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwGdRGRFtf1pkQJ81qvss1LxHc9kbx1zBIjR-7vvhg7g&s",
+      "profileUrl": "https://www.researchgate.net/profile/Abinash-Das-2"
+    },
+    {
+      "id": 1785843246156,
+      "name": "Dr. P. Prabhu",
+      "institution": "University of Madras",
+      "role": "Collaborator",
+      "photo": "https://i1.rgstatic.net/ii/profile.image/345206953136130-1459315159978_Q512/Prabhu-Pandurangan.jpg",
+      "profileUrl": "https://prabhuresearch.org/about/"
     }
   ],
   "experience": [
@@ -122,13 +138,34 @@
   "research": [],
   "publications": [
     {
-      "id": 1,
-      "title": "Enhancing surface area, morphology, and electrocatalytic activity favouring triiodide reduction via surface sulfurization of metal oxide",
-      "authors": "P, Mathan Kumar R, Sharan Peri, Rajagopal T, Mohana Selvi V, Mareeswaran S, Brindha B, Muthuraaman",
-      "journal": "Electrochimica Acta ",
-      "year": 2024,
+      "id": 1785858194276,
+      "title": "Microwave synthesis of NiSe2 nanoflakes for electrochemical conversion and energy storage",
+      "authors": "B. Gayathri Manju a ,  G. Rajkumar b ,  P. Mathan Kumar c ,  B. Muthuraaman c ,  R. Harinivashini d , P. Lalitha d,  K. Prabakaran e , D. Balaji f",
+      "journal": "Materials Chemistry and Physics",
+      "year": 2026,
       "category": "article",
-      "doi": "10.1016/j.electacta.2023.143616"
+      "doi": "https://doi.org/10.1016/j.matchemphys.2025.131489",
+      "citations": 0
+    },
+    {
+      "id": 1785858124828,
+      "title": "Sustainable poly-ε-caprolactone-based nanocomposite polymer electrolytes with SnO2 nanofiller for next generation solid-state zinc-ion batteries",
+      "authors": "Brindha Suresh, Mohana Selvi Thirumoorthy, Mathan Kumar Pandian, Mareeswaran Vairavan, Arjunan Ponnaiah, Austin Suthanthiraraj Samuel, Muthuraaman Bhagavathiachari",
+      "journal": "Journal of Power Sources",
+      "year": 2025,
+      "category": "article",
+      "doi": "https://doi.org/10.1016/j.matchemphys.2025.131489",
+      "citations": 0
+    },
+    {
+      "id": 1785857849649,
+      "title": "Graphene-Metal Oxide Hybrid Nanostructures for High-Performance Supercapacitors",
+      "authors": "P. Mathan Kumar, Rajagopal Peri, T. Mohana Selvi & B. Muthuraaman",
+      "journal": "Springer | Hybrid Nanostructures for Advanced Supercapacitors ",
+      "year": 2026,
+      "category": "book_chapter",
+      "doi": "https://doi.org/10.1007/978-3-032-04593-5_4",
+      "citations": 0
     },
     {
       "id": 2,
@@ -138,6 +175,15 @@
       "year": 2025,
       "category": "article",
       "doi": "10.1007/s00339-024-08190-3"
+    },
+    {
+      "id": 1,
+      "title": "Enhancing surface area, morphology, and electrocatalytic activity favouring triiodide reduction via surface sulfurization of metal oxide",
+      "authors": "P, Mathan Kumar R, Sharan Peri, Rajagopal T, Mohana Selvi V, Mareeswaran S, Brindha B, Muthuraaman",
+      "journal": "Electrochimica Acta ",
+      "year": 2024,
+      "category": "article",
+      "doi": "10.1016/j.electacta.2023.143616"
     },
     {
       "id": 3,
@@ -820,10 +866,10 @@
       "lightSurfaceStrong": "#f3f4f6",
       "darkBackground": "#141414",
       "darkText": "#f8fafc",
-      "darkGradientFrom": "#43aad6",
-      "darkGradientTo": "#bd82f7",
+      "darkGradientFrom": "#45a9d3",
+      "darkGradientTo": "#4685a0",
       "darkGradientMid": "#f0abfc",
-      "darkSurface": "#1a1a1a",
+      "darkSurface": "#212121",
       "darkSurfaceStrong": "#1f2937"
     }
   },
