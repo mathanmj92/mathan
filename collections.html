@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collections</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gradient-from: #4f46e5; --gradient-to: #7c3aed;
+      --bg-page: #f1f5f9; --bg-card: #ffffff; --bg-sidebar: #ffffff;
+      --text-main: #0f172a; --text-muted: #64748b; --border-color: #e2e8f0;
+      --color-primary-50: #eef2ff; --color-primary-600: #4f46e5; --color-primary-800: #3730a3;
+    }
+    .dark {
+      --gradient-from: #6366f1; --gradient-to: #a78bfa;
+      --bg-page: #0b1220; --bg-card: #1e293b; --bg-sidebar: #111827;
+      --text-main: #f1f5f9; --text-muted: #94a3b8; --border-color: #334155;
+      --color-primary-50: #312e81; --color-primary-600: #818cf8; --color-primary-800: #c7d2fe;
+    }
+    body { font-family: Inter, system-ui, sans-serif; background: var(--bg-page); color: var(--text-main); margin: 0; }
+    .card { background: var(--bg-card); border: 1px solid var(--border-color); }
+    .sidebar { background: var(--bg-sidebar); border-right: 1px solid var(--border-color); }
+    .side-link { color: var(--text-muted); border-radius: 0.75rem; }
+    .side-link:hover { background: var(--color-primary-50); color: var(--color-primary-600); }
+    .side-link.active { background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to)); color: #fff; }
+    .filter-chip { border: 1px solid var(--border-color); color: var(--text-muted); background: var(--bg-card); border-radius: 9999px; font-size: 0.8rem; }
+    .filter-chip.active { background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to)); color: #fff; border-color: transparent; }
+    .cat-badge { font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 9999px; font-weight: 500; background: var(--color-primary-50); color: var(--color-primary-800); }
+    #loader { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; background: var(--bg-page); }
+    .thumb-card { transition: .15s ease; }
+    .thumb-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -8px rgba(0,0,0,.15); }
+    #backToTop {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 40;
+      width: 2.75rem; height: 2.75rem; border-radius: 9999px;
+      display: none; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to));
+      color: #fff; box-shadow: 0 8px 20px -6px rgba(0,0,0,.35); cursor: pointer;
+    }
+    #backToTop.show { display: flex; }
+
+    /* Mobile: stack sidebar on top, content below */
+    @media (max-width: 768px) {
+      .layout { flex-direction: column !important; }
+      .sidebar {
+        width: 100% !important;
+        height: auto !important;
+        position: relative !important;
+        top: auto !important;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        max-height: none;
+        overflow: visible;
+      }
+      .side-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 0.35rem !important;
+      }
+      .side-link {
+        width: auto !important;
+        font-size: 0.8rem !important;
+        padding: 0.4rem 0.75rem !important;
+      }
+      .main-content { width: 100% !important; min-width: 0 !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div id="loader">
+    <div class="text-center">
+      <div class="w-10 h-10 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin mx-auto mb-3"></div>
+      <p style="color:var(--text-muted)">Loading…</p>
+    </div>
+  </div>
+
+  <div class="layout flex min-h-screen">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar w-72 flex-shrink-0 md:sticky md:top-0 md:h-screen md:overflow-y-auto flex flex-col">
+      <div class="p-4 border-b" style="border-color: var(--border-color)">
+        <div class="flex items-center justify-between gap-2 mb-4">
+          <a href="index.html" class="inline-flex items-center gap-2 text-sm font-medium px-3 py-1.5 rounded-xl" style="color: var(--color-primary-600); border: 1px solid var(--border-color)">
+            <i class="fas fa-arrow-left text-xs"></i> Back to profile
+          </a>
+          <button type="button" onclick="toggleTheme()" class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="color: var(--text-muted); border: 1px solid var(--border-color)" title="Toggle theme">
+            <i class="fas fa-moon dark:hidden"></i>
+            <i class="fas fa-sun hidden dark:inline"></i>
+          </button>
+        </div>
+        <div class="flex items-center gap-3">
+          <img id="miniPhoto" src="" alt="" class="w-12 h-12 rounded-xl object-cover border hidden flex-shrink-0" style="border-color: var(--border-color)">
+          <div id="miniInitials" class="w-12 h-12 rounded-xl flex items-center justify-center text-sm font-bold text-white flex-shrink-0" style="background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to))"></div>
+          <div class="min-w-0">
+            <p id="miniName" class="font-semibold text-sm truncate" style="color: var(--text-main)"></p>
+            <p id="miniTitle" class="text-xs truncate" style="color: var(--text-muted)"></p>
+          </div>
+        </div>
+      </div>
+
+      <nav id="sideNav" class="side-nav p-3 flex flex-col gap-1 flex-1"></nav>
+    </aside>
+
+    <!-- RIGHT CONTENT -->
+    <main class="main-content flex-1 min-w-0 p-4 sm:p-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <div>
+          <h1 id="pageTitle" class="text-xl sm:text-2xl font-bold" style="color: var(--text-main)">Collections</h1>
+          <p id="pageSubtitle" class="text-sm mt-0.5" style="color: var(--text-muted)"></p>
+        </div>
+        <span id="itemCount" class="text-xs px-2 py-1 rounded-full" style="background: var(--color-primary-50); color: var(--color-primary-600)"></span>
+      </div>
+
+      <div id="subFilters" class="flex flex-wrap gap-2 mb-5"></div>
+      <div id="contentGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+      <p id="emptyState" class="text-center py-16 text-sm hidden" style="color: var(--text-muted)">No items in this category.</p>
+    </main>
+  </div>
+
+  <button id="backToTop" type="button" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <div id="detailModal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4" onclick="closeDetail()">
+    <div class="max-w-lg w-full max-h-[90vh] overflow-y-auto rounded-2xl p-5 shadow-2xl" style="background: var(--bg-card)" onclick="event.stopPropagation()">
+      <div class="flex justify-between items-start gap-3 mb-3">
+        <h3 id="detailTitle" class="font-bold text-lg" style="color: var(--text-main)"></h3>
+        <button onclick="closeDetail()" class="w-8 h-8 rounded-full flex items-center justify-center" style="background: var(--color-primary-50); color: var(--text-main)"><i class="fas fa-times"></i></button>
+      </div>
+      <img id="detailImage" src="" class="w-full max-h-64 object-cover rounded-xl mb-3 hidden" alt="">
+      <div id="detailBody" class="text-sm whitespace-pre-wrap leading-relaxed" style="color: var(--text-muted)"></div>
+      <a id="detailLink" href="#" target="_blank" class="inline-block mt-4 text-sm font-medium hover:underline" style="color: var(--color-primary-600); display:none">Open link →</a>
+    </div>
+  </div>
+
+  <script src="collections.js"></script>
+  <script>
+    function applyTheme(t) {
+      document.documentElement.classList.toggle('dark', t === 'dark');
+      localStorage.setItem('theme', t);
+    }
+    function toggleTheme() {
+      applyTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark');
+    }
+    (function () {
+      const s = localStorage.getItem('theme');
+      if (s) applyTheme(s);
+      else if (window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+    })();
+    window.addEventListener('scroll', function () {
+      const btn = document.getElementById('backToTop');
+      if (!btn) return;
+      if (window.scrollY > 300) btn.classList.add('show');
+      else btn.classList.remove('show');
+    });
+  </script>
+</body>
+</html>
