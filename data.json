@@ -702,56 +702,49 @@
       "title": "Sapiens",
       "description": "One of the world's preeminent historians and thinkers, Yuval Noah Harari challenges everything we know about being human.\n\nEarth is 4.5 billion years old. In just a fraction of that time, one species among countless others has conquered it: us.\n\nIn this bold and provocative book, Yuval Noah Harari explores who we are, how we got here and where we're going.\n**ONE OF THE GUARDIAN'S 100 BEST BOOKS OF THE 21st CENTURY**",
       "url": "https://www.amazon.in/Sapiens-Humankind-Yuval-Noah-Harari/dp/0099590085/ref=sr_1_1?s=books&sr=1-1",
-      "category": "books",
-      "subcategory": ""
+      "category": "books"
     },
     {
       "id": 1785340142167,
       "title": "The way you Eat now | Billy larson",
       "description": "The Way We Eat Now was written by food author Bee Wilson (not Bee Larson), and explores how modern global food changes impact our bodies and health. Paperbacks are widely available starting around 368 INR to 599 INR on online book platforms like Amazon India and BooksWagon.",
       "url": "https://www.amazon.in/Way-We-Eat-Now/dp/0008240760/ref=sr_1_1?s=books&sr=1-1",
-      "category": "books",
-      "subcategory": ""
+      "category": "books"
     },
     {
       "id": 1785340029403,
       "title": "What are you doing with your life",
       "description": "WHAT ARE YOU DOING WITH YOUR LIFE?J. KRISHNAMURTII TEACHINGS FOR TEENS, edited by Dale Carlson. Teens learn to understand the self, the purpose of life, work, education, relationships. ..",
       "url": "https://www.goodreads.com/book/show/22145861-what-are-you-doing-with-your-life",
-      "category": "books",
-      "subcategory": ""
+      "category": "books"
     },
     {
       "id": 1785339822328,
       "title": "Freedom from the Known",
       "description": "Freedom from the Known is a book by Jiddu Krishnamurti, originally published 1969.",
       "url": "https://store.kfoundation.org/books/freedom-from-the-known/",
-      "category": "books",
-      "subcategory": ""
+      "category": "books"
     },
     {
       "id": 1785339743304,
       "title": "The Subtle Art of Not Giving a F*ck ",
       "description": "The Subtle Art of Not Giving a Fuck: A Counterintuitive Approach to Living a Good Life is a 2016 nonfiction self-help book by American blogger and author Mark Manson",
       "url": "https://www.amazon.in/Subtle-Art-Not-Giving/dp/0062641549",
-      "category": "books",
-      "subcategory": ""
+      "category": "books"
     },
     {
       "id": 1785339709887,
       "title": "Miracle Morning | Hal Elrod (Author) ",
       "description": "Hal Elrod is a genius and his book The Miracle Morning has been magical in my life. What Hal has done is taken the 'best practices'-developed over centuries of human consciousness development-and condensed the 'best of the best; into a daily morning ritual. A ritual that is now part of my day.\"",
       "url": "https://www.amazon.in/Miracle-Morning-Not-So-Obvious-Guaranteed-Transform/dp/0979019710",
-      "category": "books",
-      "subcategory": ""
+      "category": "books"
     },
     {
       "id": 1785339593548,
       "title": "Behave by Robert Sapolsky",
       "description": "he Biology of Humans at Our Best and Worst is a 2017 non-fiction book by Robert Sapolsky. It describes how various biological processes influence human behavior, on scales ranging from less than a second before an action to thousands of years before",
       "url": "https://www.amazon.in/Behave-Biology-Humans-Best-Worst/dp/1594205078",
-      "category": "books",
-      "subcategory": ""
+      "category": "books"
     },
     {
       "id": 1784626002346,
@@ -767,7 +760,7 @@
       "description": "Interactive physics simulations and demonstrations covering kinematics, optics, waves, and mechanics.",
       "url": "https://ophysics.com/k.html",
       "category": "website",
-      "subcategory": ""
+      "subcategory": "Physics"
     },
     {
       "id": 1785200000002,
@@ -775,23 +768,21 @@
       "description": "2D physics simulation software that allows users to create and experiment with physical objects and mechanisms.",
       "url": "https://physion.net/",
       "category": "website",
-      "subcategory": ""
+      "subcategory": "Physics"
     },
     {
       "id": 1785200000003,
       "title": "CindyJS | Interactive Mathematics and Physics Gallery",
       "description": "A framework for dynamic geometry and physics visualizations directly in the web browser.",
       "url": "https://cindyjs.org/gallery/main/",
-      "category": "website",
-      "subcategory": ""
+      "category": "website"
     },
     {
       "id": 1785200000004,
       "title": "GeoGebra | Dynamic Mathematics & Science Suite",
       "description": "Interactive geometry, algebra, calculus, and physics modeling applications for education.",
       "url": "https://www.geogebra.org/",
-      "category": "website",
-      "subcategory": ""
+      "category": "website"
     },
     {
       "id": 1785200000005,
@@ -799,15 +790,14 @@
       "description": "Free, research-backed online physics, chemistry, biology, earth science, and math simulations from University of Colorado Boulder.",
       "url": "https://phet.colorado.edu/",
       "category": "website",
-      "subcategory": ""
+      "subcategory": "Physics"
     },
     {
       "id": 1785200000006,
       "title": "Wolfram Demonstrations Project",
       "description": "Open-source collection of interactive physics and mathematical computational concepts powered by Mathematica.",
       "url": "https://demonstrations.wolfram.com/",
-      "category": "website",
-      "subcategory": ""
+      "category": "website"
     },
     {
       "id": 1785200000007,
@@ -815,15 +805,14 @@
       "description": "Interactive mechanics and classical physics simulations showing differential equations in real-time.",
       "url": "https://www.myphysicslab.com/",
       "category": "website",
-      "subcategory": ""
+      "subcategory": "Physics"
     },
     {
       "id": 1785200000008,
       "title": "CK-12 Physics Simulations | Journey to Mars",
       "description": "Exploratory physics simulations focusing on space mechanics and gravity concepts.",
       "url": "https://interactives.ck12.org/simulations/physics.html?referrer=simulation&simulationName=journey-to-mars",
-      "category": "website",
-      "subcategory": ""
+      "category": "website"
     },
     {
       "id": 1785200000009,
@@ -831,15 +820,14 @@
       "description": "Interactive learning environments for quantum mechanics concepts hosted by University of St Andrews.",
       "url": "https://www.st-andrews.ac.uk/physics/quvis/flash.html",
       "category": "website",
-      "subcategory": ""
+      "subcategory": "Physics"
     },
     {
       "id": 1785200000010,
       "title": "CSUN | Sourcebook for Teaching Science",
       "description": "A collection of software, tools, and simulation resources tailored for teaching physics concepts.",
       "url": "https://www.csun.edu/science/software/simulations/physics.html",
-      "category": "website",
-      "subcategory": ""
+      "category": "website"
     },
     {
       "id": 1785200000011,
@@ -847,7 +835,7 @@
       "description": "Educational tutorials, interactive physics modules, concepts, and problem-solving tools.",
       "url": "https://www.physicsclassroom.com/",
       "category": "website",
-      "subcategory": ""
+      "subcategory": "Physics"
     },
     {
       "id": 1785200000012,
@@ -855,7 +843,7 @@
       "description": "Interactive mathematical graphing tool demonstrating wave dynamics and mathematical functions.",
       "url": "https://www.desmos.com/calculator/2rnqgoa6a4",
       "category": "website",
-      "subcategory": ""
+      "subcategory": "Physics"
     },
     {
       "id": 1785200000013,
@@ -863,7 +851,7 @@
       "description": "Interactive visual demonstrations for wave interference, sound waves, and classical physics.",
       "url": "https://academo.org/physics/",
       "category": "website",
-      "subcategory": ""
+      "subcategory": "Physics"
     },
     {
       "id": 1785200000014,
@@ -871,7 +859,7 @@
       "description": "An open-source initiative promoting mathematical and physical conceptual animations using Python and Manim.",
       "url": "https://math.animations.fossee.in/",
       "category": "website",
-      "subcategory": ""
+      "subcategory": "Physics"
     }
   ],
   "settings": {
@@ -991,8 +979,7 @@
       "date": "",
       "description": "On July 24, 2026, a coalition of two dozen major technology companies and organizations, including Meta, Microsoft, Nvidia, and IBM, signed an open letter urging US policymakers to support and protect open-weight AI models rather than restricting them. The signatories argue that making AI model parameters publicly available lowers entry barriers for startups and public institutions, fosters competition to reduce costs, and prevents vendor lock-in, while also contending that open models enhance security by allowing independent researchers to audit systems and develop defenses against AI-driven threats. Framing their stance as a modern parallel to the open-source software movement of the 1980s, the group calls for increased compute access and funding for shared datasets while warning against premature regulations that could stifle innovation, though they distinguish legitimate model distillation from unlawful data extraction.",
       "source": "https://www.artificialintelligence-news.com/news/meta-microsoft-nvidia-ibm-others-back-open-weight-ai/",
-      "image": "https://www.artificialintelligence-news.com/wp-content/uploads/2026/07/meta-microsoft-nvidia-ibm-open-source-ai-open-weight-policy-regulation-security-artificial-intelligence-distillation-security-1024x768.jpg",
-      "subcategory": ""
+      "image": "https://www.artificialintelligence-news.com/wp-content/uploads/2026/07/meta-microsoft-nvidia-ibm-open-source-ai-open-weight-policy-regulation-security-artificial-intelligence-distillation-security-1024x768.jpg"
     },
     {
       "id": 1785646733187,
@@ -1000,8 +987,7 @@
       "date": "",
       "description": "Northwestern University researchers, led by Professor Chris Wolverton and PhD candidate Chang-ti Chou, have developed a groundbreaking AI-powered method that accurately predicts the complex atomic structures of material interfaces, a critical step toward designing more efficient and durable technologies. By combining machine learning with quantum-mechanical calculations, the team successfully modeled grain boundaries in strontium titanate with results that matched experimental observations, offering a reliable new tool to optimize materials for batteries, solar cells, and electronics. Published in npj Computational Materials, this approach promises to revolutionize how scientists engineer longer-lasting and higher-performing devices by finally understanding and controlling the hidden boundaries within materials",
       "source": "https://www.mccormick.northwestern.edu/news/articles/2026/07/new-ai-method-reveals-material-interfaces/",
-      "image": "https://www.mccormick.northwestern.edu/images/news/2026/07/new-ai-method-reveals-material-interfaces-figure.gif",
-      "subcategory": ""
+      "image": "https://www.mccormick.northwestern.edu/images/news/2026/07/new-ai-method-reveals-material-interfaces-figure.gif"
     },
     {
       "id": 1785643853305,
@@ -1009,8 +995,7 @@
       "date": "",
       "description": "Argonne National Laboratory researchers have outlined an ambitious roadmap to accelerate battery breakthroughs using AI-powered large language models (LLMs). Published in Joule, the review proposes creating \"self-driving laboratories\" where LLM agents automate the entire research cycle—from mining literature and screening materials to directing robots for synthesis and testing. This approach aims to transform battery science by drastically speeding up discovery, reducing errors, and allowing scientists to focus on strategic innovation rather than manual experimentation.",
       "source": "https://techxplore.com/news/2026-06-turbo-battery-ai-ambitious-vision.html",
-      "image": "https://scx1.b-cdn.net/csz/news/800a/2026/turbo-charging-battery.jpg",
-      "subcategory": ""
+      "image": "https://scx1.b-cdn.net/csz/news/800a/2026/turbo-charging-battery.jpg"
     }
   ]
 }
