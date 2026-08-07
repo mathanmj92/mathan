@@ -19,7 +19,8 @@
       "publications": 24
     },
     "backdrop": "https://img.magnific.com/free-photo/flat-lay-blue-monday-paper-with-copy-space_23-2148756188.jpg?semt=ais_hybrid&w=740&q=80",
-    "backdropOpacity": 0.35
+    "backdropOpacity": 0.35,
+    "cvUrl": "https://drive.google.com/file/d/1dMujMHzc5DWt8Clemcp81N6G31tdDMm0/view?usp=sharing"
   },
   "socialLinks": {
     "twitter": "",
@@ -750,14 +751,16 @@
       "title": "Maathan Kumar P | Curriculum Vitae",
       "description": "Resource description",
       "url": "https://drive.google.com/file/d/1dMujMHzc5DWt8Clemcp81N6G31tdDMm0/view?usp=sharing",
-      "category": "document"
+      "category": "document",
+      "subcategory": ""
     },
     {
       "id": 1785200000001,
       "title": "oPhysics | Interactive Physics Simulations",
       "description": "Interactive physics simulations and demonstrations covering kinematics, optics, waves, and mechanics.",
       "url": "https://ophysics.com/k.html",
-      "category": "website"
+      "category": "website",
+      "subcategory": "Physics"
     },
     {
       "id": 1785200000002,
