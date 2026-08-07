@@ -42,31 +42,29 @@
     }
     #backToTop.show { display: flex; }
 
-    /* Mobile: stack sidebar on top, content below */
+    /* Desktop: sidebar visible */
+    .desktop-sidebar { display: flex; }
+    .mobile-topbar { display: none; }
+
+    /* Mobile drawer */
+    #catDrawerOverlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 50;
+    }
+    #catDrawerOverlay.open { display: block; }
+    #catDrawer {
+      position: fixed; top: 0; left: 0; bottom: 0; width: min(18rem, 85vw);
+      background: var(--bg-sidebar); z-index: 55;
+      transform: translateX(-105%); transition: transform .25s ease;
+      display: flex; flex-direction: column;
+      box-shadow: 4px 0 24px rgba(0,0,0,.15);
+    }
+    #catDrawer.open { transform: translateX(0); }
+
     @media (max-width: 768px) {
+      .desktop-sidebar { display: none !important; }
+      .mobile-topbar { display: block !important; }
       .layout { flex-direction: column !important; }
-      .sidebar {
-        width: 100% !important;
-        height: auto !important;
-        position: relative !important;
-        top: auto !important;
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        max-height: none;
-        overflow: visible;
-      }
-      .side-nav {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        gap: 0.35rem !important;
-      }
-      .side-link {
-        width: auto !important;
-        font-size: 0.8rem !important;
-        padding: 0.4rem 0.75rem !important;
-      }
-      .main-content { width: 100% !important; min-width: 0 !important; }
+      .main-content { width: 100% !important; }
     }
   </style>
 </head>
@@ -78,9 +76,41 @@
     </div>
   </div>
 
+  <!-- MOBILE TOP BAR (profile + Category button) -->
+  <div class="mobile-topbar sticky top-0 z-30 border-b" style="background: var(--bg-card); border-color: var(--border-color)">
+    <div class="px-4 py-3 flex items-center gap-3">
+      <a href="index.html" class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="border: 1px solid var(--border-color); color: var(--color-primary-600)" title="Back to profile">
+        <i class="fas fa-arrow-left text-sm"></i>
+      </a>
+      <img id="mPhoto" src="" alt="" class="w-10 h-10 rounded-xl object-cover border hidden flex-shrink-0" style="border-color: var(--border-color)">
+      <div id="mInitials" class="w-10 h-10 rounded-xl flex items-center justify-center text-xs font-bold text-white flex-shrink-0" style="background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to))"></div>
+      <div class="min-w-0 flex-1">
+        <p id="mName" class="font-semibold text-sm truncate" style="color: var(--text-main)"></p>
+        <p id="mCatLabel" class="text-[11px] truncate" style="color: var(--text-muted)">All collections</p>
+      </div>
+      <button type="button" onclick="openCatDrawer()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-white flex-shrink-0" style="background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to))">
+        <i class="fas fa-layer-group"></i> Categories
+      </button>
+      <button type="button" onclick="toggleTheme()" class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style="color: var(--text-muted); border: 1px solid var(--border-color)">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:inline"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- MOBILE CATEGORY DRAWER -->
+  <div id="catDrawerOverlay" onclick="closeCatDrawer()"></div>
+  <div id="catDrawer">
+    <div class="p-4 border-b flex items-center justify-between" style="border-color: var(--border-color)">
+      <span class="font-semibold text-sm" style="color: var(--text-main)">Categories</span>
+      <button type="button" onclick="closeCatDrawer()" class="w-8 h-8 rounded-full flex items-center justify-center" style="color: var(--text-muted)"><i class="fas fa-times"></i></button>
+    </div>
+    <nav id="drawerNav" class="p-3 flex flex-col gap-1 overflow-y-auto flex-1"></nav>
+  </div>
+
   <div class="layout flex min-h-screen">
-    <!-- LEFT SIDEBAR -->
-    <aside class="sidebar w-72 flex-shrink-0 md:sticky md:top-0 md:h-screen md:overflow-y-auto flex flex-col">
+    <!-- DESKTOP SIDEBAR -->
+    <aside class="desktop-sidebar sidebar w-72 flex-shrink-0 sticky top-0 h-screen overflow-y-auto flex-col">
       <div class="p-4 border-b" style="border-color: var(--border-color)">
         <div class="flex items-center justify-between gap-2 mb-4">
           <a href="index.html" class="inline-flex items-center gap-2 text-sm font-medium px-3 py-1.5 rounded-xl" style="color: var(--color-primary-600); border: 1px solid var(--border-color)">
@@ -100,20 +130,18 @@
           </div>
         </div>
       </div>
-
-      <nav id="sideNav" class="side-nav p-3 flex flex-col gap-1 flex-1"></nav>
+      <nav id="sideNav" class="p-3 flex flex-col gap-1 flex-1"></nav>
     </aside>
 
-    <!-- RIGHT CONTENT -->
+    <!-- CONTENT -->
     <main class="main-content flex-1 min-w-0 p-4 sm:p-6">
       <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
         <div>
-          <h1 id="pageTitle" class="text-xl sm:text-2xl font-bold" style="color: var(--text-main)">Collections</h1>
-          <p id="pageSubtitle" class="text-sm mt-0.5" style="color: var(--text-muted)"></p>
+          <h1 id="pageTitle" class="text-xl sm:text-2xl font-bold" style="color: var(--text-main)">All collections</h1>
+          <p id="pageSubtitle" class="text-sm mt-0.5" style="color: var(--text-muted)">Browse everything in one place</p>
         </div>
         <span id="itemCount" class="text-xs px-2 py-1 rounded-full" style="background: var(--color-primary-50); color: var(--color-primary-600)"></span>
       </div>
-
       <div id="subFilters" class="flex flex-wrap gap-2 mb-5"></div>
       <div id="contentGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
       <p id="emptyState" class="text-center py-16 text-sm hidden" style="color: var(--text-muted)">No items in this category.</p>
