@@ -255,7 +255,9 @@ function renderHero() {
   // Mail icon goes with social icons; scholar already in socialLinks
   renderSocialIcons('socialLinksContainer', { includeEmail: true });
   applyHeroBackdrop();
+  // CV is rendered as small icon with social icons
 }
+
 
 function applyHeroBackdrop() {
   const p = portfolioData.profile || {};
@@ -304,6 +306,13 @@ function renderSocialIcons(containerId, opts) {
         <i class="fas fa-envelope"></i>
       </a>`);
     }
+  }
+  const cvUrl = (portfolioData.profile?.cvUrl || portfolioData.profile?.cv || portfolioData.settings?.cvUrl || '').trim();
+  if (opts.includeEmail && cvUrl) {
+    parts.push(`
+      <a href="${cvUrl}" target="_blank" rel="noopener" class="text-xl transition hover:opacity-70" style="color: var(--color-primary-600)" title="Curriculum Vitae">
+        <i class="fas fa-file-alt"></i>
+      </a>`);
   }
   const el = document.getElementById(containerId);
   if (el) el.innerHTML = parts.join('');
@@ -615,9 +624,11 @@ function renderJobs() {
 }
 
 function renderLinks() {
+  const list = document.getElementById('linksList');
+  if (!list) return;
   const links = portfolioData.links || [];
   const filtered = currentLinkFilter === 'all' ? links : links.filter(l => l.category === currentLinkFilter);
-  document.getElementById('linksList').innerHTML = filtered.map(l => {
+  list.innerHTML = filtered.map(l => {
     const cat = (l.category || '').toLowerCase();
     const isVideo = /video/.test(cat);
     const isWeb = /website|web$/.test(cat) || cat === 'web';
