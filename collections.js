@@ -1,10 +1,11 @@
 
 let portfolioData = null;
-let activeCategory = null;
+let activeCategory = 'all'; // default: show everything
 let activeSub = 'all';
 let menuCategories = [];
 
 const CAT_ICONS = {
+  all: 'fas fa-border-all',
   news: 'fas fa-newspaper', videos: 'fas fa-video', video: 'fas fa-video',
   website: 'fas fa-globe', websites: 'fas fa-globe', tools: 'fas fa-wrench', tool: 'fas fa-wrench',
   books: 'fas fa-book', book: 'fas fa-book', document: 'fas fa-file-alt', documents: 'fas fa-file-alt',
@@ -50,63 +51,128 @@ function getSubcategory(item) {
   if (Array.isArray(item.tags) && item.tags.length) return String(item.tags[0]);
   return 'General';
 }
+
+function totalCount() {
+  return (portfolioData.links || []).length + (portfolioData.news || []).length;
+}
+
 function buildMenu() {
   const links = portfolioData.links || [];
   const counts = {};
-  links.forEach(l => { const c = (l.category || 'other').trim() || 'other'; counts[c] = (counts[c] || 0) + 1; });
-  menuCategories = Object.keys(counts).sort((a,b)=>a.localeCompare(b)).map(k => ({
-    key: 'link:' + k, type: 'link', category: k, label: humanize(k), count: counts[k], icon: iconFor(k)
-  }));
+  links.forEach(l => {
+    const c = (l.category || 'other').trim() || 'other';
+    counts[c] = (counts[c] || 0) + 1;
+  });
+  menuCategories = [
+    { key: 'all', type: 'all', category: 'all', label: 'All', count: totalCount(), icon: iconFor('all') }
+  ];
   const news = portfolioData.news || [];
   if (news.length) {
-    menuCategories.unshift({ key: 'news', type: 'news', category: 'news', label: 'News', count: news.length, icon: iconFor('news') });
+    menuCategories.push({ key: 'news', type: 'news', category: 'news', label: 'News', count: news.length, icon: iconFor('news') });
   }
-  if (!activeCategory && menuCategories.length) activeCategory = menuCategories[0].key;
+  Object.keys(counts).sort((a, b) => a.localeCompare(b)).forEach(k => {
+    menuCategories.push({
+      key: 'link:' + k, type: 'link', category: k, label: humanize(k), count: counts[k], icon: iconFor(k)
+    });
+  });
+  if (!activeCategory) activeCategory = 'all';
 }
-function renderSidebar() {
+
+function setProfileBits() {
   const p = portfolioData.profile || {};
-  document.getElementById('miniName').textContent = p.name || '';
-  document.getElementById('miniTitle').textContent = p.title || '';
   document.title = (p.name || 'Portfolio') + ' · Collections';
+  // desktop
   const photo = document.getElementById('miniPhoto');
   const init = document.getElementById('miniInitials');
+  document.getElementById('miniName').textContent = p.name || '';
+  document.getElementById('miniTitle').textContent = p.title || '';
   if (p.photo) { photo.src = p.photo; photo.classList.remove('hidden'); init.classList.add('hidden'); }
   else { photo.classList.add('hidden'); init.classList.remove('hidden'); init.textContent = getInitials(p.name); }
-  const nav = document.getElementById('sideNav');
-  nav.innerHTML = menuCategories.map(m => `
+  // mobile topbar
+  const mPhoto = document.getElementById('mPhoto');
+  const mInit = document.getElementById('mInitials');
+  document.getElementById('mName').textContent = p.name || '';
+  if (mPhoto && mInit) {
+    if (p.photo) { mPhoto.src = p.photo; mPhoto.classList.remove('hidden'); mInit.classList.add('hidden'); }
+    else { mPhoto.classList.add('hidden'); mInit.classList.remove('hidden'); mInit.textContent = getInitials(p.name); }
+  }
+}
+
+function navButtonsHtml() {
+  return menuCategories.map(m => `
     <button type="button" class="side-link w-full text-left px-3 py-2.5 text-sm font-medium flex items-center gap-2 ${activeCategory === m.key ? 'active' : ''}" data-key="${m.key}">
       <i class="${m.icon} w-5 text-center opacity-90"></i>
       <span class="flex-1 truncate">${m.label}</span>
       <span class="text-[10px] opacity-80">${m.count}</span>
-    </button>`).join('') || '<p class="text-xs px-2" style="color:var(--text-muted)">No collections yet.</p>';
-  nav.querySelectorAll('.side-link').forEach(btn => {
-    btn.addEventListener('click', () => { activeCategory = btn.dataset.key; activeSub = 'all'; renderSidebar(); renderContent(); });
+    </button>
+  `).join('');
+}
+
+function bindNav(container) {
+  if (!container) return;
+  container.querySelectorAll('.side-link').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCategory = btn.dataset.key;
+      activeSub = 'all';
+      renderNav();
+      renderContent();
+      closeCatDrawer();
+    });
   });
 }
+
+function renderNav() {
+  const side = document.getElementById('sideNav');
+  const drawer = document.getElementById('drawerNav');
+  const html = navButtonsHtml();
+  if (side) { side.innerHTML = html; bindNav(side); }
+  if (drawer) { drawer.innerHTML = html; bindNav(drawer); }
+}
+
+function openCatDrawer() {
+  document.getElementById('catDrawer')?.classList.add('open');
+  document.getElementById('catDrawerOverlay')?.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCatDrawer() {
+  document.getElementById('catDrawer')?.classList.remove('open');
+  document.getElementById('catDrawerOverlay')?.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 function currentItems() {
-  if (!activeCategory) return [];
-  if (activeCategory === 'news') {
-    return (portfolioData.news || []).map(n => ({
-      kind: 'news', title: n.title || 'Untitled', description: n.description || '', image: n.image || '',
-      url: n.source || n.url || n.link || '', date: n.date || '', subcategory: getSubcategory(n)
-    }));
+  const newsItems = (portfolioData.news || []).map(n => ({
+    kind: 'news', title: n.title || 'Untitled', description: n.description || '', image: n.image || '',
+    url: n.source || n.url || n.link || '', date: n.date || '', subcategory: getSubcategory(n), category: 'news'
+  }));
+  const linkItems = (portfolioData.links || []).map(l => ({
+    kind: 'link', title: l.title || 'Untitled', description: l.description || '', image: l.image || '',
+    url: l.url || '', date: '', category: l.category || 'other', subcategory: getSubcategory(l)
+  }));
+
+  if (activeCategory === 'all') {
+    // news first (newest-ish), then links
+    return [...newsItems, ...linkItems];
   }
+  if (activeCategory === 'news') return newsItems;
   if (activeCategory.startsWith('link:')) {
     const cat = activeCategory.slice(5);
-    return (portfolioData.links || []).filter(l => (l.category || 'other') === cat).map(l => ({
-      kind: 'link', title: l.title || 'Untitled', description: l.description || '', image: l.image || '',
-      url: l.url || '', date: '', category: l.category || cat, subcategory: getSubcategory(l)
-    }));
+    return linkItems.filter(l => (l.category || 'other') === cat);
   }
   return [];
 }
+
 function renderContent() {
   let items = currentItems();
   const menu = menuCategories.find(m => m.key === activeCategory);
-  document.getElementById('pageTitle').textContent = menu ? menu.label : 'Collections';
+  const title = menu ? (menu.key === 'all' ? 'All collections' : menu.label) : 'Collections';
+  document.getElementById('pageTitle').textContent = title;
   document.getElementById('pageSubtitle').textContent = menu
-    ? (menu.type === 'news' ? 'Latest updates and announcements' : 'Browse ' + menu.label.toLowerCase() + ' from the collection')
+    ? (menu.key === 'all' ? 'Browse everything in one place' : menu.type === 'news' ? 'Latest updates and announcements' : 'Browse ' + menu.label.toLowerCase())
     : '';
+  const mLabel = document.getElementById('mCatLabel');
+  if (mLabel) mLabel.textContent = title;
+
   const subs = [...new Set(items.map(i => i.subcategory || 'General'))].sort();
   const subEl = document.getElementById('subFilters');
   if (subs.length > 1 || (subs.length === 1 && subs[0] !== 'General')) {
@@ -116,23 +182,27 @@ function renderContent() {
       btn.addEventListener('click', () => { activeSub = btn.dataset.sub; renderContent(); });
     });
   } else subEl.innerHTML = '';
+
   if (activeSub !== 'all') items = items.filter(i => (i.subcategory || 'General') === activeSub);
   document.getElementById('itemCount').textContent = items.length + ' item' + (items.length !== 1 ? 's' : '');
+
   const grid = document.getElementById('contentGrid');
   const empty = document.getElementById('emptyState');
   if (!items.length) { grid.innerHTML = ''; empty.classList.remove('hidden'); return; }
   empty.classList.add('hidden');
+
   const videoMode = menu && isVideoCat(menu.category);
   grid.className = videoMode
     ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'
     : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4';
   window._visibleItems = items;
+
   grid.innerHTML = items.map((item, i) => {
     if (item.kind === 'news') {
       return `<article class="card thumb-card rounded-xl overflow-hidden cursor-pointer" onclick="openItem(${i})">
         ${item.image ? `<img src="${item.image}" class="w-full h-36 object-cover" loading="lazy" alt="">` : `<div class="w-full h-24 flex items-center justify-center" style="background:var(--color-primary-50)"><i class="fas fa-newspaper text-2xl" style="color:var(--color-primary-600)"></i></div>`}
         <div class="p-3">
-          <p class="text-[10px] mb-1" style="color:var(--text-muted)">${item.date || 'News'}${item.subcategory && item.subcategory !== 'General' ? ' · ' + humanize(item.subcategory) : ''}</p>
+          <p class="text-[10px] mb-1" style="color:var(--text-muted)">${item.date || 'News'}${activeCategory === 'all' ? ' · News' : ''}</p>
           <h3 class="font-semibold text-sm leading-snug line-clamp-2" style="color:var(--text-main)">${item.title}</h3>
           <p class="text-xs mt-1 line-clamp-2" style="color:var(--text-muted)">${item.description}</p>
         </div></article>`;
@@ -146,7 +216,6 @@ function renderContent() {
         </div>
         <div class="p-3">
           <h3 class="font-semibold text-sm leading-snug line-clamp-2" style="color:var(--text-main)">${item.title}</h3>
-          ${item.subcategory && item.subcategory !== 'General' ? `<p class="text-[10px] mt-1 cat-badge inline-block">${humanize(item.subcategory)}</p>` : ''}
           ${item.description ? `<p class="text-xs mt-1 line-clamp-2" style="color:var(--text-muted)">${item.description}</p>` : ''}
         </div></a>`;
     }
@@ -169,11 +238,13 @@ function renderContent() {
     return `<a href="${item.url || '#'}" target="_blank" rel="noopener" class="card thumb-card rounded-xl p-3 block">
       <div class="flex items-start gap-3">${media}<div class="min-w-0 flex-1">
         <h3 class="font-semibold text-sm leading-snug line-clamp-2" style="color:var(--text-main)">${item.title}</h3>
+        ${activeCategory === 'all' ? `<span class="cat-badge inline-block mt-1">${humanize(item.category)}</span>` : ''}
         ${item.subcategory && item.subcategory !== 'General' ? `<span class="cat-badge inline-block mt-1">${humanize(item.subcategory)}</span>` : ''}
         ${item.description ? `<p class="text-xs mt-1 line-clamp-2" style="color:var(--text-muted)">${item.description}</p>` : ''}
       </div></div></a>`;
   }).join('');
 }
+
 function openItem(i) {
   const item = (window._visibleItems || [])[i];
   if (!item) return;
@@ -192,12 +263,19 @@ function closeDetail() {
   const modal = document.getElementById('detailModal');
   modal.classList.add('hidden'); modal.classList.remove('flex');
 }
+
 async function load() {
   try {
     const res = await fetch('./data.json?t=' + Date.now());
     if (!res.ok) throw new Error('HTTP ' + res.status);
     portfolioData = await res.json();
-    applyThemeColors(); buildMenu(); renderSidebar(); renderContent();
+    applyThemeColors();
+    activeCategory = 'all';
+    activeSub = 'all';
+    buildMenu();
+    setProfileBits();
+    renderNav();
+    renderContent();
     const loader = document.getElementById('loader');
     if (loader) { loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 300); }
   } catch (e) {
