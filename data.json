@@ -698,6 +698,38 @@
   ],
   "links": [
     {
+      "id": 1786290029904,
+      "title": "Office CLI",
+      "description": "Run officecli new pptx … from scripts; just officecli to enter the interactive terminal—same binary. For non-terminal users, the officedex desktop app is here.",
+      "url": "https://officecli.io/#",
+      "category": "website",
+      "subcategory": "Tools"
+    },
+    {
+      "id": 1786287934737,
+      "title": "Gem office",
+      "description": "Full-featured office suite\nSupports Word, Excel, PowerPoint, and PDF files.\nCreate, edit, and review with ease.",
+      "url": "https://genoffice.ai/",
+      "category": "website",
+      "subcategory": "Tools"
+    },
+    {
+      "id": 1786287834444,
+      "title": "Manim",
+      "description": "Manim is an animation engine for explanatory math videos. It's used to create precise animations programmatically, as demonstrated in the videos of 3Blue1Brown.",
+      "url": "https://github.com/manimCommunity/manim",
+      "category": "Repositories",
+      "subcategory": ""
+    },
+    {
+      "id": 1786287790031,
+      "title": "Statanim",
+      "description": "Manim is extraordinary at animating mathematics — but when it comes to statistics, you're on your own. Want to show a normal distribution shading its tails as sigma changes? A probability tree that builds itself node by node? A deck of cards dealing out to demonstrate hypergeometric sampling? With vanilla Manim, each of these requires hundreds of lines of low-level geometry code before you even start on the actual statistics.",
+      "url": "https://github.com/rishabhbhartiya/STATANIM",
+      "category": "Repositories",
+      "subcategory": ""
+    },
+    {
       "id": 1786283786544,
       "title": "Open Science",
       "description": "OpenScience is an AI workbench for scientific research. You give it a goal, and it works through the research loop the way a capable collaborator would. It reads the papers that matter, forms a hypothesis, writes and runs code, runs experiments on real compute, queries the major scientific databases, and writes up the result. It runs as a workspace in your browser and works with any frontier or open-weight model from Anthropic, OpenAI, Google, and dozens of other providers, using your own API keys. No account is required.",
