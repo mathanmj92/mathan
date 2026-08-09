@@ -698,6 +698,62 @@
   ],
   "links": [
     {
+      "id": 1786283786544,
+      "title": "Open Science",
+      "description": "OpenScience is an AI workbench for scientific research. You give it a goal, and it works through the research loop the way a capable collaborator would. It reads the papers that matter, forms a hypothesis, writes and runs code, runs experiments on real compute, queries the major scientific databases, and writes up the result. It runs as a workspace in your browser and works with any frontier or open-weight model from Anthropic, OpenAI, Google, and dozens of other providers, using your own API keys. No account is required.",
+      "url": "https://github.com/synthetic-sciences/openscience",
+      "category": "Repositories",
+      "subcategory": ""
+    },
+    {
+      "id": 1786283576725,
+      "title": "Paddle OCR",
+      "description": "PaddleOCR converts PDF documents and images into structured, LLM-ready data (JSON/Markdown) with industry-leading accuracy. With 70k+ Stars and trusted by top-tier projects like Dify, RAGFlow, and Cherry Studio, PaddleOCR is the bedrock for building intelligent RAG and Agentic applications.",
+      "url": "https://github.com/PADDLEPADDLE/PADDLEOCR",
+      "category": "Repositories",
+      "subcategory": ""
+    },
+    {
+      "id": 1786283496143,
+      "title": "Open notebook",
+      "description": "In a world dominated by Artificial Intelligence, having the ability to think 🧠 and acquire new knowledge 💡, is a skill that should not be a privilege for a few, nor restricted to a single provider.",
+      "url": "https://github.com/lfnovo/open-notebook",
+      "category": "Repositories",
+      "subcategory": ""
+    },
+    {
+      "id": 1786283059510,
+      "title": "Maxwell's Equations",
+      "description": "Check out his channel for more videos.",
+      "url": "https://youtu.be/97hW_LSM4MY",
+      "category": "Videos",
+      "subcategory": "Physics"
+    },
+    {
+      "id": 1786282832173,
+      "title": "Feynman's Lectures",
+      "description": "Richard Phillips Feynman was an American theoretical physicist. He shared the 1965 Nobel Prize in Physics with Julian Schwinger and Shin'ichirō Tomonaga \"for their fundamental work in quantum electrodynamics, with deep-ploughing consequences for the physics of elementary particles\"",
+      "url": "https://www.feynmanlectures.caltech.edu/",
+      "category": "website",
+      "subcategory": "Physics"
+    },
+    {
+      "id": 1786282550767,
+      "title": " How wiggling charges give rise to light",
+      "description": "Here he explains what is light with experimental setup , shows the split of white light into various wavelengths. ",
+      "url": "https://youtu.be/aXRTczANuIs",
+      "category": "Videos",
+      "subcategory": "Physics"
+    },
+    {
+      "id": 1786281362876,
+      "title": "Quanta | Plank's Constant ",
+      "description": "Follow and watch his videos for detailed insights into physics",
+      "url": "https://youtu.be/r7k5G_6yzDw",
+      "category": "Videos",
+      "subcategory": "Physics"
+    },
+    {
       "id": 1785340327373,
       "title": "Sapiens",
       "description": "One of the world's preeminent historians and thinkers, Yuval Noah Harari challenges everything we know about being human.\n\nEarth is 4.5 billion years old. In just a fraction of that time, one species among countless others has conquered it: us.\n\nIn this bold and provocative book, Yuval Noah Harari explores who we are, how we got here and where we're going.\n**ONE OF THE GUARDIAN'S 100 BEST BOOKS OF THE 21st CENTURY**",
