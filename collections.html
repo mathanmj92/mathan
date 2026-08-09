@@ -88,6 +88,9 @@
         <p id="mName" class="font-semibold text-sm truncate" style="color: var(--text-main)"></p>
         <p id="mCatLabel" class="text-[11px] truncate" style="color: var(--text-muted)">All collections</p>
       </div>
+      <a id="suggestBtnMobile" href="mailto:mathankumar.sh@psgitech.ac.in?subject=Collection%20suggestion%20for%20portfolio" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-semibold flex-shrink-0" style="color: var(--color-primary-600); border: 1px solid var(--border-color)">
+        <i class="fas fa-lightbulb"></i>
+      </a>
       <button type="button" onclick="openCatDrawer()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-white flex-shrink-0" style="background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to))">
         <i class="fas fa-layer-group"></i> Categories
       </button>
@@ -140,7 +143,12 @@
           <h1 id="pageTitle" class="text-xl sm:text-2xl font-bold" style="color: var(--text-main)">All collections</h1>
           <p id="pageSubtitle" class="text-sm mt-0.5" style="color: var(--text-muted)">Browse everything in one place</p>
         </div>
-        <span id="itemCount" class="text-xs px-2 py-1 rounded-full" style="background: var(--color-primary-50); color: var(--color-primary-600)"></span>
+        <div class="flex items-center gap-2 flex-wrap">
+          <span id="itemCount" class="text-xs px-2 py-1 rounded-full" style="background: var(--color-primary-50); color: var(--color-primary-600)"></span>
+          <a id="suggestBtn" href="mailto:mathankumar.sh@psgitech.ac.in?subject=Collection%20suggestion%20for%20portfolio" class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-xl text-white" style="background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to))">
+            <i class="fas fa-lightbulb"></i> Suggest
+          </a>
+        </div>
       </div>
       <div id="subFilters" class="flex flex-wrap gap-2 mb-5"></div>
       <div id="contentGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
