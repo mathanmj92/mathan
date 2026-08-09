@@ -23,7 +23,7 @@ function getInitials(name) {
 function youtubeThumb(url) {
   if (!url) return null;
   const m = String(url).match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([\w-]{6,})/i);
-  return m ? 'https://img.youtube.com/vi/' + m[1] + '/hqdefault.jpg' : null;
+  return m ? 'https://img.youtube.com/vi/' + m[1] + '/mqdefault.jpg' : null;
 }
 function faviconUrl(pageUrl) {
   try { return 'https://www.google.com/s2/favicons?domain=' + encodeURIComponent(new URL(pageUrl).hostname) + '&sz=64'; }
@@ -173,17 +173,24 @@ function renderContent() {
   const mLabel = document.getElementById('mCatLabel');
   if (mLabel) mLabel.textContent = title;
 
-  const subs = [...new Set(items.map(i => i.subcategory || 'General'))].sort();
   const subEl = document.getElementById('subFilters');
-  if (subs.length > 1 || (subs.length === 1 && subs[0] !== 'General')) {
-    const chips = ['all', ...subs];
-    subEl.innerHTML = chips.map(s => `<button type="button" class="filter-chip px-3 py-1 ${activeSub === s ? 'active' : ''}" data-sub="${s}">${s === 'all' ? 'All' : humanize(s)}</button>`).join('');
-    subEl.querySelectorAll('.filter-chip').forEach(btn => {
-      btn.addEventListener('click', () => { activeSub = btn.dataset.sub; renderContent(); });
-    });
-  } else subEl.innerHTML = '';
-
-  if (activeSub !== 'all') items = items.filter(i => (i.subcategory || 'General') === activeSub);
+  // Subcategory filters only for specific sections (not "All")
+  if (activeCategory === 'all') {
+    subEl.innerHTML = '';
+    activeSub = 'all';
+  } else {
+    const subs = [...new Set(items.map(i => i.subcategory || 'General'))].sort();
+    if (subs.length > 1 || (subs.length === 1 && subs[0] !== 'General')) {
+      const chips = ['all', ...subs];
+      subEl.innerHTML = chips.map(s => `<button type="button" class="filter-chip px-3 py-1 ${activeSub === s ? 'active' : ''}" data-sub="${s}">${s === 'all' ? 'All' : humanize(s)}</button>`).join('');
+      subEl.querySelectorAll('.filter-chip').forEach(btn => {
+        btn.addEventListener('click', () => { activeSub = btn.dataset.sub; renderContent(); });
+      });
+    } else {
+      subEl.innerHTML = '';
+    }
+    if (activeSub !== 'all') items = items.filter(i => (i.subcategory || 'General') === activeSub);
+  }
   document.getElementById('itemCount').textContent = items.length + ' item' + (items.length !== 1 ? 's' : '');
 
   const grid = document.getElementById('contentGrid');
@@ -193,7 +200,7 @@ function renderContent() {
 
   const videoMode = menu && isVideoCat(menu.category);
   grid.className = videoMode
-    ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'
+    ? 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3'
     : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4';
   window._visibleItems = items;
 
@@ -210,9 +217,9 @@ function renderContent() {
     if (videoMode || isVideoCat(item.category)) {
       const thumb = youtubeThumb(item.url) || item.image;
       return `<a href="${item.url || '#'}" target="_blank" rel="noopener" class="card thumb-card rounded-xl overflow-hidden block">
-        <div class="relative aspect-video bg-black/10">
-          ${thumb ? `<img src="${thumb}" class="w-full h-full object-cover" loading="lazy" alt="">` : `<div class="w-full h-full flex items-center justify-center min-h-[140px]"><i class="fab fa-youtube text-4xl text-red-500"></i></div>`}
-          <span class="absolute bottom-2 right-2 text-[10px] px-1.5 py-0.5 rounded bg-black/70 text-white"><i class="fas fa-play mr-1"></i>Video</span>
+        <div class="relative bg-black/10" style="height:7.5rem">
+          ${thumb ? `<img src="${thumb}" class="w-full h-full object-cover" loading="lazy" alt="">` : `<div class="w-full h-full flex items-center justify-center"><i class="fab fa-youtube text-3xl text-red-500"></i></div>`}
+          <span class="absolute bottom-1.5 right-1.5 text-[10px] px-1.5 py-0.5 rounded bg-black/70 text-white"><i class="fas fa-play mr-1"></i>Video</span>
         </div>
         <div class="p-3">
           <h3 class="font-semibold text-sm leading-snug line-clamp-2" style="color:var(--text-main)">${item.title}</h3>
