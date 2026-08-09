@@ -199,17 +199,68 @@ function renderContent() {
   empty.classList.add('hidden');
 
   const videoMode = menu && isVideoCat(menu.category);
-  grid.className = videoMode
-    ? 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3'
-    : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4';
+  const isAll = activeCategory === 'all';
+  // All view: uniform compact cards (no huge video blocks next to books)
+  if (isAll) {
+    grid.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3';
+  } else if (videoMode) {
+    grid.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3';
+  } else {
+    grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4';
+  }
   window._visibleItems = items;
 
-  grid.innerHTML = items.map((item, i) => {
+  function cardHtml(item, i) {
+    // ALL view: uniform compact cards so mixed types share the same row height
+    if (isAll) {
+      let mediaAll = '';
+      if (item.kind === 'news' && item.image) {
+        mediaAll = `<img src="${item.image}" class="w-11 h-11 rounded-lg object-cover flex-shrink-0" alt="" loading="lazy">`;
+      } else if (isVideoCat(item.category)) {
+        const t = youtubeThumb(item.url) || item.image;
+        mediaAll = t
+          ? `<img src="${t}" class="w-14 h-11 rounded-lg object-cover flex-shrink-0" alt="" loading="lazy">`
+          : `<div class="w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--color-primary-50)"><i class="fab fa-youtube text-red-500"></i></div>`;
+      } else if (item.image) {
+        mediaAll = `<img src="${item.image}" class="w-11 h-11 rounded-lg object-cover flex-shrink-0" alt="" loading="lazy">`;
+      } else {
+        const cat = (item.category || '').toLowerCase();
+        let ic = 'fa-link';
+        if (/book/.test(cat)) ic = 'fa-book';
+        else if (/doc/.test(cat)) ic = 'fa-file-alt';
+        else if (/web|tool|site/.test(cat)) ic = 'fa-globe';
+        else if (/repo|git/.test(cat)) ic = 'fa-github';
+        else if (item.kind === 'news') ic = 'fa-newspaper';
+        const fab = ic === 'fa-github';
+        if (/web|tool|site/.test(cat) && item.url) {
+          const fav = faviconUrl(item.url);
+          mediaAll = fav
+            ? `<img src="${fav}" class="w-11 h-11 rounded-lg bg-white p-1 flex-shrink-0" alt="">`
+            : `<div class="w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--color-primary-50)"><i class="fas fa-globe" style="color:var(--color-primary-600)"></i></div>`;
+        } else {
+          mediaAll = `<div class="w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--color-primary-50)"><i class="${fab ? 'fab' : 'fas'} ${ic}" style="color:var(--color-primary-600)"></i></div>`;
+        }
+      }
+      const label = humanize(item.kind === 'news' ? 'news' : (item.category || 'item'));
+      if (item.kind === 'news') {
+        return `<button type="button" onclick="openItem(${i})" class="card thumb-card rounded-xl p-2.5 text-left w-full h-full" style="min-height:4.5rem">
+          <div class="flex items-center gap-2.5">${mediaAll}<div class="min-w-0 flex-1">
+            <h3 class="font-semibold text-xs leading-snug line-clamp-2" style="color:var(--text-main)">${item.title}</h3>
+            <span class="cat-badge inline-block mt-1">${label}</span>
+          </div></div></button>`;
+      }
+      return `<a href="${item.url || '#'}" target="_blank" rel="noopener" class="card thumb-card rounded-xl p-2.5 block h-full" style="min-height:4.5rem">
+        <div class="flex items-center gap-2.5">${mediaAll}<div class="min-w-0 flex-1">
+          <h3 class="font-semibold text-xs leading-snug line-clamp-2" style="color:var(--text-main)">${item.title}</h3>
+          <span class="cat-badge inline-block mt-1">${label}</span>
+        </div></div></a>`;
+    }
+
     if (item.kind === 'news') {
       return `<article class="card thumb-card rounded-xl overflow-hidden cursor-pointer" onclick="openItem(${i})">
         ${item.image ? `<img src="${item.image}" class="w-full h-36 object-cover" loading="lazy" alt="">` : `<div class="w-full h-24 flex items-center justify-center" style="background:var(--color-primary-50)"><i class="fas fa-newspaper text-2xl" style="color:var(--color-primary-600)"></i></div>`}
         <div class="p-3">
-          <p class="text-[10px] mb-1" style="color:var(--text-muted)">${item.date || 'News'}${activeCategory === 'all' ? ' · News' : ''}</p>
+          <p class="text-[10px] mb-1" style="color:var(--text-muted)">${item.date || 'News'}</p>
           <h3 class="font-semibold text-sm leading-snug line-clamp-2" style="color:var(--text-main)">${item.title}</h3>
           <p class="text-xs mt-1 line-clamp-2" style="color:var(--text-muted)">${item.description}</p>
         </div></article>`;
@@ -245,11 +296,12 @@ function renderContent() {
     return `<a href="${item.url || '#'}" target="_blank" rel="noopener" class="card thumb-card rounded-xl p-3 block">
       <div class="flex items-start gap-3">${media}<div class="min-w-0 flex-1">
         <h3 class="font-semibold text-sm leading-snug line-clamp-2" style="color:var(--text-main)">${item.title}</h3>
-        ${activeCategory === 'all' ? `<span class="cat-badge inline-block mt-1">${humanize(item.category)}</span>` : ''}
         ${item.subcategory && item.subcategory !== 'General' ? `<span class="cat-badge inline-block mt-1">${humanize(item.subcategory)}</span>` : ''}
         ${item.description ? `<p class="text-xs mt-1 line-clamp-2" style="color:var(--text-muted)">${item.description}</p>` : ''}
       </div></div></a>`;
-  }).join('');
+  }
+
+  grid.innerHTML = items.map((item, i) => cardHtml(item, i)).join('');
 }
 
 function openItem(i) {
@@ -281,6 +333,12 @@ async function load() {
     activeSub = 'all';
     buildMenu();
     setProfileBits();
+    const email = portfolioData.profile?.email || portfolioData.contact?.email || 'mathankumar.sh@psgitech.ac.in';
+    const mail = 'mailto:' + email + '?subject=' + encodeURIComponent('Collection suggestion for portfolio');
+    ['suggestBtn', 'suggestBtnMobile'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.href = mail;
+    });
     renderNav();
     renderContent();
     const loader = document.getElementById('loader');
