@@ -698,6 +698,30 @@
   ],
   "links": [
     {
+      "id": 1786358385813,
+      "title": "Excel | Data extractor",
+      "description": "You can extract and club data columns from various excel sheets, and customize your resultant format. you can export it to word or excell as well.\nthe program is in beta version.",
+      "url": "https://mathanmj92.github.io/Tools/",
+      "category": "Tools",
+      "subcategory": ""
+    },
+    {
+      "id": 1786357971943,
+      "title": "FTIR analyser",
+      "description": "Open-Source Software for Publication-Quality FTIR Analysis\nSpectrum Processing • Peak Assignment • Scientific Visualization",
+      "url": "https://github.com/khalid-farazi/FTIR-Lab",
+      "category": "Repositories",
+      "subcategory": ""
+    },
+    {
+      "id": 1786357652264,
+      "title": "Wikimedia Commons",
+      "description": "A collection of 145,736,664 freely usable media files to which anyone can contribute",
+      "url": "https://commons.wikimedia.org/wiki/Main_Page",
+      "category": "website",
+      "subcategory": ""
+    },
+    {
       "id": 1786290029904,
       "title": "Office CLI",
       "description": "Run officecli new pptx … from scripts; just officecli to enter the interactive terminal—same binary. For non-terminal users, the officedex desktop app is here.",
