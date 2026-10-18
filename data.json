@@ -147,7 +147,8 @@
       "year": 2026,
       "category": "article",
       "doi": "https://doi.org/10.1016/j.matchemphys.2025.131489",
-      "citations": 0
+      "citations": 0,
+      "selected": true
     },
     {
       "id": 1785858124828,
@@ -157,7 +158,8 @@
       "year": 2025,
       "category": "article",
       "doi": "https://doi.org/10.1016/j.matchemphys.2025.131489",
-      "citations": 0
+      "citations": 0,
+      "selected": true
     },
     {
       "id": 1785857849649,
@@ -167,7 +169,8 @@
       "year": 2026,
       "category": "book_chapter",
       "doi": "https://doi.org/10.1007/978-3-032-04593-5_4",
-      "citations": 0
+      "citations": 0,
+      "selected": true
     },
     {
       "id": 2,
@@ -999,7 +1002,8 @@
     "palette": "potentiostat",
     "allowPaletteSwitch": true,
     "followDarkMode": true,
-    "paletteOverrides": {}
+    "paletteOverrides": {},
+    "lastUpdated": "2026-10"
   },
   "researchAreas": [
     {
