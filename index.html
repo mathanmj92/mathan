@@ -25,77 +25,80 @@
     <nav class="nav" aria-label="Sections">
       <a href="#research">Research</a>
       <a href="#publications">Publications</a>
-      <a href="#path">Path</a>
       <a href="#teaching">Teaching</a>
-      <a href="#skills">Skills</a>
-      <a href="#openings">Openings</a>
-      <a href="#events">Events</a>
       <a href="#gallery">Gallery</a>
       <a href="collections.html">Collections</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="header-tools">
       <div class="palette" id="palette" role="group" aria-label="Colour palette" data-palette-switch></div>
-      <button class="btn menu-btn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Toggle Menu">
+      <button class="btn menu-btn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         <span>Menu</span>
       </button>
     </div>
-  </div>
-  <div class="drawer" id="drawer" hidden>
-    <nav aria-label="Mobile Navigation">
-      <a href="#research">Research</a>
-      <a href="#publications">Publications</a>
-      <a href="#path">Path</a>
-      <a href="#teaching">Teaching</a>
-      <a href="#skills">Skills</a>
-      <a href="#openings">Openings</a>
-      <a href="#events">Events</a>
-      <a href="#gallery">Gallery</a>
-      <a href="collections.html">Collections &amp; News</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="palette" role="group" aria-label="Colour palette" data-palette-switch></div>
-  </div>
-  <div class="progress" id="scroll-progress"></div>
+  </div><div class="progress" id="scroll-progress"></div>
 </header>
 
-<main id="main">
-  <!-- HERO SECTION -->
-  <section class="hero" aria-label="Introduction">
-    <div class="wrap hero-grid">
-      <div class="hero-card hero-left">
-        <div class="nyquist-watermark" aria-hidden="true"></div>
-        <div class="loc-pill" id="loc-pill">
-          <span class="pulse-dot"></span>
-          <span id="hero-location">Coimbatore, Tamil Nadu</span>
-        </div>
-        <h1 class="display hero-title" id="name">Mathan Kumar P</h1>
-        <p class="role" id="role"></p>
-        <p class="bio" id="bio"></p>
-        <ul class="keywords" id="keywords" aria-label="Research keywords"></ul>
-        <div class="hero-actions">
-          <a class="btn primary" id="cv" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
-            <span>Download CV</span>
-          </a>
-          <a class="btn" id="scholar" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            <span>Google Scholar</span>
-          </a>
-        </div>
-        <div class="social-icon-bar" id="elsewhere" aria-label="Academic and social profiles"></div>
-      </div>
+  <div class="drawer" id="drawer" hidden>
+    <div class="drawer-head">
+      <span class="drawer-title">Menu</span>
+      <button type="button" class="drawer-close" id="drawer-close" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <nav class="drawer-nav" aria-label="Site sections">
+      <a href="#research"><span class="dnav-ic" aria-hidden="true">🔬</span> Research</a>
+      <a href="#publications"><span class="dnav-ic" aria-hidden="true">📄</span> Publications</a>
+      <a href="#path"><span class="dnav-ic" aria-hidden="true">🛤️</span> Path</a>
+      <a href="#teaching"><span class="dnav-ic" aria-hidden="true">👨‍🏫</span> Teaching</a>
+      <a href="#skills"><span class="dnav-ic" aria-hidden="true">⚡</span> Skills</a>
+      <a href="#events"><span class="dnav-ic" aria-hidden="true">📅</span> Events</a>
+      <a href="#gallery"><span class="dnav-ic" aria-hidden="true">🖼️</span> Gallery</a>
+      <a href="collections.html"><span class="dnav-ic" aria-hidden="true">🗂️</span> Collections</a>
+      <a href="#contact"><span class="dnav-ic" aria-hidden="true">✉️</span> Contact</a>
+    </nav>
+    <div class="drawer-foot">
+      <div class="palette" role="group" aria-label="Colour palette" data-palette-switch></div>
+    </div>
+  </div>
 
-      <!-- RIGHT PANEL: ROUND PORTRAIT ON TOP + METRICS BENEATH -->
-      <aside class="hero-card hero-right" aria-label="Portrait and Scholar Metrics">
-        <div class="portrait-wrap">
-          <div class="round-photo" id="photo">
-            <span class="mono" id="mono" aria-hidden="true">MKP</span>
+
+<main id="main">
+  <!-- HERO SECTION — unified professional profile card -->
+  <section class="hero" aria-label="Introduction">
+    <div class="wrap">
+      <div class="profile-card card-surface">
+        <div class="profile-top">
+          <div class="profile-photo-col">
+            <div class="round-photo" id="photo">
+              <span class="mono" id="mono" aria-hidden="true">MKP</span>
+            </div>
+            <div class="loc-pill" id="loc-pill">
+              <span class="pulse-dot"></span>
+              <span id="hero-location">Coimbatore, Tamil Nadu</span>
+            </div>
+          </div>
+          <div class="profile-info">
+            <h1 class="display hero-title" id="name">Mathan Kumar P</h1>
+            <p class="role" id="role"></p>
+            <p class="bio" id="bio"></p>
+            <ul class="keywords" id="keywords" aria-label="Research keywords"></ul>
+            <div class="hero-actions">
+              <a class="btn primary" id="cv" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+                <span>Download CV</span>
+              </a>
+              <a class="btn" id="scholar" href="#" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                <span>Google Scholar</span>
+              </a>
+            </div>
+            <div class="social-icon-bar" id="elsewhere" aria-label="Academic and social profiles"></div>
           </div>
         </div>
-        <div class="metrics-panel" id="metrics"></div>
-      </aside>
+        <div class="profile-metrics" id="metrics" aria-label="Scholar metrics"></div>
+      </div>
     </div>
   </section>
 
@@ -222,21 +225,6 @@
   </section>
 
   <!-- 06. LAB OPENINGS & STUDENT PROJECTS (STANDALONE) -->
-  <section class="block" id="openings" data-section="openings">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <span class="sec-eyebrow">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-            06 / Join the Research Group
-          </span>
-          <h2 class="display">Openings &amp; Student Projects</h2>
-        </div>
-        <p class="sec-sub">Opportunities for motivated UG/PG students and research interns.</p>
-      </div>
-      <div class="jobs-grid" id="jobs-list"></div>
-    </div>
-  </section>
 
   <!-- 07. CONFERENCES & WORKSHOPS (STANDALONE) -->
   <section class="block" id="events" data-section="events">
