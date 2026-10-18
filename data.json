@@ -4,7 +4,7 @@
     "title": "Assistant Professor of Physics",
     "email": "mathankumar.sh@psgitech.ac.in",
     "scholar": "https://scholar.google.com/citations?user=I730zAgAAAAJ&hl=en",
-    "bio": "Passionate about research on thin film fabrication and nanomaterial synthesis for electrochemical applications",
+    "bio": "I grow thin films and nanomaterials for solar cells, supercapacitors and zinc-ion batteries, and read them through impedance.",
     "keywords": [
       "Photovoltaics",
       "Photo / Electrocatalysts",
@@ -20,7 +20,8 @@
     },
     "backdrop": "https://img.magnific.com/free-photo/flat-lay-blue-monday-paper-with-copy-space_23-2148756188.jpg?semt=ais_hybrid&w=740&q=80",
     "backdropOpacity": 0.35,
-    "cvUrl": "https://drive.google.com/file/d/1dMujMHzc5DWt8Clemcp81N6G31tdDMm0/view?usp=sharing"
+    "cvUrl": "https://drive.google.com/file/d/1dMujMHzc5DWt8Clemcp81N6G31tdDMm0/view?usp=sharing",
+    "location": "Coimbatore, Tamil Nadu"
   },
   "socialLinks": {
     "twitter": "",
@@ -53,8 +54,8 @@
     {
       "id": 1785045442633,
       "name": "Dr. Asokan Kandasami",
-      "institution": " UPES's School of Advanced Engineering,",
-      "role": "Collaoborator",
+      "institution": "UPES's School of Advanced Engineering",
+      "role": "Collaborator",
       "photo": "https://upeswebsitecdn-prod-hphqfhc0b8h2ffhf.a02.azurefd.net/drupal-data/2025-05/Asokan%20Kandasami_1.webp",
       "profileUrl": "https://www.upes.ac.in/research/faculty-researcher/dr-asokan-kandasami"
     },
@@ -70,7 +71,7 @@
       "id": 1785843356973,
       "name": "Dr. Abinash Das",
       "institution": "PSG institute of Advanced Studies",
-      "role": "Collaborator ",
+      "role": "Collaborator",
       "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwGdRGRFtf1pkQJ81qvss1LxHc9kbx1zBIjR-7vvhg7g&s",
       "profileUrl": "https://www.researchgate.net/profile/Abinash-Das-2"
     },
@@ -89,7 +90,7 @@
       "title": "Assistant Professor of Physics",
       "organization": "PSG Institute of Technology and Applied Research",
       "period": "May 2026 - Present",
-      "description": "Description of role and responsibilities...Delivering Engineering Physics to 1st year UG students across CSE, ECE, EEE, MECH branches  Focus on concept-based teaching aligned with, GATE, and industry applications  Specialization in Semiconductor Physics, Electromagnetism, Quantum Mechanics, and Optics  Use problem-solving, real-world examples, and demos to bridge theory and engineering practice  Mentoring students for academic excellence, project work, and competitive exams\"\n   "
+      "description": "Delivering Engineering Physics to 1st year UG students across CSE, ECE, EEE, MECH branches  Focus on concept-based teaching aligned with, GATE, and industry applications  Specialization in Semiconductor Physics, Electromagnetism, Quantum Mechanics, and Optics  Use problem-solving, real-world examples, and demos to bridge theory and engineering practice  Mentoring students for academic excellence, project work, and competitive exams\""
     },
     {
       "id": 1,
@@ -108,9 +109,9 @@
     {
       "id": 3,
       "title": "IUAC - Project Fellow",
-      "organization": "National Institute of Technology SIlchar",
+      "organization": "National Institute of Technology Silchar",
       "period": "2016 - 2018",
-      "description": "Worked on computational methods for phylogenetic an•  Preparation of Thin films via RF sputtering technique at HHV Pvt. Ltd.\n•  Explored the Ion implantation techniques using Gas and Metal sources\n•  Performed Gamma Irradiation experiment for prepared thin filmsalysis and evolutionary genomics."
+      "description": "•  Preparation of Thin films via RF sputtering technique at HHV Pvt. Ltd.\n•  Explored the Ion implantation techniques using Gas and Metal sources\n•  Performed Gamma Irradiation experiment for prepared thin films"
     }
   ],
   "academic": [
@@ -131,7 +132,7 @@
     {
       "id": 3,
       "degree": "B.Sc. in Physics",
-      "institution": "Kalasalingam College of Arts a& Science",
+      "institution": "Kalasalingam College of Arts & Science",
       "period": "2010 - 2013",
       "description": "Double major with minor in Mathematics"
     }
@@ -994,7 +995,11 @@
       "darkGradientMid": "#f0abfc",
       "darkSurface": "#212121",
       "darkSurfaceStrong": "#1f2937"
-    }
+    },
+    "palette": "potentiostat",
+    "allowPaletteSwitch": true,
+    "followDarkMode": true,
+    "paletteOverrides": {}
   },
   "researchAreas": [
     {
