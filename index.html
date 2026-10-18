@@ -1,384 +1,370 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html>
+<html lang="en" data-palette="potentiostat">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mathan Kumar P | Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
-        }
-      }
-    }
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --color-primary-50: #eef2ff;
-      --color-primary-100: #e0e7ff;
-      --color-primary-500: #6366f1;
-      --color-primary-600: #4f46e5;
-      --color-primary-700: #4338ca;
-      --color-primary-800: #3730a3;
-      --color-primary-900: #312e81;
-      --gradient-from: #4f46e5;
-      --gradient-to: #7c3aed;
-      --bg-page: #f1f5f9;
-      --bg-card: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
-    }
-    .dark {
-      --color-primary-50: #1e1b4b;
-      --color-primary-100: #312e81;
-      --color-primary-500: #818cf8;
-      --color-primary-600: #a5b4fc;
-      --color-primary-700: #c7d2fe;
-      --color-primary-800: #e0e7ff;
-      --color-primary-900: #eef2ff;
-      --gradient-from: #6366f1;
-      --gradient-to: #a78bfa;
-      --bg-page: #0f172a;
-      --bg-card: #1e293b;
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --border-color: #334155;
-    }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg-page);
-      color: var(--text-main);
-      transition: background 0.3s, color 0.3s;
-    }
-    .section-header {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--color-primary-800);
-      margin-bottom: 1rem;
-      position: relative;
-      display: inline-block;
-    }
-    .section-header::after {
-      content: '';
-      display: block;
-      width: 48px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gradient-from), var(--gradient-to));
-      margin-top: 6px;
-      border-radius: 2px;
-    }
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px -6px rgba(79, 70, 229, 0.12);
-    }
-    .skill-tag {
-      background: linear-gradient(135deg, var(--color-primary-50), var(--color-primary-100));
-      color: var(--color-primary-800);
-    }
-    .metric-card {
-      background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
-    }
-    .gallery-img { aspect-ratio: 1; object-fit: cover; }
-    .nav-link { transition: color 0.2s; color: var(--text-muted); }
-    .nav-link:hover { color: var(--color-primary-600); }
-    #loader {
-      position: fixed; inset: 0;
-      background: linear-gradient(135deg, var(--bg-page), var(--color-primary-50));
-      display: flex; align-items: center; justify-content: center;
-      z-index: 9999; transition: opacity 0.4s;
-    }
-    .fade-in { animation: fadeIn 0.5s ease forwards; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    #mobileDrawer { transform: translateX(100%); transition: transform 0.3s ease; }
-    #mobileDrawer.open { transform: translateX(0); }
-    #drawerOverlay { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-    #drawerOverlay.open { opacity: 1; pointer-events: auto; }
-    #backToTop {
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.3s, transform 0.3s;
-      transform: translateY(10px);
-    }
-    #backToTop.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-    .header-bg { background: color-mix(in srgb, var(--bg-card) 92%, transparent); }
-    .hero-bg { background: color-mix(in srgb, var(--bg-card) 90%, transparent); }
-    .event-desc { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-    .event-desc.open { max-height: 200px; }
-    .filter-btn.active {
-      background: var(--color-primary-600);
-      color: #fff;
-    }
-    .cat-badge { font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 9999px; font-weight: 500; white-space: nowrap; }
-    .cat-article { background: #dbeafe; color: #1d4ed8; }
-    .cat-book_chapter, .cat-book-chapter, .cat-books { background: #f3e8ff; color: #7e22ce; }
-    .cat-conference { background: #ffedd5; color: #c2410c; }
-    .cat-workshop { background: #dcfce7; color: #15803d; }
-    .cat-videos, .cat-video { background: #fee2e2; color: #b91c1c; }
-    .cat-document, .cat-documents { background: #e0e7ff; color: #4338ca; }
-    .cat-website, .cat-websites { background: #ccfbf1; color: #0f766e; }
-    .cat-default { background: var(--color-primary-50); color: var(--color-primary-800); }
-    .dark .cat-article { background: #1e3a5f; color: #93c5fd; }
-    .dark .cat-book_chapter, .dark .cat-book-chapter, .dark .cat-books { background: #3b0764; color: #d8b4fe; }
-    .dark .cat-conference { background: #431407; color: #fdba74; }
-    .dark .cat-workshop { background: #14532d; color: #86efac; }
-    .dark .cat-videos, .dark .cat-video { background: #450a0a; color: #fca5a5; }
-    .dark .cat-document, .dark .cat-documents { background: #1e1b4b; color: #a5b4fc; }
-    .dark .cat-website, .dark .cat-websites { background: #134e4a; color: #5eead4; }
-    .filter-btn:not(.active) {
-      background: var(--bg-card);
-      color: var(--text-muted);
-      border: 1px solid var(--border-color);
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F3F5F1">
+<title>Mathan Kumar P | Physics &amp; Electrochemistry</title>
+<meta name="description" content="Mathan Kumar P, Assistant Professor of Physics. Thin films and nanomaterials for solar cells, supercapacitors and zinc-ion batteries.">
+<link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2311241C'/%3E%3Cpath d='M5 25A11 11 0 0 1 27 25' fill='none' stroke='%23D9520B' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 </head>
-<body class="min-h-screen">
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<noscript><p style="padding:24px;font:1.1rem/1.5 Georgia,serif">This site needs JavaScript to show its content. Please enable it and reload.</p></noscript>
 
-  <div id="loader">
-    <div class="text-center">
-      <div class="w-12 h-12 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin mx-auto mb-4"></div>
-      <p class="font-medium" style="color: var(--color-primary-600)">Loading portfolio...</p>
-    </div>
-  </div>
-
-  <!-- Header -->
-  <header class="header-bg backdrop-blur-md shadow-md sticky top-0 z-40" style="border-bottom: 1px solid var(--border-color)">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm" style="background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to))" id="headerInitials">MK</div>
-        <div>
-          <h1 class="text-base sm:text-lg font-bold" style="color: var(--color-primary-800)" id="headerName">Mathan Kumar P</h1>
-          <p class="text-xs hidden sm:block" style="color: var(--text-muted)" id="headerTitle">Assistant Professor of Physics</p>
-        </div>
-      </div>
-
-      <nav class="hidden lg:flex items-center gap-4 text-sm font-medium">
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#research" class="nav-link">Research</a>
-        <a href="#publications" class="nav-link">Publications</a>
-        <a href="#events" class="nav-link">Events</a>
-        <a href="#gallery" class="nav-link">Gallery</a>
-        <a href="collections.html" class="nav-link">Collections</a>
-      </nav>
-
-      <div class="flex items-center gap-2">
-        <button id="themeToggle" onclick="toggleTheme()" class="w-9 h-9 rounded-full flex items-center justify-center transition hover:opacity-80" style="color: var(--text-muted)" title="Toggle theme">
-          <i class="fas fa-moon dark:hidden"></i>
-          <i class="fas fa-sun hidden dark:inline"></i>
-        </button>
-        <button id="menuBtn" onclick="openDrawer()" class="lg:hidden w-9 h-9 rounded-full flex items-center justify-center transition" style="color: var(--text-muted)">
-          <i class="fas fa-bars text-lg"></i>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Mobile Drawer -->
-  <div id="drawerOverlay" class="fixed inset-0 bg-black/40 z-50 lg:hidden" onclick="closeDrawer()"></div>
-  <div id="mobileDrawer" class="fixed top-0 right-0 h-full w-72 max-w-[85vw] shadow-2xl z-50 lg:hidden flex flex-col" style="background: var(--bg-card)">
-    <div class="flex items-center justify-between p-4" style="border-bottom: 1px solid var(--border-color)">
-      <span class="font-semibold" style="color: var(--text-main)">Menu</span>
-      <button onclick="closeDrawer()" class="w-8 h-8 rounded-full flex items-center justify-center" style="color: var(--text-muted)"><i class="fas fa-times"></i></button>
-    </div>
-    <nav class="flex flex-col p-3 gap-1 text-sm font-medium">
-      <a href="#experience" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Experience</a>
-      <a href="#research" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Research</a>
-      <a href="#publications" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Publications</a>
-      <a href="#events" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Events</a>
-      <a href="#gallery" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Gallery</a>
-      <a href="collections.html" onclick="closeDrawer()" class="px-4 py-3 rounded-lg" style="color: var(--text-main)">Collections</a>
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="#main">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 18A9 9 0 0 1 21 18"/></svg>
+      </span>
+      <span id="brand">Mathan Kumar P</span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#path">Path</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#skills">Skills</a>
+      <a href="#openings">Openings</a>
+      <a href="#events">Events</a>
+      <a href="#gallery">Gallery</a>
+      <a href="collections.html">Collections</a>
+      <a href="#contact">Contact</a>
     </nav>
-  </div>
-
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-
-    <!-- 1. About -->
-    <section id="about" class="relative overflow-hidden rounded-2xl shadow-lg mb-8 fade-in" style="border: 1px solid var(--border-color); background: var(--bg-card)">
-      <div id="heroBackdrop" class="absolute inset-0 bg-cover bg-center pointer-events-none" style="display:none; opacity:0.35; z-index:0"></div>
-      <div class="relative p-4 sm:p-5" style="z-index:1; background: color-mix(in srgb, var(--bg-card) 75%, transparent); backdrop-filter: blur(6px)">
-        <div class="flex flex-col lg:flex-row items-center gap-5">
-          <div class="relative flex-shrink-0">
-            <img id="heroPhoto" src="" alt="Profile" class="w-32 h-32 lg:w-40 lg:h-40 rounded-2xl object-cover shadow-md border-4 hidden" style="border-color: var(--bg-card)">
-            <div id="heroInitialsBox" class="w-32 h-32 lg:w-40 lg:h-40 rounded-2xl flex items-center justify-center text-3xl lg:text-4xl font-bold shadow-md" style="background: linear-gradient(135deg, var(--color-primary-50), var(--color-primary-100)); color: var(--color-primary-700)">
-              <span id="heroInitials">MK</span>
-            </div>
-          </div>
-          <div class="text-center lg:text-left flex-1 min-w-0">
-            <h1 class="text-2xl sm:text-3xl lg:text-3xl font-bold mb-0.5" style="color: var(--text-main)" id="heroName">Mathan Kumar P</h1>
-            <p class="text-base sm:text-lg font-medium mb-0.5" style="color: var(--color-primary-600)" id="heroTitle">Assistant Professor of Physics</p>
-            <p class="mb-2 text-sm" style="color: var(--text-muted)" id="heroInstitution"></p>
-            <p class="leading-snug text-sm max-w-3xl mx-auto lg:mx-0 mb-3" style="color: var(--text-main)" id="heroBio"></p>
-            <div id="metricsContainer" class="flex flex-wrap justify-center lg:justify-start gap-2 mb-3"></div>
-            <div class="flex flex-wrap justify-center lg:justify-start gap-3 items-center" id="socialLinksContainer"></div>
-            <div class="flex flex-wrap justify-center lg:justify-start items-center gap-2 mt-2">
-              <a id="collectionsMiniBtn" href="collections.html" class="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-lg transition hover:opacity-80" style="color: var(--color-primary-600); border: 1px solid var(--border-color); background: var(--bg-card)">
-                <i class="fas fa-layer-group text-[10px]"></i> Collections
-              </a>
-            </div>
-            <div id="keywordsList" class="flex flex-wrap justify-center lg:justify-start gap-1.5 mt-3"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- Education & Experience combined timeline -->
-    <section id="experience" class="mb-10">
-      <h2 class="section-header">Experience</h2>
-      <div id="experiencesList" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
-    </section>
-
-    <!-- 4. Research -->
-    <section id="research" class="mb-10">
-      <h2 class="section-header">Research Areas</h2>
-      <div id="researchAreasList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-    </section>
-
-
-    <!-- Skills (no menu) -->
-    <section id="skills" class="mb-10">
-      <h2 class="section-header">Skills</h2>
-      <div id="skillsList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"></div>
-    </section>
-
-    <!-- 5. Publications -->
-    <section id="publications" class="mb-10">
-      <h2 class="section-header">Publications</h2>
-      <div class="flex flex-wrap gap-2 mb-4" id="pubFilters">
-      </div>
-      <div id="publicationsList" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
-    </section>
-
-    <!-- 6. Events (compact + filter + expand) -->
-    <section id="events" class="mb-10">
-      <h2 class="section-header">Events & Activities</h2>
-      <div class="flex flex-wrap gap-2 mb-4" id="eventFilters">
-      </div>
-      <div id="eventsList" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
-    </section>
-<!-- 7. Gallery -->
-    <section id="gallery" class="mb-10">
-      <h2 class="section-header">Research Gallery</h2>
-      <div id="galleryImages" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"></div>
-    </section>
-
-    <!-- Courses + Open Positions side by side -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-      <section id="courses">
-        <h2 class="section-header">Courses</h2>
-        <div id="coursesList" class="space-y-3"></div>
-      </section>
-      <section id="jobsSection">
-        <h2 class="section-header">Open Positions</h2>
-        <div id="jobsList" class="space-y-3"></div>
-      </section>
-    </div>
-
-    <!-- 9. Resources -->
-
-
-    <!-- Mentors (before contact) -->
-    <section id="mentors" class="mb-10">
-      <h2 class="section-header">Mentors & Collaborators</h2>
-      <div id="mentorsList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
-    </section>
-
-    <!-- 10. Contact -->
-    <section id="contact" class="hero-bg backdrop-blur-sm rounded-3xl shadow-xl p-6 sm:p-8" style="border: 1px solid var(--border-color)">
-      <h2 class="section-header">Get in Touch</h2>
-      <p class="mb-4" style="color: var(--text-muted)">Feel free to reach out for research collaborations, student opportunities, or academic discussions.</p>
-      <div class="flex flex-wrap gap-3 items-center" id="contactSocial"></div>
-    </section>
-  </main>
-
-  <footer class="mt-12 py-6 text-center text-sm" style="color: var(--text-muted); border-top: 1px solid var(--border-color)">
-    <p>© <span id="currentYear">2026</span> <span id="footerText">Mathan Kumar P</span>. All rights reserved.</p>
-  </footer>
-
-  <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-6 right-6 w-11 h-11 rounded-full text-white shadow-lg flex items-center justify-center z-30" style="background: var(--color-primary-600)" title="Back to top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <!-- News Modal -->
-  <div id="newsModal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4" onclick="closeNewsModal()">
-    <div class="max-w-lg w-full max-h-[85vh] overflow-y-auto rounded-2xl p-5 shadow-2xl" style="background: var(--bg-card)" onclick="event.stopPropagation()">
-      <div class="flex justify-between items-start gap-3 mb-3">
-        <h3 id="newsModalTitle" class="font-bold text-lg" style="color: var(--text-main)"></h3>
-        <button onclick="closeNewsModal()" class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background: var(--color-primary-50); color: var(--text-main)"><i class="fas fa-times"></i></button>
-      </div>
-      <img id="newsModalImage" src="" alt="" class="w-full max-h-56 object-cover rounded-xl mb-3 hidden">
-      <div id="newsModalBody" class="text-sm whitespace-pre-wrap leading-relaxed" style="color: var(--text-muted)"></div>
-      <a id="newsModalLink" href="#" target="_blank" class="inline-block mt-4 text-sm font-medium hover:underline" style="color: var(--color-primary-600); display:none">Source / Read more →</a>
-    </div>
-  </div>
-
-  <div id="imageModal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4" onclick="closeModal()">
-    <div class="max-w-4xl max-h-[90vh] relative" onclick="event.stopPropagation()">
-      <img id="modalImage" src="" alt="" class="max-w-full max-h-[80vh] rounded-lg shadow-2xl">
-      <div id="modalCaption" class="text-white text-left mt-3 text-sm max-w-full"></div>
-      <button onclick="closeModal()" class="absolute -top-3 -right-3 bg-white rounded-full w-8 h-8 flex items-center justify-center text-gray-800 hover:bg-gray-200">
-        <i class="fas fa-times"></i>
+    <div class="header-tools">
+      <div class="palette" id="palette" role="group" aria-label="Colour palette" data-palette-switch></div>
+      <button class="btn menu-btn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Toggle Menu">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
       </button>
     </div>
   </div>
+  <div class="drawer" id="drawer" hidden>
+    <nav aria-label="Mobile Navigation">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#path">Path</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#skills">Skills</a>
+      <a href="#openings">Openings</a>
+      <a href="#events">Events</a>
+      <a href="#gallery">Gallery</a>
+      <a href="collections.html">Collections &amp; News</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="palette" role="group" aria-label="Colour palette" data-palette-switch></div>
+  </div>
+  <div class="progress" id="scroll-progress"></div>
+</header>
 
-  <script src="./script.js"></script>
-  <script>
-    // Safety net: if script.js 404s or load hangs, stop infinite spinner
-    setTimeout(function () {
-      var L = document.getElementById('loader');
-      if (L && L.style.display !== 'none' && L.style.opacity !== '0') {
-        var still = L.querySelector && L.querySelector('.animate-spin');
-        if (still) {
-          L.innerHTML = '<div class="text-center max-w-md px-4"><p class="font-semibold text-red-600">Still loading…</p><p class="text-sm mt-2 text-gray-600">If this persists, open DevTools (F12) → Network tab and check that <code>script.js</code> and <code>data.json</code> return 200.</p><button onclick="location.reload()" class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm">Retry</button></div>';
-        }
-      }
-    }, 15000);
-  </script>
-  <script>
-    function applyTheme(theme) {
-      if (theme === 'dark') document.documentElement.classList.add('dark');
-      else document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', theme);
-    }
-    function toggleTheme() {
-      applyTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark');
-      if (typeof applyHeroBackdrop === 'function') applyHeroBackdrop();
-    }
-    (function() {
-      const saved = localStorage.getItem('theme');
-      if (saved) applyTheme(saved);
-      else if (window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
-    })();
+<main id="main">
+  <!-- HERO SECTION -->
+  <section class="hero" aria-label="Introduction">
+    <div class="wrap hero-grid">
+      <div class="hero-card hero-left">
+        <div class="nyquist-watermark" aria-hidden="true"></div>
+        <div class="loc-pill" id="loc-pill">
+          <span class="pulse-dot"></span>
+          <span id="hero-location">Coimbatore, Tamil Nadu</span>
+        </div>
+        <h1 class="display hero-title" id="name">Mathan Kumar P</h1>
+        <p class="role" id="role"></p>
+        <p class="bio" id="bio"></p>
+        <ul class="keywords" id="keywords" aria-label="Research keywords"></ul>
+        <div class="hero-actions">
+          <a class="btn primary" id="cv" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+            <span>Download CV</span>
+          </a>
+          <a class="btn" id="scholar" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <span>Google Scholar</span>
+          </a>
+        </div>
+        <div class="social-icon-bar" id="elsewhere" aria-label="Academic and social profiles"></div>
+      </div>
 
-    function openDrawer() {
-      document.getElementById('mobileDrawer').classList.add('open');
-      document.getElementById('drawerOverlay').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeDrawer() {
-      document.getElementById('mobileDrawer').classList.remove('open');
-      document.getElementById('drawerOverlay').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    window.addEventListener('scroll', () => {
-      const btn = document.getElementById('backToTop');
-      if (window.scrollY > 400) btn.classList.add('show');
-      else btn.classList.remove('show');
-    });
-  </script>
+      <!-- RIGHT PANEL: ROUND PORTRAIT ON TOP + METRICS BENEATH -->
+      <aside class="hero-card hero-right" aria-label="Portrait and Scholar Metrics">
+        <div class="portrait-wrap">
+          <div class="round-photo" id="photo">
+            <span class="mono" id="mono" aria-hidden="true">MKP</span>
+          </div>
+        </div>
+        <div class="metrics-panel" id="metrics"></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 01. RESEARCH DOMAINS -->
+  <section class="block" id="research" data-section="research">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-eyebrow">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.5-6.5-2.1 2.1M7.6 16.4l-2.1 2.1m0-13 2.1 2.1m8.8 8.8 2.1 2.1"/></svg>
+            01 / Research Domains
+          </span>
+          <h2 class="display">Research Areas &amp; Focus</h2>
+        </div>
+        <p class="sec-sub" id="research-intro">Experimental thin-film synthesis, solid-state electrolytes, and interfacial impedance modelling.</p>
+      </div>
+      <div class="research-grid" id="rplot"></div>
+    </div>
+  </section>
+
+  <!-- 02. PUBLICATIONS -->
+  <section class="block" id="publications" data-section="publications">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-eyebrow">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            02 / Peer-Reviewed Output
+          </span>
+          <h2 class="display">Publications</h2>
+        </div>
+        <p class="sec-sub" id="pubsum"></p>
+      </div>
+
+      <div class="pub-controls card-surface">
+        <div class="pub-search-wrap">
+          <svg class="search-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input class="search" id="q" type="search" placeholder="Search by title, journal, DOI or co-author…" aria-label="Search publications">
+        </div>
+        <div class="pub-filter-row">
+          <div class="filter-group">
+            <span class="filter-lbl">Type:</span>
+            <div class="chips" id="types" role="group" aria-label="Filter by publication type"></div>
+          </div>
+          <div class="filter-group">
+            <span class="filter-lbl">Year:</span>
+            <div class="chips" id="years" role="group" aria-label="Filter by publication year"></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="sr" id="pubcount" aria-live="polite"></p>
+      <div class="plist" id="plist"></div>
+      <div class="center-actions">
+        <button class="btn primary more-btn" type="button" id="morepubs" hidden></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03. CAREER & EDUCATION PATH -->
+  <section class="block" id="path" data-section="path">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-eyebrow">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            03 / Academic Trajectory
+          </span>
+          <h2 class="display">Experience &amp; Education</h2>
+        </div>
+        <p class="sec-sub" id="path-intro">Academic appointments, research fellowships, and university degrees.</p>
+      </div>
+      <div class="path-dual-grid">
+        <div>
+          <h3 class="sub-col-title">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Academic &amp; Research Positions
+          </h3>
+          <div class="timeline" id="exp-list"></div>
+        </div>
+        <div>
+          <h3 class="sub-col-title">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            Education &amp; Degrees
+          </h3>
+          <div class="timeline" id="acad-list"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04. TEACHING & COURSE MATERIALS (STANDALONE) -->
+  <section class="block" id="teaching" data-section="teaching">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-eyebrow">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            04 / Classroom &amp; Pedagogy
+          </span>
+          <h2 class="display">Teaching &amp; Course Notes</h2>
+        </div>
+        <p class="sec-sub">First-year engineering physics across CSE, ECE, EEE and Mechanical — complete with syllabus, textbooks, and Google Drive lecture notes.</p>
+      </div>
+      <div class="teaching-grid" id="teach"></div>
+    </div>
+  </section>
+
+  <!-- 05. SKILLS & TECHNICAL ARSENAL (STANDALONE) -->
+  <section class="block" id="skills" data-section="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-eyebrow">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            05 / Capabilities &amp; Workflow
+          </span>
+          <h2 class="display">Technical &amp; Creative Skills</h2>
+        </div>
+        <p class="sec-sub">Synthesis instrumentation, scientific illustration, AI-assisted coding, and digital audio production.</p>
+      </div>
+      <div class="skills-grid" id="skills-list"></div>
+    </div>
+  </section>
+
+  <!-- 06. LAB OPENINGS & STUDENT PROJECTS (STANDALONE) -->
+  <section class="block" id="openings" data-section="openings">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-eyebrow">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+            06 / Join the Research Group
+          </span>
+          <h2 class="display">Openings &amp; Student Projects</h2>
+        </div>
+        <p class="sec-sub">Opportunities for motivated UG/PG students and research interns.</p>
+      </div>
+      <div class="jobs-grid" id="jobs-list"></div>
+    </div>
+  </section>
+
+  <!-- 07. CONFERENCES & WORKSHOPS (STANDALONE) -->
+  <section class="block" id="events" data-section="events">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-eyebrow">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            07 / Academic Symposia
+          </span>
+          <h2 class="display">Workshops &amp; Conferences</h2>
+        </div>
+        <p class="sec-sub">Presentations, hands-on faculty trainings, and national/international workshops.</p>
+      </div>
+      <div class="ev-filter-bar" id="ev-filters"></div>
+      <div class="events-grid" id="events-list"></div>
+      <div class="center-actions">
+        <button class="btn more-btn" type="button" id="moreev" hidden></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08. PHOTO GALLERY (STANDALONE) -->
+  <section class="block" id="gallery" data-section="gallery">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-eyebrow">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            08 / Visual Archive
+          </span>
+          <h2 class="display">Lab &amp; Academic Gallery</h2>
+        </div>
+        <p class="sec-sub">Moments from cleanrooms, synchrotron/ion-beam facilities, solar cell fabrication, and convocations.</p>
+      </div>
+      <div class="gallery-mosaic" id="mosaic"></div>
+      <div class="center-actions">
+        <button class="btn more-btn" type="button" id="moregal" hidden></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09. MENTORS & COLLABORATORS (STANDALONE) -->
+  <section class="block" id="mentors" data-section="mentors">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="sec-eyebrow">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            09 / Scientific Network
+          </span>
+          <h2 class="display">Mentors &amp; Collaborators</h2>
+        </div>
+        <p class="sec-sub">Advisors and research collaborators whose labs and questions shaped this work.</p>
+      </div>
+      <div class="people-grid" id="people"></div>
+    </div>
+  </section>
+
+  <!-- 10. FUTURE CUSTOM SECTIONS CONTAINER -->
+  <div id="custom-sections-root"></div>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-sec" id="contact">
+    <div class="wrap">
+      <div class="contact-card">
+        <div class="contact-left">
+          <span class="sec-eyebrow">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Get in Touch
+          </span>
+          <h2 class="display">Let’s Collaborate</h2>
+          <p id="contact-msg">Students curious about electrochemistry, impedance or solar cells are welcome to write. So are collaborators with a material that needs characterising.</p>
+          <div class="contact-cta-row">
+            <a class="btn primary" id="mail-btn" href="#">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span id="mail-btn-txt">Send Email</span>
+            </a>
+            <a class="btn" id="contact-scholar-btn" href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <span id="scholar-btn-txt">Google Scholar</span>
+            </a>
+          </div>
+          <a class="mail-direct" id="mail" href="#"></a>
+          <div class="social-icon-bar" id="elsewhere2" style="margin-top:18px"></div>
+        </div>
+        <address class="office-box" id="office"></address>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span id="foot-l">Mathan Kumar P | Portfolio</span>
+    <div class="foot-links">
+      <a href="collections.html">Collections &amp; News</a>
+      <a href="admin.html">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        Site Editor
+      </a>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" type="button" id="to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <div class="lb-top">
+    <span id="lb-count" class="mono"></span>
+    <button class="lb-btn" type="button" id="lb-close" aria-label="Close viewer">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <figure class="lb-fig"><img id="lb-img" alt=""></figure>
+  <div class="lb-cap"><b id="lb-title"></b><span id="lb-desc"></span></div>
+  <button class="lb-btn lb-nav lb-prev" type="button" id="lb-prev" aria-label="Previous photo">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button class="lb-btn lb-nav lb-next" type="button" id="lb-next" aria-label="Next photo">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+</div>
+
+<script src="assets/js/common.js"></script>
+<script src="assets/js/home.js"></script>
 </body>
 </html>
