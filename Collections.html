@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" data-palette="potentiostat">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F3F5F1">
+<title>Collections &amp; News | Mathan Kumar P</title>
+<meta name="description" content="Tools, repositories, physics simulations, lectures, reading, and news shared by Mathan Kumar P.">
+<link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2311241C'/%3E%3Cpath d='M5 25A11 11 0 0 1 27 25' fill='none' stroke='%23D9520B' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#groups">Skip to collections</a>
+<noscript><p style="padding:24px;font:1.1rem/1.5 Georgia,serif">This site needs JavaScript to show its content. Please enable it and reload.</p></noscript>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 18A9 9 0 0 1 21 18"/></svg>
+      </span>
+      <span id="brand">Mathan Kumar P</span>
+    </a>
+    <nav class="nav" aria-label="Site">
+      <a href="index.html#research">Research</a>
+      <a href="index.html#publications">Publications</a>
+      <a href="index.html#teaching">Teaching</a>
+      <a href="index.html#gallery">Gallery</a>
+      <a href="collections.html" aria-current="page">Collections</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="header-tools">
+      <div class="palette" id="palette" role="group" aria-label="Colour palette" data-palette-switch></div>
+      <button class="btn menu-btn icon-only" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+  <div class="drawer" id="drawer" hidden>
+    <div class="drawer-head">
+      <span class="drawer-title">Menu</span>
+      <button type="button" class="drawer-close" id="drawer-close" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <nav class="drawer-nav" aria-label="Site sections">
+      <a href="index.html"><span class="dnav-ic" aria-hidden="true">🏠</span> Home Profile</a>
+      <a href="index.html#research"><span class="dnav-ic" aria-hidden="true">🔬</span> Research</a>
+      <a href="index.html#publications"><span class="dnav-ic" aria-hidden="true">📄</span> Publications</a>
+      <a href="index.html#teaching"><span class="dnav-ic" aria-hidden="true">👨‍🏫</span> Teaching</a>
+      <a href="index.html#gallery"><span class="dnav-ic" aria-hidden="true">🖼️</span> Gallery</a>
+      <a href="collections.html" aria-current="page"><span class="dnav-ic" aria-hidden="true">🗂️</span> Collections</a>
+      <a href="index.html#contact"><span class="dnav-ic" aria-hidden="true">✉️</span> Contact</a>
+    </nav>
+    <div class="drawer-foot">
+      <div class="palette" role="group" aria-label="Colour palette" data-palette-switch></div>
+    </div>
+  </div>
+
+
+<div class="art-layer" aria-hidden="true">
+  <span class="art-blob art-blob-a"></span>
+  <span class="art-blob art-blob-c"></span>
+  <span class="art-ring art-ring-b"></span>
+  <span class="art-dots art-dots-b"></span>
+</div>
+
+<div class="wrap col-layout">
+
+  <!-- Desktop sticky rail -->
+  <aside class="rail card-surface" id="rail">
+    <span class="sec-eyebrow">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+      Resource Vault
+    </span>
+    <h1 class="display rail-title">Collections</h1>
+    <p class="muted rail-desc">Tools I’ve built, open repositories, interactive simulations, lectures, books, and news updates.</p>
+
+    <div class="rail-search">
+      <label class="filter-lbl" for="cq">Search Vault</label>
+      <div class="pub-search-wrap">
+        <svg class="search-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input class="search" id="cq" type="search" placeholder="Search links, news, books…">
+      </div>
+    </div>
+
+    <div class="rail-block">
+      <span class="filter-lbl">Categories</span>
+      <div class="cats" id="cats" role="group" aria-label="Categories"></div>
+    </div>
+
+    <div class="rail-block" id="subcats-wrap" hidden>
+      <span class="filter-lbl">Subcategory Topic</span>
+      <div class="chips" id="subcats" role="group" aria-label="Subcategories"></div>
+    </div>
+
+    <p class="suggest muted" id="suggest"></p>
+  </aside>
+
+  <div class="col-main-wrap">
+    <nav class="col-topnav" id="col-topnav" aria-label="Collection categories">
+      <div class="col-topnav-scroll" id="col-topnav-scroll"></div>
+    </nav>
+
+    <!-- Mobile-only compact header + sticky filter bar -->
+    <div class="col-mobile-head">
+      <span class="sec-eyebrow">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        Resource Vault
+      </span>
+      <h1 class="display mobile-title">Collections</h1>
+      <p class="muted mobile-desc">Tools, repositories, simulations, lectures, books &amp; news.</p>
+    </div>
+
+    <div class="mobile-filters card-surface" id="mobile-filters">
+      <div class="mobile-search-row">
+        <div class="pub-search-wrap mobile-search">
+          <svg class="search-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input class="search" id="cq-mobile" type="search" placeholder="Search vault…">
+        </div>
+        <button type="button" class="btn filter-toggle" id="filter-toggle" aria-expanded="false" aria-controls="mobile-cats-panel">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>
+          <span>Filters</span>
+          <span class="filter-badge" id="filter-badge" hidden>1</span>
+        </button>
+      </div>
+
+      <!-- Horizontal category chips (always visible on mobile) -->
+      <div class="mobile-cat-scroll" id="mobile-cats" role="group" aria-label="Categories"></div>
+
+      <!-- Expandable panel for full category list + subcats -->
+      <div class="mobile-cats-panel" id="mobile-cats-panel" hidden>
+        <div class="mobile-panel-inner">
+          <div class="cats cats-mobile" id="cats-mobile" role="group" aria-label="All categories"></div>
+          <div id="subcats-wrap-mobile" hidden>
+            <span class="filter-lbl">Topics</span>
+            <div class="chips" id="subcats-mobile" role="group" aria-label="Subcategories"></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="suggest muted mobile-suggest" id="suggest-mobile"></p>
+    </div>
+
+    <main class="col-main" id="groups">
+      <p class="state">Loading collections…</p>
+    </main>
+    <p class="sr" id="count" role="status" aria-live="polite"></p>
+  </div>
+</div>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span id="foot-l">Mathan Kumar P | Collections</span>
+    <div class="foot-links">
+      <a href="index.html">← Back to Portfolio</a>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" type="button" id="to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+
+<script src="assets/js/common.js"></script>
+<script src="assets/js/collections.js"></script>
+</body>
+</html>
