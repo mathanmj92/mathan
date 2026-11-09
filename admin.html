@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin | Portfolio Editor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .tab-btn.active { background: linear-gradient(135deg, #2E6F73, #0F3D3E); color: #EADCC8; box-shadow: 0 4px 12px rgba(15,61,62,0.35); }
+    .section-card { display: none; }
+    .section-card.active { display: block; animation: fadeIn 0.25s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .item-card { transition: border-color 0.15s, box-shadow 0.15s; }
+    .item-card:hover { border-color: #7FB3B8; }
+    .dark .item-card:hover { border-color: #2E6F73; }
+    textarea { min-height: 72px; }
+    .reorder-btn { opacity: 0.55; transition: opacity 0.15s; }
+    .item-card:hover .reorder-btn { opacity: 1; }
+  </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 min-h-screen text-gray-800 dark:text-gray-100 transition-colors">
+
+  <div id="loginScreen" class="fixed inset-0 bg-gradient-to-br from-teal-800 via-teal-900 to-slate-900 flex items-center justify-center z-50">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl p-8 w-full max-w-md mx-4 border border-white/20">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 bg-gradient-to-br from-teal-600 to-teal-800 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+          <i class="fas fa-shield-halved text-2xl text-white"></i>
+        </div>
+        <h1 class="text-2xl font-bold">Admin Portal</h1>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Portfolio Content Editor</p>
+      </div>
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1.5">Password</label>
+          <input type="password" id="passwordInput" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-teal-600 outline-none" placeholder="Enter admin password" required>
+        </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-teal-600 to-teal-800 text-white py-2.5 rounded-xl font-medium hover:opacity-90 transition shadow-lg">Sign In</button>
+        <p id="loginError" class="text-red-500 text-sm text-center hidden">Invalid password</p>
+      </form>
+      <p class="text-xs text-gray-400 text-center mt-5">Default: <code class="bg-gray-100 dark:bg-slate-700 px-1.5 py-0.5 rounded">admin123</code></p>
+    </div>
+  </div>
+
+  <div id="adminDashboard" class="hidden">
+    <header class="bg-white/90 dark:bg-slate-800/90 backdrop-blur-md shadow sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
+        <div class="flex items-center gap-3">
+          <a href="./index.html" class="w-9 h-9 rounded-full flex items-center justify-center text-teal-700 dark:text-teal-300 hover:bg-teal-50 dark:hover:bg-teal-900/40 transition"><i class="fas fa-arrow-left"></i></a>
+          <div>
+            <h1 class="text-lg font-bold">Portfolio Admin</h1>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Static site editor</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <span id="saveStatus" class="text-xs sm:text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300" role="status" aria-live="polite">Loading...</span>
+          <a href="./index.html" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-slate-700" title="Open the site"><i class="fas fa-up-right-from-square text-xs"></i> View site</a>
+          <button onclick="document.getElementById('importFile').click()" class="hidden md:inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-slate-700" title="Load a data.json file"><i class="fas fa-file-import text-xs"></i> Import</button>
+          <button onclick="discardDraft()" class="hidden md:inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-slate-700" title="Throw away browser edits and reload data.json"><i class="fas fa-rotate-left text-xs"></i> Discard draft</button>
+          <input type="file" id="importFile" accept="application/json,.json" class="hidden">
+          <button onclick="toggleTheme()" class="w-9 h-9 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition" title="Theme">
+            <i class="fas fa-moon dark:hidden"></i>
+            <i class="fas fa-sun hidden dark:inline"></i>
+          </button>
+          <button onclick="downloadJSON()" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-medium hover:opacity-90 flex items-center gap-2 shadow">
+            <i class="fas fa-download"></i> Download data.json
+          </button>
+          <button onclick="saveToLocal()" class="bg-gradient-to-r from-teal-600 to-teal-800 text-white px-4 py-2 rounded-xl text-sm font-medium hover:opacity-90 flex items-center gap-2 shadow">
+            <i class="fas fa-save"></i> Save <span class="hidden lg:inline text-[10px] opacity-80">Ctrl+S</span>
+          </button>
+          <button onclick="logout()" class="w-9 h-9 rounded-full flex items-center justify-center text-gray-500 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 transition" aria-label="Log out" title="Log out"><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      <div class="rounded-2xl p-3 text-sm flex items-start gap-3 border border-teal-200 dark:border-teal-800 bg-teal-50 dark:bg-teal-900/20 text-teal-900 dark:text-teal-100">
+        <i class="fas fa-circle-info mt-0.5"></i>
+        <div><strong>How saving works:</strong> changes stay in this browser until you click <strong>Download data.json</strong>. Replace the file in your site folder or repo, then push. <strong>Discard draft</strong> reloads the file from disk if the site data was changed elsewhere.</div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 pb-10 flex flex-col lg:flex-row gap-6">
+      <aside class="lg:w-56 flex-shrink-0">
+        <nav class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-2 flex lg:block gap-1 lg:gap-0 lg:space-y-0.5 overflow-x-auto lg:overflow-visible lg:sticky lg:top-20" aria-label="Editor sections">
+          <button class="tab-btn active lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2" data-tab="profile"><i class="fas fa-user w-4"></i> Profile<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="profile"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="social"><i class="fas fa-share-nodes w-4"></i> Social<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="social"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="apps"><i class="fas fa-rocket w-4"></i> Apps<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="apps"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="experience"><i class="fas fa-briefcase w-4"></i> Experience<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="experience"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="academic"><i class="fas fa-graduation-cap w-4"></i> Education<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="academic"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="publications"><i class="fas fa-book w-4"></i> Publications<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="publications"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="researchAreas"><i class="fas fa-flask w-4"></i> Research<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="researchAreas"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="skills"><i class="fas fa-chart-line w-4"></i> Skills<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="skills"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="news"><i class="fas fa-newspaper w-4"></i> News<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="news"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="mentors"><i class="fas fa-users w-4"></i> Mentors<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="mentors"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="events"><i class="fas fa-calendar w-4"></i> Events<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="events"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="gallery"><i class="fas fa-images w-4"></i> Gallery<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="gallery"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="courses"><i class="fas fa-chalkboard w-4"></i> Courses<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="courses"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="jobs"><i class="fas fa-briefcase w-4"></i> Jobs<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="jobs"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="links"><i class="fas fa-link w-4"></i> Links<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="links"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="settings"><i class="fas fa-cog w-4"></i> Settings<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="settings"></span></button>
+          <button class="tab-btn lg:w-full whitespace-nowrap flex-shrink-0 text-left px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 flex items-center gap-2" data-tab="raw"><i class="fas fa-code w-4"></i> Raw JSON<span class="tab-count ml-auto text-[10px] px-1.5 rounded-full bg-black/10 dark:bg-white/10 hidden" data-count="raw"></span></button>
+        </nav>
+      </aside>
+
+      <main class="flex-1 min-w-0">
+        <div id="tab-profile" class="section-card active bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <h2 class="text-xl font-bold mb-5 flex items-center gap-2"><i class="fas fa-user text-teal-600"></i> Profile</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div><label class="block text-sm font-medium mb-1">Name</label><input id="profile-name" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" /></div>
+            <div><label class="block text-sm font-medium mb-1">Title</label><input id="profile-title" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" /></div>
+            <div><label class="block text-sm font-medium mb-1">Email</label><input id="profile-email" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" /></div>
+            <div><label class="block text-sm font-medium mb-1">Scholar URL</label><input id="profile-scholar" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" /></div>
+            <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Bio</label><textarea id="profile-bio" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none"></textarea></div>
+            <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Photo URL</label><input id="profile-photo" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" /></div>
+            <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Curriculum Vitae URL (PDF / Drive / Dropbox link)</label><input id="profile-cvUrl" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" placeholder="https://.../cv.pdf" /></div>
+            <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Profile card backdrop image URL (PNG/JPG)</label><input id="profile-backdrop" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" placeholder="https://.../image.png" /></div>
+            <div>
+              <label class="block text-sm font-medium mb-1">Backdrop opacity (<span id="backdropOpacityLabel">0.25</span>)</label>
+              <input type="range" id="profile-backdropOpacity" min="0" max="1" step="0.05" value="0.25" class="w-full" oninput="document.getElementById('backdropOpacityLabel').textContent=this.value" />
+            </div>
+            <div><label class="block text-sm font-medium mb-1">Citations</label><input type="number" id="profile-citations" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" /></div>
+            <div><label class="block text-sm font-medium mb-1">h-Index</label><input type="number" id="profile-hIndex" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" /></div>
+            <div><label class="block text-sm font-medium mb-1">i10-Index</label><input type="number" id="profile-i10Index" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" /></div>
+            <div><label class="block text-sm font-medium mb-1">Publications Count</label><input type="number" id="profile-publications" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" /></div>
+            <div class="md:col-span-2"><label class="block text-sm font-medium mb-1">Keywords (comma separated)</label><input id="profile-keywords" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" /></div>
+          </div>
+        </div>
+
+        <div id="tab-social" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <h2 class="text-xl font-bold mb-5 flex items-center gap-2"><i class="fas fa-share-nodes text-teal-600"></i> Social Links</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="socialFields"></div>
+        </div>
+
+        <div id="tab-experience" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <div class="flex justify-between items-center mb-5">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-briefcase text-teal-600"></i> Experience</h2>
+            <button onclick="addItem('experience')" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-medium shadow hover:opacity-90"><i class="fas fa-plus mr-1"></i> Add</button>
+          </div>
+          <div id="experienceList" class="space-y-4"></div>
+        </div>
+
+        <div id="tab-academic" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <div class="flex justify-between items-center mb-5">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-graduation-cap text-teal-600"></i> Education</h2>
+            <button onclick="addItem('academic')" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-medium shadow hover:opacity-90"><i class="fas fa-plus mr-1"></i> Add</button>
+          </div>
+          <div id="academicList" class="space-y-4"></div>
+        </div>
+
+        <div id="tab-publications" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <div class="flex justify-between items-center mb-5">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-book text-teal-600"></i> Publications (<span id="pubCount">0</span>)</h2>
+            <button onclick="addItem('publications')" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-medium shadow hover:opacity-90"><i class="fas fa-plus mr-1"></i> Add</button>
+          </div>
+          <div id="publicationsList" class="space-y-4 max-h-[70vh] overflow-y-auto pr-1"></div>
+        </div>
+
+        <div id="tab-researchAreas" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <div class="flex justify-between items-center mb-5">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-flask text-teal-600"></i> Research Areas</h2>
+            <button onclick="addItem('researchAreas')" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-medium shadow hover:opacity-90"><i class="fas fa-plus mr-1"></i> Add</button>
+          </div>
+          <div id="researchAreasList" class="space-y-4"></div>
+        </div>
+
+        <div id="tab-mentors" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <div class="flex justify-between items-center mb-5">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-users text-teal-600"></i> Mentors</h2>
+            <button onclick="addItem('mentors')" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-medium shadow hover:opacity-90"><i class="fas fa-plus mr-1"></i> Add</button>
+          </div>
+          <div id="mentorsList" class="space-y-4"></div>
+        </div>
+
+        <div id="tab-events" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <div class="flex justify-between items-center mb-5">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-calendar text-teal-600"></i> Events & Activities</h2>
+            <button onclick="addItem('events')" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-medium shadow hover:opacity-90"><i class="fas fa-plus mr-1"></i> Add</button>
+          </div>
+          <div id="eventsList" class="space-y-4 max-h-[70vh] overflow-y-auto pr-1"></div>
+        </div>
+
+        <div id="tab-gallery" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <div class="flex justify-between items-center mb-5">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-images text-teal-600"></i> Gallery</h2>
+            <button onclick="addItem('gallery')" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-medium shadow hover:opacity-90"><i class="fas fa-plus mr-1"></i> Add</button>
+          </div>
+          <div id="galleryList" class="space-y-4 max-h-[70vh] overflow-y-auto pr-1"></div>
+        </div>
+
+        <div id="tab-apps" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <div class="flex justify-between items-center mb-2">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-rocket text-teal-600"></i> Apps (&ldquo;Try my apps&rdquo; strip)</h2>
+            <button onclick="addItem('apps')" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-medium shadow hover:opacity-90"><i class="fas fa-plus mr-1"></i> Add</button>
+          </div>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Each app shows as an icon tile under your profile. Leave the link empty to show it as &ldquo;coming soon&rdquo;. Use the arrows to reorder.</p>
+          <div id="appsList" class="space-y-4"></div>
+        </div>
+
+        <div id="tab-courses" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <div class="flex justify-between items-center mb-5">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-chalkboard text-teal-600"></i> Courses</h2>
+            <button onclick="addItem('courses')" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-medium shadow hover:opacity-90"><i class="fas fa-plus mr-1"></i> Add</button>
+          </div>
+          <div id="coursesList" class="space-y-4"></div>
+        </div>
+
+        <div id="tab-jobs" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <div class="flex justify-between items-center mb-5">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-briefcase text-teal-600"></i> Jobs</h2>
+            <button onclick="addItem('jobs')" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-medium shadow hover:opacity-90"><i class="fas fa-plus mr-1"></i> Add</button>
+          </div>
+          <div id="jobsList" class="space-y-4"></div>
+        </div>
+
+        <div id="tab-links" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <div class="flex justify-between items-center mb-5">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-link text-teal-600"></i> Links</h2>
+            <button onclick="addItem('links')" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-medium shadow hover:opacity-90"><i class="fas fa-plus mr-1"></i> Add</button>
+          </div>
+          <div id="linksList" class="space-y-4 max-h-[70vh] overflow-y-auto pr-1"></div>
+        </div>
+
+        <div id="tab-skills" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <div class="flex justify-between items-center mb-5">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-chart-line text-teal-600"></i> Skills</h2>
+            <button onclick="addItem('skills')" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-medium shadow hover:opacity-90"><i class="fas fa-plus mr-1"></i> Add</button>
+          </div>
+          <div id="skillsList" class="space-y-4"></div>
+        </div>
+
+        <div id="tab-news" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <div class="flex justify-between items-center mb-5">
+            <h2 class="text-xl font-bold flex items-center gap-2"><i class="fas fa-newspaper text-teal-600"></i> News</h2>
+            <button onclick="addItem('news')" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-4 py-2 rounded-xl text-sm font-medium shadow hover:opacity-90"><i class="fas fa-plus mr-1"></i> Add</button>
+          </div>
+          <div id="newsList" class="space-y-4 max-h-[70vh] overflow-y-auto pr-1"></div>
+        </div>
+
+        <div id="tab-settings" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <h2 class="text-xl font-bold mb-5 flex items-center gap-2"><i class="fas fa-cog text-teal-600"></i> Settings & Theme</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div><label class="block text-sm font-medium mb-1">Site Title</label><input id="settings-siteTitle" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" /></div>
+            <div><label class="block text-sm font-medium mb-1">Footer Text</label><input id="settings-footerText" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" /></div>
+          </div>
+          <h3 class="font-semibold mb-3 text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400">Light Mode Colors</h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+            <div>
+              <label class="block text-xs font-medium mb-1">Primary / Gradient From</label>
+              <div class="flex gap-2 items-center">
+                <input type="color" id="theme-lightGradientFrom" class="w-10 h-10 rounded cursor-pointer border-0" />
+                <input id="theme-lightGradientFrom-text" class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-1.5 text-xs font-mono" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Gradient To</label>
+              <div class="flex gap-2 items-center">
+                <input type="color" id="theme-lightGradientTo" class="w-10 h-10 rounded cursor-pointer border-0" />
+                <input id="theme-lightGradientTo-text" class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-1.5 text-xs font-mono" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Page Background</label>
+              <div class="flex gap-2 items-center">
+                <input type="color" id="theme-lightBackground" class="w-10 h-10 rounded cursor-pointer border-0" />
+                <input id="theme-lightBackground-text" class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-1.5 text-xs font-mono" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Card Surface</label>
+              <div class="flex gap-2 items-center">
+                <input type="color" id="theme-lightSurface" class="w-10 h-10 rounded cursor-pointer border-0" />
+                <input id="theme-lightSurface-text" class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-1.5 text-xs font-mono" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Text Color</label>
+              <div class="flex gap-2 items-center">
+                <input type="color" id="theme-lightText" class="w-10 h-10 rounded cursor-pointer border-0" />
+                <input id="theme-lightText-text" class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-1.5 text-xs font-mono" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Accent (underlines, highlights)</label>
+              <div class="flex gap-2 items-center">
+                <input type="color" id="theme-lightAccent" class="w-10 h-10 rounded cursor-pointer border-0" />
+                <input id="theme-lightAccent-text" class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-1.5 text-xs font-mono" />
+              </div>
+            </div>
+          </div>
+          <h3 class="font-semibold mb-3 text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400">Dark Mode Colors</h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-medium mb-1">Primary / Gradient From</label>
+              <div class="flex gap-2 items-center">
+                <input type="color" id="theme-darkGradientFrom" class="w-10 h-10 rounded cursor-pointer border-0" />
+                <input id="theme-darkGradientFrom-text" class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-1.5 text-xs font-mono" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Gradient To</label>
+              <div class="flex gap-2 items-center">
+                <input type="color" id="theme-darkGradientTo" class="w-10 h-10 rounded cursor-pointer border-0" />
+                <input id="theme-darkGradientTo-text" class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-1.5 text-xs font-mono" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Page Background</label>
+              <div class="flex gap-2 items-center">
+                <input type="color" id="theme-darkBackground" class="w-10 h-10 rounded cursor-pointer border-0" />
+                <input id="theme-darkBackground-text" class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-1.5 text-xs font-mono" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Card Surface</label>
+              <div class="flex gap-2 items-center">
+                <input type="color" id="theme-darkSurface" class="w-10 h-10 rounded cursor-pointer border-0" />
+                <input id="theme-darkSurface-text" class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-1.5 text-xs font-mono" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Text Color</label>
+              <div class="flex gap-2 items-center">
+                <input type="color" id="theme-darkText" class="w-10 h-10 rounded cursor-pointer border-0" />
+                <input id="theme-darkText-text" class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-1.5 text-xs font-mono" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Links and highlights (dark)</label>
+              <div class="flex gap-2 items-center">
+                <input type="color" id="theme-darkPrimary" class="w-10 h-10 rounded cursor-pointer border-0" />
+                <input id="theme-darkPrimary-text" class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-1.5 text-xs font-mono" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-medium mb-1">Accent (dark)</label>
+              <div class="flex gap-2 items-center">
+                <input type="color" id="theme-darkAccent" class="w-10 h-10 rounded cursor-pointer border-0" />
+                <input id="theme-darkAccent-text" class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-1.5 text-xs font-mono" />
+              </div>
+            </div>
+          </div>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">These colors are saved into data.json and applied on the public portfolio when you download & deploy.</p>
+
+          <h3 class="font-semibold mt-8 mb-1 text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400">Section order</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Move sections up or down and tick the ones you want visible. Sections with no content hide themselves.</p>
+          <div id="sectionOrderList" class="space-y-2 max-w-xl"></div>
+        </div>
+
+        <div id="tab-raw" class="section-card bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+          <h2 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-code text-teal-600"></i> Raw JSON</h2>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Advanced editing. Apply then Download.</p>
+          <textarea id="rawJson" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 font-mono text-xs" style="min-height:480px"></textarea>
+          <button onclick="applyRawJson()" class="mt-3 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-xl text-sm font-medium">Apply JSON</button>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const ADMIN_PASSWORD = 'admin123';
+    let data = null;
+    let dirty = false;        // edits not yet saved to this browser
+    let unpublished = false;  // saved in browser but not downloaded as data.json
+    const listQuery = {};
+    const APP_LINE_FIELDS = ['features', 'usage', 'links'];
+    function linesOf(item, f) {
+      const v = item[f];
+      if (f === 'links') return (Array.isArray(v) ? v : []).map(l => (l.label || '') + ' | ' + (l.url || '')).join('\n');
+      return (Array.isArray(v) ? v : []).join('\n');
+    }
+
+    function updateStatus() {
+      const el = document.getElementById('saveStatus');
+      if (!el) return;
+      let text = 'All changes saved', cls = 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-200';
+      if (dirty) { text = 'Unsaved changes'; cls = 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200'; }
+      else if (unpublished) { text = 'Saved in browser. Download to publish.'; cls = 'bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-200'; }
+      el.textContent = text;
+      el.className = 'text-xs sm:text-sm px-3 py-1 rounded-full ' + cls;
+    }
+    function setDirty(v) { dirty = v; if (v) unpublished = true; updateStatus(); }
+    function toast(msg, kind) {
+      const box = document.getElementById('toastBox');
+      if (!box) return;
+      const el = document.createElement('div');
+      el.className = 'pointer-events-auto px-4 py-2.5 rounded-xl shadow-lg text-sm font-medium text-white ' + (kind === 'error' ? 'bg-red-600' : 'bg-teal-800');
+      el.textContent = msg;
+      box.appendChild(el);
+      setTimeout(() => { el.style.transition = 'opacity .3s'; el.style.opacity = '0'; setTimeout(() => el.remove(), 320); }, 2600);
+    }
+    function looksLikeUrl(v) { return /^(https?:\/\/|assets\/|\.\/|data:image)/i.test(String(v || '').trim()); }
+    function validateUrlField(el) {
+      const v = el.value.trim();
+      const bad = v && !/^(https?:\/\/|mailto:|assets\/|\.\/|resources\/|[\w-]+\/)/i.test(v) && !/^[\w.-]+\.[a-z]{2,}/i.test(v);
+      el.classList.toggle('border-red-400', !!bad);
+      el.title = bad ? 'This does not look like a web address. Start it with https://' : '';
+    }
+    document.addEventListener('input', (e) => {
+      const t = e.target;
+      if (!t.closest || !t.closest('#adminDashboard') || t.hasAttribute('data-nodirty') || t.id === 'rawJson' || t.id === 'importFile') return;
+      if (!dirty) setDirty(true);
+    });
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); if (data) saveToLocal(); }
+      if (e.key === 'Escape') closeEditModal();
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && editContext) saveEditModal();
+    });
+    window.addEventListener('beforeunload', (e) => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+    document.addEventListener('change', (e) => {
+      if (e.target && e.target.id === 'importFile' && e.target.files[0]) importJSONFile(e.target.files[0]);
+    });
+    function importJSONFile(file) {
+      const r = new FileReader();
+      r.onload = () => {
+        try { data = JSON.parse(r.result); populateAll(); setDirty(true); toast('Imported ' + file.name + '. Review, then Save.'); }
+        catch (err) { toast('That file is not valid JSON: ' + err.message, 'error'); }
+        document.getElementById('importFile').value = '';
+      };
+      r.readAsText(file);
+    }
+    async function discardDraft() {
+      if (!confirm('Throw away browser edits and reload data.json from the site folder?')) return;
+      localStorage.removeItem('portfolioDraft');
+      try {
+        const res = await fetch('./data.json?t=' + Date.now());
+        data = await res.json();
+        populateAll();
+        dirty = false; unpublished = false; updateStatus();
+        toast('Reloaded data.json');
+      } catch (e) { toast('Could not load data.json: ' + e.message, 'error'); }
+    }
+    function updateTabCounts() {
+      document.querySelectorAll('.tab-count').forEach(el => {
+        const k = el.dataset.count;
+        const arr = data && data[k];
+        if (Array.isArray(arr)) { el.textContent = arr.length; el.classList.remove('hidden'); } else { el.classList.add('hidden'); }
+      });
+    }
+
+    function applyTheme(t) {
+      if (t === 'dark') document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', t);
+    }
+    function toggleTheme() {
+      applyTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark');
+    }
+    (function() {
+      const s = localStorage.getItem('theme');
+      if (s) applyTheme(s);
+      else if (window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+    })();
+
+    document.getElementById('loginForm').addEventListener('submit', e => {
+      e.preventDefault();
+      if (document.getElementById('passwordInput').value === ADMIN_PASSWORD) {
+        localStorage.setItem('staticAdminAuth', '1');
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('adminDashboard').classList.remove('hidden');
+        loadData();
+      } else {
+        document.getElementById('loginError').classList.remove('hidden');
+      }
+    });
+    function logout() {
+      localStorage.removeItem('staticAdminAuth');
+      location.reload();
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('staticAdminAuth') === '1') {
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('adminDashboard').classList.remove('hidden');
+        loadData();
+      }
+    });
+
+    async function loadData() {
+      const draft = localStorage.getItem('portfolioDraft');
+      if (draft) {
+        try { data = JSON.parse(draft); populateAll(); unpublished = true; updateStatus(); toast('Loaded your browser draft. Use Discard draft to reload data.json.'); return; } catch(e) { console.warn('Bad draft', e); }
+      }
+      try {
+        const res = await fetch('./data.json?t=' + Date.now());
+        data = await res.json();
+        populateAll();
+        updateStatus();
+      } catch (e) { toast('Could not load data.json: ' + e.message, 'error'); }
+    }
+
+    function populateAll() {
+      const p = data.profile || {};
+      document.getElementById('profile-name').value = p.name || '';
+      document.getElementById('profile-title').value = p.title || '';
+      document.getElementById('profile-email').value = p.email || '';
+      document.getElementById('profile-scholar').value = p.scholar || '';
+      document.getElementById('profile-bio').value = p.bio || '';
+      document.getElementById('profile-photo').value = p.photo || '';
+      const cvEl = document.getElementById('profile-cvUrl');
+      if (cvEl) cvEl.value = p.cvUrl || '';
+      const bd = document.getElementById('profile-backdrop');
+      const bdo = document.getElementById('profile-backdropOpacity');
+      if (bd) bd.value = p.backdrop || '';
+      if (bdo) {
+        bdo.value = p.backdropOpacity != null ? p.backdropOpacity : 0.25;
+        const lbl = document.getElementById('backdropOpacityLabel');
+        if (lbl) lbl.textContent = bdo.value;
+      }
+      document.getElementById('profile-citations').value = p.metrics?.citations ?? '';
+      document.getElementById('profile-hIndex').value = p.metrics?.hIndex ?? '';
+      document.getElementById('profile-i10Index').value = p.metrics?.i10Index ?? '';
+      document.getElementById('profile-publications').value = p.metrics?.publications ?? '';
+      document.getElementById('profile-keywords').value = (p.keywords || []).join(', ');
+
+      const socialKeys = ['linkedin','twitter','github','scholar','orcid','researchgate','facebook','instagram','youtube','website'];
+      document.getElementById('socialFields').innerHTML = socialKeys.map(k => `
+        <div>
+          <label class="block text-sm font-medium mb-1 capitalize">${k}</label>
+          <input id="social-${k}" value="${(data.socialLinks||{})[k]||''}" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 focus:ring-2 focus:ring-teal-600 outline-none" />
+        </div>
+      `).join('');
+
+      document.getElementById('settings-siteTitle').value = data.settings?.siteTitle || '';
+      document.getElementById('settings-footerText').value = data.settings?.footerText || '';
+      const tc = data.settings?.themeColors || {};
+      const themeFields = [
+        ['lightGradientFrom', tc.lightGradientFrom || '#2e6f73'],
+        ['lightGradientTo', tc.lightGradientTo || '#0f3d3e'],
+        ['lightBackground', tc.lightBackground || '#f6f1e8'],
+        ['lightSurface', tc.lightSurface || '#fcfaf6'],
+        ['lightText', tc.lightText || '#0a0f14'],
+        ['lightAccent', tc.lightAccent || '#c6601f'],
+        ['darkGradientFrom', tc.darkGradientFrom || '#2e6f73'],
+        ['darkGradientTo', tc.darkGradientTo || '#0f3d3e'],
+        ['darkBackground', tc.darkBackground || '#0a0f14'],
+        ['darkSurface', tc.darkSurface || '#0f1a1f'],
+        ['darkText', tc.darkText || '#eadcc8'],
+        ['darkPrimary', tc.darkPrimary || '#7fb3b8'],
+        ['darkAccent', tc.darkAccent || '#c6601f']
+      ];
+      themeFields.forEach(([key, val]) => {
+        const colorEl = document.getElementById('theme-' + key);
+        const textEl = document.getElementById('theme-' + key + '-text');
+        if (colorEl) { colorEl.value = val; colorEl.oninput = () => { textEl.value = colorEl.value; }; }
+        if (textEl) { textEl.value = val; textEl.oninput = () => { if (/^#[0-9A-Fa-f]{6}$/.test(textEl.value)) colorEl.value = textEl.value; }; }
+      });
+
+      const lists = {
+        experience: ['title','organization','period','description'],
+        academic: ['degree','institution','period','description'],
+        publications: ['title','authors','journal','year','category','doi','selected'],
+        researchAreas: ['title','description','image','years'],
+        skills: ['name','description','software','level','link'],
+        mentors: ['name','institution','role','photo','profileUrl'],
+        events: ['title','type','date','location','description'],
+        news: ['title','date','description','source','image','subcategory'],
+        gallery: ['title','description','image'],
+        courses: ['name','description','image','syllabusUrl','booksUrl'],
+        jobs: ['title','type','location','status','description'],
+        links: ['title','description','url','category','subcategory'],
+        apps: ['name','tagline','icon','url','platform','summary','features','usage','notes','links']
+      };
+      renderSectionOrder();
+      Object.entries(lists).forEach(([key, fields]) => renderList(key, data[key] || [], fields));
+      const pc = document.getElementById('pubCount'); if (pc) pc.textContent = (data.publications || []).length;
+      updateTabCounts();
+      document.getElementById('rawJson').value = JSON.stringify(data, null, 2);
+    }
+
+    function renderList(key, items, fields) {
+      const container = document.getElementById(key + 'List');
+      if (!container) return;
+      if (!document.getElementById(key + 'Search')) {
+        container.insertAdjacentHTML('beforebegin', `
+          <div class="flex items-center gap-3 mb-3">
+            <div class="relative flex-1">
+              <i class="fas fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-xs text-gray-400" aria-hidden="true"></i>
+              <input id="${key}Search" data-nodirty type="search" placeholder="Search this list..." aria-label="Search this list" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl pl-9 pr-3 py-2 text-sm focus:ring-2 focus:ring-teal-600 outline-none">
+            </div>
+            <span id="${key}Count" class="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap"></span>
+          </div>`);
+        document.getElementById(key + 'Search').addEventListener('input', (e) => {
+          listQuery[key] = e.target.value.trim().toLowerCase();
+          renderList(key, (data && data[key]) || [], LIST_FIELDS[key] || fields);
+        });
+      }
+      const q = listQuery[key] || '';
+      const previewField = ['image', 'photo', 'icon'].find(f => fields.includes(f));
+      const titleField = fields.find(f => ['title', 'name', 'degree'].includes(f)) || fields[0];
+      let shown = 0;
+      const rows = items.map((item, idx) => {
+        if (q && !JSON.stringify(item).toLowerCase().includes(q)) return '';
+        shown++;
+        const rawPrev = previewField ? String(item[previewField] || '') : '';
+        const previewUrl = looksLikeUrl(rawPrev) ? rawPrev : '';
+        const title = item[titleField] || item.title || item.name || ('Item #' + (idx + 1));
+        let subtitle = item.tagline || item.organization || item.institution || item.journal || item.period || item.date || item.type || '';
+        if (key === 'links' || key === 'news') {
+          const cat = item.category || (key === 'news' ? 'news' : '');
+          const sub = item.subcategory || '';
+          subtitle = [cat, sub].filter(Boolean).join(' | ') || subtitle;
+        } else if (!subtitle && item.category) {
+          subtitle = item.category;
+        }
+        if (key === 'publications' && item.year) subtitle = [item.year, item.journal].filter(Boolean).join(' | ');
+        if (key === 'apps') subtitle = item.url ? String(item.url).replace(/^https?:\/\//, '') : 'No link yet (shows as coming soon)';
+        const star = (key === 'publications' && item.selected) ? '<span class="ml-2 text-[10px] px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200 align-middle">Selected</span>' : '';
+        const btn = 'w-8 h-8 rounded-lg flex items-center justify-center';
+        return `
+        <div class="item-card border border-gray-200 dark:border-gray-600 rounded-xl px-3 py-2.5 relative bg-gray-50/50 dark:bg-slate-700/30 flex items-center gap-3">
+          ${previewUrl ? `<img src="${esc(previewUrl)}" alt="" class="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-gray-200 dark:border-gray-600" onerror="this.style.display='none'">` : ''}
+          <div class="min-w-0 flex-1 cursor-pointer" onclick="openEditModal('${key}', ${idx})">
+            <p class="font-medium text-sm truncate">${esc(title)}${star}</p>
+            ${subtitle ? `<p class="text-xs text-gray-500 dark:text-gray-400 truncate">${esc(subtitle)}</p>` : ''}
+          </div>
+          <div class="flex items-center gap-0.5 flex-shrink-0">
+            <button type="button" onclick="moveItem('${key}', ${idx}, -1)" class="${btn} text-gray-500 hover:bg-teal-100 dark:hover:bg-teal-900/40" title="Move up" aria-label="Move up" ${idx === 0 ? 'disabled' : ''}><i class="fas fa-chevron-up text-xs"></i></button>
+            <button type="button" onclick="moveItem('${key}', ${idx}, 1)" class="${btn} text-gray-500 hover:bg-teal-100 dark:hover:bg-teal-900/40" title="Move down" aria-label="Move down" ${idx === items.length - 1 ? 'disabled' : ''}><i class="fas fa-chevron-down text-xs"></i></button>
+            <button type="button" onclick="openEditModal('${key}', ${idx})" class="${btn} text-teal-700 hover:bg-teal-100 dark:hover:bg-teal-900/40" title="Edit" aria-label="Edit"><i class="fas fa-pen text-xs"></i></button>
+            <button type="button" onclick="duplicateItem('${key}', ${idx})" class="${btn} text-gray-500 hover:bg-teal-100 dark:hover:bg-teal-900/40" title="Duplicate" aria-label="Duplicate"><i class="fas fa-clone text-xs"></i></button>
+            <button type="button" onclick="removeItem('${key}', ${idx})" class="${btn} text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30" title="Delete" aria-label="Delete"><i class="fas fa-trash text-xs"></i></button>
+          </div>
+        </div>`;
+      }).join('');
+      container.innerHTML = rows || `<p class="text-gray-400 text-sm py-6 text-center">${q ? 'No entries match your search.' : 'No items yet. Click Add to create one.'}</p>`;
+      const count = document.getElementById(key + 'Count');
+      if (count) count.textContent = q ? `${shown} of ${items.length}` : `${items.length} ${items.length === 1 ? 'entry' : 'entries'}`;
+    }
+
+    function esc(v) {
+      return String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function duplicateItem(key, idx) {
+      collectAllData();
+      const copy = JSON.parse(JSON.stringify(data[key][idx]));
+      copy.id = Date.now();
+      const label = copy.title ? 'title' : (copy.name ? 'name' : null);
+      if (label) copy[label] = copy[label] + ' (copy)';
+      data[key].splice(idx + 1, 0, copy);
+      populateAll();
+      setDirty(true);
+      toast('Duplicated. Edit the copy.');
+      openEditModal(key, idx + 1);
+    }
+
+    const LIST_FIELDS = {
+      experience: ['title','organization','period','description'],
+      academic: ['degree','institution','period','description'],
+      publications: ['title','authors','journal','year','category','doi','selected'],
+      researchAreas: ['title','description','image','years'],
+      skills: ['name','description','software','level','link'],
+      mentors: ['name','institution','role','photo','profileUrl'],
+      events: ['title','type','date','location','description'],
+      news: ['title','date','description','source','image','subcategory'],
+      gallery: ['title','description','image'],
+      courses: ['name','description','image','syllabusUrl','booksUrl'],
+      jobs: ['title','type','location','status','description'],
+      links: ['title','description','url','category','subcategory'],
+      apps: ['name','tagline','icon','url','platform','summary','features','usage','notes','links']
+    };
+
+    // ---- Section order (stored in data.settings.sectionOrder / hiddenSections) ----
+    const SECTION_META = {
+      about: 'Profile (hero, apps inside)', research: 'Research Areas', appsDetail: 'Apps in Detail', publications: 'Publications',
+      experience: 'Experience & Education', skills: 'Skills', courses: 'Courses', events: 'Events & Activities',
+      gallery: 'Research Gallery', jobsSection: 'Open Positions', mentors: 'Mentors & Collaborators', contact: 'Get in Touch'
+    };
+    const DEFAULT_ORDER = Object.keys(SECTION_META);
+    const sectionOrderState = { order: DEFAULT_ORDER.slice(), hidden: [] };
+
+    function renderSectionOrder() {
+      const s = (data && data.settings) || {};
+      const saved = Array.isArray(s.sectionOrder) ? s.sectionOrder.filter(id => SECTION_META[id]) : [];
+      sectionOrderState.order = [...saved, ...DEFAULT_ORDER.filter(id => !saved.includes(id))];
+      sectionOrderState.hidden = Array.isArray(s.hiddenSections) ? s.hiddenSections.filter(id => SECTION_META[id]) : [];
+      drawSectionOrder();
+    }
+    function drawSectionOrder() {
+      const el = document.getElementById('sectionOrderList');
+      if (!el) return;
+      const st = sectionOrderState;
+      el.innerHTML = st.order.map((id, i) => `
+        <div class="flex items-center gap-2 border border-gray-200 dark:border-gray-600 rounded-xl px-3 py-2 bg-gray-50/50 dark:bg-slate-700/30">
+          <input type="checkbox" id="sec-vis-${id}" ${st.hidden.includes(id) ? '' : 'checked'} onchange="toggleSectionVisible('${id}', this.checked)" class="w-4 h-4 cursor-pointer" aria-label="Show ${SECTION_META[id]}">
+          <label for="sec-vis-${id}" class="flex-1 text-sm cursor-pointer">${SECTION_META[id]}</label>
+          <button type="button" onclick="moveSection(${i}, -1)" class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-teal-100 dark:hover:bg-teal-900/40" aria-label="Move up" ${i === 0 ? 'disabled' : ''}><i class="fas fa-chevron-up text-xs"></i></button>
+          <button type="button" onclick="moveSection(${i}, 1)" class="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-teal-100 dark:hover:bg-teal-900/40" aria-label="Move down" ${i === st.order.length - 1 ? 'disabled' : ''}><i class="fas fa-chevron-down text-xs"></i></button>
+        </div>`).join('');
+    }
+    function moveSection(i, dir) {
+      const o = sectionOrderState.order, j = i + dir;
+      if (j < 0 || j >= o.length) return;
+      [o[i], o[j]] = [o[j], o[i]];
+      drawSectionOrder();
+    }
+    function toggleSectionVisible(id, visible) {
+      const h = sectionOrderState.hidden;
+      const idx = h.indexOf(id);
+      if (visible && idx >= 0) h.splice(idx, 1);
+      if (!visible && idx < 0) h.push(id);
+    }
+
+    // ---- Course resources editor (inside the course edit dialog) ----
+    function renderResEditor() {
+      const host = document.getElementById('resEditor');
+      if (!host || !editContext) return;
+      const rs = editContext.resources;
+      host.innerHTML = `
+        <div class="mt-2 pt-3 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex items-center justify-between mb-2">
+            <p class="text-sm font-semibold">Resources</p>
+            <button type="button" onclick="addResourceRow()" class="text-xs px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-medium hover:opacity-90"><i class="fas fa-plus mr-1"></i> Add resource</button>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Add links, documents (PDF, Drive, slides) and HTML pages. HTML pages open inside the site; the rest open in a new tab. Type is detected from the address if you leave it on Auto.</p>
+          ${rs.map((r, i) => `
+            <div class="grid grid-cols-12 gap-2 mb-2 items-center">
+              <select onchange="editContext.resources[${i}].type=this.value" class="col-span-4 sm:col-span-3 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-2 text-xs" aria-label="Resource type">
+                <option value="" ${!r.type ? 'selected' : ''}>Auto</option>
+                <option value="link" ${r.type === 'link' ? 'selected' : ''}>Link</option>
+                <option value="document" ${r.type === 'document' ? 'selected' : ''}>Document</option>
+                <option value="html" ${r.type === 'html' ? 'selected' : ''}>HTML page</option>
+              </select>
+              <input value="${String(r.title || '').replace(/"/g, '&quot;')}" oninput="editContext.resources[${i}].title=this.value" placeholder="Title" class="col-span-8 sm:col-span-4 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-2 text-xs" aria-label="Resource title">
+              <input value="${String(r.url || '').replace(/"/g, '&quot;')}" oninput="editContext.resources[${i}].url=this.value" placeholder="https://... or resources/notes.html" class="col-span-10 sm:col-span-4 border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-lg px-2 py-2 text-xs" aria-label="Resource address">
+              <button type="button" onclick="removeResourceRow(${i})" class="col-span-2 sm:col-span-1 h-8 rounded-lg text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30" aria-label="Remove resource"><i class="fas fa-trash text-xs"></i></button>
+            </div>`).join('') || '<p class="text-xs text-gray-400">No resources yet.</p>'}
+        </div>`;
+    }
+    function addResourceRow() { editContext.resources.push({ title: '', url: '', type: '' }); renderResEditor(); }
+    function removeResourceRow(i) { editContext.resources.splice(i, 1); renderResEditor(); }
+
+    let editContext = null;
+    function openEditModal(key, idx) {
+      const fields = LIST_FIELDS[key] || [];
+      const item = (data[key] || [])[idx];
+      if (!item) return;
+      editContext = { key, idx, fields };
+      document.getElementById('editModalTitle').textContent = 'Edit · ' + key;
+      const body = document.getElementById('editModalBody');
+      const previewField = fields.find(f => f === 'image' || f === 'photo');
+      let html = '';
+      if (previewField && item[previewField]) {
+        html += `<img src="${String(item[previewField]).replace(/"/g,'&quot;')}" class="max-h-40 rounded-xl object-cover mb-2 border border-gray-200 dark:border-gray-600" onerror="this.style.display='none'">`;
+      }
+      const uniqueFieldValues = (arr, field) =>
+        [...new Set((arr || []).map(x => String(x[field] || '').trim()).filter(Boolean))].sort((a,b) => a.localeCompare(b));
+
+      let catOptions = [];
+      let subOptions = [];
+      if (key === 'links') {
+        catOptions = uniqueFieldValues(data.links, 'category');
+        // also include subcategories from all links (helpful)
+        subOptions = uniqueFieldValues(data.links, 'subcategory');
+        // seed common defaults if empty
+        if (!catOptions.length) catOptions = ['website', 'books', 'videos', 'document', 'tools'];
+      } else if (key === 'news') {
+        catOptions = uniqueFieldValues(data.news, 'category');
+        if (!catOptions.length) catOptions = ['news'];
+        subOptions = uniqueFieldValues(data.news, 'subcategory');
+      } else if (key === 'publications') {
+        catOptions = uniqueFieldValues(data.publications, 'category');
+        if (!catOptions.length) catOptions = ['article', 'book_chapter', 'conference'];
+      } else if (key === 'events') {
+        catOptions = uniqueFieldValues(data.events, 'type');
+        if (!catOptions.length) catOptions = ['workshop', 'conference', 'seminar'];
+      }
+
+      fields.forEach(f => {
+        const val = item[f] != null ? String(item[f]) : '';
+        const isLong = f === 'description' || f === 'summary' || f === 'notes' || (f === 'title' && (key === 'publications' || key === 'news'));
+        const useCatList = (f === 'category' && (key === 'links' || key === 'news' || key === 'publications'))
+          || (f === 'type' && key === 'events');
+        const useSubList = f === 'subcategory' && (key === 'links' || key === 'news');
+        let fieldHtml = '';
+        if (key === 'apps' && APP_LINE_FIELDS.includes(f)) {
+          const hint = f === 'links' ? 'One per line, written as: Label | https://address' : (f === 'features' ? 'One feature per line' : 'One step per line, in order');
+          fieldHtml = `<textarea id="edit-field-${f}" rows="6" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 text-sm">${linesOf(item, f).replace(/&/g, '&amp;').replace(/</g, '&lt;')}</textarea><p class="text-[10px] text-gray-400 mt-0.5">${hint}</p>`;
+        } else if (f === 'selected') {
+          fieldHtml = `<label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" id="edit-field-selected" ${item.selected ? 'checked' : ''} class="w-4 h-4"> Show this paper in the selected list on the home page</label>`;
+        } else if (f === 'level' && key === 'skills') {
+          const lv = Math.min(100, Math.max(0, parseInt(item.level) || 0));
+          fieldHtml = `<div class="flex items-center gap-3"><input type="range" min="0" max="100" step="5" id="edit-field-level" value="${lv}" class="flex-1" oninput="document.getElementById('lvLabel').textContent=this.value + '%'"><span id="lvLabel" class="text-sm font-medium w-12 text-right">${lv}%</span></div>`;
+        } else if (isLong) {
+          fieldHtml = `<textarea id="edit-field-${f}" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 text-sm" rows="4">${val.replace(/</g,'&lt;')}</textarea>`;
+        } else if (useCatList || useSubList) {
+          const options = useCatList ? catOptions.slice() : subOptions.slice();
+          if (val && !options.includes(val)) options.unshift(val);
+          const selectId = 'edit-select-' + f;
+          const customId = 'edit-field-' + f;
+          const optsHtml = options.map(o =>
+            `<option value="${String(o).replace(/"/g,'&quot;')}" ${o === val ? 'selected' : ''}>${String(o).replace(/</g,'&lt;')}</option>`
+          ).join('');
+          fieldHtml = `
+            <select id="${selectId}" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 text-sm mb-1"
+              onchange="(function(s){var c=document.getElementById('${customId}'); if(s.value==='__custom__'){c.classList.remove('hidden');c.value='';c.focus();}else{c.classList.add('hidden');c.value=s.value;}})(this)">
+              <option value="">— select —</option>
+              ${optsHtml}
+              <option value="__custom__">+ Type new ${f}…</option>
+            </select>
+            <input id="${customId}" value="${val.replace(/"/g,'&quot;')}" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 text-sm ${val && options.includes(val) ? 'hidden' : (val ? '' : 'hidden')}" placeholder="Type new ${f}" />
+            <p class="text-[10px] text-gray-400 mt-0.5">Choose from the list, or pick “Type new…”</p>`;
+        } else if (key === 'apps' && f === 'icon') {
+          fieldHtml = `<input id="edit-field-${f}" list="app-icon-names" value="${val.replace(/"/g,'&quot;')}" placeholder="manimo, atelier, attainly, researcher, formify, book, chart, code, app, or an image address" class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 text-sm" />
+            <datalist id="app-icon-names"><option value="manimo"><option value="atelier"><option value="attainly"><option value="researcher"><option value="formify"><option value="book"><option value="chart"><option value="code"><option value="app"></datalist>
+            <p class="text-[10px] text-gray-400 mt-0.5">Pick a built-in icon, or paste an image address, or a Font Awesome name like fa-flask.</p>`;
+        } else {
+          const isUrlField = /(url|source|doi|link|image|photo)$/i.test(f);
+          fieldHtml = `<input id="edit-field-${f}" value="${val.replace(/"/g,'&quot;')}" ${isUrlField ? 'data-url oninput="validateUrlField(this)"' : ''} class="w-full border border-gray-300 dark:border-gray-600 dark:bg-slate-700 rounded-xl px-3 py-2 text-sm" />`;
+        }
+        html += `<div>
+          <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-0.5 capitalize">${f}${f==='level'?' (0-100)':''}</label>
+          ${fieldHtml}
+        </div>`;
+      });
+      body.innerHTML = html;
+      if (key === 'courses') {
+        editContext.resources = (item.resources || []).map(r => ({ title: r.title || '', url: r.url || '', type: r.type || '' }));
+        body.insertAdjacentHTML('beforeend', '<div id="resEditor"></div>');
+        renderResEditor();
+      }
+      const modal = document.getElementById('editModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      const firstField = body.querySelector('input:not([type=checkbox]):not([type=range]), textarea');
+      if (firstField) setTimeout(() => firstField.focus(), 30);
+    }
+
+    function closeEditModal() {
+      editContext = null;
+      const modal = document.getElementById('editModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function saveEditModal() {
+      if (!editContext) return;
+      const { key, idx, fields } = editContext;
+      if (!data[key] || !data[key][idx]) return;
+      fields.forEach(f => {
+        const el = document.getElementById('edit-field-' + f);
+        const sel = document.getElementById('edit-select-' + f);
+        if (sel && sel.value && sel.value !== '__custom__') {
+          data[key][idx][f] = sel.value;
+        } else if (el && el.type === 'checkbox') {
+          data[key][idx][f] = el.checked;
+        } else if (el) {
+          data[key][idx][f] = el.value;
+        }
+      });
+      if (key === 'apps') {
+        const it = data[key][idx];
+        const lines = v => String(v || '').split(/\r?\n/).map(x => x.trim()).filter(Boolean);
+        it.features = lines(it.features);
+        it.usage = lines(it.usage);
+        it.links = lines(it.links).map(l => { const p = l.split('|'); const url = (p.length > 1 ? p.slice(1).join('|') : p[0]).trim(); const label = p.length > 1 ? p[0].trim() : 'Link'; return { label, url }; }).filter(l => l.url);
+      }
+      if (key === 'courses' && editContext.resources) {
+        data[key][idx].resources = editContext.resources
+          .filter(r => String(r.url || '').trim())
+          .map(r => ({ title: String(r.title || '').trim(), url: String(r.url).trim(), ...(r.type ? { type: r.type } : {}) }));
+      }
+      if (key === 'skills' && data[key][idx].level != null) {
+        data[key][idx].level = parseInt(data[key][idx].level) || 0;
+      }
+      closeEditModal();
+      populateAll();
+      setDirty(true);
+      toast('Entry updated. Press Save when you are done.');
+    }
+
+
+    function collectList(key) {
+      // Entries are edited via modal into data[key] directly
+      return Array.isArray(data[key]) ? data[key] : [];
+    }
+
+    function addItem(key) {
+      collectAllData();
+      if (!data[key]) data[key] = [];
+      const defaults = {
+        experience: { title:'', organization:'', period:'', description:'' },
+        academic: { degree:'', institution:'', period:'', description:'' },
+        publications: { title:'', authors:'', journal:'', year:new Date().getFullYear(), category:'article', doi:'', citations:0, selected:false },
+        researchAreas: { title:'', description:'', image:'', years:1 },
+        mentors: { name:'', institution:'', role:'', photo:'', profileUrl:'' },
+        events: { title:'', type:'workshop', date:'', location:'', description:'' },
+        gallery: { title:'', description:'', image:'' },
+        courses: { name:'', description:'', image:'', syllabusUrl:'', booksUrl:'', resources:[] },
+        jobs: { title:'', type:'UG / PG', location:'', status:'open', description:'' },
+        links: { title:'', description:'', url:'', category:'website', subcategory:'' },
+        skills: { name:'', description:'', software:'', level:70, link:'' },
+        apps: { name:'', tagline:'', icon:'app', url:'https://', platform:'', summary:'', features:[], usage:[], notes:'', links:[] },
+        news: { title:'', date:'', description:'', source:'', image:'', subcategory:'' }
+      };
+      data[key].unshift({ id: Date.now(), ...(defaults[key]||{}) });
+      populateAll();
+      setDirty(true);
+      openEditModal(key, 0);
+    }
+
+    function removeItem(key, idx) {
+      if (!confirm('Delete this item?')) return;
+      collectAllData();
+      data[key].splice(idx, 1);
+      populateAll();
+      setDirty(true);
+      toast('Entry deleted');
+    }
+
+    function moveItem(key, idx, dir) {
+      collectAllData();
+      const arr = data[key];
+      const newIdx = idx + dir;
+      if (newIdx < 0 || newIdx >= arr.length) return;
+      [arr[idx], arr[newIdx]] = [arr[newIdx], arr[idx]];
+      populateAll();
+      setDirty(true);
+    }
+
+    function collectAllData() {
+      data.profile = data.profile || {};
+      data.profile.name = document.getElementById('profile-name').value;
+      data.profile.title = document.getElementById('profile-title').value;
+      data.profile.email = document.getElementById('profile-email').value;
+      data.profile.scholar = document.getElementById('profile-scholar').value;
+      data.profile.bio = document.getElementById('profile-bio').value;
+      data.profile.photo = document.getElementById('profile-photo').value;
+      const cvOut = document.getElementById('profile-cvUrl');
+      if (cvOut) data.profile.cvUrl = cvOut.value;
+      const bdEl = document.getElementById('profile-backdrop');
+      const bdoEl = document.getElementById('profile-backdropOpacity');
+      if (bdEl) data.profile.backdrop = bdEl.value;
+      if (bdoEl) data.profile.backdropOpacity = parseFloat(bdoEl.value) || 0;
+      data.profile.metrics = {
+        citations: parseInt(document.getElementById('profile-citations').value) || 0,
+        hIndex: parseInt(document.getElementById('profile-hIndex').value) || 0,
+        i10Index: parseInt(document.getElementById('profile-i10Index').value) || 0,
+        publications: parseInt(document.getElementById('profile-publications').value) || 0
+      };
+      data.profile.keywords = document.getElementById('profile-keywords').value.split(',').map(s => s.trim()).filter(Boolean);
+
+      data.socialLinks = data.socialLinks || {};
+      ['linkedin','twitter','github','scholar','orcid','researchgate','facebook','instagram','youtube','website'].forEach(k => {
+        const el = document.getElementById('social-' + k);
+        if (el) data.socialLinks[k] = el.value;
+      });
+
+      data.settings = data.settings || {};
+      data.settings.siteTitle = document.getElementById('settings-siteTitle').value;
+      data.settings.footerText = document.getElementById('settings-footerText').value;
+      data.settings.themeColors = data.settings.themeColors || {};
+      const themeKeys = ['lightGradientFrom','lightGradientTo','lightBackground','lightSurface','lightText','lightAccent','darkGradientFrom','darkGradientTo','darkBackground','darkSurface','darkText','darkPrimary','darkAccent'];
+      themeKeys.forEach(k => {
+        const el = document.getElementById('theme-' + k + '-text') || document.getElementById('theme-' + k);
+        if (el) data.settings.themeColors[k] = el.value;
+      });
+
+      ['experience','academic','publications','researchAreas','skills','mentors','events','news','gallery','courses','jobs','links','apps'].forEach(k => {
+        data[k] = collectList(k);
+      });
+      data.settings.sectionOrder = sectionOrderState.order.slice();
+      data.settings.hiddenSections = sectionOrderState.hidden.slice();
+      data.publications.forEach(p => { p.year = parseInt(p.year) || null; });
+      data.researchAreas.forEach(r => { r.years = parseFloat(r.years) || 0; });
+      return data;
+    }
+
+    function saveToLocal() {
+      const payload = collectAllData();
+      localStorage.setItem('portfolioDraft', JSON.stringify(payload));
+      document.getElementById('rawJson').value = JSON.stringify(payload, null, 2);
+      dirty = false; unpublished = true; updateStatus();
+      toast('Saved in this browser');
+    }
+
+    function downloadJSON() {
+      const payload = collectAllData();
+      localStorage.setItem('portfolioDraft', JSON.stringify(payload));
+      const blob = new Blob([JSON.stringify(payload, null, 2) + '\n'], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'data.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      dirty = false; unpublished = false; updateStatus();
+      toast('Downloaded data.json. Replace the file in your site and push.');
+    }
+
+    function applyRawJson() {
+      try {
+        data = JSON.parse(document.getElementById('rawJson').value);
+        populateAll();
+        setDirty(true);
+        toast('JSON applied. Save or download to keep it.');
+      } catch (e) { toast('Invalid JSON: ' + e.message, 'error'); }
+    }
+
+    document.getElementById('editModal')?.addEventListener('click', (e) => {
+      if (e.target.id === 'editModal') closeEditModal();
+    });
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          b.classList.remove('active');
+          b.classList.add('text-gray-600', 'dark:text-gray-300');
+        });
+        btn.classList.add('active');
+        btn.classList.remove('text-gray-600', 'dark:text-gray-300');
+        document.querySelectorAll('.section-card').forEach(s => s.classList.remove('active'));
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+
+  <!-- Entry Edit Modal -->
+  <div id="editModal" class="fixed inset-0 bg-black/50 z-[60] hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto border border-gray-200 dark:border-gray-600">
+      <div class="sticky top-0 bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-gray-700 px-5 py-3 flex justify-between items-center z-10">
+        <h3 id="editModalTitle" class="font-bold text-lg">Edit entry</h3>
+        <button type="button" onclick="closeEditModal()" class="w-8 h-8 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700 flex items-center justify-center"><i class="fas fa-times"></i></button>
+      </div>
+      <div id="editModalBody" class="p-5 space-y-3"></div>
+      <div class="sticky bottom-0 bg-white dark:bg-slate-800 border-t border-gray-200 dark:border-gray-700 px-5 py-3 flex justify-end gap-2">
+        <button type="button" onclick="closeEditModal()" class="px-4 py-2 rounded-xl text-sm border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-slate-700">Cancel</button>
+        <button type="button" onclick="saveEditModal()" class="px-4 py-2 rounded-xl text-sm bg-gradient-to-r from-teal-600 to-teal-800 text-white font-medium">Save</button>
+      </div>
+    </div>
+  </div>
+  <div id="toastBox" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[80] flex flex-col gap-2 items-center pointer-events-none" aria-live="polite"></div>
+</body>
+</html>

@@ -11,7 +11,7 @@
       "Impedance",
       "Python"
     ],
-    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpL6i7TqZ6xCQWc3AGvHp-5m51169jVQvHIpPSYMH89XDujw2VpZsLjiw&s=10",
+    "photo": "assets/img/profile.jpg",
     "metrics": {
       "citations": 532,
       "hIndex": 11,
@@ -984,26 +984,43 @@
     "darkModeDefault": false,
     "showMetrics": true,
     "themeColors": {
-      "lightBackground": "#f8fafc",
-      "lightText": "#1f2937",
-      "lightGradientFrom": "#1e7eae",
-      "lightGradientTo": "#703aee",
+      "lightBackground": "#F6F1E8",
+      "lightText": "#0A0F14",
+      "lightGradientFrom": "#2E6F73",
+      "lightGradientTo": "#0F3D3E",
       "lightGradientMid": "#c026d3",
-      "lightSurface": "#ffffff",
-      "lightSurfaceStrong": "#f3f4f6",
-      "darkBackground": "#141414",
-      "darkText": "#f8fafc",
-      "darkGradientFrom": "#45a9d3",
-      "darkGradientTo": "#4685a0",
+      "lightSurface": "#FCFAF6",
+      "lightSurfaceStrong": "#EFE7D8",
+      "darkBackground": "#0A0F14",
+      "darkText": "#EADCC8",
+      "darkGradientFrom": "#2E6F73",
+      "darkGradientTo": "#0F3D3E",
       "darkGradientMid": "#f0abfc",
-      "darkSurface": "#212121",
-      "darkSurfaceStrong": "#1f2937"
+      "darkSurface": "#0F1A1F",
+      "darkSurfaceStrong": "#0F3D3E",
+      "lightAccent": "#C6601F",
+      "darkPrimary": "#7FB3B8",
+      "darkAccent": "#C6601F"
     },
-    "palette": "potentiostat",
     "allowPaletteSwitch": true,
     "followDarkMode": true,
     "paletteOverrides": {},
-    "lastUpdated": "2026-10"
+    "lastUpdated": "2026-10",
+    "sectionOrder": [
+      "about",
+      "research",
+      "appsDetail",
+      "publications",
+      "experience",
+      "skills",
+      "courses",
+      "events",
+      "gallery",
+      "jobsSection",
+      "mentors",
+      "contact"
+    ],
+    "hiddenSections": []
   },
   "researchAreas": [
     {
@@ -1056,10 +1073,19 @@
       "description": "A Physics for Electrical Engineering course bridges basic science and core electrical concepts, focusing on dielectric materials, semiconductor transport physics, and magnetic properties. It gives students the scientific foundation needed to understand modern electronic devices and electrical systems",
       "image": "https://srikrishnabookbazaar.com/wp-content/uploads/2024/01/Phy-for-ele-eng.jpg",
       "syllabusUrl": "https://psgitech.ac.in/assets/pdf/autonomous_syllabi/2026/SYLLABI/rev2/B.E.%20-%20ECE_27.04.2026.pdf",
-      "booksUrl": "https://booksdelivery.com/physics-for-electrical-engineering-by-suresh-from-sri-krishna-hitech-publications-2021"
+      "booksUrl": "https://booksdelivery.com/physics-for-electrical-engineering-by-suresh-from-sri-krishna-hitech-publications-2021",
+      "resources": []
     }
   ],
   "skills": [
+    {
+      "id": 1790000000021,
+      "name": "Claude Code (agentic development)",
+      "description": "I build and ship research tools, teaching apps and websites with Claude Code, from planning and implementation to review and deployment. Manimo, Formify and this portfolio are examples of what I build with it.",
+      "software": "Claude Code",
+      "level": 80,
+      "link": ""
+    },
     {
       "id": 1785645197448,
       "name": "Visualization / Designing",
@@ -1117,6 +1143,147 @@
       "description": "Argonne National Laboratory researchers have outlined an ambitious roadmap to accelerate battery breakthroughs using AI-powered large language models (LLMs). Published in Joule, the review proposes creating \"self-driving laboratories\" where LLM agents automate the entire research cycle—from mining literature and screening materials to directing robots for synthesis and testing. This approach aims to transform battery science by drastically speeding up discovery, reducing errors, and allowing scientists to focus on strategic innovation rather than manual experimentation.",
       "source": "https://techxplore.com/news/2026-06-turbo-battery-ai-ambitious-vision.html",
       "image": "https://scx1.b-cdn.net/csz/news/800a/2026/turbo-charging-battery.jpg"
+    }
+  ],
+  "apps": [
+    {
+      "id": 1790000000011,
+      "name": "Manimo",
+      "tagline": "Math, in motion.",
+      "icon": "assets/apps/manimo.svg",
+      "url": "https://mathanmj92.github.io/manimo-site/",
+      "platform": "Windows desktop app",
+      "summary": "Manimo turns ManimGX and Manim animation code into finished, narrated lesson videos on your own PC. You write or generate a scene, preview it, add a voice, and join the scenes into one video, all in one app.",
+      "features": [
+        "Code editor with autocomplete, hover explanations for names and options, and find and replace",
+        "One-click rendering from 480p to 4K, and a Present mode that pauses at each section",
+        "Ask AI writes a scene, checks that every name exists, scans for unsafe code and fixes errors. It is optional and works with Claude Code, a Claude API key or another model",
+        "Built-in narration with four offline English voices, and script export as .txt, .srt, .vtt or .json",
+        "Projects keep one folder per lesson and re-render only what changed",
+        "Compose joins your rendered scenes: cut, trim, fade, background music, camera overlay and voice-over, then exports MP4 with chapters and subtitles",
+        "Four looks: Chalkboard, Blueprint, Paper and Mint"
+      ],
+      "usage": [
+        "Download and install it (about 242 MB). It installs for your user only and needs no administrator rights.",
+        "Create a project, which is one folder for a whole lesson.",
+        "Write a scene in the editor, or use Ask AI to write one for you.",
+        "Press Start Rendering, or Present to step through it section by section.",
+        "Add narration with self.say or the voiceover block, or record your own voice and camera.",
+        "Open Compose, arrange the rendered scenes, and export the finished video."
+      ],
+      "notes": "Windows only. The built-in narration voices are English. The installer is currently signed with a test certificate, so Windows may show an unknown publisher warning."
+    },
+    {
+      "id": 1790000000012,
+      "name": "Atelier Lite",
+      "tagline": "Documents, slides, sheets and PDFs in one workspace.",
+      "icon": "assets/apps/atelier-lite.png",
+      "url": "https://mathanmj92.github.io/atelier-lite-site/",
+      "platform": "Windows desktop app",
+      "summary": "Atelier Lite puts a word processor, a slide editor, a spreadsheet and a PDF editor in one window. They share one folder, one set of tabs and one AI assistant that can read across your files and create new ones.",
+      "features": [
+        "Four apps in one window: Documents (.docx), Presentation (.pptx), Spreadsheet (.xlsx and .csv) and PDF Editor (.pdf)",
+        "Opens and saves normal Office files, with no import step and no private format",
+        "A workspace is a folder, and Home lists every file in it with rename and delete",
+        "Works offline with no account and no cloud storage, so files stay on your PC",
+        "AI assistant with your choice of engine: Claude Code, Codex, local models, the Anthropic API, any OpenAI-compatible API or your own command",
+        "Ctrl+Shift+K links a document to a slide deck, a sheet or a PDF in the same workspace",
+        "Optional workspace lock that encrypts files with AES-256-GCM and gives you a recovery key",
+        "Light, dark and colour themes, adjustable text size and a Low-power mode for older PCs"
+      ],
+      "usage": [
+        "Download Atelier Lite Setup from the Releases page (about 160 MB) and run it. It installs for your user without administrator rights.",
+        "Create a workspace folder, or open one you used recently.",
+        "Open files in tabs, and keep several of the same app open at once.",
+        "Save as usual: what you save is a normal .docx, .pptx, .xlsx or .pdf.",
+        "Open the AI panel, choose an engine and ask it to read your files or create a new document, deck or sheet."
+      ],
+      "notes": "Windows 10 or 11. Windows SmartScreen may warn about an unknown publisher because the installer is not code-signed yet. Choose More info, then Run anyway.",
+      "links": [
+        {
+          "label": "Download for Windows",
+          "url": "https://github.com/mathanmj92/atelier-lite/releases/latest"
+        }
+      ]
+    },
+    {
+      "id": 1790000000013,
+      "name": "Attainly",
+      "tagline": "Outcome-based education reporting, in the browser.",
+      "icon": "assets/apps/attainly.svg",
+      "url": "https://attainly.mathannits92.workers.dev/",
+      "platform": "Web app, works offline",
+      "summary": "Attainly is a browser-only tool for Outcome-Based Education reporting. You enter marks, map course outcomes to programme outcomes, compute attainment and export an accreditation-ready report. Everything stays on your computer.",
+      "features": [
+        "Maps course outcomes (COs) to programme outcomes (POs) and programme specific outcomes (PSOs) and computes attainment",
+        "Brings in marks from Excel, CSV, pasted cells or a Google Sheets link, and understands institute templates and workbooks",
+        "Marks analysis for any sheet: averages, pass rate, grades, rankings, toppers and groups compared",
+        "Lists students who are below target and ranks questions from hardest to easiest",
+        "Programme attainment that combines several courses, with optional exit, alumni and employer survey percentages",
+        "Exports the report as PDF, Excel or Word, and the export preview is the real PDF",
+        "Large text sizes, high contrast and a reduce-movement mode, built for faculty of every age",
+        "Nothing is uploaded. Your profile and courses are saved in a folder you choose, and it can be installed to work offline"
+      ],
+      "usage": [
+        "Open Attainly and create your local profile. Choose a folder on your computer (Chrome or Edge), or keep the workspace in the browser.",
+        "Start a course, or try the sample course to see a finished example.",
+        "Enter the CO statements and the CO-PO-PSO mapping, then enter or import the marks.",
+        "Open the Attainment step to see results, then check the Next bar for anything that needs attention.",
+        "Preview the report, then download it as PDF, Excel or Word."
+      ],
+      "notes": "Use Chrome or Edge for folder saving. Other browsers work too, with the workspace kept in the browser. Use Back up now to keep copies as files."
+    },
+    {
+      "id": 1790000000014,
+      "name": "Ex Researcher",
+      "tagline": "Repeatable analysis tools for researchers.",
+      "icon": "assets/apps/ex-researcher.svg",
+      "url": "https://x-researcher.mathannits92.workers.dev/",
+      "platform": "Web app in one file, works offline",
+      "summary": "eX Researcher is a set of repeatable data analysis tools for electrochemistry and materials researchers, with Origin-style graphs. It takes raw instrument CSV to a result table and a publication-ready figure, and runs entirely in the browser.",
+      "features": [
+        "Tools for cyclic voltammetry, supercapacitor Cp and retention, galvanostatic charge-discharge, impedance and equivalent circuits, battery cycles, solar cell J-V, XPS, PL and CIE",
+        "Extra analyses including Tafel, Randles-Sevcik, ECSA, Mott-Schottky, Arrhenius, Tauc, Scherrer and b-value",
+        "A general graphing workspace with Origin-style frames, ticks and legends",
+        "Every graph is customisable: lines, symbols, axes, ticks, grid, legend, fonts, page size and export resolution",
+        "The same input gives the same result every time, with tabular numbers, units and copyable tables",
+        "Save a whole session as a .exr file, or save one analysis as a PDF report",
+        "No server, no install and no files uploaded"
+      ],
+      "usage": [
+        "Open eX Researcher, then start a new session or open a saved .exr session.",
+        "Pick a tool. Its File format button shows which columns your CSV needs.",
+        "Load your instrument CSV and set the parameters.",
+        "Read the results table, and adjust the graph in the inspector on the right.",
+        "Save the session with Ctrl+S, or use Save as PDF for a report."
+      ],
+      "notes": "Please check results that matter for a publication against your own method."
+    },
+    {
+      "id": 1790000000015,
+      "name": "Formify",
+      "tagline": "Build forms, surveys and quizzes without a server.",
+      "icon": "assets/apps/formify.svg",
+      "url": "https://formify26.mathannits92.workers.dev/",
+      "platform": "Web app, makes single-file forms",
+      "summary": "Formify builds forms, surveys and graded quizzes in the browser and exports one self-contained .html file. You collect answers through files or a Google Sheet, and read the results as charts, lists and PDF reports.",
+      "features": [
+        "Eight kinds of form: quiz or exam, survey or research, feedback, application, registration or RSVP, quick poll, contact or request, and consent or declaration",
+        "Type straight onto the form, with equations and chemistry drawn without any download",
+        "The forms it makes are single files that work offline",
+        "Collect answers by having people send a file back, or through a Google Sheet with a short guided setup",
+        "Results screen and PDF report for each type, plus CSV and JSON export",
+        "Applicant status and notes, and CV upload for applications",
+        "Light and dark themes, phone and tablet layouts, and Help on F1"
+      ],
+      "usage": [
+        "Open Formify and choose the kind of form you need.",
+        "Build it by typing straight onto the form and setting the options for that type.",
+        "Export the form as one .html file, and send the file or link to your people.",
+        "Collect the answers as returned files, or connect a Google Sheet.",
+        "Open the results to see charts and lists, then export CSV, JSON or a PDF report."
+      ],
+      "notes": "No account is needed to build a form."
     }
   ]
 }
